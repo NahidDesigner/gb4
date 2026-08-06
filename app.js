@@ -7,42 +7,13 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Splash: navy → logo → page ---------------------------------- */
+  /* ---------- Legacy splash cleanup ----------------------------------------
+     DESIGN.md keeps the logo preloader on the homepage only, and the homepage
+     uses `#dsPreloader` from ds.js. If an old inner-page `#splash` block ever
+     survives in markup, remove it immediately instead of animating it. */
 
   var splash = $('#splash');
-  if (splash) {
-    var lifted = false;
-    var lift = function () {
-      if (lifted) return;
-      lifted = true;
-      splash.classList.add('is-done');
-      window.setTimeout(function () { splash.remove(); }, 800);
-    };
-    var minShow = reduced ? 200 : 1100;
-    var start = Date.now();
-    var whenReady = function () {
-      window.setTimeout(lift, Math.max(0, minShow - (Date.now() - start)));
-    };
-    /* The splash is on every page; the hero it was covering is only on the
-       homepage. This preload used to run everywhere with a document-relative
-       path, so every second page requested `/our-team/assets/nyc-hero.jpg` and
-       got a 404 — harmless only because `onerror` and `onload` call the same
-       handler, which is what hid it. Ask for the picture only where the picture
-       exists, and the path is correct by construction rather than by being
-       rewritten to match a depth. A page with no hero has nothing to wait for
-       and goes straight to the minimum show time. */
-    var hero = $('.hero-bg');
-    if (hero) {
-      var pre = new Image();
-      pre.onload = whenReady;
-      pre.onerror = whenReady;
-      pre.src = window.matchMedia('(max-width: 720px)').matches
-        ? 'assets/nyc-hero-sm.jpg' : 'assets/nyc-hero.jpg';
-    } else {
-      whenReady();
-    }
-    window.setTimeout(lift, 4000);
-  }
+  if (splash) splash.remove();
 
   /* ---------- Overlays ---------------------------------------------------- */
 
@@ -78,6 +49,11 @@
   });
   var dc = $('#drawerClose');
   if (dc) dc.addEventListener('click', function () { closePanel(drawer); });
+  if (drawer) {
+    drawer.addEventListener('click', function (e) {
+      if (e.target === drawer) closePanel(drawer);
+    });
+  }
   var sc = $('#searchClose');
   if (sc) sc.addEventListener('click', function () { closePanel(search); });
 

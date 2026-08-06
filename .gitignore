@@ -7,6 +7,8 @@
 .codex/
 .cursor/
 .impeccable/
+.superpowers/
+.restore-points/
 
 # Reference material, intentionally not published
 original-untouched/

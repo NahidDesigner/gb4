@@ -1,0 +1,2070 @@
+@import url("practice-areas/practice-atlas.css?v=inner-import-1");
+
+/* Inner-page Atlas overlay.
+   This file is intentionally a layer after styles.css: it preserves each page's
+   HTML, copy, schema, forms and JS, while removing the rejected bronze/Cinzel
+   body styling from the non-homepage templates. */
+
+body {
+  --inner-page: #f2f0ea;
+  --inner-mist: #e8e5dc;
+  --inner-atlantic: #0a1628;
+  --inner-route: #0a1628;
+  --inner-carbon: #172329;
+  --inner-gold: #c9a227;
+  --inner-gold-light: #f0d078;
+  --inner-line: rgba(10, 22, 40, 0.18);
+  --inner-line-strong: rgba(10, 22, 40, 0.34);
+  background: var(--inner-page);
+  color: var(--inner-carbon);
+}
+
+main:not(:has(.hero)) {
+  padding-top: 64px;
+}
+
+@media (min-width: 769px) {
+  main:not(:has(.hero)) {
+    padding-top: 74px;
+  }
+}
+
+/* Site chrome: keep the logo, remove the old body gold blocks. */
+.railhead {
+  background: rgba(242, 240, 234, 0.96);
+  border-bottom: 1px solid rgba(33, 107, 136, 0.18);
+  box-shadow: 0 10px 28px rgba(10, 22, 40, 0.08);
+}
+
+.rh-call,
+.rh-search,
+.rh-menu {
+  font-family: "Atlas Text", sans-serif;
+  letter-spacing: 0.12em;
+}
+
+.rh-call {
+  background: var(--inner-atlantic);
+  color: #fff;
+}
+
+.rh-call:hover {
+  background: var(--inner-route);
+  color: #fff;
+}
+
+.rh-search {
+  color: var(--inner-carbon);
+}
+
+.rh-menu {
+  background: #0a1628;
+}
+
+.page-title,
+.page-title.page-title--long {
+  max-width: 12ch;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.65rem, 6vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.page-sub,
+.post-meta {
+  font-family: "Atlas Text", sans-serif;
+  color: #34495f;
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.post-meta {
+  margin: 0 0 1rem;
+  color: var(--inner-route);
+  font-weight: 800;
+}
+
+.postlist,
+.results,
+.swidget {
+  border-top: 1px solid var(--inner-line-strong);
+  border-image: none;
+  box-shadow: none;
+}
+
+.post-row + .post-row,
+.swidget-list li + li {
+  border-top: 1px solid var(--inner-line);
+}
+
+.post-row > a {
+  position: relative;
+  padding: clamp(1.35rem, 3vw, 2rem) 0;
+}
+
+.post-row > a::after {
+  content: "";
+  position: absolute;
+  inset: 0 calc(var(--pa-gutter, 1.25rem) * -0.45);
+  z-index: -1;
+  background: rgba(220, 231, 231, 0);
+  transition: background-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.post-row > a:hover::after {
+  background: rgba(220, 231, 231, 0.5);
+}
+
+.post-date,
+.sw-date {
+  color: var(--inner-route);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.post-t,
+.post-h,
+.swidget-h,
+.sw-t {
+  font-family: "Atlas Display", sans-serif;
+  text-transform: none;
+  text-shadow: none;
+  letter-spacing: -0.02em;
+}
+
+.post-t {
+  color: var(--inner-atlantic);
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  line-height: 0.98;
+}
+
+.post-x,
+.post-body,
+.sw-t,
+.swidget-list a,
+.results-note,
+.rvwall-note {
+  color: #33495a;
+  font-family: "Atlas Text", sans-serif;
+}
+
+.post-go,
+.post-back a,
+.rv-all,
+.rv-all--quiet {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.sidebar {
+  border-left: 1px solid var(--inner-line);
+  padding-left: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.swidget {
+  padding-top: 1rem;
+}
+
+.swidget-h {
+  color: var(--inner-atlantic);
+  font-size: 1.1rem;
+}
+
+.swidget-cta {
+  background: var(--inner-atlantic);
+}
+
+.swidget-cta .cta-h,
+.swidget-cta .cta-p {
+  color: #fff;
+}
+
+/* Case results: dark institutional record, not orange boxes or luxury cards. */
+#results.sec {
+  background:
+    linear-gradient(132deg, transparent 0 64%, rgba(220, 231, 231, 0.08) 64% 100%),
+    var(--inner-atlantic);
+  color: #fff;
+}
+
+#results.sec::before {
+  background: rgba(220, 231, 231, 0.18);
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid rgba(220, 231, 231, 0.22);
+  background: rgba(220, 231, 231, 0.18);
+}
+
+.rcard,
+.rcard:nth-child(n),
+.rcard:nth-child(2n),
+.rcard:nth-child(3n),
+.rcard:nth-child(2n+1),
+.rcard:nth-child(3n+1) {
+  min-height: 14rem;
+  padding: clamp(1.3rem, 2.5vw, 2rem);
+  border: 0;
+  background:
+    linear-gradient(138deg, transparent 0 64%, rgba(220, 231, 231, 0.06) 64% 100%),
+    rgba(10, 22, 40, 0.24);
+}
+
+.rcard::before,
+.rcard:nth-child(n)::before {
+  content: none;
+}
+
+.rcard-amt {
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 4.3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  text-shadow: none;
+}
+
+.rcard-t {
+  max-width: 24ch;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.rcard-d {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+#results .results-note {
+  max-width: 82ch;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+#results .results-note b {
+  color: #fff;
+}
+
+/* Testimonials: proof wall with source-forward score plate. */
+.rv-plate {
+  width: min(100%, 760px);
+  margin: clamp(1.6rem, 3vw, 2.4rem) auto 0;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem) 0 0;
+  border-top: 1px solid var(--inner-line);
+}
+
+.rv-score > b {
+  color: var(--inner-carbon);
+  font-family: "Atlas Display", sans-serif;
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+.rv-score em {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.rvwall {
+  column-gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.rvwall .rvcard {
+  border: 1px solid rgba(33, 107, 136, 0.18);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: none;
+}
+
+.rvwall .rvcard blockquote,
+.rvwall .rvcard blockquote p,
+.rvreply p {
+  font-family: "Atlas Text", sans-serif;
+  color: #283f50;
+}
+
+.rvreply {
+  border-left: 1px solid var(--inner-route);
+}
+
+.rvreply-k {
+  color: var(--inner-route);
+  font-family: "Atlas Text", sans-serif;
+}
+
+/* Contact: phone-led page, form as a strong but secondary route. */
+.reach {
+  align-items: stretch;
+}
+
+.phone-xl {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.3rem, 4.5vw, 4.7rem);
+  letter-spacing: -0.035em;
+  text-shadow: none;
+}
+
+.phone-xl .ic {
+  color: var(--inner-route);
+}
+
+.reach-note,
+.field-hint,
+.form-fine {
+  color: #34495f;
+}
+
+.mapcard {
+  border-top: 1px solid var(--inner-line);
+  background: transparent;
+  box-shadow: none;
+}
+
+.mapcard:hover {
+  background: rgba(220, 231, 231, 0.5);
+}
+
+.mapcard > .ic,
+.mapcard-go {
+  color: var(--inner-route);
+}
+
+.formcard {
+  border: 1px solid rgba(33, 107, 136, 0.24);
+  border-top: 0;
+  background:
+    linear-gradient(132deg, transparent 0 70%, rgba(220, 231, 231, 0.55) 70% 100%),
+    rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+}
+
+.form-h {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.field label {
+  color: var(--inner-carbon);
+  font-family: "Atlas Text", sans-serif;
+}
+
+.field input,
+.field textarea {
+  border: 1px solid rgba(33, 107, 136, 0.34);
+  background: #fff;
+  box-shadow: none;
+  font-family: "Atlas Text", sans-serif;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--inner-route);
+  box-shadow: 0 0 0 3px rgba(33, 107, 136, 0.18);
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .rcard,
+  .rcard:nth-child(n) {
+    min-height: 0;
+  }
+
+  .page-title,
+  .page-title.page-title--long {
+    font-size: clamp(2.55rem, 10vw, 3.5rem);
+    line-height: 0.96;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1099px) {
+  .results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Inner-page header refresh: match the approved homepage chrome while keeping
+   the existing railhead markup and menu/search hooks intact. */
+.railhead,
+.railhead.is-up {
+  height: 74px;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  padding-inline: clamp(1rem, 3vw, 3rem);
+  color: #fff;
+  background: var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.42);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+}
+
+.railhead {
+  transform: translateY(-100%);
+}
+
+.railhead.is-up {
+  transform: none;
+}
+
+.railhead .rh-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding: 0;
+  line-height: 0;
+  transform: translate(-50%, -50%);
+}
+
+.railhead .rh-mark img {
+  display: block;
+  width: auto;
+  height: 52px;
+  max-width: none;
+}
+
+.railhead .rh-name {
+  display: none !important;
+}
+
+.railhead .rh-menu {
+  order: 1;
+  margin-right: auto;
+}
+
+.railhead .rh-search {
+  order: 2;
+  margin-left: auto;
+}
+
+.railhead .rh-call {
+  order: 3;
+}
+
+.railhead .rh-call,
+.railhead .rh-search,
+.railhead .rh-menu {
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: "Atlas Text", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.railhead .rh-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.railhead .rh-search {
+  display: inline-flex;
+  align-items: center;
+}
+
+.railhead .rh-call {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  margin-left: clamp(1rem, 2vw, 1.5rem);
+  padding: 0 1.35rem;
+  border: 1px solid #c9a227;
+  border-radius: 999px;
+  background: #c9a227;
+  color: var(--inner-atlantic);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.railhead .rh-call:hover,
+.railhead .rh-call:focus-visible {
+  border-color: #f0d078;
+  background: #f0d078;
+  color: var(--inner-atlantic);
+}
+
+.railhead .rh-search:hover,
+.railhead .rh-search:focus-visible,
+.railhead .rh-menu:hover,
+.railhead .rh-menu:focus-visible {
+  background: transparent;
+  color: #f0d078;
+}
+
+.railhead .rh-call .ic,
+.railhead .rh-search .ic {
+  display: none;
+}
+
+.railhead .rh-call span,
+.railhead .rh-search span,
+.railhead .rh-menu span:not(.ico-menu) {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.railhead .rh-menu .ico-menu {
+  display: block;
+  width: 20px;
+  height: 12px;
+}
+
+.railhead .rh-menu .ico-menu::before,
+.railhead .rh-menu .ico-menu::after {
+  height: 1px;
+}
+
+.railhead .rh-menu .ico-menu::before {
+  top: 0;
+  box-shadow: 0 6px 0 currentColor;
+}
+
+.railhead .rh-menu .ico-menu::after {
+  top: auto;
+  bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .railhead,
+  .railhead.is-up {
+    height: 64px;
+    min-height: 64px;
+    padding-inline: 0.9rem;
+  }
+
+  .railhead .rh-mark img {
+    height: 44px;
+  }
+
+  .railhead .rh-call {
+    display: none;
+  }
+
+  .railhead .rh-search,
+  .railhead .rh-menu {
+    min-height: 44px;
+    font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   Blog archive + post — editorial rebuild
+   ==========================================================================
+   Scoped to the existing blog structures. Content, links, headings, article tags
+   and sidebar markup stay intact; this layer changes only the page composition.
+   The goal is a premium journal surface that still feels like GB Law Firm:
+   navy fields, gold accents, warm paper, and clear reading rhythm.             */
+
+main:has(#posts) .sec--tight,
+main:has(#post) .sec--tight {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(20rem, 33vw, 31rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(5.8rem, 10vw, 8.8rem) clamp(4.2rem, 8vw, 6.4rem);
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.96) 0%, rgba(10, 22, 40, 0.9) 43%, rgba(10, 22, 40, 0.74) 100%),
+    radial-gradient(circle at 78% 18%, rgba(240, 208, 120, 0.24), transparent 28rem),
+    url("assets/nyc-hero.jpg") center 48% / cover no-repeat,
+    var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.54);
+}
+
+main:has(#posts) .sec--tight::before,
+main:has(#post) .sec--tight::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.25rem, 2.4vw, 2rem) var(--pa-gutter, 1.25rem) auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.86), transparent);
+}
+
+main:has(#posts) .page-head,
+main:has(#post) .page-head {
+  position: relative;
+  max-width: min(980px, 100%);
+  padding-left: clamp(1.15rem, 2vw, 1.55rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.84);
+  text-align: left;
+}
+
+main:has(#posts) .page-title,
+main:has(#post) .page-title {
+  max-width: none;
+  color: #fff;
+  font-size: clamp(4rem, 10vw, 8.2rem);
+  line-height: 0.88;
+  letter-spacing: -0.058em;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+}
+
+main:has(#posts) .page-sub {
+  max-width: 38ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+}
+
+main:has(#post) .post-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 1.1rem;
+  color: var(--inner-gold);
+}
+
+main:has(#post) .post-meta::before {
+  content: "";
+  width: 3.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+main:has(#posts) #posts,
+main:has(#post) #post {
+  padding-block: clamp(4.6rem, 8vw, 7.5rem);
+}
+
+.blog-layout {
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.blog-main {
+  min-width: 0;
+}
+
+main:has(#posts) .blog-main {
+  position: relative;
+  padding: clamp(1.1rem, 2.2vw, 1.75rem);
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.16)),
+    linear-gradient(132deg, transparent 0 70%, rgba(10, 22, 40, 0.05) 70% 100%);
+}
+
+main:has(#posts) .postlist {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+main:has(#posts) .post-row {
+  border: 0;
+}
+
+main:has(#posts) .post-row > a {
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  min-height: clamp(18rem, 31vw, 29rem);
+  padding: clamp(2rem, 4vw, 3.4rem);
+  color: inherit;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.94), rgba(10, 22, 40, 0.84)),
+    var(--inner-atlantic);
+  box-shadow: 0 28px 70px rgba(10, 22, 40, 0.16);
+}
+
+main:has(#posts) .post-row > a::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1rem, 2vw, 1.35rem);
+  z-index: -1;
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  pointer-events: none;
+}
+
+main:has(#posts) .post-row > a::after {
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(240, 208, 120, 0.13), transparent 18rem),
+    linear-gradient(132deg, transparent 0 66%, rgba(201, 162, 39, 0.12) 66% 100%);
+}
+
+main:has(#posts) .post-date {
+  align-self: start;
+  color: var(--inner-gold-light);
+}
+
+main:has(#posts) .post-t {
+  grid-column: 2;
+  max-width: 11ch;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.2rem, 7vw, 6.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.06em;
+}
+
+main:has(#posts) .post-x {
+  grid-column: 2;
+  max-width: 42ch;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+main:has(#posts) .post-go {
+  grid-column: 2;
+  width: fit-content;
+  margin-top: clamp(1.2rem, 2.5vw, 1.8rem);
+  padding-bottom: 0.4rem;
+  color: #fff;
+  border-bottom: 1px solid var(--inner-gold);
+}
+
+main:has(#posts) .post-go .ic {
+  color: var(--inner-gold);
+}
+
+main:has(#posts) .post-row > a:hover .post-t,
+main:has(#posts) .post-row > a:focus-visible .post-t {
+  color: var(--inner-gold-light);
+}
+
+.sidebar {
+  border-left-color: rgba(201, 162, 39, 0.32);
+}
+
+.swidget {
+  border-top: 1px solid rgba(201, 162, 39, 0.66);
+  border-image: none;
+}
+
+.swidget-h {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.swidget-list li + li {
+  border-top-color: var(--inner-line);
+}
+
+.swidget-list a {
+  position: relative;
+  padding: 1rem 0 1.05rem;
+}
+
+.swidget-list a::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  color: var(--inner-gold);
+  transform: translateX(-0.2rem);
+  opacity: 0;
+  transition:
+    opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.swidget-list a:hover::after,
+.swidget-list a:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+.sw-date,
+.post-date {
+  color: var(--inner-gold);
+}
+
+.sw-t {
+  padding-right: 1.4rem;
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+}
+
+.swidget-cta {
+  border: 1px solid rgba(201, 162, 39, 0.38);
+  background:
+    linear-gradient(132deg, transparent 0 68%, rgba(201, 162, 39, 0.12) 68% 100%),
+    var(--inner-atlantic);
+}
+
+.sidebar .swidget-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.8rem;
+  min-height: 0;
+  padding: clamp(1.35rem, 2vw, 1.7rem);
+  text-align: left;
+  border-color: rgba(201, 162, 39, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 20px 46px rgba(10, 22, 40, 0.12);
+}
+
+.sidebar .swidget-cta .cta-h {
+  display: block;
+  grid-column: auto;
+  grid-row: auto;
+  width: 100%;
+  max-width: 9ch;
+  margin: 0;
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.sidebar .swidget-cta .cta-p {
+  grid-column: auto;
+  grid-row: auto;
+  max-width: 18ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.swidget-cta .btn {
+  grid-column: auto;
+  grid-row: auto;
+  width: 100%;
+  min-height: 3.15rem;
+  margin: 0.35rem 0 0;
+  padding-inline: 1rem;
+  border-color: var(--inner-gold);
+  background: var(--inner-gold);
+  color: var(--inner-atlantic);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.22);
+}
+
+/* Blog single: turn the article into a premium reading page without changing
+   its tags or copy. */
+main:has(#post) .blog-main {
+  position: relative;
+  padding: clamp(2rem, 4.4vw, 4rem);
+  border-top: 1px solid rgba(201, 162, 39, 0.72);
+  background:
+    linear-gradient(132deg, transparent 0 76%, rgba(10, 22, 40, 0.045) 76% 100%),
+    rgba(255, 255, 255, 0.34);
+}
+
+main:has(#post) .post-body {
+  max-width: 72ch;
+  color: rgba(10, 22, 40, 0.82);
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  line-height: 1.78;
+}
+
+main:has(#post) .post-body .lede {
+  margin-bottom: 1.35em;
+  color: var(--inner-atlantic);
+  font-size: clamp(1.18rem, 1.9vw, 1.45rem);
+  line-height: 1.54;
+}
+
+main:has(#post) .post-h {
+  margin-top: 2.25em;
+  margin-bottom: 0.75em;
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+main:has(#post) .rte-strong {
+  margin-top: 2rem;
+  padding: 1.35rem 1.5rem;
+  border-left: 2px solid var(--inner-gold);
+  background: rgba(10, 22, 40, 0.045);
+  color: var(--inner-atlantic);
+}
+
+main:has(#post) .post-back {
+  margin-top: 2.6rem;
+  padding-top: 1.4rem;
+  border-top-color: rgba(10, 22, 40, 0.2);
+}
+
+main:has(#post) .post-back a {
+  color: var(--inner-atlantic);
+}
+
+main:has(#post) .post-back .ic {
+  color: var(--inner-gold);
+}
+
+/* Darken the blog/post hero as a hard override. The archive and single post
+   share this head, and the title/date must never fall back to the gray body
+   title treatment. */
+main:has(#posts) > .sec--tight,
+main:has(#post) > .sec--tight {
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.985) 0%, rgba(10, 22, 40, 0.95) 46%, rgba(10, 22, 40, 0.84) 100%),
+    radial-gradient(circle at 78% 18%, rgba(240, 208, 120, 0.18), transparent 28rem),
+    url("assets/nyc-hero.jpg") center 48% / cover no-repeat,
+    var(--inner-atlantic);
+}
+
+main:has(#posts) > .sec--tight .page-title,
+main:has(#post) > .sec--tight .page-title {
+  color: #fff;
+}
+
+main:has(#posts) > .sec--tight .page-sub,
+main:has(#post) > .sec--tight .post-meta {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+main:has(#post) > .sec--tight .post-meta::before {
+  background: var(--inner-gold);
+}
+
+@media (min-width: 1000px) {
+  main:has(#post) .blog-layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
+  main:has(#post) .blog-main {
+    margin-right: clamp(0rem, 2vw, 1.5rem);
+  }
+}
+
+@media (max-width: 900px) {
+  main:has(#posts) .sec--tight,
+  main:has(#post) .sec--tight {
+    min-height: 0;
+    padding-block: 4.6rem 3rem;
+  }
+
+  main:has(#posts) .page-head,
+  main:has(#post) .page-head {
+    padding-left: 0;
+    border-left: 0;
+    text-align: center;
+  }
+
+  main:has(#posts) .page-title,
+  main:has(#post) .page-title {
+    font-size: clamp(3.25rem, 18vw, 5.2rem);
+    line-height: 0.9;
+  }
+
+  main:has(#posts) .page-sub {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201, 162, 39, 0.8);
+    margin-inline: auto;
+  }
+
+  main:has(#post) .post-meta {
+    justify-content: center;
+  }
+
+  main:has(#post) .post-meta::before {
+    content: none;
+  }
+
+  main:has(#posts) .post-row > a {
+    grid-template-columns: 1fr;
+    align-items: start;
+    min-height: 0;
+    padding: clamp(1.55rem, 8vw, 2.35rem);
+  }
+
+  main:has(#posts) .post-date,
+  main:has(#posts) .post-t,
+  main:has(#posts) .post-x,
+  main:has(#posts) .post-go {
+    grid-column: 1;
+  }
+
+  main:has(#posts) .post-t {
+    max-width: 10ch;
+    font-size: clamp(3rem, 18vw, 4.75rem);
+  }
+
+  main:has(#posts) .blog-main,
+  main:has(#post) .blog-main {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  main:has(#posts) #posts,
+  main:has(#post) #post {
+    padding-block: 3rem;
+  }
+
+  main:has(#posts) .sec--tight,
+  main:has(#post) .sec--tight {
+    padding-block: 3.65rem 2.5rem;
+  }
+
+  main:has(#posts) .page-title,
+  main:has(#post) .page-title {
+    font-size: clamp(2.8rem, 17vw, 4.1rem);
+  }
+
+  main:has(#posts) .post-t {
+    font-size: clamp(2.55rem, 16vw, 3.75rem);
+  }
+
+  main:has(#posts) .post-row > a {
+    padding: 1.45rem;
+  }
+
+  main:has(#post) .post-body {
+    line-height: 1.68;
+  }
+}
+
+/* ==========================================================================
+   Case results — premium record wall
+   ==========================================================================
+   The supplied inspiration is used only as a wireframe principle: headline,
+   result field, CTA. The GB version stays navy/gold, quieter, and more legal-
+   institutional. Existing amounts, descriptions, HTML and disclaimer remain. */
+
+main:has(#results) .sec--tight {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(20rem, 34vw, 32rem);
+  display: grid;
+  align-items: end;
+  padding-block: clamp(5.6rem, 10vw, 8.6rem) clamp(3.6rem, 7vw, 5.6rem);
+  color: #fff;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(240, 208, 120, 0.18), transparent 28rem),
+    linear-gradient(132deg, rgba(10, 22, 40, 0) 0 58%, rgba(201, 162, 39, 0.12) 58% 100%),
+    var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.5);
+}
+
+main:has(#results) .sec--tight::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.25rem, 2.4vw, 2rem) var(--pa-gutter, 1.25rem) auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.78), transparent);
+}
+
+main:has(#results) .page-head {
+  max-width: min(1180px, 100%);
+  text-align: left;
+}
+
+main:has(#results) .page-title {
+  max-width: none;
+  color: #fff;
+  font-size: clamp(4.4rem, 10.8vw, 9.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+}
+
+main:has(#results) .page-sub {
+  max-width: 42ch;
+  margin: 1.25rem 0 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--inner-gold);
+  color: rgba(255, 255, 255, 0.76);
+}
+
+main:has(#results) #results.sec {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4.6rem, 8vw, 7rem);
+  background:
+    radial-gradient(circle at 76% 15%, rgba(240, 208, 120, 0.12), transparent 24rem),
+    linear-gradient(132deg, transparent 0 72%, rgba(201, 162, 39, 0.08) 72% 100%),
+    var(--inner-atlantic);
+}
+
+main:has(#results) #results.sec::before {
+  background: rgba(201, 162, 39, 0.28);
+}
+
+main:has(#results) .results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.6vw, 1.35rem);
+  margin-top: 0;
+  padding: clamp(0.9rem, 1.6vw, 1.35rem);
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  border-image: none;
+  background:
+    linear-gradient(132deg, transparent 0 70%, rgba(255, 255, 255, 0.04) 70% 100%),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 34px 80px rgba(0, 0, 0, 0.18);
+}
+
+main:has(#results) .rcard,
+main:has(#results) .rcard:nth-child(n),
+main:has(#results) .rcard:nth-child(2n),
+main:has(#results) .rcard:nth-child(3n),
+main:has(#results) .rcard:nth-child(2n+1),
+main:has(#results) .rcard:nth-child(3n+1) {
+  position: relative;
+  min-height: clamp(13rem, 16vw, 17.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.35rem, 2.2vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 40, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+main:has(#results) .rcard::before,
+main:has(#results) .rcard:nth-child(n)::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--inner-gold), transparent);
+}
+
+main:has(#results) .rcard-amt {
+  color: var(--inner-gold-light);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.3rem, 4.7vw, 4.9rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  text-shadow: none;
+}
+
+main:has(#results) .rcard-t {
+  max-width: 23ch;
+  margin-top: auto;
+  color: #fff;
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  line-height: 1.34;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+main:has(#results) .rcard-d {
+  max-width: 34ch;
+  margin-top: 0.55rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+main:has(#results) .results-note {
+  max-width: 84ch;
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid rgba(201, 162, 39, 0.62);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+main:has(#results) .results-note b {
+  color: var(--inner-gold-light);
+}
+
+@media (min-width: 901px) and (max-width: 1140px) {
+  main:has(#results) .results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  main:has(#results) .sec--tight {
+    min-height: 0;
+    padding-block: 4.6rem 3rem;
+  }
+
+  main:has(#results) .page-head {
+    text-align: center;
+  }
+
+  main:has(#results) .page-title {
+    font-size: clamp(3rem, 15vw, 5.2rem);
+  }
+
+  main:has(#results) .page-sub {
+    margin-inline: auto;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  main:has(#results) .results {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding: 0.9rem;
+  }
+
+  main:has(#results) .rcard,
+  main:has(#results) .rcard:nth-child(n) {
+    min-height: 12rem;
+  }
+}
+
+/* ==========================================================================
+   Testimonials — proof wall
+   ==========================================================================
+   No review text changes. The page now opens like a proof asset rather than a
+   plain archive: score first, then a dense but readable wall. */
+
+main:has(#reviews) .sec--tight {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(28rem, 43vw, 38rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(3.2rem, 5.2vw, 4.8rem) clamp(2.8rem, 4.4vw, 4rem);
+  color: #fff;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(240, 208, 120, 0.16), transparent 25rem),
+    linear-gradient(132deg, rgba(255, 255, 255, 0) 0 60%, rgba(201, 162, 39, 0.12) 60% 100%),
+    var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.5);
+}
+
+main:has(#reviews) .sec--tight::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.25rem, 2.4vw, 2rem) var(--pa-gutter, 1.25rem) auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.8), transparent);
+}
+
+main:has(#reviews) .page-head {
+  max-width: min(1120px, 100%);
+  margin-top: 0;
+}
+
+main:has(#reviews) .page-title,
+main:has(#reviews) .page-title.page-title--long {
+  max-width: none;
+  color: #fff;
+  font-size: clamp(3.7rem, 9.4vw, 8.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+}
+
+main:has(#reviews) .rv-plate {
+  width: min(100%, 920px);
+  margin: clamp(1.2rem, 2.4vw, 2rem) auto 0;
+  padding: clamp(1rem, 1.6vw, 1.25rem);
+  border: 1px solid rgba(201, 162, 39, 0.36);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(10, 22, 40, 0.5);
+}
+
+main:has(#reviews) .rv-score {
+  gap: clamp(0.75rem, 1.6vw, 1.1rem);
+}
+
+main:has(#reviews) .rv-score > b {
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.1rem, 5.8vw, 5.4rem);
+  line-height: 0.9;
+}
+
+main:has(#reviews) .rv-score em {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+main:has(#reviews) .rvstars .ic,
+main:has(#reviews) .rvstars--lg .ic {
+  color: var(--inner-gold-light);
+}
+
+main:has(#reviews) .rv-all {
+  color: #fff;
+  border-bottom-color: rgba(201, 162, 39, 0.72);
+}
+
+main:has(#reviews) #reviews {
+  padding-block: clamp(4rem, 7vw, 6.8rem);
+  background:
+    linear-gradient(132deg, transparent 0 76%, rgba(10, 22, 40, 0.045) 76% 100%),
+    var(--inner-page);
+}
+
+main:has(#reviews) .rvwall {
+  margin-top: 0;
+  column-gap: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+main:has(#reviews) .rvwall .rvcard {
+  position: relative;
+  padding: clamp(1.35rem, 2vw, 1.75rem);
+  border: 1px solid rgba(10, 22, 40, 0.13);
+  border-top: 2px solid var(--inner-gold);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.42);
+  box-shadow: 0 18px 38px rgba(10, 22, 40, 0.07);
+}
+
+main:has(#reviews) .rvwall .rvcard::after {
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-right: 1px solid rgba(201, 162, 39, 0.34);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.34);
+  pointer-events: none;
+}
+
+main:has(#reviews) .rvwall .rvcard blockquote {
+  margin-top: 1.05rem;
+}
+
+main:has(#reviews) .rvwall .rvcard blockquote,
+main:has(#reviews) .rvwall .rvcard blockquote p {
+  color: rgba(10, 22, 40, 0.78);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.98rem, 1.05vw, 1.04rem);
+  line-height: 1.68;
+}
+
+main:has(#reviews) .rvwho b {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+main:has(#reviews) .rvwho em {
+  color: rgba(10, 22, 40, 0.56);
+}
+
+main:has(#reviews) .rvreply {
+  border-left-color: var(--inner-gold);
+  background: rgba(10, 22, 40, 0.035);
+  padding: 0.9rem 1rem;
+}
+
+main:has(#reviews) .rvreply-k {
+  color: var(--inner-atlantic);
+}
+
+main:has(#reviews) .rvreply p {
+  color: rgba(10, 22, 40, 0.7);
+}
+
+main:has(#reviews) .rvmore {
+  margin-top: clamp(2.4rem, 4vw, 3.6rem);
+}
+
+main:has(#reviews) .rvmore .btn {
+  background: var(--inner-atlantic);
+  color: #fff;
+}
+
+main:has(#reviews) .rvmore .btn:hover,
+main:has(#reviews) .rvmore .btn:focus-visible {
+  background: var(--inner-gold);
+  color: var(--inner-atlantic);
+}
+
+@media (max-width: 900px) {
+  main:has(#reviews) .sec--tight {
+    min-height: 0;
+    padding-block: 3.2rem 2.7rem;
+  }
+
+  main:has(#reviews) .page-title,
+  main:has(#reviews) .page-title.page-title--long {
+    font-size: clamp(2.8rem, 13.5vw, 4.3rem);
+    line-height: 0.92;
+  }
+
+  main:has(#reviews) .rv-plate {
+    grid-auto-flow: row;
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  main:has(#reviews) .rv-score {
+    grid-template-columns: auto auto;
+  }
+
+  main:has(#reviews) .rv-score span {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  main:has(#reviews) .rvwall .rvcard {
+    padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Contact — direct route + form
+   ==========================================================================
+   The page keeps its exact copy/form fields. The visual order is now clear:
+   call first, form second, office/map after. */
+
+main:has(#reach) .sec--tight {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(21rem, 32vw, 30rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(5rem, 8vw, 7.4rem) clamp(3rem, 5vw, 4.4rem);
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.985) 0%, rgba(10, 22, 40, 0.95) 46%, rgba(10, 22, 40, 0.84) 100%),
+    radial-gradient(circle at 76% 18%, rgba(240, 208, 120, 0.18), transparent 24rem),
+    url("assets/nyc-hero.jpg") center 48% / cover no-repeat,
+    var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.54);
+}
+
+main:has(#reach) .sec--tight::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.25rem, 2.4vw, 2rem) var(--pa-gutter, 1.25rem) auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.82), transparent);
+}
+
+main:has(#reach) .page-head {
+  max-width: min(980px, 100%);
+  padding-left: clamp(1.15rem, 2vw, 1.55rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.84);
+}
+
+main:has(#reach) .page-title {
+  max-width: none;
+  color: #fff;
+  font-size: clamp(3.8rem, 8.4vw, 7.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+}
+
+main:has(#reach) .page-sub {
+  max-width: 38ch;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+main:has(#reach) #reach.sec {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4rem, 7vw, 6.6rem);
+  background:
+    linear-gradient(132deg, rgba(255, 255, 255, 0) 0 70%, rgba(201, 162, 39, 0.08) 70% 100%),
+    var(--inner-atlantic);
+}
+
+main:has(#reach) #reach.sec::before {
+  background: rgba(201, 162, 39, 0.3);
+}
+
+main:has(#reach) .reach {
+  align-items: stretch;
+}
+
+main:has(#reach) .reach-direct {
+  position: relative;
+  top: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(30rem, 46vw, 42rem);
+  padding: clamp(1.6rem, 3.2vw, 3rem);
+  border: 1px solid rgba(201, 162, 39, 0.42);
+  background:
+    radial-gradient(circle at 16% 12%, rgba(240, 208, 120, 0.12), transparent 16rem),
+    linear-gradient(132deg, transparent 0 68%, rgba(201, 162, 39, 0.11) 68% 100%);
+  color: #fff;
+}
+
+main:has(#reach) .reach-direct .kicker {
+  color: var(--inner-gold-light);
+}
+
+main:has(#reach) .phone-xl {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.4vw, 1.15rem);
+  margin-top: clamp(1.4rem, 3vw, 2.3rem);
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2rem, 3.35vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+main:has(#reach) .phone-xl .ic {
+  flex: 0 0 auto;
+  width: clamp(1.75rem, 2.6vw, 2.35rem);
+  height: clamp(1.75rem, 2.6vw, 2.35rem);
+  color: var(--inner-gold);
+}
+
+main:has(#reach) .reach-note {
+  max-width: 44ch;
+  margin-top: clamp(1.2rem, 2vw, 1.7rem);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(1rem, 1.25vw, 1.08rem);
+}
+
+main:has(#reach) .mapcard {
+  margin-top: 0.9rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+}
+
+main:has(#reach) .mapcard:hover,
+main:has(#reach) .mapcard:focus-visible {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+main:has(#reach) .mapcard > .ic,
+main:has(#reach) .mapcard-go {
+  color: var(--inner-gold);
+}
+
+main:has(#reach) .mapcard span,
+main:has(#reach) .mapcard b {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+main:has(#reach) .mapcard b {
+  color: #fff;
+}
+
+main:has(#reach) .formcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(30rem, 46vw, 42rem);
+  padding: clamp(1.6rem, 3.4vw, 3rem);
+  border: 1px solid rgba(201, 162, 39, 0.28);
+  background:
+    linear-gradient(132deg, transparent 0 76%, rgba(10, 22, 40, 0.045) 76% 100%),
+    #f8f6ef;
+  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.18);
+}
+
+main:has(#reach) .form-h {
+  margin-bottom: clamp(1.2rem, 2.6vw, 2rem);
+  color: var(--inner-atlantic);
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+main:has(#reach) .field {
+  margin-bottom: 0.95rem;
+}
+
+main:has(#reach) .field label {
+  color: var(--inner-atlantic);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+main:has(#reach) .field input,
+main:has(#reach) .field textarea {
+  border: 1px solid rgba(10, 22, 40, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+main:has(#reach) .field input:focus,
+main:has(#reach) .field textarea:focus {
+  border-color: var(--inner-gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.18);
+}
+
+main:has(#reach) .formcard .btn {
+  margin-top: 0.5rem;
+  background: var(--inner-gold);
+  color: var(--inner-atlantic);
+}
+
+main:has(#reach) .formcard .btn:hover,
+main:has(#reach) .formcard .btn:focus-visible {
+  background: var(--inner-atlantic);
+  color: #fff;
+}
+
+main:has(#reach) .field-hint,
+main:has(#reach) .form-fine {
+  color: rgba(10, 22, 40, 0.58);
+}
+
+main:has(#reach) #what-happens.sec {
+  background:
+    linear-gradient(132deg, transparent 0 76%, rgba(10, 22, 40, 0.045) 76% 100%),
+    var(--inner-page);
+}
+
+main:has(#reach) #what-happens .h2 {
+  max-width: 13ch;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+  text-transform: none;
+}
+
+main:has(#reach) #what-happens .agrid {
+  border-color: rgba(10, 22, 40, 0.18);
+}
+
+main:has(#reach) #what-happens .acard {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+main:has(#reach) #what-happens .acard-k {
+  color: var(--inner-gold);
+}
+
+main:has(#reach) #what-happens .acard h3 {
+  color: var(--inner-atlantic);
+}
+
+@media (max-width: 900px) {
+  main:has(#reach) .sec--tight {
+    min-height: 0;
+    padding-block: 4.2rem 2.8rem;
+  }
+
+  main:has(#reach) .page-title {
+    font-size: clamp(3rem, 15vw, 4.9rem);
+  }
+
+  main:has(#reach) .reach-direct,
+  main:has(#reach) .formcard {
+    min-height: 0;
+  }
+
+  main:has(#reach) .phone-xl {
+    gap: 0.85rem;
+    font-size: clamp(1.8rem, 8.2vw, 2.65rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+
+  main:has(#reach) .phone-xl .ic {
+    width: clamp(1.55rem, 7vw, 2rem);
+    height: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  main:has(#reach) #what-happens .h2 {
+    max-width: 11ch;
+    margin-inline: auto;
+    text-align: center;
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+}
+
+/* ==========================================================================
+   Team + attorney profiles
+   ========================================================================== */
+
+main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight:has(.page-head),
+main > .sec--tight:has(.bio),
+main:has(#index) > .sec--tight:has(.page-head),
+main:has(#counties) > .sec--tight:has(.page-head),
+main:has(#overview) > .sec--tight:has(.page-head),
+main:has(#local) > .sec--tight:has(.page-head) {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(20rem, 32vw, 30rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(5rem, 8vw, 7.2rem) clamp(3rem, 5vw, 4.4rem);
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.985) 0%, rgba(10, 22, 40, 0.95) 46%, rgba(10, 22, 40, 0.84) 100%),
+    radial-gradient(circle at 76% 18%, rgba(240, 208, 120, 0.18), transparent 24rem),
+    url("assets/nyc-hero.jpg") center 48% / cover no-repeat,
+    var(--inner-atlantic);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.54);
+  color: #fff;
+}
+
+main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight:has(.page-head)::before,
+main > .sec--tight:has(.bio)::before,
+main:has(#index) > .sec--tight:has(.page-head)::before,
+main:has(#counties) > .sec--tight:has(.page-head)::before,
+main:has(#overview) > .sec--tight:has(.page-head)::before,
+main:has(#local) > .sec--tight:has(.page-head)::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.25rem, 2.4vw, 2rem) var(--pa-gutter, 1.25rem) auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.8), transparent);
+}
+
+main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight .page-head,
+main:has(#index) > .sec--tight .page-head,
+main:has(#counties) > .sec--tight .page-head,
+main:has(#overview) > .sec--tight .page-head,
+main:has(#local) > .sec--tight .page-head {
+  max-width: min(1040px, 100%);
+  padding-left: clamp(1.15rem, 2vw, 1.55rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.84);
+}
+
+main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight .page-title,
+main:has(#index) > .sec--tight .page-title,
+main:has(#counties) > .sec--tight .page-title,
+main:has(#overview) > .sec--tight .page-title,
+main:has(#local) > .sec--tight .page-title {
+  max-width: none;
+  color: #fff;
+  font-size: clamp(3.7rem, 8.4vw, 7.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+}
+
+main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight .page-sub,
+main:has(#index) > .sec--tight .page-sub,
+main:has(#counties) > .sec--tight .page-sub,
+main:has(#overview) > .sec--tight .page-sub,
+main:has(#local) > .sec--tight .page-sub {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+main:has(#philip-gurevich) .bio {
+  align-items: center;
+}
+
+main:has(#philip-gurevich) .bio-plate {
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 39, 0.36);
+  border-top: 2px solid var(--inner-gold);
+  background: var(--inner-atlantic);
+  box-shadow: 0 24px 60px rgba(10, 22, 40, 0.14);
+}
+
+main:has(#philip-gurevich) .bio-plate img {
+  filter: grayscale(1) contrast(1.06);
+  transform: scale(1.015);
+}
+
+main:has(#philip-gurevich) .bio-body {
+  position: relative;
+  padding-block: clamp(1rem, 2vw, 1.8rem);
+}
+
+main:has(#philip-gurevich) .bio-role {
+  color: var(--inner-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 900;
+}
+
+main:has(#philip-gurevich) .bio-body .h2 {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.1rem, 6vw, 5.6rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+  text-transform: none;
+}
+
+main:has(#philip-gurevich) .bio-body p:not(.bio-role):not(.bio-more):not(.rte-strong) {
+  color: rgba(10, 22, 40, 0.72);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  line-height: 1.72;
+}
+
+main > .sec--tight:has(.bio) .bio-role {
+  color: var(--inner-gold-light);
+}
+
+main > .sec--tight:has(.bio) .bio-body .h2 {
+  color: #fff;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+}
+
+main > .sec--tight:has(.bio) .bio-body p:not(.bio-role):not(.bio-more):not(.rte-strong) {
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Atlas Text", sans-serif;
+  line-height: 1.72;
+}
+
+main > .sec--tight:has(.bio) .rte-strong {
+  border-left-color: var(--inner-gold);
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+main:has(#philip-gurevich) .bio-more a,
+main:has(#philip-gurevich) .post-back a {
+  color: var(--inner-atlantic);
+}
+
+main:has(#philip-gurevich) .bio-more .ic,
+main:has(#philip-gurevich) .post-back .ic {
+  color: var(--inner-gold);
+}
+
+main:has(#philip-gurevich) .rte-strong {
+  padding: 1.2rem 1.35rem;
+  border-left: 2px solid var(--inner-gold);
+  background: rgba(10, 22, 40, 0.045);
+  color: var(--inner-atlantic);
+}
+
+main:has(#philip-gurevich) .agrid {
+  border-color: rgba(10, 22, 40, 0.18);
+}
+
+main:has(#philip-gurevich) .acard {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+main:has(#philip-gurevich) .acard-k {
+  color: var(--inner-gold);
+}
+
+/* ==========================================================================
+   Service areas + sitemap
+   ========================================================================== */
+
+main:has(#counties) #counties,
+main:has(#overview) #overview,
+main:has(#local) #local,
+main:has(#index) #index {
+  background:
+    linear-gradient(132deg, transparent 0 76%, rgba(10, 22, 40, 0.045) 76% 100%),
+    var(--inner-page);
+}
+
+.sa-jump {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  background: rgba(201, 162, 39, 0.34);
+}
+
+.sa-jump a {
+  min-height: 7.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.46);
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 900;
+}
+
+.sa-jump a:hover,
+.sa-jump a:focus-visible {
+  background: var(--inner-atlantic);
+  color: #fff;
+}
+
+.sa-n {
+  color: var(--inner-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: 2.4rem;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.sa-county {
+  margin-top: clamp(2.2rem, 4.5vw, 4rem);
+  padding-top: clamp(1.4rem, 2.5vw, 2rem);
+  border-top: 1px solid rgba(10, 22, 40, 0.22);
+}
+
+.sa-county-h h3 {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.sa-county-all {
+  color: var(--inner-atlantic);
+}
+
+.sa-county-all .ic {
+  color: var(--inner-gold);
+}
+
+.sa-grid {
+  gap: 1px;
+  margin-top: 1.3rem;
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  background: rgba(10, 22, 40, 0.13);
+}
+
+.sa-cell {
+  min-height: 5.4rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.05rem;
+  background: rgba(255, 255, 255, 0.46);
+  color: rgba(10, 22, 40, 0.58);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+}
+
+a.sa-cell {
+  color: var(--inner-atlantic);
+  background:
+    linear-gradient(90deg, var(--inner-gold) 0 3px, rgba(255, 255, 255, 0.62) 3px);
+}
+
+a.sa-cell:hover,
+a.sa-cell:focus-visible {
+  background: var(--inner-atlantic);
+  color: #fff;
+}
+
+.index-dark {
+  background:
+    radial-gradient(circle at 80% 12%, rgba(240, 208, 120, 0.1), transparent 22rem),
+    linear-gradient(132deg, transparent 0 72%, rgba(201, 162, 39, 0.08) 72% 100%),
+    var(--inner-atlantic);
+}
+
+.index-dark .ci-n {
+  color: var(--inner-gold-light);
+}
+
+.index-dark .cindex li {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.index-dark .index-foot {
+  border-left-color: var(--inner-gold);
+}
+
+main:has(#index) .sitemap-grid {
+  gap: clamp(1.4rem, 2.4vw, 2rem);
+  margin-top: 0;
+}
+
+main:has(#index) .swidget {
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-top: 2px solid var(--inner-gold);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+main:has(#index) .swidget-h {
+  color: var(--inner-atlantic);
+}
+
+@media (max-width: 900px) {
+  main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight:has(.page-head),
+  main > .sec--tight:has(.bio),
+  main:has(#index) > .sec--tight:has(.page-head),
+  main:has(#counties) > .sec--tight:has(.page-head),
+  main:has(#overview) > .sec--tight:has(.page-head),
+  main:has(#local) > .sec--tight:has(.page-head) {
+    min-height: 0;
+    padding-block: 4rem 2.7rem;
+  }
+
+  main:has(#philip-gurevich):has(#albert-buznik) > .sec--tight .page-title,
+  main:has(#index) > .sec--tight .page-title,
+  main:has(#counties) > .sec--tight .page-title,
+  main:has(#overview) > .sec--tight .page-title,
+  main:has(#local) > .sec--tight .page-title {
+    font-size: clamp(2.8rem, 14vw, 4.8rem);
+  }
+
+  main:has(#philip-gurevich) .bio-body .h2 {
+    font-size: clamp(2.7rem, 13vw, 4.2rem);
+  }
+
+  .sa-jump {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .sa-jump,
+  .sa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sa-jump a,
+  .sa-cell {
+    min-height: 4.8rem;
+  }
+}

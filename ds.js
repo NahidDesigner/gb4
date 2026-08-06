@@ -9,6 +9,8 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, r) { return (r || doc).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); };
+  var isHomePage = doc.body && doc.body.classList.contains('atlas-home')
+    && (/\/$|\/index\.html$/).test(window.location.pathname);
 
   /* ---------- §5.2 The orchestrated moment — preloader --------------------
      0ms    stone-deep field, full bleed
@@ -19,6 +21,10 @@
      field so the field is never what LCP is waiting on. */
 
   var pre = $('#dsPreloader');
+  if (pre && !isHomePage) {
+    pre.remove();
+    pre = null;
+  }
   if (pre) {
     var seen = false;
     try { seen = sessionStorage.getItem('gb-preloader') === '1'; } catch (e) { seen = false; }

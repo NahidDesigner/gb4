@@ -1100,7 +1100,7 @@ span.sa-cell { color: var(--ink-soft); }
    Drawer / search
    ========================================================================== */
 
-.drawer, .search {
+.search {
   position: fixed; inset: 0; z-index: 180;
   background: var(--stone-deep); color: #F2F5F4;
   /* No grain on the overlays: an empty full-screen field turns the texture
@@ -1108,8 +1108,59 @@ span.sa-cell { color: var(--ink-soft); }
   background-image: linear-gradient(180deg, rgba(214,230,240,.05) 0%, rgba(214,230,240,0) 30%);
   padding: 20px var(--gut) 44px; overflow-y: auto;
 }
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  --drawer-w: min(92vw, 468px);
+  color: #F2F5F4;
+  background: rgba(6, 14, 28, .42);
+  padding:
+    max(10px, env(safe-area-inset-top))
+    max(10px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom))
+    max(10px, env(safe-area-inset-left));
+  overflow-y: auto;
+  isolation: isolate;
+  animation: drawerRailIn var(--dur-panel) var(--ease-drawer);
+}
+
+.drawer::before {
+  content: "";
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(10px, env(safe-area-inset-bottom));
+  width: var(--drawer-w);
+  z-index: -1;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(201, 162, 39, .14), transparent 13rem),
+    linear-gradient(136deg, transparent 0 58%, rgba(220, 231, 231, .06) 58% 100%),
+    var(--stone-deep);
+  border: 1px solid rgba(201, 162, 39, .36);
+  box-shadow: -34px 0 90px rgba(0, 0, 0, .38), -1px 0 0 rgba(255, 255, 255, .08);
+}
+
 .drawer[hidden], .search[hidden] { display: none !important; }
-.drawer-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 30px; }
+
+@keyframes drawerRailIn {
+  from { opacity: .78; transform: translateX(34px); }
+  to { opacity: 1; transform: none; }
+}
+
+.drawer-top {
+  position: relative;
+  z-index: 1;
+  width: var(--drawer-w);
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(18px, 2.4vw, 26px) clamp(18px, 2.4vw, 26px) 0;
+  margin-bottom: clamp(24px, 4vh, 38px);
+}
 .drawer-close, .search-close, .drawer-call {
   border: 0; background: none; cursor: pointer; min-height: 44px;
   display: inline-flex; align-items: center;
@@ -1118,15 +1169,40 @@ span.sa-cell { color: var(--ink-soft); }
 }
 /* The phone number was the smallest type in the drawer, under nav links it
    should outrank. It is the reason the drawer is open. */
-.drawer-call { color: var(--bronze); font-size: 17px; letter-spacing: .07em; }
-.drawer-nav { display: grid; max-width: 720px; margin-inline: auto; border-top: 1px solid var(--rule-cut-dark); }
+.drawer-close {
+  color: #F2F5F4;
+  padding-inline: 14px;
+  border: 1px solid rgba(226,235,236,.26);
+  background: rgba(255,255,255,.04);
+}
+.drawer-close:hover { background: rgba(255,255,255,.08); color: #fff; }
+.drawer-call {
+  min-height: 44px;
+  padding-inline: clamp(12px, 3vw, 18px);
+  color: var(--stone-deep);
+  background: var(--bronze);
+  font-size: clamp(13px, 3vw, 15px);
+  letter-spacing: .08em;
+  box-shadow: inset 0 -2px 0 rgba(10, 22, 40, .24);
+}
+.drawer-call:hover { color: var(--stone-deep); background: var(--bronze-lit); }
+.drawer-nav {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: var(--drawer-w);
+  max-width: none;
+  margin-left: auto;
+  padding-inline: clamp(18px, 2.4vw, 26px);
+  border-top: 1px solid rgba(226,235,236,.18);
+}
 .drawer-nav a, .drawer-nav .drawer-nav-into {
-  font-family: var(--f-cut); font-weight: 600; font-size: clamp(16px, 4.4vw, 20px); line-height: 1.3;
+  font-family: var(--f-cut); font-weight: 600; font-size: clamp(16px, 3vw, 19px); line-height: 1.22;
   letter-spacing: .06em; text-transform: uppercase;
-  padding: 17px 0; border-bottom: 1px solid var(--rule-cut-dark);
+  padding: 17px 2px; border-bottom: 1px solid rgba(226,235,236,.16);
   transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.drawer-nav a:hover, .drawer-nav .drawer-nav-into:hover { color: var(--bronze); transform: translateX(8px); }
+.drawer-nav a:hover, .drawer-nav .drawer-nav-into:hover { color: var(--bronze-lit); transform: translateX(7px); }
 /* The site is multi-page from /our-team onward, so the menu has to say where you
    already are. `aria-current` carries it for assistive tech and the colour
    carries it for everyone else; there is no separate class to forget to add. */
@@ -1153,7 +1229,7 @@ span.sa-cell { color: var(--ink-soft); }
      which is off the ramp and already a baseline finding — matching it would
      have propagated the drift for a difference nobody can see. */
   font-family: var(--f-cut); font-weight: 600; font-size: 11px;
-  letter-spacing: .2em; text-transform: uppercase; color: var(--verdigris-lit);
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(226,235,236,.68);
 }
 .drawer-nav a.drawer-nav-sub { padding-left: 22px; position: relative; }
 .drawer-nav a.drawer-nav-sub::before {
@@ -1201,10 +1277,20 @@ span.sa-cell { color: var(--ink-soft); }
    a transition on a display change never runs. The blanket rule at the foot of
    the reduced-motion block already collapses it. */
 .drawer-sub {
-  position: fixed; inset: 0; z-index: 181;
-  background: var(--stone-deep); color: #F2F5F4;
-  background-image: linear-gradient(180deg, rgba(214,230,240,.05) 0%, rgba(214,230,240,0) 30%);
-  padding: 20px var(--gut) 44px; overflow-y: auto;
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(10px, env(safe-area-inset-bottom));
+  z-index: 2;
+  width: var(--drawer-w);
+  background:
+    radial-gradient(circle at 96% 0%, rgba(201, 162, 39, .14), transparent 13rem),
+    linear-gradient(136deg, transparent 0 58%, rgba(220, 231, 231, .06) 58% 100%),
+    var(--stone-deep);
+  border: 1px solid rgba(201, 162, 39, .36);
+  border-left-color: rgba(226,235,236,.12);
+  color: #F2F5F4;
+  padding: clamp(18px, 2.4vw, 26px); overflow-y: auto;
   animation: subIn var(--dur-panel) var(--ease);
 }
 .drawer-sub[hidden] { display: none !important; }
@@ -1212,7 +1298,7 @@ span.sa-cell { color: var(--ink-soft); }
   from { opacity: 0; transform: translateX(26px); }
   to   { opacity: 1; transform: none; }
 }
-.drawer-sub-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 30px; }
+.drawer-sub-top { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: clamp(24px, 4vh, 38px); }
 .drawer-sub-back {
   border: 0; background: none; cursor: pointer; min-height: 44px;
   display: inline-flex; align-items: center; gap: 10px; color: #F2F5F4;
@@ -1228,17 +1314,24 @@ span.sa-cell { color: var(--ink-soft); }
 /* The panel says which set you are in. Without it the four areas arrive with no
    heading and the back control is the only thing naming where you are. */
 .drawer-sub-h {
-  max-width: 720px; margin: 0 auto 4px;
+  max-width: none; margin: 0 0 4px;
   font-family: var(--f-cut); font-weight: 600; font-size: 11px;
-  letter-spacing: .2em; text-transform: uppercase; color: var(--verdigris-lit);
+  letter-spacing: .2em; text-transform: uppercase; color: rgba(226,235,236,.68);
 }
+
+.drawer-sub .drawer-nav {
+  width: 100%;
+  margin-left: 0;
+  padding-inline: 0;
+}
+
 /* Sentence case, not the uppercase of the branch entries: this is the whole
    section standing under its four parts, and setting it in the same incised
    caps would make it read as a fifth practice area. */
 .drawer-sub-all {
   display: flex; align-items: center; gap: 10px;
-  max-width: 720px; margin: 26px auto 0; padding-top: 20px;
-  border-top: 1px solid var(--rule-cut-dark);
+  max-width: none; margin: 26px 0 0; padding-top: 20px;
+  border-top: 1px solid rgba(226,235,236,.16);
   font-family: var(--f-body); font-size: 15px; color: rgba(226,235,236,.82);
   transition: color var(--dur) var(--ease);
 }
@@ -1250,10 +1343,13 @@ span.sa-cell { color: var(--ink-soft); }
 .drawer-sub-all:hover .ic { transform: translateX(4px); }
 
 .drawer-tool {
-  display: flex; align-items: center; gap: 16px; max-width: 720px;
-  margin: 28px auto 0; padding: 18px 20px;
-  border: 0; border-top: 2px solid var(--bronze);
-  background: rgba(255,255,255,.045);
+  position: relative;
+  z-index: 1;
+  display: flex; align-items: center; gap: 16px; max-width: none;
+  width: calc(var(--drawer-w) - (clamp(18px, 2.4vw, 26px) * 2));
+  margin: 28px 0 0 auto; padding: 18px 20px;
+  border: 1px solid rgba(201, 162, 39, .32);
+  background: rgba(255,255,255,.04);
   font-family: var(--f-body); font-size: 14px; line-height: 1.5; color: rgba(226,235,236,.82);
   transition: background-color var(--dur) var(--ease);
 }
@@ -1264,6 +1360,64 @@ span.sa-cell { color: var(--ink-soft); }
   font-style: normal; font-family: var(--f-cut); font-weight: 600; font-size: 11px;
   letter-spacing: .16em; text-transform: uppercase; color: var(--bronze); margin-top: 5px;
 }
+
+@media (max-width: 560px) {
+  .drawer {
+    --drawer-w: min(94vw, 372px);
+    padding:
+      max(8px, env(safe-area-inset-top))
+      max(8px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom))
+      max(8px, env(safe-area-inset-left));
+  }
+
+  .drawer::before {
+    top: max(8px, env(safe-area-inset-top));
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: var(--drawer-w);
+    box-shadow: -18px 0 54px rgba(0, 0, 0, .34), -1px 0 0 rgba(255, 255, 255, .08);
+  }
+
+  .drawer-top,
+  .drawer-sub-top {
+    align-items: stretch;
+    margin-bottom: 24px;
+  }
+
+  .drawer-close,
+  .drawer-sub-back {
+    padding-inline: 12px;
+  }
+
+  .drawer-call {
+    justify-content: center;
+    min-width: 0;
+    padding-inline: 12px;
+    font-size: 12px;
+    letter-spacing: .06em;
+    white-space: nowrap;
+  }
+
+  .drawer-nav a,
+  .drawer-nav .drawer-nav-into {
+    padding-block: 15px;
+    font-size: 16px;
+  }
+
+  .drawer-sub {
+    top: max(8px, env(safe-area-inset-top));
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: var(--drawer-w);
+    padding: 18px 16px 22px;
+  }
+
+  .drawer-tool {
+    padding: 16px;
+  }
+}
+
 /* Starts at the top rather than centred: vertically centring one field left
    ~300px of empty navy above it and ~380px below on a phone. */
 .search { display: grid; align-content: start; justify-items: center; padding-top: 84px; }
@@ -1519,7 +1673,11 @@ body.is-locked { overflow: hidden; }
   letter-spacing: .01em; text-transform: uppercase; color: var(--c-gold-soft);
   line-height: 1.08; margin-bottom: 16px;
   white-space: normal; text-wrap: balance; max-width: 100%;
-  text-shadow: 0 1px 0 rgba(0,0,0,.55), 0 2px 12px rgba(0,0,0,.65);
+  -webkit-text-stroke: .22px rgba(77, 48, 6, .34);
+  text-shadow:
+    0 1px 0 rgba(77, 48, 6, .72),
+    0 4px 16px rgba(0, 0, 0, .72),
+    0 14px 38px rgba(0, 0, 0, .42);
 }
 
 @media (min-width: 641px) {
@@ -1549,7 +1707,10 @@ body.is-locked { overflow: hidden; }
 .hero-h1 {
   font-family: var(--f-ui); font-weight: 500; font-size: 21px; line-height: 1.3;
   letter-spacing: -.005em; color: #fff; max-width: 26ch; margin-inline: auto; text-wrap: balance;
-  text-shadow: 0 1px 3px rgba(0,0,0,.6), 0 2px 22px rgba(0,0,0,.75);
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, .9),
+    0 4px 16px rgba(0, 0, 0, .72),
+    0 14px 36px rgba(0, 0, 0, .48);
 }
 .hero-scroll {
   position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
