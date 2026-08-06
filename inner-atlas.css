@@ -2145,3 +2145,582 @@ main:has(#index) .swidget-h {
     min-height: 4.8rem;
   }
 }
+
+/* Service-area family v2: the pages should read as a coverage atlas, not a
+   leftover bronze-directory template. Scope is intentionally tied to the
+   service-area landmarks so practice pages with `#overview` are not pulled in. */
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight {
+  min-height: clamp(18.5rem, 32vw, 25rem);
+  display: grid;
+  align-items: end;
+  padding-block: clamp(5rem, 8vw, 7rem) clamp(3rem, 5.5vw, 4.6rem);
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.98), rgba(10, 22, 40, 0.78) 54%, rgba(10, 22, 40, 0.98)),
+    linear-gradient(132deg, transparent 0 64%, rgba(201, 162, 39, 0.12) 64% 100%),
+    url("assets/nyc-hero.jpg") center / cover;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.54);
+  color: #fff;
+  overflow: hidden;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight::after {
+  content: "";
+  position: absolute;
+  left: max(1.25rem, calc((100vw - var(--w-page)) / 2 + var(--gut)));
+  right: max(1.25rem, calc((100vw - var(--w-page)) / 2 + var(--gut)));
+  bottom: clamp(1.25rem, 2.6vw, 2rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--inner-gold), rgba(201, 162, 39, 0.08) 62%, transparent);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-head {
+  width: min(100%, 72rem);
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 30rem);
+  align-items: end;
+  gap: clamp(1.3rem, 4vw, 4rem);
+  margin-inline: auto;
+  text-align: left;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-title {
+  max-width: 10ch;
+  color: #fff;
+  font-size: clamp(4.2rem, 8.5vw, 7.2rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-sub {
+  max-width: 32ch;
+  margin: 0;
+  padding: 1.15rem 0 1.15rem 1.25rem;
+  border-left: 1px solid var(--inner-gold);
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sec {
+  background:
+    linear-gradient(132deg, transparent 0 78%, rgba(220, 231, 231, 0.48) 78% 100%),
+    var(--inner-page);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sec--paper {
+  background:
+    linear-gradient(132deg, rgba(220, 231, 231, 0.62) 0 28%, transparent 28% 100%),
+    var(--inner-page);
+  box-shadow: inset 0 1px 0 rgba(10, 22, 40, 0.12), inset 0 -1px 0 rgba(10, 22, 40, 0.1);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .h2 {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.4rem, 4.7vw, 4.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .h2--light {
+  color: #fff;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .lede,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .rte p,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc-body p,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .post-x {
+  color: rgba(10, 22, 40, 0.72);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.02rem, 1.15vw, 1.1rem);
+  line-height: 1.72;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read {
+  max-width: min(100%, 74rem);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read:has(> .h2) {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.8rem, 5vw, 5rem);
+  align-items: start;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read:has(> .h2) > .h2 {
+  position: sticky;
+  top: 6.5rem;
+  margin: 0;
+  padding-top: clamp(1rem, 2.3vw, 1.4rem);
+  border-top: 1px solid var(--inner-line-strong);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read:has(> .h2) > :not(.h2) {
+  min-width: 0;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .rte-strong {
+  padding: 1.1rem 1.2rem;
+  border-left: 1px solid var(--inner-gold);
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--inner-atlantic);
+  font-weight: 800;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .rte-strong .tel {
+  color: var(--inner-gold);
+}
+
+main:has(#counties) .sa-jump {
+  border-color: rgba(10, 22, 40, 0.18);
+  background: rgba(10, 22, 40, 0.14);
+}
+
+main:has(#counties) .sa-jump a {
+  background:
+    linear-gradient(132deg, transparent 0 72%, rgba(220, 231, 231, 0.72) 72% 100%),
+    rgba(255, 255, 255, 0.58);
+}
+
+main:has(#counties) .sa-county {
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  border-top: 2px solid var(--inner-gold);
+  background: rgba(255, 255, 255, 0.36);
+}
+
+main:has(#counties) .sa-county-h {
+  border-bottom: 1px solid rgba(10, 22, 40, 0.18);
+}
+
+main:has(#counties) .sa-grid {
+  border-color: rgba(10, 22, 40, 0.16);
+  background: rgba(10, 22, 40, 0.12);
+}
+
+main:has(#counties) .sa-cell {
+  background: rgba(255, 255, 255, 0.54);
+}
+
+main:has(#counties) a.sa-cell {
+  background:
+    linear-gradient(90deg, var(--inner-gold) 0 3px, rgba(255, 255, 255, 0.72) 3px);
+}
+
+:is(main:has(#counties), main:has(#towns)) .agrid {
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  border-top: 2px solid var(--inner-gold);
+  border-image: none;
+  background: rgba(10, 22, 40, 0.12);
+  box-shadow: none;
+}
+
+:is(main:has(#counties), main:has(#towns)) .acard {
+  padding: clamp(1.2rem, 2.5vw, 1.65rem);
+  background: rgba(255, 255, 255, 0.5);
+  border: 0;
+}
+
+:is(main:has(#counties), main:has(#towns)) .acard h3 {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+:is(main:has(#counties), main:has(#towns)) .acard p {
+  color: rgba(10, 22, 40, 0.7);
+  font-family: "Atlas Text", sans-serif;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-dark {
+  background:
+    radial-gradient(circle at 74% 16%, rgba(201, 162, 39, 0.13), transparent 20rem),
+    linear-gradient(132deg, transparent 0 72%, rgba(220, 231, 231, 0.08) 72% 100%),
+    var(--inner-atlantic);
+  color: #fff;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-head {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.8rem, 5vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-head .h2 {
+  margin: 0;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-head .lede,
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-foot {
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Atlas Text", sans-serif;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .cindex {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(220, 231, 231, 0.2);
+  background: rgba(220, 231, 231, 0.16);
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .cindex li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  min-height: clamp(12rem, 18vw, 16rem);
+  padding: clamp(1.25rem, 2.8vw, 2rem);
+  border: 0;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .ci-n {
+  color: var(--inner-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .cindex h3 {
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .cindex p {
+  margin-top: 0.7rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+:is(main:has(#towns), main:has(#overview):has(#local)) .index-foot {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+  padding: 1rem 0 1rem 1.2rem;
+  border-left: 1px solid var(--inner-gold);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .postlist,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc {
+  border-top: 1px solid var(--inner-line-strong);
+  border-image: none;
+  box-shadow: none;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .post-row + .post-row,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc details {
+  border-top: 1px solid var(--inner-line);
+  border-bottom: 0;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .post-row > a {
+  padding: clamp(1.2rem, 2.5vw, 1.75rem);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .post-t,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc summary {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc summary {
+  min-height: 4.5rem;
+  padding: 1.2rem 0;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sign {
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-top: 0;
+  border: 1px solid rgba(33, 107, 136, 0.34);
+  border-radius: 999px;
+  background: rgba(220, 231, 231, 0.5);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sign::before,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sign::after {
+  background: var(--inner-route);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sign::before {
+  left: 0.75rem;
+  right: 0.75rem;
+  top: calc(50% - 1px);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .sign::after {
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: calc(50% - 1px);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc-body {
+  padding: 0 4rem 1.4rem 0;
+}
+
+@media (max-width: 900px) {
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight {
+    min-height: clamp(17rem, 62vw, 23rem);
+    padding-block: 4.2rem 2.6rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-head,
+  :is(main:has(#towns), main:has(#overview):has(#local)) .index-head,
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read:has(> .h2) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-title {
+    max-width: 9ch;
+    font-size: clamp(3.1rem, 15vw, 4.7rem);
+    line-height: 0.9;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight .page-sub {
+    max-width: 27ch;
+    padding-block: 0.85rem;
+    font-size: 1rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read:has(> .h2) > .h2 {
+    position: static;
+    font-size: clamp(2.35rem, 12vw, 3.4rem);
+  }
+
+  :is(main:has(#towns), main:has(#overview):has(#local)) .cindex {
+    grid-template-columns: 1fr;
+  }
+
+  :is(main:has(#towns), main:has(#overview):has(#local)) .cindex li {
+    min-height: 0;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .acc-body {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .h2 {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  main:has(#counties) .sa-county {
+    padding: 1.05rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .post-row > a {
+    padding-inline: 0;
+  }
+}
+
+/* Service-area hero reassertion.
+   The hero also carries `.sec`, so keep this after the generic service `.sec`
+   treatments or the brand image/overlay gets flattened into gray. */
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight:has(.page-head) {
+  align-items: end;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.99), rgba(10, 22, 40, 0.82) 54%, rgba(10, 22, 40, 0.96)),
+    radial-gradient(circle at 78% 18%, rgba(201, 162, 39, 0.18), transparent 25rem),
+    linear-gradient(132deg, transparent 0 64%, rgba(201, 162, 39, 0.12) 64% 100%),
+    url("assets/nyc-hero.jpg") center 48% / cover no-repeat,
+    var(--inner-atlantic);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight:has(.page-head)::before {
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.82), transparent);
+}
+
+@media (max-width: 900px) {
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) > .sec--tight:has(.page-head) {
+    background:
+      linear-gradient(180deg, rgba(10, 22, 40, 0.96), rgba(10, 22, 40, 0.84)),
+      radial-gradient(circle at 70% 12%, rgba(201, 162, 39, 0.16), transparent 18rem),
+      url("assets/nyc-hero-sm.jpg") center / cover no-repeat,
+      var(--inner-atlantic);
+  }
+}
+
+/* Service areas landing: convert the approved location list from a flat table
+   into a coverage-card system without changing any links or labels. */
+main:has(#counties) #counties {
+  padding-bottom: clamp(4.8rem, 8vw, 7rem);
+}
+
+main:has(#counties) #counties > .wrap:not(.wrap--read) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+main:has(#counties) .sa-jump {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: clamp(1.7rem, 3.8vw, 3rem) 0 clamp(1.2rem, 2.6vw, 2rem);
+  border: 1px solid rgba(10, 22, 40, 0.18);
+  border-top: 2px solid var(--inner-gold);
+  background: rgba(10, 22, 40, 0.16);
+}
+
+main:has(#counties) .sa-jump a {
+  min-height: 4.8rem;
+  padding: 1.1rem 1.2rem;
+  background:
+    linear-gradient(132deg, transparent 0 72%, rgba(220, 231, 231, 0.68) 72% 100%),
+    rgba(255, 255, 255, 0.62);
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+main:has(#counties) .sa-jump .sa-n {
+  color: var(--inner-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: 1.3rem;
+  font-style: normal;
+  letter-spacing: -0.04em;
+}
+
+main:has(#counties) .sa-county {
+  min-height: clamp(19rem, 28vw, 25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  border-top: 2px solid var(--inner-gold);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(201, 162, 39, 0.12), transparent 13rem),
+    linear-gradient(132deg, transparent 0 70%, rgba(220, 231, 231, 0.68) 70% 100%),
+    rgba(255, 255, 255, 0.58);
+  box-shadow: 0 22px 56px rgba(10, 22, 40, 0.06);
+}
+
+main:has(#counties) .sa-county-h {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+  padding-bottom: clamp(1.1rem, 2.2vw, 1.6rem);
+  border-bottom: 1px solid rgba(10, 22, 40, 0.14);
+}
+
+main:has(#counties) .sa-county h3 {
+  color: var(--inner-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.25rem, 3.7vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+main:has(#counties) .sa-county-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 18rem;
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+main:has(#counties) .sa-county-all .ic {
+  width: 1rem;
+  height: 1rem;
+  color: var(--inner-gold);
+}
+
+main:has(#counties) .sa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: clamp(1.2rem, 2.6vw, 1.8rem);
+  border: 0;
+  background: transparent;
+}
+
+main:has(#counties) .sa-cell {
+  min-height: 4.15rem;
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(10, 22, 40, 0.12);
+  background: rgba(255, 255, 255, 0.62);
+  color: rgba(10, 22, 40, 0.68);
+  font-family: "Atlas Text", sans-serif;
+  font-weight: 800;
+}
+
+main:has(#counties) a.sa-cell {
+  border-color: rgba(201, 162, 39, 0.48);
+  background:
+    linear-gradient(90deg, var(--inner-gold) 0 3px, var(--inner-atlantic) 3px);
+  color: #fff;
+}
+
+main:has(#counties) a.sa-cell:hover,
+main:has(#counties) a.sa-cell:focus-visible {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  main:has(#counties) #counties > .wrap:not(.wrap--read) {
+    grid-template-columns: 1fr;
+  }
+
+  main:has(#counties) .sa-jump {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main:has(#counties) .sa-county {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  main:has(#counties) .sa-jump {
+    grid-template-columns: 1fr;
+  }
+
+  main:has(#counties) .sa-county-h,
+  main:has(#counties) .sa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  main:has(#counties) .sa-county h3 {
+    font-size: clamp(2.05rem, 12vw, 3rem);
+  }
+}
