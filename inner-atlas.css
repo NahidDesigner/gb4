@@ -2,7 +2,7 @@
 
 /* Inner-page Atlas overlay.
    This file is intentionally a layer after styles.css: it preserves each page's
-   HTML, copy, schema, forms and JS, while removing the rejected bronze/Cinzel
+   HTML, copy, schema, forms and JS, while removing the rejected competing-heading
    body styling from the non-homepage templates. */
 
 body {

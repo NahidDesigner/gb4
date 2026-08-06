@@ -70,6 +70,12 @@
   body.classList.add('atlas-ready');
 
   if (settlementScroller && settlementScrollButtons.length) {
+    const normalizeWheelDelta = (value, mode) => {
+      if (mode === WheelEvent.DOM_DELTA_LINE) return value * 16;
+      if (mode === WheelEvent.DOM_DELTA_PAGE) return value * window.innerHeight;
+      return value;
+    };
+
     const getSettlementScrollDistance = () => {
       const firstItem = settlementScroller.querySelector('.ds-figure-cell');
       if (!firstItem) return Math.max(260, settlementScroller.clientWidth * 0.82);
@@ -92,6 +98,29 @@
         });
       });
     });
+
+    settlementScroller.addEventListener('wheel', (event) => {
+      if (event.ctrlKey) return;
+
+      const deltaX = normalizeWheelDelta(event.deltaX, event.deltaMode);
+      const deltaY = normalizeWheelDelta(event.deltaY, event.deltaMode);
+      const absX = Math.abs(deltaX);
+      const absY = Math.abs(deltaY);
+      const hasWheelMotion = absX > 0 || absY > 0;
+      if (!hasWheelMotion) return;
+
+      const horizontalIntent = event.shiftKey || absX > absY * 1.15;
+
+      event.preventDefault();
+
+      if (horizontalIntent) {
+        const horizontalDelta = absX > 0 ? deltaX : deltaY;
+        settlementScroller.scrollLeft += horizontalDelta;
+        return;
+      }
+
+      window.scrollBy({ top: deltaY, left: 0, behavior: 'auto' });
+    }, { passive: false });
   }
 
   practicePanels.forEach((panel) => {

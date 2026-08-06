@@ -70,7 +70,7 @@
   --ds-error:         #8C2F1E;
 
   /* Type families */
-  --ds-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --ds-font-display: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
   --ds-font-body:    "Source Sans 3", -apple-system, sans-serif;
   --ds-font-utility: "Archivo Narrow", "Archivo", sans-serif;
 
@@ -137,7 +137,7 @@
 }
 .ds-display-s {
   font-family: var(--ds-font-display);
-  font-size: 20px;               /* §2 type law: no Cinzel below 20px */
+  font-size: 20px;               /* §2 type law: no display heading below 20px */
   font-weight: 600;
   line-height: 1.3;
 }
@@ -659,7 +659,7 @@
 
 /* Fixed box, digits aligned toward the rail.
 
-   Cinzel ships no tabular-figures table, so `tnum` is silently ignored here and
+   The heading face ships no tabular-figures table, so `tnum` is silently ignored here and
    the numerals set proportionally — 101.8px for "01" against 125.7px for "06".
    Left to itself that 24px spread moved the body's edge from step to step and
    the left-aligned text lost its common start. A fixed box in em (so it tracks
@@ -685,7 +685,7 @@
 .ds-sequence-step__body { flex: 1 1 auto; max-width: 42ch; }
 .ds-sequence-step__title {
   font-family: var(--ds-font-display);
-  font-size: 20px;                     /* §2 display-s — the floor for Cinzel */
+  font-size: 20px;                     /* §2 display-s — the floor for display headings */
   font-weight: 600;
   line-height: 1.3;
   color: var(--ds-ink);
@@ -1613,7 +1613,7 @@
 
   /* The grid's first rule aligns to the CAP HEIGHT of the $100M+ figure, not to
      its line-box top. Measured, not guessed: at the desktop clamp the figure is
-     100.8px Cinzel on a 102.82px line box, so half-leading is negative (-16.09)
+     100.8px display text on a 102.82px line box, so half-leading is negative (-16.09)
      and the glyph ascent sits 18.57px under the font ascent — leaving the cap
      2.48px below the element top. */
   .ds-settlements__record { margin-top: 2.48px; }

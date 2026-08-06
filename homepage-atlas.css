@@ -1950,7 +1950,7 @@
    ========================================================================== */
 
 .atlas-home {
-  --atlas-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --atlas-display: "Atlas Display", "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
   --atlas-utility: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
   --atlas-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
   --atlas-frame: rgba(201, 162, 39, 0.52);
@@ -5985,5 +5985,171 @@
   .atlas-home #first48 .ds-sequence-step__title {
     max-width: 18ch;
     font-size: clamp(1.26rem, 5.6vw, 1.5rem);
+  }
+}
+
+/* EDIT 21 — Trip-and-Fall desktop sticky title rail
+   The premises copy is the reading path; the heading is the orientation marker.
+   Keep it anchored in its existing left column while the right column scrolls,
+   then release it with the section. Mobile stays in normal document flow. */
+@media (min-width: 981px) {
+  .atlas-home #premises {
+    overflow: visible;
+  }
+
+  .atlas-home #premises .ds-premises__heading {
+    position: sticky;
+    top: clamp(6.25rem, 8vw, 8.25rem);
+    align-self: start;
+    grid-row: 1 / -1;
+    max-height: calc(100vh - clamp(7.5rem, 10vw, 10rem));
+  }
+}
+
+@media (max-width: 980px) {
+  .atlas-home #premises .ds-premises__heading {
+    position: static;
+    top: auto;
+    max-height: none;
+  }
+}
+
+/* EDIT 22 — CTA gold restraint
+   V4 spent the brand gold as broad fill on pills and full-width submit bars.
+   Pull it back to a measured action edge: navy carries the button mass, gold
+   marks the route/action. The locked mobile action bar is intentionally not
+   touched here. */
+.atlas-home .ds-button-call {
+  border-color: rgba(201, 162, 39, 0.72);
+  color: var(--atlas-white);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 40, 0.72);
+  box-shadow: inset 0 -1px 0 rgba(201, 162, 39, 0.34);
+}
+
+.atlas-home .ds-button-call:hover,
+.atlas-home .ds-button-call:focus-visible {
+  color: var(--atlas-white);
+  border-color: var(--atlas-gold-soft);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.07)),
+    rgba(10, 22, 40, 0.88);
+}
+
+.atlas-home .cta-wrap .btn {
+  border-color: rgba(201, 162, 39, 0.76);
+  color: var(--atlas-gold-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0)),
+    rgba(10, 22, 40, 0.34);
+  box-shadow: inset 0 -1px 0 rgba(201, 162, 39, 0.28);
+}
+
+.atlas-home .cta-wrap .btn:hover,
+.atlas-home .cta-wrap .btn:focus-visible {
+  color: var(--atlas-white);
+  border-color: var(--atlas-gold-soft);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.2), rgba(201, 162, 39, 0.075)),
+    rgba(10, 22, 40, 0.42);
+}
+
+.atlas-home main > .sec--tight .btn,
+.atlas-home #contact .btn,
+.atlas-home .search-form button {
+  border-color: rgba(201, 162, 39, 0.78);
+  color: var(--atlas-white);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
+    var(--atlas-navy);
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.42),
+    0 16px 34px rgba(10, 22, 40, 0.14);
+}
+
+.atlas-home main > .sec--tight .btn:hover,
+.atlas-home main > .sec--tight .btn:focus-visible,
+.atlas-home #contact .btn:hover,
+.atlas-home #contact .btn:focus-visible,
+.atlas-home .search-form button:hover,
+.atlas-home .search-form button:focus-visible {
+  color: var(--atlas-gold-soft);
+  border-color: var(--atlas-gold-soft);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.14), rgba(201, 162, 39, 0.04)),
+    var(--atlas-navy);
+}
+
+@media (max-width: 700px) {
+  .atlas-home .cta-wrap .btn,
+  .atlas-home main > .sec--tight .btn,
+  .atlas-home #contact .btn {
+    box-shadow: inset 0 1px 0 rgba(201, 162, 39, 0.38);
+  }
+}
+
+/* EDIT 23 — Remove repeated section-ending pitches
+   The page now keeps conversion in the header, real forms, final contact area,
+   footer, and locked mobile action bar. Section endings return to content /
+   resource rhythm instead of repeating "call/free review" after every beat. */
+.atlas-home #firm .ds-statement__inner {
+  grid-template-areas:
+    "heading community"
+    "problem method"
+    "problem resource";
+}
+
+.atlas-home #firm .ds-resource-row {
+  align-self: end;
+}
+
+.atlas-home #first48 .ds-sequence-section__foot {
+  display: block;
+  width: min(100%, 860px);
+  max-width: 860px;
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.atlas-home #first48 .ds-sequence-section__foot::before {
+  content: none;
+}
+
+.atlas-home #first48 .ds-resource-row {
+  border-color: rgba(33, 107, 136, 0.28);
+  background: transparent;
+}
+
+.atlas-home #areas .arow {
+  grid-template-columns: minmax(320px, 0.62fr);
+  justify-content: end;
+}
+
+.atlas-home #areas .mapcard {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .atlas-home #firm .ds-statement__inner {
+    grid-template-areas:
+      "heading"
+      "columns"
+      "resource";
+  }
+}
+
+@media (max-width: 820px) {
+  .atlas-home #first48 .ds-sequence-section__foot {
+    margin-top: 2rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .atlas-home #areas .arow {
+    grid-template-columns: 1fr;
   }
 }

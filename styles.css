@@ -5,24 +5,22 @@
 @font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/archivo-latin-500-normal.woff2") format("woff2")}
 @font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/archivo-latin-600-normal.woff2") format("woff2")}
 @font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:swap;src:url("assets/fonts/archivo-latin-700-normal.woff2") format("woff2")}
-@font-face{font-family:"Cinzel";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/cinzel-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"Cinzel";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/cinzel-latin-600-normal.woff2") format("woff2")}
 /* Source Sans 3 ExtraBold — the hero lockup and settlements line only. It is the
    face the original site sets those two elements in, and matching them was asked
    for by name. Self-hosted like the rest (15KB, latin subset) rather than pulled
    from Google Fonts, so the page still makes no third-party request. Nothing
    outside .lockup and .hero-proof uses it; the page's system is still Archivo /
-   Archivo Narrow / Cinzel.                                                     */
+   Archivo Narrow.                                                             */
 @font-face{font-family:"Source Sans 3";font-style:normal;font-weight:800;font-display:swap;src:url("assets/fonts/source-sans-3-latin-800-normal.woff2") format("woff2")}
 
 /* ==========================================================================
    GB Law Firm — THE BRONZE DIRECTORY
 
    Incised stone and cast bronze. Heads are cut into the surface, not printed
-   on it: every display line is Cinzel capitals with a chisel bevel — light
-   catching the lower edge of the cut, shadow on the upper. Bronze is the one
-   polished material on the page and it is spent almost entirely on the call
-   button. Verdigris is the patina third.
+   on it: the primary heading voice is the condensed Archivo Narrow system. The
+   locked hero and supplied logo artwork are treated as exceptions. Bronze is
+   the one polished material on the page and it is spent almost entirely on the
+   call button. Verdigris is the patina third.
 
    Grounds are cool bluestone, never cream: the reader is on a phone at 11pm,
    home from an emergency room, and a warm paper page under that light reads
@@ -83,7 +81,7 @@
   --c-white: #FFFFFF;
   --c-focus: #2BB3D5;
 
-  --f-cut:  "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --f-cut:  "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
   --f-ui:   "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
   --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
   /* Hero lockup and settlements line only — see the @font-face note at the top. */
@@ -115,7 +113,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+  scroll-padding-top: 72px;
+}
 
 body {
   font-family: var(--f-ui); font-size: 16px; line-height: 1.5;
@@ -164,7 +166,7 @@ button, input, textarea { font: inherit; color: inherit; }
 /* ---- The lockup on dark stone ----------------------------------------------
    Both of these carry the full mark now — monogram, wordmark and the wordmark's
    ruled plate — as one image, `GBlogo-rev.png`. What was here before was the
-   cropped monogram with "LAW FIRM" set beside it as loose Cinzel caps, and then
+   cropped monogram with "LAW FIRM" set beside it, and then
    a plate rebuilt around that type in CSS. Both were reconstructions of a mark
    that exists; the client supplied the real one and it is used directly.
 
@@ -186,9 +188,9 @@ button, input, textarea { font: inherit; color: inherit; }
 
 /* ==========================================================================
    The incised head
-   Section titles are cut, not set: Cinzel capitals, wide tracking, a bevel
-   on the letterform and a cast-bronze bar above the cut. No kicker anywhere
-   on this page — the cut carries its own authority.
+   Section titles are cut, not set: one condensed sans heading voice, firm
+   weight, controlled tracking, and a cast-bronze bar above the cut. The display
+   is reserved for the locked hero and supplied logo artwork.
    ========================================================================== */
 
 .h2 {
@@ -1178,14 +1180,52 @@ span.sa-cell { color: var(--ink-soft); }
 .drawer-close:hover { background: rgba(255,255,255,.08); color: #fff; }
 .drawer-call {
   min-height: 44px;
-  padding-inline: clamp(12px, 3vw, 18px);
-  color: var(--stone-deep);
-  background: var(--bronze);
-  font-size: clamp(13px, 3vw, 15px);
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: clamp(174px, 18vw, 218px);
+  padding-inline: clamp(18px, 2.2vw, 24px);
+  color: #F2F5F4;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015)),
+    rgba(10, 22, 40, .72);
+  border: 1px solid rgba(201, 162, 39, .78);
+  font-size: clamp(14px, 1.1vw, 16px);
   letter-spacing: .08em;
-  box-shadow: inset 0 -2px 0 rgba(10, 22, 40, .24);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, .34),
+    inset 0 -1px 0 rgba(201, 162, 39, .24);
 }
-.drawer-call:hover { color: var(--stone-deep); background: var(--bronze-lit); }
+.drawer-call:hover {
+  color: var(--bronze-lit);
+  border-color: var(--bronze-lit);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, .14), rgba(201, 162, 39, .04)),
+    rgba(10, 22, 40, .86);
+}
+
+@media (max-width: 520px) {
+  .drawer-top,
+  .drawer-sub-top {
+    gap: 10px;
+    padding-inline: 16px;
+  }
+
+  .drawer-close,
+  .drawer-sub-back {
+    padding-inline: 12px;
+  }
+
+  .drawer-call {
+    min-width: clamp(156px, 48vw, 190px);
+    min-height: 46px;
+    padding-inline: 14px;
+    font-size: clamp(12px, 3.25vw, 14px);
+    letter-spacing: .055em;
+  }
+}
 .drawer-nav {
   position: relative;
   z-index: 1;
@@ -1465,20 +1505,20 @@ body.is-locked { overflow: hidden; }
 
 .office {
   display: block; height: clamp(300px, 56vw, 480px);
-  background: var(--stone-raised);
+  background: var(--stone-black);
 }
-/* The map is desaturated to a survey plate. Google ships it at full consumer
-   saturation — four-lane amber, park green, water blue — which is more colour
-   than the entire rest of the page owns, dropped in at the last full stop.
-   saturate(.25) leaves the road hierarchy legible and the marker findable while
-   letting the plan sit in the bluestone.
+/* The map is toned into a dark survey plate. Google ships it at full consumer
+   brightness — four-lane amber, park green, water blue — which is more colour
+   than the rest of this deep footer transition owns. The filter turns the embed
+   into a navy field with pale roads and labels, so it reads as a location plate
+   instead of a pasted consumer widget.
    FLAGGED FOR THE CLIENT: Google's Maps embed terms ask that the map not be
    altered and that their attribution stay legible. The attribution is untouched
-   and legible against the plate around it, but the desaturation is a
+   and legible against the plate around it, but the dark treatment is a
    modification. Reverting is deleting one declaration.                         */
 .office iframe {
   display: block; width: 100%; height: 100%; border: 0;
-  filter: saturate(.25) contrast(1.04);
+  filter: grayscale(1) invert(.9) hue-rotate(176deg) saturate(.7) brightness(.68) contrast(1.12);
 }
 
 /* ==========================================================================
@@ -2201,7 +2241,7 @@ main:not(:has(.hero)) { padding-top: 56px; }
    page title outranks the section heads beneath it — on this page the attorney
    names are `.h2`, and the title has to sit above them, not level with them.
 
-   The container is capped in px, not `ch`: Cinzel uppercase with tracking runs
+   The container is capped in px, not `ch`: condensed uppercase with tracking runs
    far wider than the `ch` unit assumes. */
 .page-head { text-align: center; max-width: 900px; margin-inline: auto; }
 .page-title {
@@ -2807,7 +2847,7 @@ main:not(:has(.hero)) { padding-top: 56px; }
 /* ---- A page title that is one long word ---------------------------------
    The `display` step assumes a title has a space in it. `text-wrap: balance`
    needs a wrap opportunity, and "TESTIMONIALS" has none — twelve characters of
-   Cinzel uppercase at the step's 52px floor measure **405px** against a 331px
+   Condensed uppercase at the step's 52px floor measure **405px** against a 331px
    content column at 375px, so the title simply ran off the page. Every other
    title on the site happens to be two or three words and hid the fault.
 
@@ -2830,7 +2870,7 @@ main:not(:has(.hero)) { padding-top: 56px; }
    `scrollWidth - clientWidth` on the document stayed at **0** and the width sweep
    in PAGES.md §8 passed clean. Compare the title's own `scrollWidth` against its
    `clientWidth`, on a viewport with a real scrollbar, and await
-   `document.fonts.ready` first — measured before Cinzel lands, the fallback face's
+   `document.fonts.ready` first — measured before the heading face lands, the fallback face's
    metrics answer a different question. */
 .page-title--long { font-size: clamp(31px, 10.4vw, 82px); line-height: 1.02; }
 
