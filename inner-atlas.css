@@ -1,4 +1,4 @@
-@import url("practice-areas/practice-atlas.css?v=inner-import-1");
+@import url("practice-areas/practice-atlas.css?v=inner-import-2");
 
 /* Inner-page Atlas overlay.
    This file is intentionally a layer after styles.css: it preserves each page's
@@ -1865,6 +1865,15 @@ main > .sec--tight:has(.bio) .rte-strong {
   color: rgba(255, 255, 255, 0.9);
 }
 
+main > .sec--tight:has(.bio) .rte-strong .tel {
+  color: var(--inner-gold);
+}
+
+main > .sec--tight:has(.bio) .rte-strong .tel:hover,
+main > .sec--tight:has(.bio) .rte-strong .tel:focus-visible {
+  color: #f4d86b;
+}
+
 main:has(#philip-gurevich) .bio-more a,
 main:has(#philip-gurevich) .post-back a {
   color: var(--inner-atlantic);
@@ -1891,6 +1900,74 @@ main:has(#philip-gurevich) .acard {
 }
 
 main:has(#philip-gurevich) .acard-k {
+  color: var(--inner-gold);
+}
+
+/* Attorney profile pages: the bio can live on the dark identity field, but the
+   credential record cannot sit on top of the skyline image. These profile pages
+   are intentionally excluded by requiring the profile-only credentials grid to
+   appear in the same section as the bio. */
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) {
+  align-items: start;
+  padding-block: clamp(4.8rem, 7vw, 6.6rem) clamp(2.6rem, 4.5vw, 4rem);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(2.2rem, 4vw, 3.4rem);
+  padding:
+    clamp(1.6rem, 3vw, 2.35rem)
+    clamp(1.15rem, 3.2vw, 2rem);
+  background:
+    linear-gradient(132deg, transparent 0 78%, rgba(220, 231, 231, 0.58) 78% 100%),
+    var(--inner-page);
+  border: 1px solid rgba(10, 22, 40, 0.18);
+  border-top: 2px solid var(--inner-gold);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
+  color: var(--inner-carbon);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .agrid {
+  margin-top: 0;
+  border-color: rgba(10, 22, 40, 0.18);
+  border-image: none;
+  box-shadow: none;
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .acard {
+  background: transparent;
+  border-color: rgba(10, 22, 40, 0.18);
+  padding-inline: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .acard-k {
+  color: var(--inner-gold);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .acard h3 {
+  color: var(--inner-atlantic);
+  text-shadow: none;
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .acard p {
+  color: rgba(10, 22, 40, 0.72);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .post-back {
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .post-back a {
+  color: var(--inner-atlantic);
+}
+
+main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .post-back .ic {
   color: var(--inner-gold);
 }
 
