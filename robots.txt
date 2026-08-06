@@ -1,0 +1,64 @@
+# GB Law Firm — https://gblawfirm.com
+#
+# The site is open to search and to AI answer engines. For a firm whose clients
+# increasingly ask an assistant before they ask a search box, being readable by
+# the assistants is the point, so the major AI crawlers are named and allowed
+# rather than left to the default. To reverse that for any one of them, change
+# its Allow to Disallow — the blocks below exist so that is a one-line change.
+
+User-agent: *
+Allow: /
+
+# --- Not for indexing ------------------------------------------------------
+# Working files, not pages. index-v2.html and original-untouched/ are earlier
+# drafts of the homepage and would compete with it as near-duplicates; the .md
+# files are internal build notes; the .csv is a raw review export carrying
+# reviewer names and profile links.
+#
+# ROBOTS.TXT IS NOT ACCESS CONTROL. It asks well-behaved crawlers not to index.
+# It does not stop anyone who types the URL, and naming a path here arguably
+# advertises it. These files must be excluded from the deployed directory at the
+# host. Logged as a launch blocker in HANDOFF §5.
+Disallow: /index-v2.html
+Disallow: /original-untouched/
+Disallow: /.impeccable/
+Disallow: /docs/
+Disallow: /styles-v2.css
+Disallow: /*.md$
+Disallow: /*.csv$
+
+# --- Search ----------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- AI answer engines -----------------------------------------------------
+# Google-Extended governs Gemini and AI Overviews grounding and is separate from
+# Googlebot: leaving it unset is not the same as allowing it.
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://gblawfirm.com/sitemap.xml

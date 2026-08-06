@@ -1,0 +1,2692 @@
+@font-face{font-family:"Archivo Narrow";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/archivo-narrow-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo Narrow";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/archivo-narrow-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo Narrow";font-style:normal;font-weight:700;font-display:swap;src:url("assets/fonts/archivo-narrow-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/archivo-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/archivo-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/archivo-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-display:swap;src:url("assets/fonts/archivo-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Cinzel";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/cinzel-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Cinzel";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/cinzel-latin-600-normal.woff2") format("woff2")}
+/* Source Sans 3 ExtraBold — the hero lockup and settlements line only. It is the
+   face the original site sets those two elements in, and matching them was asked
+   for by name. Self-hosted like the rest (15KB, latin subset) rather than pulled
+   from Google Fonts, so the page still makes no third-party request. Nothing
+   outside .lockup and .hero-proof uses it; the page's system is still Archivo /
+   Archivo Narrow / Cinzel.                                                     */
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:800;font-display:swap;src:url("assets/fonts/source-sans-3-latin-800-normal.woff2") format("woff2")}
+
+/* ==========================================================================
+   GB Law Firm — THE BRONZE DIRECTORY
+
+   Incised stone and cast bronze. Heads are cut into the surface, not printed
+   on it: every display line is Cinzel capitals with a chisel bevel — light
+   catching the lower edge of the cut, shadow on the upper. Bronze is the one
+   polished material on the page and it is spent almost entirely on the call
+   button. Verdigris is the patina third.
+
+   Grounds are cool bluestone, never cream: the reader is on a phone at 11pm,
+   home from an emergency room, and a warm paper page under that light reads
+   as a brochure. Bevels do the work borders used to do.
+
+   The hero, the sticky masthead and the mobile action bar are locked by the
+   brief and are carried over here byte for byte, including the tokens they
+   depend on (--c-navy, --c-gold, --c-white, --c-rule, --f-ui). Those legacy
+   tokens exist only to keep those three blocks identical.
+   ========================================================================== */
+
+:root {
+  /* --- Bluestone: the ground the whole page is cut from ----------------- */
+  --stone-pale:   #E3E6E4;   /* reading ground                             */
+  --stone-light:  #EDEFEE;   /* a finer-grained cut, for raised plates     */
+  --stone-mid:    #D3D8D6;   /* the settlements slab                       */
+  --stone-deep:   #0A1628;   /* dark stone field — pinned by the logo      */
+  --stone-raised: #132540;
+  --stone-black:  #06101F;   /* footer, the deepest cut                    */
+
+  /* --- Cast bronze: the single polished signal -------------------------- */
+  --bronze:       #C9A227;   /* pinned by the logo. 7.6:1 on deep stone    */
+  --bronze-lit:   #E7CE84;   /* struck highlight, dark grounds only        */
+  --bronze-ink:   #7A5D14;   /* bronze as text on pale stone   — 4.9:1     */
+  --bronze-deep:  #5E4A0E;   /* bronze as text on the mid slab — 5.8:1     */
+  /* Cast metal is never one flat colour. These three are the gradient stops
+     of the polished face — top rake, body, bottom shade — and the fourth is
+     the shadowed end of a hairline rule where it runs back into the stone.  */
+  --bronze-rake:  #DCBB4E;
+  --bronze-body:  #B08F1E;
+  --bronze-edge:  #8A6A12;
+
+  /* --- Verdigris: the patina third -------------------------------------- */
+  --verdigris:     #3C625C;  /* 5.4:1 on pale stone                        */
+  --verdigris-lit: #7FA8A0;  /* 6.9:1 on deep stone                        */
+
+  --ink:       #10151A;      /* 14.4:1 on pale stone                       */
+  --ink-soft:  #47525A;      /*  6.3:1 on pale stone                       */
+  --rule-cut:  #BEC5C2;      /* incised hairline on light                  */
+  --rule-cut-dark: rgba(198, 214, 226, .19);
+
+  /* The only red on the page, and only ever on a field that failed.        */
+  --error:      #9A2418;     /* 6.9:1 on the light form ground             */
+  --error-lit:  #FFB0A2;     /* 7.4:1 on the dark form ground              */
+
+  /* --- Legacy tokens. Locked blocks depend on these exact values. ------- */
+  --c-navy: #0A1628;
+  --c-navy-deep: #060E1C;
+  --c-navy-raised: #13233D;
+  --c-gold: #C9A227;
+  --c-gold-ink: #856512;
+  --c-gold-soft: #F0D078;
+  --c-ink: #14161A;
+  --c-gray: #5A616B;
+  --c-rule: #DCD8CF;
+  --c-rule-navy: rgba(255, 255, 255, 0.16);
+  --c-paper: #F2F0EB;
+  --c-white: #FFFFFF;
+  --c-focus: #2BB3D5;
+
+  --f-cut:  "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --f-ui:   "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  /* Hero lockup and settlements line only — see the @font-face note at the top. */
+  --f-hero: "Source Sans 3", system-ui, "Helvetica Neue", Arial, sans-serif;
+
+  --gut: 22px;
+  --w-page: 1086px;
+  --w-read: 905px;
+  /* The wide measure the directory rail opens up to at ≥1000px. Anything that
+     has to share a left edge with a railed heading measures from this, not from
+     --w-page, or it will sit 60px inboard of the heading above it.            */
+  --w-rail: 1214px;
+  --sec: 72px;
+
+  --dur:       220ms;
+  --dur-fast:  160ms;
+  --dur-panel: 320ms;
+  --ease:        cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ab-h: 58px;
+
+  /* --- The chisel. Every cut surface reuses these two edges. ------------ */
+  --cut-light: 0 1px 0 rgba(255, 255, 255, .78), 0 -1px 0 rgba(10, 22, 40, .16);
+  --cut-dark:  0 1px 0 rgba(0, 0, 0, .62), 0 -1px 0 rgba(198, 214, 226, .13);
+  --bevel-in:  inset 0 1px 2px rgba(10, 22, 40, .17), inset 0 -1px 0 rgba(255, 255, 255, .82);
+  --cast:      0 18px 38px -16px rgba(6, 16, 31, .5), 0 3px 8px -3px rgba(6, 16, 31, .32);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  font-family: var(--f-ui); font-size: 16px; line-height: 1.5;
+  color: var(--ink); background: var(--stone-black);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; padding-bottom: var(--ab-h);
+}
+main { background: var(--stone-pale); }
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; transition: color var(--dur-fast) var(--ease); }
+button, input, textarea { font: inherit; color: inherit; }
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ic {
+  width: 1em; height: 1em; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+:where(a, button, input, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--bronze-ink); outline-offset: 3px;
+}
+.dark :where(a, button, input, textarea, summary, [tabindex]):focus-visible,
+.ds-caseindex :where(a, button, input, textarea, summary, [tabindex]):focus-visible,
+.ds-statement :where(a, button, input, textarea, summary, [tabindex]):focus-visible,
+.whyband :where(a, button, input, textarea, summary, [tabindex]):focus-visible,
+.foot :where(a):focus-visible, .drawer :where(a, button):focus-visible,
+.search :where(a, button, input):focus-visible {
+  outline-color: var(--bronze);
+}
+
+.wrap { width: 100%; max-width: var(--w-page); margin-inline: auto; padding-inline: var(--gut); }
+.wrap--read { max-width: calc(var(--w-read) + var(--gut) * 2); }
+
+/* ---------- Splash: a plate lit in the dark ------------------------------- */
+
+.splash {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center; background: var(--stone-deep);
+  transition: opacity .6s var(--ease), visibility .6s;
+}
+/* ---- The lockup on dark stone ----------------------------------------------
+   Both of these carry the full mark now — monogram, wordmark and the wordmark's
+   ruled plate — as one image, `GBlogo-rev.png`. What was here before was the
+   cropped monogram with "LAW FIRM" set beside it as loose Cinzel caps, and then
+   a plate rebuilt around that type in CSS. Both were reconstructions of a mark
+   that exists; the client supplied the real one and it is used directly.
+
+   It is the *reversed* file on these two surfaces and `GBlogo.png` everywhere
+   else. The printed mark's B and its plate field are navy, and navy on
+   `--stone-deep` measures 1.34:1 — the B reads as a dark blob with a spire in
+   it. In `GBlogo-rev.png` the monogram's navy is remapped to cool stone with
+   its original modelling preserved, and the plate is left alone deliberately:
+   its field disappears into the ground, which leaves the gold frame and the
+   gold letters standing exactly as they do in print. Reversing the plate too
+   would put gold letters on a pale field, which is the one thing the
+   Bronze-As-Ink Rule forbids.
+
+   Generated from the client's file, not drawn by hand — see HANDOFF.           */
+.splash-lockup { display: grid; justify-items: center; animation: splashIn .9s var(--ease) both; }
+.splash-lockup img { width: min(268px, 62vw); height: auto; }
+.splash.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+@keyframes splashIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ==========================================================================
+   The incised head
+   Section titles are cut, not set: Cinzel capitals, wide tracking, a bevel
+   on the letterform and a cast-bronze bar above the cut. No kicker anywhere
+   on this page — the cut carries its own authority.
+   ========================================================================== */
+
+.h2 {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(25px, 2.9vw, 37px); line-height: 1.14;
+  letter-spacing: .045em; text-transform: uppercase;
+  color: var(--ink); text-shadow: var(--cut-light);
+  margin-bottom: 24px; text-wrap: balance;
+}
+.h2--light { color: #F2F5F4; text-shadow: var(--cut-dark); }
+.h2--centre { text-align: center; }
+
+.lede {
+  font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  color: var(--ink-soft); max-width: 58ch; margin-bottom: 6px;
+}
+.lede--light { color: rgba(226, 235, 236, .8); }
+
+.rte { font-family: var(--f-body); font-size: 17px; line-height: 1.68; color: var(--ink); }
+.rte p { margin-bottom: 1.2em; }
+.rte p:last-child { margin-bottom: 0; }
+.rte--light { color: rgba(230, 238, 239, .88); }
+.rte--centre { text-align: center; }
+
+/* The one emphasis role. A cut left edge in verdigris, not a coloured slab. */
+.rte-strong {
+  font-family: var(--f-body); font-size: 17px; line-height: 1.62;
+  font-weight: 600; color: var(--ink);
+  margin-top: 1.5em; padding-left: 20px;
+  border-left: 1px solid var(--verdigris);
+}
+.rte-strong--light { color: #F2F5F4; border-left-color: var(--verdigris-lit); }
+.rte--light .rte-strong, .dark .rte-strong { color: #F2F5F4; border-left-color: var(--verdigris-lit); }
+
+.tel { color: var(--bronze-ink); font-weight: 700; white-space: nowrap; }
+.tel--light { color: var(--bronze-lit); }
+/* The mid slab is darker than pale stone, so bronze-as-text has to go one step
+   deeper on it. DESIGN.md has always said so — "--bronze-deep #5E4A0E, bronze as
+   text on the mid slab, 5.8:1" — but nothing ever applied it, and `.tel` on
+   `.sec--paper` shipped at 4.28:1 against a 4.5 requirement. Found by measuring
+   the live homepage while checking a new page, so it predates /our-team and is
+   fixed for both here. Same correction for the plate kickers. */
+.sec--paper .tel,
+.sec--paper .acard-k { color: var(--bronze-deep); }
+.rte a:not(.tel):not(.mapcard) {
+  color: var(--verdigris); font-weight: 600;
+  border-bottom: 1px solid rgba(60, 98, 92, .42); padding-bottom: 1px;
+}
+.rte a:not(.tel):not(.mapcard):hover { border-bottom-color: currentColor; }
+.rte--light a:not(.tel):not(.mapcard) { color: var(--verdigris-lit); border-bottom-color: rgba(127,168,160,.5); }
+
+/* ---------- Section grounds ----------------------------------------------- */
+
+.sec { padding-block: var(--sec); background: var(--stone-pale); }
+/* A different grade of stone, recessed into the field. The pale sections ran
+   four deep through the middle of the page and read as one unbroken grey on a
+   phone; cutting the plane makes the boundaries legible without adding a
+   colour to the palette. */
+.sec--paper {
+  background: var(--stone-mid);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,0) 20%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.09) 0 3px, rgba(10,22,40,.011) 3px 6px);
+  box-shadow: inset 0 2px 3px rgba(10,22,40,.13), inset 0 -1px 0 rgba(255,255,255,.62);
+}
+.sec--tight { padding-block: 44px; }
+
+/* ---------- Grain -----------------------------------------------------------
+   The page ran as a stack of flat fills. Stone is not flat — it has a tooth,
+   and at this weight the grain is not a texture you look at, it is the reason
+   the ground stops looking like a swatch. Two rules govern it:
+
+   1. It alternates. Every other band takes the grain, so the page reads as
+      dressed and undressed stone in succession rather than one uniform finish.
+      A texture applied to everything is the same as a texture applied to
+      nothing — it just moves where "flat" sits.
+   2. It is light, and the weight was measured rather than guessed — three
+      times, because the first two were wrong in the same direction. Sampled on
+      a canvas over `--stone-pale`: at 5% opacity the grain spanned **3 levels
+      out of 255**, at 14% it spanned **9**, and neither could be found on the
+      page without being told where to look. That is not subtle, it is absent.
+      It now runs at 18% for a **13-level** spread, which is the top of the
+      range where this still reads as a tooth in stone; past it the surface
+      starts becoming paper, a different material and one already spent on
+      `.sec--paper`.
+
+   Dark grounds need the inverse and a much lower number: the same noise at the
+   same opacity over `--stone-deep` is invisible, because dark noise on a dark
+   ground has nowhere to go. `--grain-lit` inverts the noise to white through
+   `feComponentTransfer` and runs at 6%, which lands on the same 13-level
+   spread — the eye reads a near-black ground far more sensitively, so matching
+   the *measurement* rather than the opacity is what makes the two feel equal.
+
+   Implemented as an extra `background-image` layer rather than a `::before`
+   overlay: several of these sections already use their pseudo-elements, and a
+   background layer cannot intercept a pointer or shift a stacking context.
+   The noise is generated by `feTurbulence` in an inline SVG — no request, no
+   asset, a few hundred bytes, rasterised once and tiled.                      */
+
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.18'/%3E%3C/svg%3E");
+  --grain-lit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0' intercept='1'/%3E%3CfeFuncG type='linear' slope='0' intercept='1'/%3E%3CfeFuncB type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23l)' opacity='.06'/%3E%3C/svg%3E");
+}
+
+/* The alternation is by document position, and the exclusions are the bands
+   that already carry a ground of their own — `.sec--paper` has its comb,
+   `.wash` and `.dark` have their washes. Laying grain over those
+   compounds two treatments and muddies both.
+
+   `.ds-statement` (#5) is excluded on the same principle, and on a stricter
+   one: it is the page's typographic section and its brief is one ground, one
+   object, no texture of any kind. Its own `background` shorthand cannot do the
+   excluding — this selector scores 0-4-2 against the component's 0-1-0, so the
+   grain won on specificity and rendered over the flat field. The exclusion has
+   to live here. Position parity is untouched, so no other section's grain
+   changes. */
+main > section:nth-of-type(even):not(.sec--paper):not(.dark):not(.wash):not(.ds-statement):not(.ds-caseindex) {
+  background-image: var(--grain);
+  background-size: 180px 180px;
+}
+
+/* `.whyband` is the one large band on the page that carried no ground at all —
+   1092px of flat `--stone-deep` between two grained pale sections. It takes the
+   lit grain rather than the dark one for the reason above. `.creds` and
+   `.office` are left alone on purpose: one is a 96px marquee strip and the
+   other is an embedded map, and neither has enough visible field to show a
+   texture. */
+/* `main >` is load-bearing, not decoration: `.whyband`'s own rule sits further
+   down the file and sets the `background` shorthand, which resets
+   `background-image` to none. The child combinator outranks it. */
+main > .whyband {
+  background-image: var(--grain-lit);
+  background-size: 180px 180px;
+}
+
+/* Reduced transparency is a request not to be given extra visual layers. Only
+   the grain goes — the washes on `.wash`, `.dark` and the comb on
+   `.sec--paper` are structure, not decoration, and stay. */
+@media (prefers-reduced-transparency: reduce) {
+  main > section:nth-of-type(even):not(.sec--paper):not(.dark):not(.wash):not(.ds-caseindex),
+  main > .whyband {
+    background-image: none;
+  }
+}
+
+.dark {
+  background: var(--stone-deep); color: #F2F5F4; padding-block: var(--sec);
+}
+.dark--form { background: var(--stone-deep); }
+
+/* Dark stone is quarried, not flat: a faint vertical grain plus a lit top
+   edge, so the deep bands read as a face rather than a colour fill. */
+.dark, .whyband, .foot {
+  background-image:
+    linear-gradient(180deg, rgba(214, 230, 240, .052) 0%, rgba(214, 230, 240, 0) 34%),
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,.009) 0 3px, rgba(0,0,0,.009) 3px 6px);
+}
+
+/* ---------- Credentials: the marks, cut into the wall --------------------- */
+
+.creds {
+  position: relative; overflow: hidden;
+  background: var(--stone-black); padding: 24px 0;
+  border-top: 1px solid var(--rule-cut-dark);
+  border-bottom: 1px solid var(--rule-cut-dark);
+}
+/* The rail runs edge to edge, so marks must not appear and vanish at a hard
+   cut. Both ends fade into the black stone instead — the run reads as passing
+   behind the page rather than being clipped by it. */
+.creds::before, .creds::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: clamp(48px, 12vw, 132px);
+  z-index: 1; pointer-events: none;
+}
+.creds::before { left: 0;  background: linear-gradient(90deg, var(--stone-black), rgba(6,16,31,0)); }
+.creds::after  { right: 0; background: linear-gradient(270deg, var(--stone-black), rgba(6,16,31,0)); }
+
+/* Two identical runs side by side, each stretched to at least a full viewport.
+   Translating the track -50% lands run two exactly where run one began, so the
+   loop has no seam and no reset flash — and because each run is >= 100vw the
+   rail is never short of marks on a wide monitor, which a max-content run of a
+   fixed number of logos always eventually is. Adding a mark means adding it to
+   BOTH runs; the two must stay identical in count and order — and the
+   reduced-motion `nth-child` cut below must move with the count, since it is
+   what trims the rail down to one set of each distinct mark. */
+.creds-track {
+  display: flex; width: max-content;
+  animation: creds-run 38s linear infinite;
+}
+.creds-run {
+  list-style: none; display: flex; align-items: center; justify-content: space-around;
+  flex: none; min-width: 100vw; margin: 0; padding: 0 clamp(15px, 3vw, 38px);
+  gap: clamp(30px, 6vw, 76px);
+}
+@keyframes creds-run { to { transform: translateX(-50%); } }
+
+/* The marks are desaturated for the same reason the portraits are: four
+   credentials issued by four organisations arrive in four house palettes — a
+   gold seal, a navy shield, a white wordmark, a pale emblem — and side by side
+   on the black stone they read as four logos borrowed from elsewhere rather
+   than as one row of the firm's credentials. Greyscale makes the rail one
+   material. Same one-line treatment as `.bio-plate img`, so the two places on
+   the site that carry supplied artwork are settled the same way.
+
+   The badges are the only place a brand colour was load-bearing, so the
+   opacity goes up from .78 to .9 to buy back the contrast greyscale spends —
+   flattening the gold seal AND dimming it would have left it a grey smudge.
+   To go back to colour, delete the `filter`. */
+.creds-run img {
+  height: 30px; width: auto; opacity: .9;
+  filter: grayscale(1) brightness(var(--cr-lift, 1));
+  transition: opacity var(--dur) var(--ease);
+}
+/* Two of the four marks are SEALS — a shape with a dark ground of its own —
+   where Avvo and NYSBA are flat white ink with nothing behind it. Greyscale
+   treats them very differently: measured over their opaque pixels against this
+   rail's #06101F ground (luminance 15), the wordmarks land at a median of 255
+   and the Justia shield at 48. Thirty-three points off the background is why it
+   read as a smudge. The seals are lifted until they sit in the same "light mark
+   on dark" family as the other two, rather than the rail being made paler.
+
+   Each takes its own factor because one value cannot serve both — their
+   post-greyscale medians differ by 2.6x (Justia 48, the Google seal 127), and
+   the value that rescues the shield blows the seal's ring to flat white. The
+   resulting medians are 125 and 184. The white band on the Justia mark clips,
+   which costs nothing: it was already 255 before the lift. */
+.cr-emblem--justia { --cr-lift: 3; }
+.cr-emblem--google { --cr-lift: 1.6; }
+/* A square emblem set to a wordmark's cap height reads half its size. Matched
+   by optical mass, not by measurement. */
+.creds-run img.cr-emblem { height: 46px; }
+
+/* ==========================================================================
+   The bronze button — the one polished element on the page
+   ========================================================================== */
+
+.btn {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+  min-height: 58px; padding: 14px clamp(16px, 5vw, 30px);
+  border: 0; border-radius: 0; cursor: pointer;
+  background: linear-gradient(172deg, var(--bronze-rake) 0%, #C9A227 46%, var(--bronze-body) 100%);
+  color: var(--stone-deep);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 226, .8),
+    inset 0 -2px 0 rgba(74, 56, 8, .42),
+    var(--cast);
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(13px, 3.6vw, 15px); line-height: 1.35;
+  letter-spacing: .09em; text-transform: uppercase; text-align: center;
+  /* The label is a phone number. Left to wrap on its own it splits mid-number
+     ("(516)" / "444-1000"); balancing forces the break at the sentence seam. */
+  text-wrap: balance;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur-fast) var(--ease),
+              filter var(--dur) var(--ease);
+}
+.btn:hover { color: var(--stone-deep); filter: brightness(1.06); }
+.btn:active { transform: translateY(1px); box-shadow: inset 0 1px 0 rgba(255,250,226,.6), inset 0 -1px 0 rgba(74,56,8,.42), 0 6px 14px -8px rgba(6,16,31,.5); }
+.btn--full { width: 100%; }
+.btn[disabled] { filter: saturate(.35) brightness(.9); cursor: not-allowed; box-shadow: var(--bevel-in); }
+.btn .ic { width: 17px; height: 17px; stroke-width: 2; }
+
+/* The one authored motion moment on the page: as a call button enters the
+   viewport, a specular highlight rakes once across the cast face — light
+   moving over metal, nothing else on the page animates on entry. */
+.btn::after {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 42%;
+  pointer-events: none; transform: skewX(-16deg);
+  background: linear-gradient(96deg, transparent 0%, rgba(255, 252, 236, .58) 48%, transparent 100%);
+  animation: rake 1500ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation-timeline: view();
+  animation-range: entry 14% cover 40%;
+}
+@keyframes rake { from { left: -60%; } to { left: 118%; } }
+
+/* ==========================================================================
+   The call plate — a cut stone slab with the bronze set into it
+   ========================================================================== */
+
+/* This was a dark rectangle floating in its own field of pale stone — 118px of
+   nothing above it and 118px below, touching neither the section before nor
+   the one after. A plate hovering in a void has no reason to be at that point
+   in the page; it reads as an ad someone dropped in.
+   It is now the seam itself: a full-bleed band cut straight across the page
+   between the practice-area tiles and the reviews, its bronze plate edge
+   doing the work the section rule would otherwise do. Same offer, same one
+   polished element — but now the page has to pass through it. */
+.cta-wrap { background: var(--stone-pale); }
+/* The band runs edge to edge; its own padding re-centres the content on the
+   page container, so the surface is full-bleed while the type still lines up
+   with every other section. */
+.cta-wrap > .wrap { max-width: none; padding-inline: 0; }
+.cta {
+  background: var(--stone-deep);
+  background-image:
+    linear-gradient(180deg, rgba(214, 230, 240, .07) 0%, rgba(214, 230, 240, 0) 42%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.009) 0 3px, rgba(0,0,0,.009) 3px 6px);
+  border: 0; border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge) 0%, var(--bronze) 34%, var(--bronze-lit) 52%, var(--bronze) 68%, var(--bronze-edge) 100%) 1;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.08);
+  padding: 40px var(--gut) 42px; text-align: center;
+  margin-block: 0;
+}
+.cta-h {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(22px, 2.5vw, 30px); line-height: 1.18;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--bronze-lit); text-shadow: var(--cut-dark); margin-bottom: 12px;
+}
+.cta-p {
+  font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  color: rgba(230, 238, 239, .84); margin-bottom: 28px; max-width: 46ch;
+  margin-inline: auto;
+}
+
+/* ---------- Directory line: the map / tool entry -------------------------- */
+
+.mapcard {
+  display: flex; align-items: center; gap: 18px; margin-top: 30px;
+  padding: 22px 4px; background: none;
+  border: 0; border-top: 1px solid var(--rule-cut); border-bottom: 1px solid var(--rule-cut);
+  transition: background-color var(--dur) var(--ease);
+}
+.mapcard:hover { background: rgba(60, 98, 92, .07); color: inherit; }
+.mapcard > .ic { width: 26px; height: 26px; color: var(--verdigris); }
+.mapcard span { display: grid; gap: 4px; font-family: var(--f-body); font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+/* An address is read, not admired. Structural face, sentence case. */
+.mapcard b {
+  font-family: var(--f-ui); font-weight: 700; font-size: 17px; line-height: 1.35;
+  letter-spacing: .005em; color: var(--ink);
+}
+.mapcard-go { width: 20px; height: 20px; margin-left: auto; flex: none; color: var(--bronze-ink); transition: transform var(--dur) var(--ease); }
+.mapcard:hover .mapcard-go { transform: translateX(6px); }
+
+/* ==========================================================================
+   The record slab — the figure cut into stone rather than boxed
+   ========================================================================== */
+
+.wash {
+  background: var(--stone-mid);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 22%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.11) 0 3px, rgba(10,22,40,.011) 3px 6px);
+  box-shadow: inset 0 2px 3px rgba(10, 22, 40, .16), inset 0 -1px 0 rgba(255,255,255,.7);
+}
+.wash-panel { background: none; padding: 64px var(--gut); }
+.wash-fig {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(52px, 13vw, 82px); line-height: 1; letter-spacing: .01em;
+  color: var(--ink); text-align: center;
+  text-shadow: 0 2px 0 rgba(255,255,255,.85), 0 -2px 1px rgba(10, 22, 40, .3);
+}
+.wash-fig sup { font-size: .3em; vertical-align: super; letter-spacing: .04em; }
+.wash-h {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(19px, 2.4vw, 26px); line-height: 1.2;
+  color: var(--ink); text-align: center; text-transform: uppercase; letter-spacing: .16em;
+  text-shadow: var(--cut-light);
+  margin-top: 18px; padding-bottom: 22px; position: relative;
+}
+.wash-h::after {
+  content: ""; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: 108px; height: 3px;
+  background: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge));
+  box-shadow: 0 1px 0 rgba(255,255,255,.7);
+}
+.wash-sub {
+  font-family: var(--f-body); font-size: 15.5px; line-height: 1.6;
+  color: var(--ink-soft); text-align: center; margin-top: 20px;
+  max-width: 56ch; margin-inline: auto;
+}
+.wash-list { list-style: none; margin-top: 38px; border-top: 1px solid rgba(10,22,40,.2); }
+.wash-list li {
+  display: flex; flex-direction: column; gap: 6px;
+  padding-block: 20px; border-bottom: 1px solid rgba(10,22,40,.2);
+  box-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+.wash-amt {
+  font-family: var(--f-cut); font-weight: 600; font-size: clamp(23px, 3.6vw, 28px);
+  line-height: 1.28; letter-spacing: .01em; color: var(--bronze-deep);
+  text-shadow: 0 1px 0 rgba(255,255,255,.7);
+}
+.wash-case {
+  font-family: var(--f-ui); font-weight: 700; font-size: 17px; line-height: 1.35;
+  letter-spacing: .01em; color: var(--ink);
+}
+.wash-case em {
+  display: block; font-style: normal; font-family: var(--f-body); font-weight: 400;
+  font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); margin-top: 4px;
+}
+/* The regulated line. It reads as an engraved footnote, not as fine print.
+
+   It carries no rule of its own. It used to, and that drew a second hairline
+   26px below the one the last `<li>` already puts there to close the register —
+   two rules marking one boundary, which is the doubled divider the client
+   spotted. The list's own closing rule is the one that stays: every other
+   register on this page (`.wcard`) is closed by its last row's
+   border, and a footnote that opens with a rule 26px under a rule is just
+   restating it. The separation is whitespace now, which is what a footnote
+   wants anyway. */
+.wash-note {
+  margin-top: 44px; padding-top: 0; border-top: 0;
+  font-family: var(--f-body); font-size: 13.5px; line-height: 1.6; color: var(--ink-soft);
+}
+.wash-note b { color: var(--bronze-deep); }
+
+/* ---------- Ordered steps: the sequence is the instruction ---------------- */
+
+.fsteps { list-style: none; margin-top: 32px; border-top: 1px solid var(--rule-cut); }
+.fsteps li {
+  display: flex; gap: 20px; padding-block: 24px;
+  border-bottom: 1px solid var(--rule-cut); box-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+.fs-n {
+  font-family: var(--f-cut); font-weight: 600; font-size: 15px; letter-spacing: .08em;
+  color: var(--bronze-ink); text-shadow: var(--cut-light);
+  flex: none; padding-top: 4px; min-width: 34px;
+}
+/* These are instructions, not names — full imperative sentences. The cut face
+   names things; the structural face says them. */
+.fsteps h3 {
+  font-family: var(--f-ui); font-weight: 700; font-size: 19px; line-height: 1.28;
+  letter-spacing: .002em; color: var(--ink); margin-bottom: 8px;
+}
+.fsteps p { font-family: var(--f-body); font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+
+/* ---------- Process steps -------------------------------------------------- */
+
+.steps { list-style: none; margin-top: 30px; border-top: 1px solid var(--rule-cut); }
+.steps li {
+  display: flex; gap: 20px; padding-block: 26px;
+  border-bottom: 1px solid var(--rule-cut); box-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+.steps-n {
+  font-family: var(--f-cut); font-weight: 600; font-size: 20px; letter-spacing: .04em;
+  color: var(--bronze-ink); text-shadow: var(--cut-light); flex: none; min-width: 34px; padding-top: 2px;
+}
+.steps h3 {
+  font-family: var(--f-cut); font-weight: 600; font-size: 17px; line-height: 1.3;
+  letter-spacing: .045em; text-transform: uppercase; color: var(--ink);
+  text-shadow: var(--cut-light); margin-bottom: 10px;
+}
+.steps p { font-family: var(--f-body); font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+.steps-aside {
+  margin-top: 18px; padding: 0 0 0 20px;
+  border-left: 1px solid var(--verdigris);
+  font-size: 15px !important; color: var(--ink) !important;
+}
+
+/* ---------- Service areas: a hairline board, not a card grid -------------- */
+
+/* ---- The service-area plate -------------------------------------------------
+   The third of the three rebuilt sections, and the one that deliberately turns
+   ninety degrees. Commitments and the case register are both horizontal rows; if
+   this were rows too, all three would read as one device used three times. It is
+   instead a single plate divided into standing columns by hairline rules — four
+   corridors side by side, the way they sit on a map.
+
+   The card containers are gone. Each entry was a filled box with its own padding
+   and its own hover tint, which is what made four places look like four products.
+   Now there is one continuous surface and the rules do the dividing, so the
+   section reads as a plate with four names cut into it.                          */
+/* The plate is closed at the foot. It used to be open — a 3px cast-bronze rule
+   across the top, hairlines dropping from it, and then nothing: the verticals
+   simply stopped in mid-air under the last line of text. A plate has four edges,
+   and at every column count the last row needs something to sit on.
+
+   The closing rule is a `box-shadow`, not a `border-bottom`, because the bronze
+   top edge is drawn with `border-image` — and `border-image` paints every side
+   it is given a width on. A 1px bottom border would come out as a second full
+   strength bronze gradient, which is exactly the wrong emphasis: the bronze
+   opens the plate, the hairline closes it. */
+.agrid {
+  list-style: none; display: grid; gap: 0; margin-top: 34px;
+  background: transparent;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+  box-shadow: 0 1px 0 0 var(--rule-cut);
+}
+.acard {
+  background: transparent; border: 0;
+  padding: 30px 0 32px;
+  border-bottom: 1px solid var(--rule-cut);
+  transition: background-color var(--dur) var(--ease);
+}
+.acard:last-child { border-bottom: 0; }
+/* A kicker above a heading is a pattern worth refusing: it spends a line and a
+   colour on saying, quietly, what the heading is about to say loudly — and three
+   of these four do exactly that ("Expressway" over "The Long Island Expressway").
+   The copy is locked, so they stay; what goes is the 2px bronze rule under them,
+   which is what made an 11px caption read as a second heading. Now they sit back
+   as filing marks and the incised name leads the entry.
+   FLAGGED FOR THE CLIENT: deleting three of the four outright would be stronger
+   still. "Route 27" is the only one carrying a fact the heading does not. */
+.acard-k {
+  display: inline-block; margin-bottom: 16px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--bronze-ink);
+}
+.acard h3 {
+  font-family: var(--f-cut); font-weight: 600; font-size: 18px; line-height: 1.26;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--ink);
+  text-shadow: var(--cut-light); margin-bottom: 10px;
+}
+.acard p { font-family: var(--f-body); font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+.arow { margin-top: 34px; padding-inline: 0; }
+
+/* ==========================================================================
+   Commitments — the argument, in four ruled movements
+   ==========================================================================
+   This was a 2×2 grid of equal cells. Four boxes of heading-plus-paragraph is a
+   template, and restraint applied to a template does not make it premium — the
+   arrangement is the problem. Equal cells say all four claims carry equal weight
+   and none of them leads.
+
+   It is now a register: four full-width ruled rows, the claim hanging in a wide
+   left column at display scale, the reasoning set beside it at reading scale.
+   That is the shape a firm's argument actually has — assertion, then proof — and
+   it is the shape the Bronze Directory has been claiming all along. A directory
+   is a ruled board, not a grid of tiles.
+
+   There is no section heading here (the band carries only an aria-label), which
+   is exactly why the grid failed: with nothing above them, four equal boxes had
+   no entry point. The first claim now opens the section itself.                 */
+
+.whyband { background: var(--stone-deep); padding-block: var(--sec); overflow-x: clip; }
+.rail { min-width: 0; }
+/* Rows, not cells. The bronze top edge stays — it is the shared mark tying this
+   board to the case register and the service-area plate. */
+.rail-track {
+  list-style: none; display: block; margin: 0; padding: 0;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+}
+.rail-track::-webkit-scrollbar { display: none; }
+.rail-foot, .dots, .rail-nav, .rail-btn { display: none; }
+/* The inline padding carries the hover fill past the first and last glyph, so the
+   tint reads as a row of the register lighting up rather than a box drawn round
+   the words; the negative margin cancels it so the type still sits on the column
+   line. */
+.wcard {
+  display: grid; gap: 12px; min-width: 0;
+  background: transparent; border: 0;
+  padding-block: 34px;
+  padding-inline: clamp(0px, 2.6vw, 18px);
+  margin-inline: clamp(-18px, -2.6vw, 0px);
+  border-bottom: 1px solid var(--rule-cut-dark);
+  box-shadow: 0 1px 0 rgba(255,255,255,.035);
+  transition: background-color var(--dur) var(--ease);
+}
+.wcard:hover { background: rgba(255,255,255,.045); }
+/* The four decorative glyphs stay cut, and in a register they would be worse than
+   in a grid: the left column of a register is where the record's name goes, not a
+   pictogram for an abstraction. Markup left in place — one declaration to reverse. */
+.wcard-ic { display: none; }
+/* Two-clause sentences, so they stay in the structural sans: cut capitals at this
+   length are decoded, not read. In the register they are the left column and
+   therefore the thing that leads, so they take the display step the 2×2 could
+   never have given them — see the desktop block, where they reach 28px. At that
+   size inside the old grid they shouted over the nearby section heads; hanging
+   alone in a ruled column with nothing above them, they are the entry point. */
+.wcard h3 {
+  font-family: var(--f-ui); font-weight: 700; font-size: 19px; line-height: 1.28;
+  letter-spacing: .002em; color: #F2F5F4; margin: 0;
+}
+.wcard p { font-family: var(--f-body); font-size: 15.5px; line-height: 1.65; color: rgba(226,235,236,.74); }
+
+/* ==========================================================================
+   Photography as inset stone
+   The plates are set into the page, desaturated toward bluestone so they read
+   as material rather than as stock photography.
+   ========================================================================== */
+
+.tiles { display: grid; gap: 1px; background: var(--rule-cut); margin-top: 34px; }
+.tile {
+  position: relative; display: flex; align-items: flex-end; overflow: hidden;
+  min-height: 250px; padding: 30px 24px 28px;
+  background-image: var(--img-sm); background-size: cover; background-position: center;
+  background-color: var(--stone-deep); color: #F2F5F4;
+}
+.tile::before {
+  content: ""; position: absolute; inset: 0;
+  backdrop-filter: saturate(.42) contrast(1.06);
+  background: linear-gradient(180deg, rgba(10,22,40,.42) 0%, rgba(10,22,40,.7) 46%, rgba(6,16,31,.95) 100%);
+  transition: background var(--dur) var(--ease);
+}
+.tile:hover::before { background: linear-gradient(180deg, rgba(10,22,40,.28) 0%, rgba(10,22,40,.6) 46%, rgba(6,16,31,.94) 100%); }
+.tile-in { position: relative; display: block; }
+.tile-rule {
+  display: block; width: 58px; height: 3px; margin-bottom: 16px;
+  background: linear-gradient(90deg, var(--bronze), var(--bronze-edge));
+  transform-origin: left center; transition: transform var(--dur) var(--ease);
+}
+.tile:hover .tile-rule { transform: scaleX(1.7); }
+.tile-t {
+  display: block; font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(18px, 2.2vw, 23px); line-height: 1.22;
+  letter-spacing: .05em; text-transform: uppercase; text-shadow: var(--cut-dark);
+}
+.tile-p { display: block; font-family: var(--f-body); font-size: 15px; line-height: 1.55; color: rgba(230,238,239,.86); margin-top: 10px; }
+.tile-more {
+  display: grid; grid-template-rows: 0fr; overflow: hidden;
+  font-family: var(--f-body); font-size: 14.5px; line-height: 1.6;
+  color: rgba(230,238,239,.88);
+  transition: grid-template-rows var(--dur) var(--ease);
+}
+.tile-more > * { min-height: 0; }
+.tile-more > span { display: block; padding-top: 12px; }
+.tile:hover .tile-more, .tile:focus-visible .tile-more { grid-template-rows: 1fr; }
+.tile:hover { color: #F2F5F4; }
+
+/* ==========================================================================
+   Google reviews
+   ========================================================================== */
+
+.reviews {
+  background: var(--stone-light); padding-block: var(--sec); padding-inline: 0;
+  overflow-x: clip;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 var(--rule-cut);
+}
+.rv-head { display: grid; gap: 20px; margin-bottom: 34px; }
+.rv-score { display: flex; align-items: center; gap: 16px; }
+.rv-g { width: 34px; height: 34px; flex: none; }
+.rv-score > b {
+  font-family: var(--f-cut); font-weight: 600; font-size: 38px; line-height: 1;
+  color: var(--ink); text-shadow: var(--cut-light);
+}
+.rv-score > span { display: grid; gap: 6px; }
+.rv-score em {
+  font-style: normal; font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.rv-all {
+  justify-self: start; padding-bottom: 6px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
+  border-bottom: 2px solid var(--bronze);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.rv-all:hover { color: var(--bronze-ink); }
+
+/* ---- The rail is driven, not running ---------------------------------------
+   This ran itself on a 90s loop with a duplicated second set of cards to make
+   the wrap seamless. Two things were wrong with that. An auto-marquee decides
+   for the reader how long a testimonial gets to be looked at, and a testimonial
+   is the one thing on this page a visitor actually stops to read — motion that
+   pulls a sentence out from under them is working against the section's whole
+   job. And it paused on :hover and :focus-within, neither of which a touch
+   device has, so the reader most likely to be mid-sentence had no way to stop it.
+
+   The duplicate set is gone from the markup too. It existed only to close the
+   loop; with no loop it is ten testimonials printed twice, which is a breadth
+   claim the firm has not made — the same reasoning that hides the repeated
+   credential marks in `.creds-run`.
+
+   What replaces it is the track that was already underneath: scroll-snap, which
+   answers swipe, trackpad and arrow keys before a line of script runs. The two
+   plates in the head are an addition, not the mechanism.                        */
+
+.rvmarq { display: block; }
+.rvmarq-run {
+  list-style: none; display: flex; align-items: stretch; gap: 20px;
+  margin: 0; overflow-x: auto;
+  /* Proximity, not mandatory, and for two reasons. A reading rail should not
+     yank a testimonial back into alignment while someone is halfway through a
+     sentence — proximity snaps when you land near a card edge and otherwise
+     leaves the reader where they put it. And mandatory snap is the combination
+     that fights a programmatic smooth scroll, which is exactly what the two
+     plates above issue; proximity keeps the arrows dependable. */
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* The rail is full bleed and stays that way. Aligning its leading edge to
+     `.wrap`'s content column was tried and rejected: on a wide screen that
+     opens a blank margin the width of the page gutter before the first card,
+     and the band reads as an indented block rather than a run of record that
+     happens to be showing this part of itself. Only the page gutter is kept, so
+     nothing touches the glass. The trailing 20px is a bleed kept deliberately —
+     a card clipped at the right edge is what says the record continues. */
+  padding: 0 20px 0 var(--gut);
+  scroll-padding-left: var(--gut);
+}
+.rvmarq-run::-webkit-scrollbar { display: none; }
+.rvmarq-run:focus-visible { outline: 2px solid var(--bronze); outline-offset: -2px; }
+
+/* The controls. Square plates cut with a hairline, not circular pills — the
+   page's language is incised rule and plate throughout, and a control that
+   arrives as a floating circle reads as borrowed from somewhere else. They sit
+   on the head rule beside the Google link rather than floating over the cards,
+   where they would cover the testimonial they are there to move. */
+.rv-acts { display: flex; align-items: center; gap: 22px; }
+.rv-nav { display: flex; }
+.rv-btn {
+  width: 46px; height: 46px; flex: none; padding: 0;
+  display: grid; place-items: center;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--rule-cut); cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              opacity var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.rv-btn + .rv-btn { border-left: 0; }
+.rv-btn .ic { width: 16px; height: 16px; stroke-width: 1.7; }
+/* `#i-chev` points down; these are the two quarter turns off it. */
+.rv-btn[data-prev] .ic { transform: rotate(90deg); }
+.rv-btn[data-next] .ic { transform: rotate(-90deg); }
+.rv-btn:hover:not(:disabled) {
+  background: var(--stone-pale); color: var(--bronze-ink); border-color: var(--bronze);
+}
+.rv-btn:active:not(:disabled) { transform: scale(.97); }
+/* Disabled is stated, not hidden. A control that vanishes at the end of a track
+   moves the one beside it, which is worse than a plate that has plainly run out. */
+.rv-btn:disabled { color: var(--ink-soft); opacity: .34; cursor: default; }
+
+.rvcard {
+  display: flex; flex-direction: column; gap: 18px;
+  width: 320px; flex: none; scroll-snap-align: start;
+  background: var(--stone-pale); border: 0;
+  border-top: 2px solid var(--bronze);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 22px -14px rgba(6,16,31,.35);
+  padding: 26px 24px 24px;
+}
+.rvstars { display: inline-flex; gap: 3px; color: var(--bronze-ink); }
+.rvstars .ic { width: 16px; height: 16px; fill: currentColor; stroke-width: 1; }
+.rvstars--lg .ic { width: 19px; height: 19px; }
+.rvcard blockquote p { font-family: var(--f-body); font-size: 15.5px; line-height: 1.65; color: var(--ink); }
+.rvfoot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; }
+.rvwho { display: grid; gap: 4px; }
+.rvwho b {
+  font-family: var(--f-cut); font-weight: 600; font-size: 13px;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink);
+}
+.rvwho em {
+  font-style: normal; font-family: var(--f-body); font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.rvg { width: 22px; height: 22px; flex: none; }
+
+/* ==========================================================================
+   Accordion — cut lines, not a bordered box
+   ========================================================================== */
+
+.acc { background: none; border: 0; border-top: 1px solid var(--rule-cut); margin-top: 30px; }
+.acc details { border-bottom: 1px solid var(--rule-cut); box-shadow: 0 1px 0 rgba(255,255,255,.6); }
+.acc summary {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  padding: 22px 4px; cursor: pointer; list-style: none;
+  /* Questions are sentences. Set them to be read, not deciphered. */
+  font-family: var(--f-ui); font-weight: 700; font-size: 19px; line-height: 1.3;
+  letter-spacing: .002em; color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+}
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary:hover { color: var(--bronze-ink); }
+.sign { position: relative; width: 16px; height: 16px; flex: none; margin-top: 4px; }
+.sign::before, .sign::after {
+  content: ""; position: absolute; background: var(--bronze-ink);
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.sign::before { left: 0; right: 0; top: 7px; height: 2px; }
+.sign::after { top: 0; bottom: 0; left: 7px; width: 2px; }
+details[open] .sign::after { opacity: 1; transform: scaleY(0); }
+.acc-body { padding: 0 4px 24px; }
+.acc-body p { font-family: var(--f-body); font-size: 16px; line-height: 1.65; color: var(--ink-soft); max-width: 66ch; }
+
+/* ==========================================================================
+   The service-areas index
+   ==========================================================================
+   Everything open, nothing behind a click: a jump index across the top, then
+   every county with every town laid out beneath it. A visitor looking for their
+   own town sees whether it is there or not, rather than opening four counties to
+   find out. That is the whole argument for this layout, and it is why the towns
+   are NOT an accordion.
+
+   The reference this was modelled on sets its counties and cities as rounded
+   pills and filled rounded buttons. Those are cut square here, without
+   exception — DESIGN.md: "the world is cut stone and cast metal; neither has a
+   soft corner." The structure is borrowed; the corners are not.
+
+   Separators are borders on the cells, NOT the 1px-gap-over-a-coloured-ground
+   trick `.tiles` uses. That trick works for `.tiles` because it is always
+   exactly four; here the counts are arbitrary, and a last row holding one town
+   out of five columns left the four empty tracks painted in `--rule-cut` — a
+   grey slab hanging off the end of the grid. Borders simply stop where the
+   cells stop, so a ragged final row ends where it ends. */
+
+/* The count is a fact about the county, not a decoration, so it sits back from
+   the name rather than competing with it: the `label` step in verdigris, the
+   patina third the system already uses for quiet marks. Bronze would have made
+   a number shout louder than the place it counts. */
+.sa-n {
+  font-style: normal; margin-left: 9px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .16em; color: var(--verdigris);
+}
+
+.sa-jump {
+  display: flex; flex-wrap: wrap; margin-top: 30px;
+  border-top: 1px solid var(--rule-cut); border-left: 1px solid var(--rule-cut);
+}
+.sa-jump a {
+  display: flex; align-items: center; background: var(--stone-light);
+  padding: 14px 18px; min-height: 48px; flex: 1 1 auto;
+  border-right: 1px solid var(--rule-cut); border-bottom: 1px solid var(--rule-cut);
+  font-family: var(--f-cut); font-weight: 600; font-size: 12px;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--ink);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.sa-jump a:hover { background: var(--stone-pale); color: var(--bronze-ink); }
+
+.sa-county { margin-top: 58px; }
+.sa-county-h {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 12px 26px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--bronze);
+}
+.sa-county-h h3 {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(19px, 2.1vw, 25px); line-height: 1.2;
+  letter-spacing: .045em; text-transform: uppercase; color: var(--ink);
+  text-shadow: var(--cut-light);
+}
+.sa-county-all {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--f-ui); font-weight: 700; font-size: 13px;
+  letter-spacing: .06em; color: var(--bronze-ink);
+  transition: color var(--dur) var(--ease);
+}
+.sa-county-all .ic { width: 15px; height: 15px; transition: transform var(--dur) var(--ease); }
+.sa-county-all:hover { color: var(--bronze-deep); }
+.sa-county-all:hover .ic { transform: translateX(4px); }
+
+.sa-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+  margin-top: 20px;
+  border-top: 1px solid var(--rule-cut); border-left: 1px solid var(--rule-cut);
+}
+.sa-cell {
+  display: flex; align-items: center; background: var(--stone-light);
+  padding: 15px 18px; min-height: 54px;
+  border-right: 1px solid var(--rule-cut); border-bottom: 1px solid var(--rule-cut);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.4;
+}
+/* A town with a page of its own carries the cast-bronze bottom edge and reads
+   as a destination. One without keeps the muted ink and no edge, so "somewhere
+   we work" and "somewhere you can read about" are distinguishable before you
+   click rather than after. The distinction is structural — a `span` cannot be
+   clicked — and the styling only makes it visible. */
+a.sa-cell {
+  color: var(--ink); box-shadow: inset 0 -2px 0 var(--bronze);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+a.sa-cell:hover { background: var(--stone-pale); color: var(--bronze-ink); }
+span.sa-cell { color: var(--ink-soft); }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.formcard {
+  background: var(--stone-light); border: 0;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), var(--cast);
+  padding: 38px 26px 34px;
+}
+.form-h {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(20px, 2.3vw, 27px); line-height: 1.2;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink); text-shadow: var(--cut-light);
+  margin-bottom: 28px; text-align: center; text-wrap: balance;
+}
+.field { margin-bottom: 16px; }
+.field input, .field textarea {
+  width: 100%; padding: 16px; border-radius: 0;
+  background: #F7F8F8; color: var(--ink);
+  border: 1px solid #8B9490;   /* 3.05:1 on the field — SC 1.4.11 */
+  box-shadow: inset 0 1px 2px rgba(10,22,40,.11);
+  font-family: var(--f-body); font-size: 16px;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.field input::placeholder, .field textarea::placeholder { color: #5E6763; }
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--verdigris);
+  box-shadow: inset 0 1px 2px rgba(10,22,40,.11), 0 0 0 3px rgba(60, 98, 92, .22);
+}
+.field textarea { resize: vertical; min-height: 118px; }
+.field.is-bad input, .field.is-bad textarea { border-color: var(--error); }
+.err { display: none; margin-top: 7px; font-family: var(--f-body); font-size: 14px; color: #8C2115; }
+.field.is-bad .err { display: block; }
+.form-status { margin-top: 14px; font-family: var(--f-body); font-size: 15px; line-height: 1.55; color: var(--bronze-ink); }
+
+.formdark { margin-top: 30px; }
+.formdark .field input, .formdark .field textarea {
+  background: rgba(255,255,255,.055); color: #F2F5F4; border-color: rgba(214,230,240,.44);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.28);
+}
+.formdark .field input::placeholder, .formdark .field textarea::placeholder { color: rgba(226,235,236,.72); }
+.formdark .field input:focus, .formdark .field textarea:focus {
+  border-color: var(--verdigris-lit);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.28), 0 0 0 3px rgba(127,168,160,.28);
+}
+.formdark .err { color: var(--error-lit); }
+.formdark .form-status { color: var(--bronze-lit); }
+
+/* ==========================================================================
+   Drawer / search
+   ========================================================================== */
+
+.drawer, .search {
+  position: fixed; inset: 0; z-index: 180;
+  background: var(--stone-deep); color: #F2F5F4;
+  /* No grain on the overlays: an empty full-screen field turns the texture
+     into visible striping. These are plain stone. */
+  background-image: linear-gradient(180deg, rgba(214,230,240,.05) 0%, rgba(214,230,240,0) 30%);
+  padding: 20px var(--gut) 44px; overflow-y: auto;
+}
+.drawer[hidden], .search[hidden] { display: none !important; }
+.drawer-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 30px; }
+.drawer-close, .search-close, .drawer-call {
+  border: 0; background: none; cursor: pointer; min-height: 44px;
+  display: inline-flex; align-items: center;
+  font-family: var(--f-cut); font-weight: 600; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+/* The phone number was the smallest type in the drawer, under nav links it
+   should outrank. It is the reason the drawer is open. */
+.drawer-call { color: var(--bronze); font-size: 17px; letter-spacing: .07em; }
+.drawer-nav { display: grid; max-width: 720px; margin-inline: auto; border-top: 1px solid var(--rule-cut-dark); }
+.drawer-nav a, .drawer-nav .drawer-nav-into {
+  font-family: var(--f-cut); font-weight: 600; font-size: clamp(16px, 4.4vw, 20px); line-height: 1.3;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 17px 0; border-bottom: 1px solid var(--rule-cut-dark);
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.drawer-nav a:hover, .drawer-nav .drawer-nav-into:hover { color: var(--bronze); transform: translateX(8px); }
+/* The site is multi-page from /our-team onward, so the menu has to say where you
+   already are. `aria-current` carries it for assistive tech and the colour
+   carries it for everyone else; there is no separate class to forget to add. */
+.drawer-nav a[aria-current="page"] { color: var(--bronze); }
+/* A post is not the blog index, so its menu mark is `true`, not `page` — it
+   says "you are in this section", which is the honest claim. Same colour. */
+.drawer-nav a[aria-current="true"] { color: var(--bronze); }
+.foot-col a[aria-current="page"] { color: var(--bronze-lit); }
+
+/* ---- Resources, and the one nested item ---------------------------------
+   "Resources" names a set; it is not a destination and it is not a link, so it
+   is not marked up as one. Making it a dead `<a href="#">` to look like its
+   neighbours would be the worse lie — a menu item that goes nowhere is a
+   promise the site cannot keep.
+
+   It reads as subordinate rather than louder: verdigris, the patina third, at
+   the drawer's own label size. Its child hangs off a bronze tick and keeps the
+   full link type, because the child is the thing you can actually go to. The
+   label carries no bottom rule — it belongs to the item under it, and a rule
+   between them would file them apart. */
+.drawer-nav-group {
+  padding: 20px 0 6px;
+  /* The documented `label` step. The drawer's existing furniture sits at 12px,
+     which is off the ramp and already a baseline finding — matching it would
+     have propagated the drift for a difference nobody can see. */
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--verdigris-lit);
+}
+.drawer-nav a.drawer-nav-sub { padding-left: 22px; position: relative; }
+.drawer-nav a.drawer-nav-sub::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 11px; height: 2px;
+  background: var(--bronze); transform: translateY(-50%);
+}
+.drawer-nav a.drawer-nav-sub:hover { transform: translateX(8px); }
+/* One entry in this menu leaves the site. Every other item is an in-page jump,
+   so it gets a mark rather than looking identical to them and surprising the
+   visitor. The arrow is the same `#i-arrow` the accident-report cards use, so
+   the outbound gesture is consistent wherever it appears on the page. */
+.drawer-nav a.drawer-nav-out { display: flex; align-items: center; gap: 12px; }
+.drawer-nav a.drawer-nav-out .ic {
+  width: 15px; height: 15px; flex: none; color: var(--bronze);
+  transition: transform var(--dur) var(--ease);
+}
+.drawer-nav a.drawer-nav-out:hover .ic { transform: translateX(3px); }
+/* ---- Practice Areas, and why it is a button ------------------------------
+   Every other entry in this menu is a destination. This one names a set of four
+   and goes nowhere on its own, so it is a `button` with `aria-expanded` rather
+   than a link — the same reasoning that keeps "Resources" a `<p>`. It reuses
+   `.drawer-nav a`'s type by sharing the selector below, so the branch and its
+   siblings cannot drift apart.
+
+   The chevron points down closed and right open: the panel arrives from the
+   right, and the mark says which way the list went. */
+.drawer-nav .drawer-nav-into {
+  border: 0; background: none; cursor: pointer; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; color: inherit;
+}
+.drawer-nav .drawer-nav-into .ic {
+  width: 17px; height: 17px; flex: none; color: var(--bronze);
+  transform: rotate(-90deg);
+  transition: transform var(--dur) var(--ease);
+}
+.drawer-nav .drawer-nav-into:hover .ic { transform: rotate(-90deg) translateY(3px); }
+
+/* The panel is the drawer's own surface moved sideways, not a second overlay
+   stacked on it: same ground, same padding, one z-index above. Stacking a
+   distinct modal on top of a full-screen menu is two scrims, two focus traps and
+   two ways to close — for a list of four links.
+
+   `hidden` toggles display, so entry is an `animation` and not a `transition`;
+   a transition on a display change never runs. The blanket rule at the foot of
+   the reduced-motion block already collapses it. */
+.drawer-sub {
+  position: fixed; inset: 0; z-index: 181;
+  background: var(--stone-deep); color: #F2F5F4;
+  background-image: linear-gradient(180deg, rgba(214,230,240,.05) 0%, rgba(214,230,240,0) 30%);
+  padding: 20px var(--gut) 44px; overflow-y: auto;
+  animation: subIn var(--dur-panel) var(--ease);
+}
+.drawer-sub[hidden] { display: none !important; }
+@keyframes subIn {
+  from { opacity: 0; transform: translateX(26px); }
+  to   { opacity: 1; transform: none; }
+}
+.drawer-sub-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 30px; }
+.drawer-sub-back {
+  border: 0; background: none; cursor: pointer; min-height: 44px;
+  display: inline-flex; align-items: center; gap: 10px; color: #F2F5F4;
+  font-family: var(--f-cut); font-weight: 600; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+.drawer-sub-back .ic {
+  width: 15px; height: 15px; flex: none; color: var(--bronze);
+  transform: rotate(180deg);
+  transition: transform var(--dur) var(--ease);
+}
+.drawer-sub-back:hover .ic { transform: rotate(180deg) translateX(3px); }
+/* The panel says which set you are in. Without it the four areas arrive with no
+   heading and the back control is the only thing naming where you are. */
+.drawer-sub-h {
+  max-width: 720px; margin: 0 auto 4px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--verdigris-lit);
+}
+/* Sentence case, not the uppercase of the branch entries: this is the whole
+   section standing under its four parts, and setting it in the same incised
+   caps would make it read as a fifth practice area. */
+.drawer-sub-all {
+  display: flex; align-items: center; gap: 10px;
+  max-width: 720px; margin: 26px auto 0; padding-top: 20px;
+  border-top: 1px solid var(--rule-cut-dark);
+  font-family: var(--f-body); font-size: 15px; color: rgba(226,235,236,.82);
+  transition: color var(--dur) var(--ease);
+}
+.drawer-sub-all .ic {
+  width: 15px; height: 15px; flex: none; color: var(--bronze);
+  transition: transform var(--dur) var(--ease);
+}
+.drawer-sub-all:hover { color: #F2F5F4; }
+.drawer-sub-all:hover .ic { transform: translateX(4px); }
+
+.drawer-tool {
+  display: flex; align-items: center; gap: 16px; max-width: 720px;
+  margin: 28px auto 0; padding: 18px 20px;
+  border: 0; border-top: 2px solid var(--bronze);
+  background: rgba(255,255,255,.045);
+  font-family: var(--f-body); font-size: 14px; line-height: 1.5; color: rgba(226,235,236,.82);
+  transition: background-color var(--dur) var(--ease);
+}
+.drawer-tool:hover { background: rgba(255,255,255,.09); color: #F2F5F4; }
+.drawer-tool .ic { width: 22px; height: 22px; flex: none; color: var(--bronze); }
+.drawer-tool span { display: grid; }
+.drawer-tool em {
+  font-style: normal; font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--bronze); margin-top: 5px;
+}
+/* Starts at the top rather than centred: vertically centring one field left
+   ~300px of empty navy above it and ~380px below on a phone. */
+.search { display: grid; align-content: start; justify-items: center; padding-top: 84px; }
+.search-close { position: absolute; top: 20px; right: var(--gut); color: #F2F5F4; }
+/* The field takes the full width; the submit sits under it. Side by side, the
+   input fell to 212px and truncated its own placeholder mid-word. */
+.search-form { width: min(100%, 620px); display: grid; gap: 10px; }
+.search-form input {
+  min-width: 0;
+  border: 1px solid rgba(214,230,240,.44); background: rgba(255,255,255,.055);
+  color: #F2F5F4; padding: 16px; border-radius: 0; font-family: var(--f-body); font-size: 16px;
+}
+/* The native clear control renders as system blue on navy. */
+.search-form input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.search-form input::placeholder { color: rgba(226,235,236,.72); }
+.search-form input:focus { outline: none; border-color: var(--verdigris-lit); }
+.search-form button {
+  border: 0; cursor: pointer; padding-inline: 24px;
+  background: linear-gradient(172deg, var(--bronze-rake) 0%, #C9A227 46%, var(--bronze-body) 100%);
+  color: var(--stone-deep);
+  box-shadow: inset 0 1px 0 rgba(255,250,226,.8), inset 0 -2px 0 rgba(74,56,8,.42);
+  font-family: var(--f-cut); font-weight: 600; font-size: 12px;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+.search-hint { width: min(100%, 620px); margin-top: 16px; font-family: var(--f-body); font-size: 14px; line-height: 1.55; color: rgba(226,235,236,.8); }
+.search-out { width: min(100%, 620px); list-style: none; margin-top: 10px; }
+.search-out li { border-bottom: 1px solid var(--rule-cut-dark); }
+.search-out a {
+  display: block; padding: 15px 2px; min-height: 44px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 15px;
+  letter-spacing: .05em; text-transform: uppercase; color: #F2F5F4;
+}
+.search-out a:hover { color: var(--bronze); }
+body.is-locked { overflow: hidden; }
+
+/* ==========================================================================
+   The office — the plan, full bleed
+   ==========================================================================
+   The map runs the full width of the screen and carries the section on its own.
+   The plate that used to sit beside it is gone: the address, the number and the
+   "Open in Maps" link all repeat in the footer directly beneath, so the column
+   was a third printing of the same record — and Google's own card inside the
+   frame already names the address and offers directions. A plan that stops at a
+   content column is a picture of a map; this one is a map.                     */
+
+.office {
+  display: block; height: clamp(300px, 56vw, 480px);
+  background: var(--stone-raised);
+}
+/* The map is desaturated to a survey plate. Google ships it at full consumer
+   saturation — four-lane amber, park green, water blue — which is more colour
+   than the entire rest of the page owns, dropped in at the last full stop.
+   saturate(.25) leaves the road hierarchy legible and the marker findable while
+   letting the plan sit in the bluestone.
+   FLAGGED FOR THE CLIENT: Google's Maps embed terms ask that the map not be
+   altered and that their attribution stay legible. The attribution is untouched
+   and legible against the plate around it, but the desaturation is a
+   modification. Reverting is deleting one declaration.                         */
+.office iframe {
+  display: block; width: 100%; height: 100%; border: 0;
+  filter: saturate(.25) contrast(1.04);
+}
+
+/* ==========================================================================
+   Footer — the deepest cut
+   ========================================================================== */
+
+.foot { background: var(--stone-black); color: rgba(226,235,236,.8); padding-top: 52px; }
+.foot-grid { display: grid; gap: 36px; padding-bottom: 34px; border-bottom: 1px solid var(--rule-cut-dark); }
+/* One image now, so no gap to set and no type to track — the mark carries its
+   own wordmark. Wider than the 120px the cropped monogram ran at, because the
+   full lockup is 560×406 and the wordmark plate has to stay legible. */
+.foot-lockup { display: grid; justify-items: start; }
+.foot-lockup img { width: 168px; height: auto; }
+.foot-social { display: flex; gap: 10px; margin-top: 20px; }
+.foot-social a {
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border: 1px solid var(--rule-cut-dark);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.foot-social a:hover { border-color: var(--bronze); color: var(--bronze); }
+.foot-social .ic { width: 19px; height: 19px; }
+.foot-col { display: grid; align-content: start; }
+.foot-col h2 {
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--bronze); margin-bottom: 10px;
+}
+.foot-col a {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px;
+  font-family: var(--f-body); font-size: 15.5px; color: rgba(226,235,236,.86);
+}
+.foot-col a:hover { color: var(--bronze-lit); }
+/* Optically flush, not box-flush. Every heading and link in this footer starts
+   its ink at the gutter, but `#i-pin` and `#i-phone` are drawn inset inside
+   their 24-unit viewBox — the pin's path starts at x=5 — so a box sitting on
+   the gutter puts the visible glyph 3.2–3.5px inboard of everything above it,
+   and the contact rows read as indented by mistake. The negative margin pulls
+   the ink onto the same line as the text.
+
+   Measured, not guessed: box at 22 gave pin ink 25.5 and phone ink 25.2. -3.4px
+   lands the pin exactly and the phone within 0.2px, which is under half a
+   device pixel. If either glyph is redrawn, re-measure — this number belongs to
+   these two paths. */
+.foot-col .ic {
+  width: 17px; height: 17px; color: var(--verdigris-lit); flex: none;
+  margin-left: -3.4px;
+}
+.foot-legal { padding-block: 26px; display: grid; gap: 12px; }
+.foot-legal p { font-family: var(--f-body); font-size: 13px; line-height: 1.65; }
+.foot-legal b { color: #F2F5F4; }
+.foot-line { color: rgba(226,235,236,.74); }
+.foot-copy { color: rgba(226,235,236,.62); }
+
+/* ==========================================================================
+   LOCKED BY THE BRIEF — masthead, hero, mobile action bar.
+   Carried over from the approved build unchanged.
+   ========================================================================== */
+
+.railhead {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 120;
+  display: flex; align-items: stretch; height: 56px;
+  background: var(--c-white); border-bottom: 1px solid var(--c-rule);
+  transform: translateY(-100%); transition: transform var(--dur) var(--ease);
+}
+.railhead.is-up { transform: none; }
+.rh-mark { display: flex; align-items: center; padding-inline: 14px; flex: 1; min-width: 0; }
+.rh-mark img { height: 34px; width: auto; }
+.rh-name {
+  display: none; align-items: center; min-width: 0; padding-inline: 20px;
+  background: #E4E1DA; color: var(--c-navy);
+  font-family: var(--f-ui); font-weight: 700; font-size: 14px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.rh-call, .rh-search, .rh-menu {
+  display: inline-flex; align-items: center; gap: 8px; flex: none;
+  padding-inline: 16px; border: 0; cursor: pointer;
+  font-family: var(--f-ui); font-weight: 700; font-size: 13px;
+  letter-spacing: .08em; text-transform: uppercase;
+  transition: background-color var(--dur) var(--ease);
+}
+.rh-call .ic, .rh-search .ic { width: 17px; height: 17px; }
+.rh-call { background: var(--c-gold); color: var(--c-navy); }
+.rh-call:hover { background: var(--c-gold-soft); color: var(--c-navy); }
+.rh-call span, .rh-search span, .rh-menu span:not(.ico-menu) {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+.rh-search { background: var(--c-white); color: var(--c-navy); }
+.rh-menu { background: var(--c-navy); color: #fff; }
+.rh-menu:hover { background: var(--c-navy-raised); color: #fff; }
+.ico-menu { position: relative; width: 16px; height: 11px; flex: none; }
+.ico-menu::before, .ico-menu::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: currentColor; }
+.ico-menu::before { top: 0; box-shadow: 0 4.5px 0 currentColor; }
+.ico-menu::after { top: 9px; }
+
+/* ---------- Hero (locked composition) ------------------------------------------ */
+
+.hero { position: relative; color: #fff; background: var(--c-navy); }
+.hero-stage {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 40px var(--gut) 92px;
+  background: var(--c-navy);
+  overflow: hidden;
+}
+/* Parallax: the photograph is its own layer, over-tall so it can translate
+   without exposing an edge. Transform only — never background-attachment,
+   which is broken on iOS. */
+.hero-bg {
+  position: absolute; left: 0; right: 0; top: -12%; height: 124%;
+  background: url("assets/nyc-hero-sm.jpg") center 32% / cover no-repeat;
+  will-change: transform;
+}
+/* Matched to the original site: one flat top-to-bottom scrim, no vignette. The
+   radial ellipse that used to sit here lit the headline like a spotlight, which
+   is why the sky read muddy in the middle and clear at the edges. Flat means the
+   sunset stays a sunset; the settlements line carries its own shadow instead. */
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(6,10,20,.28) 0%,
+    rgba(6,10,20,.18) 42%,
+    rgba(6,10,20,.82) 100%);
+}
+.lockup, .hero-copy, .hero-scroll { position: relative; z-index: 2; }
+
+/* ---- Lockup and settlements line: matched to the original site --------------
+   Ported value-for-value from tt.bosseo.dev, re-expressed mobile-first (that
+   sheet is desktop-first with a 640px phone step, so its base rules land in the
+   641px block below and its phone step lands here). The card is translucent and
+   blurred rather than near-opaque, and it casts — that soft drop is most of why
+   it reads as a plate resting on the photograph instead of a hole cut in it. */
+/* The plate sizes to its contents, it is not a fixed 280px box. It was the
+   latter, with the mark panel on `flex: 1` soaking up whatever the buttons left
+   over — which put a 58px logo in a 190px panel with 66px of dead white either
+   side of it, the mark occupying under a third of the space it sat in. Now the
+   panel is `flex: none` and takes the mark plus a real margin, and the plate is
+   as wide as the two of them together.
+
+   The mark is sized by height, and the height it is given assumes the *full*
+   lockup — monogram over wordmark plate. That artwork is taller and narrower
+   than the cropped monogram this was originally set for, which is the other
+   half of why the panel looked so empty. */
+.lockup {
+  display: flex; align-items: stretch; max-width: 100%;
+  height: 70px; width: auto;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+}
+.lockup-mark { display: flex; align-items: center; justify-content: center; flex: none; min-width: 0; padding-inline: 16px; }
+.lockup-mark img { height: 50px; width: auto; max-width: 100%; }
+.lockup-stack { display: flex; flex-direction: column; width: 88px; flex: none; border-left: 1px solid rgba(10,22,40,.12); }
+.lockup-menu, .lockup-search {
+  flex: 1; display: flex; align-items: center; gap: 5px;
+  border: 0; border-radius: 0; cursor: pointer; padding-inline: 8px;
+  font-family: var(--f-hero); font-weight: 800; font-size: 9px;
+  letter-spacing: .08em; text-transform: uppercase;
+  transition: background-color var(--dur) var(--ease);
+}
+.lockup-menu { background: var(--c-navy); color: #fff; }
+.lockup-menu:hover { background: var(--c-navy-raised); color: #fff; }
+.lockup-search { background: var(--c-gold); color: var(--c-navy); }
+.lockup-search:hover { background: var(--c-gold-soft); color: var(--c-navy); }
+.ico-search { position: relative; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 50%; flex: none; }
+.ico-search::after { content: ""; position: absolute; width: 6px; height: 2px; background: currentColor; right: -4px; bottom: -1px; transform: rotate(45deg); }
+/* The original draws lighter glyphs than the railhead does. Scoped to .lockup so
+   the masthead's own menu button keeps its heavier 2px rules. */
+.lockup .ico-menu { width: 14px; height: 10px; }
+.lockup .ico-menu::before, .lockup .ico-menu::after { height: 1.5px; }
+.lockup .ico-menu::before { top: 1px; box-shadow: 0 4px 0 currentColor; }
+.lockup .ico-menu::after { top: 9px; }
+.lockup .ico-search { border-width: 1.5px; }
+.lockup .ico-search::after { height: 1.5px; }
+
+.hero-copy { margin-top: 22px; text-align: center; width: 100%; max-width: min(1100px, 100%); padding-inline: 10px; }
+/* Source Sans 3 ExtraBold, not Archivo Narrow — the original sets this line in a
+   normal-width face, and on a nowrap line the width of the face *is* the design:
+   Archivo Narrow ran the same 32 characters about 20% short of the screenshot.
+
+   On the phone the line WRAPS, which is a deliberate departure from the
+   original. Held on one run, 32 characters inside a 375px screen force the type
+   down to about 12.75px — the largest claim the firm has, and the reason the
+   visitor keeps reading, set smaller than the body copy beneath it. The
+   original accepted that; it should not have. Across two lines the same words
+   run at roughly 30px and the figure reads as the display line it is on
+   desktop. `text-wrap: balance` keeps the break at "MILLION / IN", so the
+   money lands on line one.                                                     */
+.hero-proof {
+  font-family: var(--f-hero); font-weight: 800;
+  font-size: clamp(26px, 7.6vw, 34px);
+  letter-spacing: .01em; text-transform: uppercase; color: var(--c-gold-soft);
+  line-height: 1.08; margin-bottom: 16px;
+  white-space: normal; text-wrap: balance; max-width: 100%;
+  text-shadow: 0 1px 0 rgba(0,0,0,.55), 0 2px 12px rgba(0,0,0,.65);
+}
+
+@media (min-width: 641px) {
+  .lockup { height: 96px; width: auto; }
+  /* Same correction as the phone: 32px either side of a 97px mark left the panel
+     40% empty. 20px against a 78px mark puts the logo at roughly three quarters
+     of its panel, and takes the whole plate from 295px to 280px. */
+  .lockup-mark { flex: none; padding-inline: 20px; }
+  .lockup-mark img { height: 78px; }
+  .lockup-stack { width: 132px; }
+  .lockup-menu, .lockup-search { font-size: 11px; letter-spacing: .14em; padding-inline: 18px; gap: 10px; }
+  .hero-copy { margin-top: 40px; }
+  /* Back to one run from 641px up — there is width for it here, and the single
+     line is the original's signature. `nowrap` is restored explicitly because
+     the phone rule above turns it off.
+
+     The reset for `balance` must be `text-wrap-style`, not `text-wrap`.
+     `text-wrap` is a shorthand over `text-wrap-mode` + `text-wrap-style`, and
+     `white-space` writes `text-wrap-mode` too — so a `text-wrap: wrap` sitting
+     after `white-space: nowrap` silently cancels the nowrap and the line breaks
+     in two on desktop. Only the style half should be touched here. */
+  .hero-proof {
+    font-size: clamp(22px, 4.2vw, 52px); letter-spacing: .04em;
+    line-height: 1.05; white-space: nowrap; text-wrap-style: auto;
+  }
+}
+.hero-h1 {
+  font-family: var(--f-ui); font-weight: 500; font-size: 21px; line-height: 1.3;
+  letter-spacing: -.005em; color: #fff; max-width: 26ch; margin-inline: auto; text-wrap: balance;
+  text-shadow: 0 1px 3px rgba(0,0,0,.6), 0 2px 22px rgba(0,0,0,.75);
+}
+.hero-scroll {
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 8px 14px; color: #fff;
+  font-family: var(--f-ui); font-weight: 700; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(0,0,0,.8);
+}
+.hero-scroll .ic { width: 22px; height: 22px; transition: transform var(--dur) var(--ease); }
+.hero-scroll:hover { color: #fff; }
+.hero-scroll:hover .ic { transform: translateY(4px); }
+
+/* ---------- Mobile action bar --------------------------------------------------- */
+
+.actionbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 140;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255,255,255,.16);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(110%); transition: transform var(--dur) var(--ease);
+}
+.actionbar.is-up { transform: none; }
+.ab {
+  display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 58px;
+  font-family: var(--f-ui); font-weight: 700; font-size: 15px;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+.ab .ic { width: 17px; height: 17px; }
+.ab--call { background: var(--c-navy); color: #fff; }
+.ab--call:hover { color: #fff; }
+.ab--form { background: var(--c-gold); color: var(--c-navy); }
+.ab--form:hover { color: var(--c-navy); }
+
+/* Press feedback and the edge-anchored panel curve — also locked. */
+.ab, .rail-btn, .drawer-close, .search-close,
+.rh-call, .rh-search, .rh-menu, .lockup-menu, .lockup-search {
+  transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.ab:active, .rail-btn:active,
+.rh-call:active, .rh-search:active, .rh-menu:active,
+.lockup-menu:active, .lockup-search:active { transform: scale(.97); }
+.railhead { transition: transform var(--dur-panel) var(--ease-drawer); }
+.actionbar { transform: translateY(100%);
+  transition: transform var(--dur-panel) var(--ease-drawer); }
+.lockup, .lockup-stack { padding: 0; }
+
+/* ==========================================================================
+   ≥ 640px
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  /* Two standing columns, divided by a rule rather than a gap. The plate stays
+     one surface; only the dividers change count. */
+  .agrid { grid-template-columns: 1fr 1fr; }
+
+  /* The three parts of each entry sit on shared rows across the whole plate.
+     Without this the columns are only aligned at the top: "Northern State &
+     Southern State" sets on three lines where its neighbours take two, so its
+     paragraph starts 25px below theirs and the plate reads as four loose
+     columns rather than one ruled board. `subgrid` makes label, name and text
+     three rows the plate owns, so every paragraph begins on the same line no
+     matter how long the name above it runs. Where subgrid is unsupported the
+     declaration is dropped and the cards fall back to their own stacking —
+     the previous behaviour, not a broken one. */
+  .agrid { grid-auto-rows: auto; }
+  .acard { grid-row: span 3; display: grid; grid-template-rows: subgrid; row-gap: 0; }
+  .acard { padding: 34px 30px 36px; border-bottom: 0; border-left: 1px solid var(--rule-cut); }
+  .acard:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .acard:nth-child(even) { padding-right: 0; }
+  .acard:nth-child(-n+2) { border-bottom: 1px solid var(--rule-cut); padding-bottom: 40px; }
+  .acard:nth-child(n+3) { padding-top: 40px; }
+  .rv-head { grid-template-columns: 1fr auto; align-items: center; }
+  .rv-acts { justify-self: end; }
+}
+
+/* ==========================================================================
+   ≥ 769px — desktop
+   ========================================================================== */
+
+@media (min-width: 769px) {
+  :root { --gut: 35px; --sec: 118px; --ab-h: 0px; }
+  html { scroll-padding-top: 80px; }
+
+  /* --- desktop type scale -------------------------------------------------
+     The prose already stepped up here, but every component kept its phone
+     size — so at 1280px a paragraph inside a card ran three pixels smaller
+     than the paragraph beside it, and 15px on a 15-inch screen reads as fine
+     print. Fine print is the one register this firm cannot afford. Component
+     copy is brought onto the same footing as the prose and the headings above
+     it move with it, so the internal ratios hold rather than flattening.     */
+  .rte, .rte-strong { font-size: 18px; }
+  .lede { font-size: 20px; }
+
+  /* Component body copy — one scale, not five. */
+  .wcard p,
+  .rvcard blockquote p,
+  .acard p,
+  .tile-p,
+  .steps p,
+  .fsteps p,
+  .wash-sub { font-size: 17px; }
+
+  /* The headings those paragraphs sit under. */
+  .acard h3 { font-size: 20px; }
+
+  /* Secondary lines: still subordinate, no longer squinting. */
+  .mapcard span { font-size: 15px; }
+  .wash-case em { font-size: 16px; }
+  .acard-k { font-size: 12px; }
+  .rvwho b { font-size: 14px; }
+  .rvwho em { font-size: 13.5px; }
+  .form-status { font-size: 16px; }
+
+  /* A 16px field on a wide screen is a browser default, not a decision. */
+  .field input, .field textarea { font-size: 17px; padding: 18px; }
+
+  /* --- locked: masthead --- */
+  .railhead { height: 61px; }
+  .rh-mark { flex: none; padding-inline: 26px; }
+  .rh-mark img { height: 38px; }
+  .rh-name { display: flex; flex: 1; }
+  .rh-call span, .rh-search span, .rh-menu span:not(.ico-menu) { position: static; width: auto; height: auto; margin: 0; clip: auto; overflow: visible; }
+  .rh-call, .rh-search, .rh-menu { padding-inline: 22px; }
+
+  /* --- hero ---
+     The lockup and the settlements line are sized in the 641px block above,
+     matched to the original site; nothing about them is restated here. The
+     scrim is flat at every width now, so it is not restated either. What is
+     left is the full-resolution photograph, the taller stage the scroll cue
+     needs, and the subtitle. */
+  .hero-stage { padding: 56px var(--gut) 110px; }
+  .hero-bg { background-image: url("assets/nyc-hero.jpg"); }
+  .hero-h1 { font-size: 32px; max-width: 44ch; }
+
+  /* --- locked: the action bar is a phone affordance --- */
+  .actionbar { display: none; }
+
+  /* --- the world --- */
+  .cta {
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    gap: 10px 48px; text-align: left;
+    padding: 46px max(35px, calc((100% - var(--w-page)) / 2 + 35px));
+  }
+  .cta-h { grid-column: 1; margin-bottom: 6px; }
+  .cta-p { grid-column: 1; margin-bottom: 0; margin-inline: 0; }
+  .cta .btn { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+
+  .formcard { padding: 52px 48px 44px; }
+
+  .rvcard { padding: 30px 28px 28px; width: 380px; }
+  .rv-g { width: 40px; height: 40px; }
+  .rv-score > b { font-size: 46px; }
+
+  /* ---- The commitments register, opened out ----
+     Claim left, reasoning right, on a 42/58 split. The claim column is the wider
+     of the two relative to its content, which is the point: an assertion set at
+     28px across a short measure has weight, and the paragraph beside it reads as
+     the footnote to it rather than as its equal. */
+  .wcard {
+    grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+    gap: clamp(30px, 5vw, 84px);
+    align-items: start;
+    padding-block: 50px;
+  }
+  .wcard h3 { font-size: clamp(21px, 2.5vw, 28px); line-height: 1.2; }
+  .wcard p { max-width: 52ch; }
+
+  .acc summary { font-size: 18px; padding: 26px 6px; }
+  .acc-body { padding: 0 6px 28px; }
+  .acc-body p { font-size: 17px; }
+
+  .steps li { gap: 32px; padding-block: 34px; }
+  .steps-n { font-size: 24px; min-width: 46px; }
+  .steps h3 { font-size: 19px; }
+  .fsteps li { gap: 32px; padding-block: 30px; }
+  .fs-n { font-size: 16px; min-width: 46px; }
+  .fsteps h3 { font-size: 18px; }
+
+  .mapcard { padding: 28px 6px; }
+  .mapcard b { font-size: 19px; }
+
+  .wash-panel { padding-block: 130px; }
+  .wash-list { max-width: 905px; margin-inline: auto; margin-top: 52px; }
+  .wash-list li { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 48px; padding-block: 24px; }
+  .wash-amt { flex: none; min-width: 220px; }
+  .wash-case { font-size: 20px; text-align: right; }
+  .wash-note { max-width: 905px; margin-inline: auto; }
+
+  /* The tile grid used to run edge to edge while its own heading sat on the
+     page column. At 1780px that put the captions 279px to the left of the head
+     that named them, and the band read as an advert strip dropped between two
+     dark sections rather than as part of this one. It measures from --w-rail
+     now, so the first tile's caption starts on the same line as PRACTICE AREAS
+     and the pale ground either side becomes a margin instead of a gap.       */
+  .tiles {
+    /* minmax(0, 1fr), not 1fr: a bare 1fr floors the track at the item's
+       min-content width, which for the aspect-ratio tile below is not the
+       text but the ratio itself.                                            */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 48px;
+    width: min(100% - 2 * var(--gut), calc(var(--w-rail) - 2 * var(--gut)));
+    margin-inline: auto;
+  }
+  .tile { min-height: 360px; padding: 38px 32px 34px; background-image: var(--img); }
+
+  /* Still two standing columns here — see the ≥1100px block for the full plate.
+     Four columns at this width leave ~194px of measure and break "Northern State
+     & Southern State" across four lines, which is a ragged plate, not a dense one. */
+  .agrid { margin-top: 48px; }
+  .acard { padding: 38px 34px 40px; }
+  .acard:nth-child(odd) { padding-left: 0; }
+  .acard:nth-child(even) { padding-right: 0; }
+  .arow { max-width: var(--w-read); margin-inline: auto; }
+
+  /* Full bleed at every width; the wide screen only buys it more height, because
+     a plan needs enough of the surrounding blocks in frame to be worth reading. */
+  .office { height: 460px; }
+
+  .foot { padding-top: 68px; }
+  .foot-grid { grid-template-columns: 1.2fr 1fr 1.1fr; gap: 52px; padding-bottom: 44px; }
+}
+
+/* ==========================================================================
+   ≥ 1100px — the service-area plate at full width
+   ==========================================================================
+   Four corridors standing side by side on one surface, the way they sit on a
+   map. This is the third of the three rebuilt sections and the one that turns
+   ninety degrees: commitments and the case register are horizontal rows, so if
+   this were rows too the page would be running one device three times.
+
+   It waits until 1100px because the plate is only worth having when each column
+   can hold its name. Below this the two-column arrangement above applies.       */
+
+@media (min-width: 1100px) {
+  .agrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  /* `:nth-child(n)` is not decoration, it is the whole point of this rule.
+     The 640px block styles the two-column arrangement through
+     `.acard:nth-child(odd)` and `:nth-child(even)`, which carry specificity
+     (0,2,0). A plain `.acard` here carries (0,1,0) and loses to them however far
+     down the file it sits — so `border-left` was being cancelled on columns 1
+     AND 3, and the plate shipped with two dividers instead of three, reading as
+     two pairs rather than four corridors. Matching their specificity is what
+     makes this stick. It also folds in the old two-row padding resets, which is
+     why they are gone: one rule now sets every card identically.
+
+     Bottom padding is 30px, not the 6px it was, because the text now has a rule
+     under it to clear — 6px would jam the last line against the closing edge.  */
+  .acard:nth-child(n) {
+    padding: 26px 24px 30px;
+    border-bottom: 0;
+    border-left: 1px solid var(--rule-cut);
+  }
+  .acard:first-child { border-left: 0; padding-left: 0; }
+  .acard:last-child { padding-right: 0; }
+}
+
+/* ==========================================================================
+   ≥ 1000px — the directory rail
+   The label is cut into the left margin under a cast-bronze bar and holds
+   while the entry runs past it. This is the plate, at page scale.
+   ========================================================================== */
+
+@media (min-width: 1000px) {
+  /* The rail is a heading in the left margin and its entry on the right. Three
+     things disqualify a section from it, and each must gate the child rules as
+     well as the grid itself — gating only the grid is what put a sticky
+     travelling heading over the contact form's own intro copy:
+
+       1. No .h2. Nothing to put in the margin, so the grid would open a 4fr
+          column of dead stone beside the content (the inline form section).
+       2. Nothing BUT the .h2. Practice Areas keeps its heading in a wrap of
+          its own and hangs the tile grid outside it, so the rail opened a
+          662px column of empty stone beside a lonely heading — at 1780px it
+          read as a caption floating in a field rather than a railed head.
+       3. .dark--form. Its heading is centred over the form it introduces, so
+          it has no margin to move into and nothing to hold beside.
+
+     Every rail rule therefore carries the same qualifier. */
+  :is(.sec, .dark:not(.dark--form), .sec--paper) > .wrap--read:has(> .h2):has(> :not(.h2)) {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    column-gap: clamp(48px, 6vw, 104px);
+    max-width: var(--w-rail);
+  }
+  :is(.sec, .dark:not(.dark--form), .sec--paper) > .wrap--read:has(> .h2):has(> :not(.h2)) > .h2 {
+    grid-column: 1; grid-row: 1;
+    position: sticky; top: 104px; align-self: start;
+    margin-bottom: 0;
+  }
+  :is(.sec, .dark:not(.dark--form), .sec--paper) > .wrap--read:has(> .h2):has(> :not(.h2)) > *:not(.h2) { grid-column: 2; }
+
+  /* Disqualified by (2): no rail, because there is nothing to rail against.
+     It still keeps the rail's measure — the grid it introduces lives outside
+     the wrap and shares this left edge, and a heading sitting 64px inboard of
+     the thing it names is the misalignment this whole block exists to avoid. */
+  :is(.sec, .sec--paper) > .wrap--read:has(> .h2):not(:has(> :not(.h2))) {
+    max-width: var(--w-rail);
+  }
+
+  /* ---- "Where We Work" put on one column line ----
+     This section was the only one on the page running three different left
+     edges: the railed head at the rail edge, the four-column plate a `.wrap`
+     inboard of it, and the callout and report row a centred `.wrap--read`
+     inboard of that again. Measured at 1402px they started at 122, 186 and 241
+     — three staggered starts and three staggered ends inside one section, which
+     is precisely the "heading sitting inboard of the thing it names" failure the
+     block above exists to prevent. It just could not reach these, because here
+     the plate lives inside its own wrap rather than outside the head's.
+
+     Everything is now cut to the rail edge. The callout keeps its reading
+     measure — a 1156px line of body copy is unreadable and widening it would
+     trade one fault for a worse one — but it is left-aligned to the column
+     instead of centred, so it starts where everything else starts. A text block
+     that stops short of the grid is ordinary; one that begins somewhere else is
+     the thing that reads as mess. */
+  /* `#counties` on /service-areas/ is the same shape and hit the same fault:
+     a railed head at the rail edge with the jump index and the county grids in
+     their own `.wrap` 64px inboard of it, measured at 61 against 125. Same cure,
+     and it is now a list rather than a one-off — if a third section is built
+     this way, add it here rather than writing a third rule. */
+  #areas > .wrap,
+  #counties > .wrap { max-width: var(--w-rail); }
+  #areas .arow { margin-inline: 0; }
+
+  /* The plate edge is the desktop signature and belongs above every heading,
+     railed or not — it just needs room cut for it. */
+  .wrap--read > .h2 { position: relative; padding-top: 28px; }
+  .wrap--read > .h2::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--bronze-edge) 0%, var(--bronze) 40%, var(--bronze-lit) 55%, var(--bronze) 70%, var(--bronze-edge) 100%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+  .dark .wrap--read > .h2::before { box-shadow: 0 1px 0 rgba(0,0,0,.5); }
+}
+
+/* --- the tile window -------------------------------------------------------
+   Above this width the practice tile stops being a fixed-height strip and
+   becomes a 3:2 window that grows with its column — a 2.45:1 crop of a road is
+   a banner, and this is meant to be a view.
+
+   1125px is derived, not chosen. The grid measures min(100vw - 44px, 1170px)
+   and splits it in two, so a column reaches the 360px floor's own 3:2 width
+   (540px) exactly at a 1125px viewport. Below that the ratio would ask for a
+   tile shorter than the floor, min-height would clamp the height back to 360,
+   and the ratio would then transfer that height back into a 540px automatic
+   minimum WIDTH — which overflows the 407px track and bursts the page. (It
+   does so even with min-width: 0 on the item and minmax(0, 1fr) on the track;
+   neither defeats a transferred size.) So the ratio is only applied where it
+   can be honoured, and below it the floor governs alone.                    */
+@media (min-width: 1125px) {
+  .tile { aspect-ratio: 3 / 2; }
+}
+
+@media (max-width: 999px) {
+  .wrap--read > .h2 { position: relative; padding-top: 24px; }
+  .wrap--read > .h2::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 96px; height: 3px;
+    background: linear-gradient(90deg, var(--bronze), var(--bronze-edge));
+    box-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+  .dark .wrap--read > .h2::before { box-shadow: 0 1px 0 rgba(0,0,0,.5); }
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* The review rail needs nothing here any more — it no longer animates at any
+     setting. `app.js` already reads this query and passes `behavior: 'auto'` to
+     the arrow scrolls, so the jump is instant rather than smooth. */
+  /* The credential rail holds still and centres on its first set. Without the
+     explicit reset the blanket rule below would park it at translateX(0),
+     which leaves the leading mark half-buried in the left edge fade. */
+  .creds-run {
+    animation: none; width: auto; justify-content: center; flex-wrap: wrap;
+    row-gap: 20px; padding-left: 0; padding-inline: var(--gut);
+  }
+  .creds-run li:nth-child(n + 5) { display: none; }
+  .creds::before, .creds::after { display: none; }
+  .tile-more { grid-template-rows: 1fr; }
+  .btn::after { display: none; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* Hover is a pointer capability, not a default. Mobile-first brief. */
+@media (hover: none) {
+  .tile-more { grid-template-rows: 1fr; }
+}
+
+/* The review rail is a swipeable snapping track at every width now, so the only
+   thing left to say here is the card measure: a 320px card inside a 375px
+   viewport is clipped at both edges, which makes the firm's strongest proof
+   unreadable. 78vw leaves the next card's leading edge showing, which is what
+   tells a thumb there is something to swipe to. */
+@media (max-width: 768px), (hover: none) {
+  .rvcard { width: min(320px, 78vw); }
+}
+
+/* Below 769px the practice tiles run edge to edge — above it they are inset to
+   the rail measure, where the pale ground either side reads as a margin. Full
+   bleed, the section's 72px bottom padding stops being rhythm and becomes a
+   stray pale bar wedged between the last dark tile and the dark case-types
+   section that follows it: two dark fields separated by a strip of nothing.
+
+   The trailing padding is dropped so the tiles run into the next section. No
+   spacing is lost — the case index opens with its own section padding, so
+   the heading below still has its air; what goes is only the band of ground
+   that had no content in it.
+
+   Scoped by `:has(> .tiles:last-child)` rather than by `#practice`, because the
+   condition that makes the padding wrong is "this section ends in a full-bleed
+   block", not "this section is the practice areas". */
+@media (max-width: 768px) {
+  .sec:has(> .tiles:last-child) { padding-bottom: 0; }
+
+  /* ---- The footer centres once it stacks ------------------------------------
+     At 769px and up `.foot-grid` is three columns standing side by side and a
+     left edge is what holds them in register. Below it they collapse into one
+     column, and a single narrow stack of short items — a mark, two buttons, six
+     links, two lines of contact — reads better centred on the page than hung off
+     one side with the rest of the width empty beside it.
+
+     `.foot-legal` is deliberately NOT centred. It is a dense multi-line legal
+     paragraph sitting below the dividing rule, and centred long-form text costs
+     real reading speed — every line starts in a different place. Short things
+     centre; paragraphs do not. */
+  .foot-lockup { justify-items: center; }
+  .foot-social { justify-content: center; }
+  .foot-col { justify-items: center; }
+  .foot-col h2 { text-align: center; }
+  .foot-col a { text-align: center; }
+}
+
+/* Below this the head stacks, and the Google link squeezed in beside the two
+   plates has only ~217px of measure, which breaks it over two lines with the
+   underline running under the second one alone. Given its own row it sets on
+   one line. `column-reverse` puts the link above the plates without reordering
+   the markup — the link is the more important of the two, and the plates read
+   better sitting directly on the rail they drive. */
+@media (max-width: 560px) {
+  .rv-acts { flex-direction: column-reverse; align-items: flex-start; gap: 18px; }
+}
+
+/* ==========================================================================
+   Attorney bio — /our-team
+   ==========================================================================
+   The only new component the team page needed. Everything else on that page is
+   `.sec`, `.wrap--read`, `.h2`, `.lede`, `.rte` and the `.agrid` / `.acard`
+   plate already used for service areas, which is why the credentials read as
+   the same object as the corridors on the homepage: label, name, detail.
+
+   THE PLATE IS EMPTY ON PURPOSE. Neither philnylaw.com nor buzniklaw.com
+   carries a headshot, so there is no photograph to migrate. It is drawn as a
+   reserved slot with the partner's initials rather than filled with a stock
+   portrait, because a stock face on a lawyer's bio is a lie about who will
+   answer the phone. It also holds the exact aspect ratio the real photograph
+   needs, so dropping one in later changes nothing else on the page.           */
+
+/* ---- Clearance for the masthead on pages with no hero ----------------------
+   `.railhead` is fixed and starts translated off-screen; `app.js` drops it into
+   place once the hero has scrolled away. A page with no `.hero` has nothing to
+   observe, so the script's else-branch reveals the bar immediately and it is
+   visible from the first pixel. On the homepage that is invisible because the
+   hero runs under it; on a subpage it sat on top of the first heading.
+
+   Keyed off the absence of `.hero` rather than a per-page class, so every page
+   added after this one gets the clearance without anyone remembering to. The
+   values are the two `.railhead` heights, 56px and 61px. */
+main:not(:has(.hero)) { padding-top: 56px; }
+@media (min-width: 769px) { main:not(:has(.hero)) { padding-top: 61px; } }
+
+/* ---- Page head, centred --------------------------------------------------
+   The rail is deliberately not used here. It fires on a `.wrap--read` holding
+   an `.h2` plus anything else, and it is built for a label standing beside a run
+   of prose. A page title is not that: it is one statement and it should sit in
+   the middle of the plate with the label above it. Living inside a plain `.wrap`
+   keeps it out of the rail's selector entirely. */
+/* A page title is one line of type in the middle of the plate. It carries the
+   `display` step from DESIGN.md rather than the `.h2` section step, because a
+   page title outranks the section heads beneath it — on this page the attorney
+   names are `.h2`, and the title has to sit above them, not level with them.
+
+   The container is capped in px, not `ch`: Cinzel uppercase with tracking runs
+   far wider than the `ch` unit assumes. */
+.page-head { text-align: center; max-width: 900px; margin-inline: auto; }
+.page-title {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(52px, 13vw, 82px); line-height: 1.02;
+  letter-spacing: .01em; text-transform: uppercase;
+  color: var(--ink); text-shadow: var(--cut-light);
+  text-wrap: balance;
+}
+/* Kept for pages that do want a label or a standfirst under the title. Neither
+   is used on /our-team. */
+.page-head .kicker { margin-bottom: 16px; }
+.page-head .lede { margin-inline: auto; max-width: 54ch; }
+
+/* ---- Attorney block ------------------------------------------------------
+   This replaced a rail layout, and the reason is worth keeping. Measured at
+   1387px the rail put the name at x=122, the portrait at x=591 and the
+   credential plate at x=186 — three left edges inside one section, which is the
+   exact fault PAGES.md calls out. It also left **971px of dead column** under
+   the sticky name while squeezing the bio to a 43-character measure. Cramped
+   and empty at the same time.
+
+   An attorney is a unit, not a heading beside prose: the face, the role and the
+   name belong to each other, and the rail was splitting them. Portrait and body
+   now sit in one grid on the page column, and the credential plate below shares
+   that same left edge, so the whole section reads on one line. */
+.bio { display: grid; gap: 24px; }
+/* 11px is the documented `label` step. 13px was off the ramp and the detector
+   caught it; a role label is exactly what that step is for. */
+.bio-role {
+  font-family: var(--f-ui); font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;
+}
+.bio-body .h2 { margin-bottom: 18px; }
+/* The bio paragraphs are direct children here rather than wrapped in `.rte`, so
+   they do not inherit its `1.2em` paragraph spacing and were running together
+   as one block. Same value, so the rhythm matches every other body column on
+   the site. `.bio-role` is excluded: it is the label half of the identity unit
+   and stays tight against the name, not a paragraph-gap away from it. */
+.bio-body > p:not(.bio-role) { margin-bottom: 1.2em; }
+.bio-body > p:last-child { margin-bottom: 0; }
+
+.bio-plate {
+  /* Fills the column on a phone. Capped at 260px it left a 71px gap down one
+     side of a 331px column, which reads as a mistake rather than as margin. */
+  position: relative; aspect-ratio: 4 / 5; max-width: none;
+  display: grid; place-items: center;
+  background: var(--stone-light);
+  box-shadow: var(--bevel-in);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+}
+/* Both values here are on the documented ramp rather than eyeballed: the
+   initials borrow the `headline` step and the caption the `label` step. A
+   placeholder is still part of the system, and leaving two undocumented values
+   in the stylesheet to be deleted "later" is how drift starts. */
+.bio-plate-mark {
+  font-family: var(--f-cut); font-weight: 600; font-size: clamp(25px, 2.9vw, 37px);
+  letter-spacing: .06em; color: var(--rule-cut); text-shadow: var(--cut-light);
+}
+.bio-plate figcaption {
+  position: absolute; inset: auto 0 0 0; padding: 8px 10px;
+  font-family: var(--f-ui); font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; text-align: center; color: var(--ink-soft);
+  background: var(--stone-pale);
+}
+/* ---- Real portraits ---------------------------------------------------------
+   The two supplied headshots do not match each other in any of the three ways
+   that matter, so the plate normalises all three rather than the photographs
+   being re-shot:
+
+   BACKGROUND. Gurevich is a transparent PNG-style webp; Buznik is a JPEG on
+   solid white. On the plate's usual `--stone-light` those would read as two
+   different grounds, so a plate holding a photograph switches to white and both
+   land on exactly the same field. This is also why the white was not stripped
+   out of Buznik's file: his shirt is white too, and any threshold that removes
+   the background eats the collar.
+
+   ASPECT. 1024x832 landscape against 649x736 portrait. `cover` on a 4:5 box
+   crops the sides of both and leaves the vertical intact, which is the safe
+   direction for a headshot; `object-position` favours the upper half so the
+   crop never takes the top of the head.
+
+   COLOUR. Gurevich is in colour, Buznik is very nearly greyscale already
+   (measured saturation spread 10.6 against 3.0). Left alone they read as two
+   photographs from two firms. Greyscale settles it in one line, and monochrome
+   portraits are the institutional register this system is already in.
+   To go back to colour, delete the `filter`.                                   */
+.bio-plate img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.bio-plate:has(img) { background: var(--c-white); }
+.bio-plate:has(img) .bio-plate-mark,
+.bio-plate:has(img) figcaption { display: none; }
+.bio-plate img { filter: grayscale(1) contrast(1.03); }
+
+.bio-body > p:first-child { margin-top: 0; }
+
+/* The roster entry's way out to the full profile. Deliberately the same object
+   as `.post-back` — same face, same 13.5px label step, same bronze ink, same
+   arrow travelling on hover — because they are one idea pointing two ways, and
+   the visitor should not have to learn a second affordance to recognise it.
+   The differences are only the ones the direction forces: the arrow is not
+   flipped, it moves right, and it follows the label rather than leading it.
+
+   No rule above it. `.post-back` closes a page and earns its border; this
+   closes one entry inside a section that already has a paper edge under it,
+   and a second horizontal line there reads as a cut that is not one. The extra
+   space above is the separation instead. */
+.bio-more { margin-top: 26px; }
+.bio-more a {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-ui); font-weight: 600; font-size: 13.5px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--bronze-ink);
+}
+.bio-more .ic {
+  width: 16px; height: 16px; stroke-width: 2;
+  transition: transform var(--dur) var(--ease);
+}
+.bio-more a:hover .ic { transform: translateX(6px); }
+
+/* The credential plate closes the block. Generous above it and tight inside it
+   is the rhythm: the plate is a reference table, not a third movement, and the
+   gap has to say that it belongs to the attorney above rather than starting
+   something new. */
+#philip-gurevich .agrid,
+#albert-buznik .agrid { margin-top: 48px; }
+
+@media (min-width: 769px) {
+  /* Portrait left, body right, both on the page column. 340px is chosen against
+     the measure it leaves: on a 1016px content width that is roughly 68
+     characters for the bio, inside the 60-75 range, where the rail version was
+     giving 43. `align-self: start` keeps the plate at the top of the column
+     instead of stretching to the body's height, which on a long bio would make
+     a portrait three feet tall. */
+  .bio { grid-template-columns: 340px minmax(0, 1fr); gap: 52px; align-items: start; }
+  .bio-plate { align-self: start; max-width: none; }
+  .bio-body .h2 { margin-bottom: 22px; }
+
+  /* A roster entry is one paragraph against a 425px portrait, and `start` on
+     both columns left a 225px hole under the text — the same "cramped and empty
+     at once" the rail was pulled out for, just rotated. The body centres against
+     the plate so the pair reads as one block; the plate itself stays `start`,
+     because that is what stops a long profile bio from stretching a portrait
+     three feet tall.
+
+     `:has(.bio-more)` is the test rather than a page-level class because the
+     forward link is what makes an entry a summary. A `.bio` on a profile page
+     has no way out to a fuller version and is not caught. If the body ever
+     grows taller than the plate this rule stops mattering on its own. */
+  .bio:has(.bio-more) .bio-body { align-self: center; }
+}
+
+/* ==========================================================================
+   Contact page — /contact
+   ==========================================================================
+   Built from `.formcard`, `.mapcard`, `.agrid` / `.acard` and the `.office`
+   embed, all of which already exist. Only four things below are new, and each
+   is here because the page needs something the homepage never did.            */
+
+/* The subtitle under a page title. `.lede` is a paragraph of orientation; this
+   is a single line that belongs to the title, so it sits closer to it and holds
+   its own weight rather than reading as body copy that drifted upward. */
+.page-sub {
+  margin-top: 18px;
+  font-family: var(--f-ui); font-weight: 400;
+  font-size: clamp(17px, 2vw, 21px); line-height: 1.35;
+  letter-spacing: .01em; color: var(--ink-soft);
+  max-width: 34ch; margin-inline: auto;
+}
+
+/* The direct line. This page's job is a phone call — the firm's own copy says a
+   fifteen-minute conversation is usually all it takes — so the number is set at
+   display scale and the form is the alternative for people who cannot call now,
+   not the other way round. */
+.phone-xl {
+  display: inline-flex; align-items: center; gap: 14px; margin-top: 6px;
+  font-family: var(--f-cut); font-weight: 600;
+  /* The documented `headline` step. A phone number is not a display headline;
+     it is the loudest thing in its own column, which this step already is. */
+  font-size: clamp(25px, 2.9vw, 37px); line-height: 1.1; letter-spacing: .02em;
+  color: var(--ink); text-shadow: var(--cut-light);
+  transition: color var(--dur) var(--ease);
+}
+.phone-xl .ic { width: .62em; height: .62em; flex: none; color: var(--bronze-ink); stroke-width: 1.7; }
+.phone-xl:hover { color: var(--bronze-ink); }
+.reach-note {
+  margin-top: 18px; max-width: 46ch;
+  font-family: var(--f-body); font-size: 16px; line-height: 1.65; color: var(--ink-soft);
+}
+.reach-direct .mapcard { margin-top: 18px; }
+
+/* Visible labels, above their inputs. The homepage forms use placeholder-as-
+   label, which is accessibility debt tracked in HANDOFF: the cue disappears the
+   moment someone starts typing, exactly when a long form needs it most. New
+   work does not extend that pattern. The materials are otherwise identical to
+   the homepage form, so the two still read as one system. */
+.field label {
+  display: block; margin-bottom: 7px;
+  font-family: var(--f-ui); font-weight: 600; font-size: 15.5px;
+  letter-spacing: .04em; color: var(--ink);
+}
+.field-hint {
+  margin-top: 7px; font-family: var(--f-body); font-size: 13.5px;
+  line-height: 1.5; color: var(--ink-soft);
+}
+.form-fine {
+  margin-top: 14px; font-family: var(--f-body); font-size: 13.5px;
+  line-height: 1.55; color: var(--ink-soft);
+}
+
+@media (min-width: 900px) {
+  /* The number leads on the left, the form sits on the right. The form column
+     is the wider of the two because it holds four fields and a button; the
+     direct column only has to hold a number and two cards. */
+  .reach {
+    display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: clamp(44px, 5vw, 76px); align-items: start;
+  }
+  .reach-direct { position: sticky; top: 104px; }
+  #what-happens .agrid { margin-top: 44px; }
+}
+
+
+/* ==========================================================================
+   /case-results/ — the record as a plate
+   ==========================================================================
+   The homepage register (`.wash-list`) is one column of ruled rows because it
+   sits inside a slab and its job is to be read down. A dedicated page has the
+   whole column to work with and the client asked for boxes across, so this is
+   the same information laid out as a plate.
+
+   The materials are `.agrid` / `.acard`, unchanged: a bronze rule opening the
+   plate, cut hairlines dividing it, a `--rule-cut` box-shadow closing it, zero
+   radius, no fill. What differs is the order of the elements inside a cell —
+   the figure leads and the case names it, where `.acard` leads with a label.
+   That is the whole reason this is not just `.agrid` with a bigger `<h3>`.
+
+   THE ROW HAIRLINES ARE DRAWN BY THE ROW LEADER, NOT BY EVERY CARD, and that is
+   load-bearing. The entry count here is whatever the client's verified results
+   turn out to be, so the last row is usually short — five entries in three
+   columns is the shape it ships with. A `border-bottom` on every card would then
+   either double up with the plate's own closing box-shadow (two hairlines on one
+   boundary — the fault PAGES.md calls out) or, as `border-top` did, stop dead
+   two thirds of the way across and read as an unfinished box.
+
+   So the first card of each row draws the rule for the whole row, as an absolute
+   `::before` at `width: <columns>00%`. The columns are equal `1fr` tracks with
+   `gap: 0`, so 200% and 300% land exactly on the plate's right edge whatever the
+   last row happens to hold. Vertical dividers stay as `border-left` — those are
+   allowed to stop where the cards do, because that is a real column ending. */
+.results {
+  list-style: none; display: grid; gap: 0; margin-top: 34px;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+  box-shadow: 0 1px 0 0 var(--rule-cut);
+}
+.rcard { position: relative; padding: 28px 0 30px; }
+.rcard::before {
+  content: ""; position: absolute; top: 0; left: 0; height: 1px; width: 100%;
+  background: var(--rule-cut); pointer-events: none;
+}
+.rcard:first-child::before { content: none; }
+/* The documented `headline` step. A recovery figure is not a display headline;
+   it is the loudest thing in its own cell, which this step already is.
+   `--bronze-ink` rather than `--bronze`: full-strength bronze measures 2.4:1 as
+   text on pale stone. This is the variant that exists for exactly this. */
+.rcard-amt {
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(25px, 2.9vw, 37px); line-height: 1.14; letter-spacing: .045em;
+  color: var(--bronze-ink); text-shadow: var(--cut-light);
+}
+/* The `statement` step, same as `.wash-case` on the homepage, so the two
+   registers name a case in the same voice. */
+.rcard-t {
+  margin-top: 14px;
+  font-family: var(--f-ui); font-weight: 700; font-size: 19px;
+  line-height: 1.28; letter-spacing: .002em; color: var(--ink);
+}
+.rcard-d {
+  margin-top: 8px;
+  font-family: var(--f-body); font-size: 15.5px; line-height: 1.62; color: var(--ink-soft);
+}
+/* The regulated line, carrying no rule of its own — the plate's closing
+   box-shadow already marks that boundary. Same reasoning as `.wash-note`. */
+.results-note {
+  margin-top: 44px;
+  font-family: var(--f-body); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft);
+}
+.results-note b { color: var(--bronze-ink); }
+
+/* The homepage's link out to the full record. It sits under the register and
+   above the regulated note: the note is a footnote on the figures, and putting
+   the button below it would make the disclaimer read as fine print attached to
+   the button instead of to the amounts. */
+.wash-cta { margin-top: 40px; text-align: center; }
+
+@media (min-width: 769px) {
+  /* Two across. Every selector in this block and the next is at (0,2,0) so the
+     later ones win on source order rather than on specificity — the trap that
+     shipped `.acard` with two of three dividers missing. */
+  .results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rcard:nth-child(n) {
+    padding: 32px 30px 34px;
+    border-left: 1px solid var(--rule-cut);
+  }
+  .rcard:nth-child(2n+1) { border-left: 0; padding-left: 0; }
+  .rcard:nth-child(2n) { padding-right: 0; }
+  /* Odd cards lead a row and draw its rule across both columns; even cards draw
+     nothing, and the first row opens on the bronze edge rather than a hairline. */
+  .rcard:nth-child(n)::before { content: ""; width: 200%; }
+  .rcard:nth-child(2n)::before { content: none; }
+  .rcard:nth-child(-n+2)::before { content: none; }
+}
+
+@media (min-width: 1100px) {
+  /* Three across. The cells hold a figure, a one-line case name and a short
+     detail; four across squeezed "Rear-end collision, Long Island Expressway"
+     onto four lines at 1280px, which is where the figure stops leading. */
+  .results { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; }
+  .rcard:nth-child(n) {
+    padding: 36px 34px 38px;
+    border-left: 1px solid var(--rule-cut);
+  }
+  .rcard:nth-child(3n+1) { border-left: 0; padding-left: 0; }
+  .rcard:nth-child(3n) { padding-right: 0; }
+  /* Re-cut for three. The two-column block above is still in force at this
+     width, so every rule it set has to be answered here rather than assumed
+     away — card 4 is an even card there (silenced) and a row leader here. */
+  .rcard:nth-child(n)::before { width: 300%; }
+  .rcard:nth-child(3n+1)::before { content: ""; }
+  .rcard:nth-child(3n+2)::before { content: none; }
+  .rcard:nth-child(3n)::before { content: none; }
+  .rcard:nth-child(-n+3)::before { content: none; }
+}
+
+/* ==========================================================================
+   /blog/ — the index and the entry
+   ==========================================================================
+   The index is a register, not a card grid. `.wash-list` and the
+   commitments band are all ruled rows carrying a value on the left and the
+   subject beside it; a post list is that object with a date in the value slot.
+   Building a fourth arrangement for it would be drift, and a grid of teaser
+   cards is the single most template-looking thing a law firm site can do.
+
+   Same plate furniture as `.results`: bronze opens it, hairlines divide it, a
+   `--rule-cut` shadow closes it. */
+.postlist {
+  list-style: none; margin-top: 34px;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+  box-shadow: 0 1px 0 0 var(--rule-cut);
+}
+.post-row + .post-row { border-top: 1px solid var(--rule-cut); }
+/* The whole row is the target. A "read more" link that is the only clickable
+   thing in a block gives a 44px target inside a 200px object. */
+.post-row > a { display: block; padding: 32px 0 34px; color: inherit; }
+/* `--verdigris` is the patina third — quiet marks and utility. A filing date is
+   exactly that, and it keeps the two bronze elements on the page (the plate
+   edge and the read link) from being joined by a third. */
+.post-date {
+  display: block;
+  font-family: var(--f-ui); font-size: 11px; line-height: 1.2;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--verdigris);
+}
+/* The documented `title` step. A post title is a section head inside a list of
+   them, not a page title, so it sits a step below `.page-title`. */
+.post-t {
+  margin-top: 14px;
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(17px, 2vw, 21px); line-height: 1.24; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--ink); text-shadow: var(--cut-light);
+  transition: color var(--dur) var(--ease);
+}
+.post-x {
+  margin-top: 12px; max-width: 68ch;
+  font-family: var(--f-body); font-size: 15.5px; line-height: 1.62; color: var(--ink-soft);
+}
+.post-go {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 16px;
+  font-family: var(--f-ui); font-weight: 600; font-size: 13.5px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--bronze-ink);
+}
+.post-go .ic { width: 16px; height: 16px; stroke-width: 2; transition: transform var(--dur) var(--ease); }
+.post-row > a:hover .post-t { color: var(--bronze-ink); }
+.post-row > a:hover .post-go .ic { transform: translateX(6px); }
+
+/* ---- The entry ----------------------------------------------------------
+   The date goes above the title, not below it. Below, it reads as a caption on
+   the headline; above, it is the filing mark on the entry, which is what it is.
+   `.page-head` centres it with the title it belongs to. */
+.post-meta {
+  margin-bottom: 18px;
+  font-family: var(--f-ui); font-size: 11px; line-height: 1.2;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--verdigris);
+}
+.post-body .lede { margin-bottom: 1.2em; }
+/* Subheads inside the article. Deliberately NOT `.h2`: the rail fires on a
+   `.wrap--read` holding an `.h2` plus anything else, and an article is one
+   running column — a sticky heading in the left margin is for a section label
+   standing beside prose, not for the prose itself. Nesting these in `.rte`
+   under their own class keeps them out of that selector by construction rather
+   than by remembering. */
+.post-h {
+  margin-top: 2.1em; margin-bottom: .7em;
+  font-family: var(--f-cut); font-weight: 600;
+  font-size: clamp(17px, 2vw, 21px); line-height: 1.24; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--ink); text-shadow: var(--cut-light);
+}
+.post-back { margin-top: 48px; padding-top: 26px; border-top: 1px solid var(--rule-cut); }
+.post-back a {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-ui); font-weight: 600; font-size: 13.5px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--bronze-ink);
+}
+/* The sprite arrow points right. This one goes back, so it is flipped rather
+   than drawn again, and it travels left on hover for the same reason. */
+.post-back .ic { width: 16px; height: 16px; stroke-width: 2; transform: scaleX(-1); transition: transform var(--dur) var(--ease); }
+.post-back a:hover .ic { transform: scaleX(-1) translateX(6px); }
+
+/* ---- The blog rail ------------------------------------------------------
+   One column under 1000px, article-then-sidebar. Two above it. The threshold is
+   1000px rather than 769 because a 296px rail out of a 768px viewport leaves the
+   article on a 44-character measure, which is the same squeeze the attorney rail
+   was pulled out for.
+
+   The container is `.wrap`, not `.wrap--read`: the reading measure is what is
+   left after the rail takes its share, and 1016px minus rail minus gap lands the
+   article at ~72 characters — inside the band `--w-read` exists to hold. Using
+   `.wrap--read` here would also have put the section one `:has()` away from
+   firing the sticky heading rail on top of the sidebar rail. Two rails in one
+   section is not a layout. */
+.blog-layout { display: grid; gap: 56px; }
+.sidebar { display: grid; gap: 40px; align-content: start; }
+
+/* Each widget is the plate at small scale: the same bronze opening edge as
+   `.results`, `.postlist` and `.agrid`, the same `--rule-cut` hairlines. */
+.swidget {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--bronze-edge), var(--bronze) 50%, var(--bronze-edge)) 1;
+  padding-top: 16px;
+}
+.swidget-h {
+  margin-bottom: 4px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px; line-height: 1.2;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--bronze-ink);
+}
+.swidget-list { list-style: none; }
+.swidget-list li + li { border-top: 1px solid var(--rule-cut); }
+/* 44px minimum target, met by padding rather than by a height that would leave
+   the two-line entries clipped. */
+.swidget-list a { display: block; padding: 14px 0; color: inherit; }
+.sw-date {
+  display: block; margin-bottom: 5px;
+  font-family: var(--f-ui); font-size: 11px; line-height: 1.2;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--verdigris);
+}
+.sw-t {
+  display: block;
+  font-family: var(--f-ui); font-weight: 700; font-size: 15.5px; line-height: 1.35;
+  letter-spacing: .01em; color: var(--ink);
+  transition: color var(--dur) var(--ease);
+}
+.swidget-list a:hover .sw-t { color: var(--bronze-ink); }
+.swidget-list a[aria-current="page"] .sw-t { color: var(--bronze-ink); }
+
+/* The call plate is the site's `.cta`, not a new object. Two things have to be
+   undone for a 296px column: it normally runs full-bleed inside `.cta-wrap` with
+   a page gutter, and above 769px it splits into heading-left / button-right.
+   Neither survives a rail this narrow, so both are switched off here rather than
+   a second dark plate being drawn. */
+.swidget-cta { padding: 30px 26px 32px; }
+.swidget-cta .cta-p { margin-bottom: 22px; font-size: 15.5px; }
+
+@media (min-width: 1000px) {
+  .blog-layout {
+    grid-template-columns: minmax(0, 1fr) 296px;
+    gap: clamp(48px, 5vw, 72px);
+    align-items: start;
+  }
+  /* The 2-column `.cta` split from the homepage band, undone. */
+  .swidget-cta { display: block; text-align: center; }
+  .swidget-cta .cta-h { margin-bottom: 10px; }
+  .swidget-cta .cta-p { margin-bottom: 22px; margin-inline: auto; }
+}
+
+/* Sticky at the same 104px the attorney rail and the contact form use, so
+   everything on this site that follows you down the page stops on one line.
+
+   GATED ON VIEWPORT HEIGHT, and that gate is the point. The three widgets
+   measure **754px**. A sticky element taller than the space under `top` never
+   scrolls its own bottom into view — it pins on the first pixel and the call
+   plate at its foot becomes permanently unreachable, which is the one element
+   on the page that must not be. 880px is 754 + 104 + margin, so the rail only
+   pins where it is provably readable end to end and otherwise scrolls with the
+   article like an ordinary column.
+
+   No `max-height` + `overflow-y`: a scrollbar nested inside a sidebar is a
+   worse failure than no sticky at all. **Add a fourth widget and this number is
+   wrong** — re-measure it, do not raise it by guess. */
+@media (min-width: 1000px) and (min-height: 880px) {
+  .sidebar { position: sticky; top: 104px; }
+}
+
+/* ==========================================================================
+   /testimonials/ — the wall
+   ==========================================================================
+   The homepage shows ten reviews in a driven rail because they interrupt a
+   longer argument and have to give the page back. A page whose entire job is the
+   reviews has no argument to interrupt, so the rail is the wrong object here:
+   what it does is meter the reading, and metering is exactly what 102 pieces of
+   client testimony do not need.
+
+   It is CSS multicol, not a grid, and that is the choice worth keeping. These
+   reviews run from eight characters to eleven hundred. A grid gives every card
+   in a row the height of the longest one in it, so a one-line review sits in a
+   400px box of empty stone next to a full page of writing — the shortest
+   testimony gets the loudest frame. Multicol packs to content and the column
+   fills naturally. It costs the left-to-right reading order, which for an
+   unordered wall of independent quotations is not information. */
+.rvwall { list-style: none; columns: 1; column-gap: 22px; margin-top: 34px; }
+/* `.rvcard` is built for the rail: fixed 320px, `flex: none`, snap alignment,
+   and `margin-top: auto` on its foot to bottom-align in an equal-height row.
+   All four are rail behaviour and all four are undone here. Block layout also
+   avoids handing the multicol fragmenter a flex container to break. */
+.rvwall .rvcard {
+  display: block; width: auto; flex: none;
+  break-inside: avoid; -webkit-column-break-inside: avoid;
+  margin: 0 0 22px;
+}
+.rvwall .rvcard blockquote { margin-top: 16px; }
+.rvwall .rvcard blockquote p + p { margin-top: .9em; }
+.rvwall .rvfoot { margin-top: 18px; }
+
+/* The firm's own reply, on the six that have one. Indented under the review and
+   marked, because it is the other side of the conversation and must not be
+   mistakable for the client's words. */
+.rvreply {
+  margin-top: 16px; padding-left: 16px;
+  border-left: 2px solid var(--verdigris);
+}
+.rvreply-k {
+  display: block; margin-bottom: 5px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px; line-height: 1.2;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--verdigris);
+}
+.rvreply p { font-family: var(--f-body); font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+
+/* The score plate under the page title. `.rv-head` is the homepage's version and
+   carries the carousel controls; this page has no carousel, so it takes the two
+   pieces that are not the mechanism. */
+.rv-plate {
+  display: grid; gap: 20px; justify-items: center; text-align: center;
+  margin-top: 32px; padding-top: 28px;
+  border-top: 1px solid var(--rule-cut);
+}
+.rv-plate .rv-all { justify-self: center; }
+.rvwall-note {
+  margin-top: 40px;
+  font-family: var(--f-body); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft);
+}
+/* The homepage rail now offers two ways on: the page, then Google. The second is
+   set back so the pair reads as primary-then-alternate rather than as a choice. */
+.rv-all--quiet { border-bottom-color: var(--rule-cut); color: var(--ink-soft); }
+
+@media (min-width: 769px) {
+  .rvwall { columns: 2; }
+  .rv-plate { grid-auto-flow: column; justify-content: center; align-items: center; gap: 32px; }
+}
+@media (min-width: 1100px) { .rvwall { columns: 3; } }
+
+/* ==========================================================================
+   /sitemap/ — three plates of links
+   ==========================================================================
+   Nothing new: `.swidget` and `.swidget-list` from the blog rail, laid out three
+   across. A sitemap is a set of small ruled link lists, which is what that
+   component already is. */
+.sitemap-grid { display: grid; gap: 44px; margin-top: 34px; }
+.swidget-h--gap { margin-top: 40px; }
+.sw-out { width: 14px; height: 14px; margin-left: 8px; vertical-align: -1px; color: var(--bronze-ink); stroke-width: 2; }
+
+@media (min-width: 769px) { .sitemap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) {
+  .sitemap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(44px, 4vw, 64px); align-items: start; }
+}
+
+/* ---- The colophon line --------------------------------------------------
+   Four statements on one line, separated by bullets. The bullets are `<i>` with
+   `aria-hidden`, not `::after` content and not text inside the statements: a
+   screen reader announcing "bullet" four times in a copyright notice is noise,
+   and a separator that is real text gets selected and copied with the line.
+   They also carry the spacing, so the line wraps on a phone without leaving a
+   bullet stranded at the start of a row. */
+.foot-copy .foot-sep {
+  display: inline-block; font-style: normal;
+  margin-inline: .7em; color: var(--rule-cut-dark);
+}
+.foot-copy a {
+  color: inherit;
+  border-bottom: 1px solid var(--rule-cut-dark);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.foot-copy a:hover { color: var(--bronze-lit); border-bottom-color: var(--bronze); }
+
+/* ---- A page title that is one long word ---------------------------------
+   The `display` step assumes a title has a space in it. `text-wrap: balance`
+   needs a wrap opportunity, and "TESTIMONIALS" has none — twelve characters of
+   Cinzel uppercase at the step's 52px floor measure **405px** against a 331px
+   content column at 375px, so the title simply ran off the page. Every other
+   title on the site happens to be two or three words and hid the fault.
+
+   Breaking the word was refused: a hyphenated display title in an inscriptional
+   face is worse than a smaller one, and `word-break` mid-word is worse again.
+   Lowering the `display` step itself was also refused — it is shared with
+   `.wash-fig`, which is on the client-reviewed homepage.
+
+   So this is a declared second step, `display-tight` in DESIGN.md, applied only
+   to titles that are a single long word. Above ~788px it is the same 82px as the
+   standard step, so the two are indistinguishable on desktop. Reach for it when a
+   one-word title is 10 characters or more.
+
+   THE FLOOR IS CUT AGAINST 320px WITH A REAL 15px SCROLLBAR, not against the bare
+   viewport, and that difference is the whole point. Measured in a pane with
+   overlay scrollbars the content column is 276px and an 11vw ramp looked correct;
+   measured where the scrollbar takes actual width it is 261px, and the same ramp
+   put the word 13px wider than its column. Because the title is centred it spilled
+   into both page gutters instead of triggering a scrollbar, so
+   `scrollWidth - clientWidth` on the document stayed at **0** and the width sweep
+   in PAGES.md §8 passed clean. Compare the title's own `scrollWidth` against its
+   `clientWidth`, on a viewport with a real scrollbar, and await
+   `document.fonts.ready` first — measured before Cinzel lands, the fallback face's
+   metrics answer a different question. */
+.page-title--long { font-size: clamp(31px, 10.4vw, 82px); line-height: 1.02; }
+
+/* ---- The batch control --------------------------------------------------
+   `[hidden]` is `display: none` at (0,1,0) in the UA sheet, and `.rvwall
+   .rvcard` sets `display: block` at (0,2,0) — so the cards the script hides
+   would have stayed on the page. This is the rule that makes `hidden` win, and
+   without it the whole batching does nothing. */
+.rvwall .rvcard[hidden] { display: none; }
+
+.rvmore { margin-top: 34px; text-align: center; }
+.rvmore-count {
+  margin-top: 16px;
+  font-family: var(--f-cut); font-weight: 600; font-size: 11px; line-height: 1.2;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft);
+}
+/* The count takes focus when the last batch removes the button, so it needs a
+   ring of its own — a focus target with no visible focus state is worse than
+   dropping focus, because the keyboard user is somewhere with no way to tell. */
+.rvmore-count:focus-visible { outline: 2px solid var(--bronze-ink); outline-offset: 4px; }

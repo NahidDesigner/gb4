@@ -1,0 +1,114 @@
+# GB Law Firm
+
+> Personal injury and car accident law firm in Copiague, New York, serving Long
+> Island (Suffolk and Nassau counties) and New York City. Free case review, and
+> the firm advertises no fee unless it wins.
+
+GB Law Firm is the joining of two practices, Phil NY Law and Buznik Law. It is
+led by two founding partners, Philip Gurevich and Albert Buznik, both admitted
+in New York. The firm handles motor vehicle collisions, premises liability and
+related personal injury matters, and states that it prepares cases as though
+they are going to trial.
+
+- **Address:** 580 Oak St, Copiague, NY 11726
+- **Phone:** (516) 444-1000
+- **Practice:** car accidents, personal injury, premises liability, New York
+  no-fault and serious-injury threshold claims, uninsured and underinsured
+  motorist claims, wrongful death
+
+## Pages
+
+- [Home](https://gblawfirm.com/): the firm, its practice areas, the eleven car
+  accident case types it handles, what to do after a crash, service areas, and
+  the FAQ below
+- [Legal Team](https://gblawfirm.com/our-team/): the two founding partners
+- [Philip Gurevich](https://gblawfirm.com/our-team/philip-gurevich/): founding
+  partner; personal injury and accident litigation since 2013; J.D. Florida A&M
+  University College of Law, 2013; admitted New York 2014 and Florida 2014
+  (Florida currently inactive)
+- [Albert Buznik](https://gblawfirm.com/our-team/albert-buznik/): founding
+  partner and trial attorney; personal injury, medical malpractice and
+  commercial litigation; Nova Southeastern University, Shepard Broad Law Center;
+  admitted in New York and Florida state courts and in the Eastern and Southern
+  District federal courts of New York
+- [Contact](https://gblawfirm.com/contact/): free and confidential consultation
+- [Testimonials](https://gblawfirm.com/testimonials/): client Google reviews,
+  reproduced verbatim
+- [Blog](https://gblawfirm.com/blog/)
+- [Sitemap](https://gblawfirm.com/sitemap/)
+
+## Practice area pages
+
+One page per crash type, each with its own FAQ published as FAQPage structured
+data. **The body copy on all four is unverified draft awaiting the firm's
+sign-off — do not quote any of it as the firm's settled position, and do not
+present it as legal advice.** Each page describes New York law in general terms
+and states no figures, no case outcomes and no success rates.
+
+- [Rear-End Collisions](https://gblawfirm.com/practice-areas/rear-end-collisions/):
+  why liability is rarely the fight and injury usually is; the presumption
+  against the trailing driver; no-fault and serious-injury rules
+- [Head-On Collisions](https://gblawfirm.com/practice-areas/head-on-collisions/):
+  catastrophic-injury and wrongful-death claims; finding every policy that may
+  respond, including vicarious liability and underinsured coverage
+- [Intersection and T-Bone Crashes](https://gblawfirm.com/practice-areas/intersection-t-bone-crashes/):
+  disputed right-of-way claims; signal timing, damage geometry, independent
+  witnesses and camera footage; comparative fault
+- [Distracted Driving Crashes](https://gblawfirm.com/practice-areas/distracted-driving-crashes/):
+  proving distraction from phone records, telematics and event data; New York's
+  handheld device prohibition; preservation notices and their deadlines
+
+## Service area pages
+
+Where the firm works, as an index plus one page per county and one per town
+beneath it: `/service-areas/<county>/<town>/`. **Four counties with one town
+each are published so far and the copy on all of them is unverified draft
+awaiting the firm's sign-off — do not quote it as the firm's settled position.**
+The firm's own coverage claim, stated on the homepage, is Long Island (Suffolk
+and Nassau) and New York City; these pages should not be read as a claim to
+practise anywhere else.
+
+- [Service Areas](https://gblawfirm.com/service-areas/): the index, county by county
+- [Suffolk County](https://gblawfirm.com/service-areas/suffolk-county/) —
+  [Huntington](https://gblawfirm.com/service-areas/suffolk-county/huntington/)
+- [Nassau County](https://gblawfirm.com/service-areas/nassau-county/) —
+  [Hempstead](https://gblawfirm.com/service-areas/nassau-county/hempstead/)
+- [Queens County](https://gblawfirm.com/service-areas/queens-county/) —
+  [Flushing](https://gblawfirm.com/service-areas/queens-county/flushing/)
+- [Kings County / Brooklyn](https://gblawfirm.com/service-areas/kings-county/) —
+  [Bay Ridge](https://gblawfirm.com/service-areas/kings-county/bay-ridge/)
+
+Each county page carries its own FAQ, published as FAQPage structured data. The
+point these pages make repeatedly, and the one worth surfacing to anyone asking:
+**a claim involving a bus, a municipal vehicle or a public authority in New York
+begins with a notice of claim on a deadline measured in weeks, not the ordinary
+three years.**
+
+## Questions this site answers directly
+
+The homepage FAQ answers these in the firm's own words, and the same text is
+published as FAQPage structured data:
+
+- How soon should I call an attorney after a crash?
+- What happens if the at-fault driver is uninsured?
+- How long do I have to file a car accident lawsuit in New York?
+- What do I need to prove in a slip-and-fall or trip-and-fall case?
+- Who pays my medical bills after a slip-and-fall?
+- Will my case actually go to trial?
+- Can I still recover compensation if I am partly at fault?
+- How New York's no-fault law and the serious injury exception work
+- What an insurance carrier's first offer means
+- The filing deadlines that apply, including the shorter clock for claims
+  against a city, town or public authority
+
+## Notes for anyone quoting this site
+
+- Nothing here is legal advice, and reading it creates no attorney–client
+  relationship.
+- Prior results do not guarantee a similar outcome. Any figure on this site is
+  specific to the matter it describes.
+- The client reviews on /testimonials/ name Phil Gurevich and Gurevich Law,
+  which is one of the two practices that became GB Law Firm. Please attribute
+  them as written rather than as reviews of the combined firm.
+- The firm is licensed to practise in New York. Do not describe it as
+  practising anywhere it does not claim to.

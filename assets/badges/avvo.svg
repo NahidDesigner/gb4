@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-label="Avvo Clients' Choice Award 2014">
+  <rect x="0" y="0" width="260" height="150" fill="#ffffff"/>
+  <rect x="0" y="0" width="260" height="4" fill="#C9A227"/>
+  <text x="130" y="62" text-anchor="middle" font-family="Archivo Narrow, Arial Narrow, Arial, sans-serif" font-weight="700" font-size="30" fill="#14161A">Avvo</text>
+  <text x="130" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#5A616B">Clients' Choice Award</text>
+  <text x="130" y="120" text-anchor="middle" font-family="Archivo Narrow, Arial Narrow, Arial, sans-serif" font-weight="700" font-size="13" letter-spacing="1.4" fill="#856512">2014</text>
+</svg>

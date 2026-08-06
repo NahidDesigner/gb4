@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>THE BRIEF — design preview · GB Law Firm</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0,0;1,9..144,300..700,0,1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================================
+   THE LETTERHEAD — DESIGN.md rendered. This file is a faithful sample of the
+   committed world, not the build. Tokens verbatim from the yaml contract.
+   ========================================================================= */
+:root{
+  /* sampled from assets/GBlogo.png — navy #00183C, gold #C09030 */
+  --navy:#00183C; --navy-deep:#000E26; --navy-lift:#002448;
+  --paper:#F3EEE3; --paper-lift:#FBF8F1; --paper-shade:#E7E0D0;
+  --ink:#161208; --ink-soft:#4E4838;
+  --chambers:#00183C; --chambers-deep:#000E26; --ivory-lit:#F3EEE3;
+  --gilt:#C09030; --gilt-lit:#CC9C3C; --gilt-ink:#6F5518;
+  --oxblood:#7A2530; --oxblood-lit:#C98A93;
+  --hairline:#CBC2AC; --hairline-dark:rgba(192,144,48,.28);
+  --f-display:"Fraunces",Georgia,serif;
+  --f-body:"Instrument Sans",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,monospace;
+  --t-fast:140ms; --t:200ms; --t-slow:280ms;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --wrap:1140px; --gut:clamp(20px,4vw,44px); --sec:clamp(96px,11vw,160px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ivory-lit);font-family:var(--f-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+section{padding-block:var(--sec)}
+/* navy is the ground; ivory is the RELIEF ground for long reading (~70/30) */
+.relief{background:var(--paper);color:var(--ink)}
+.relief .lede{color:var(--ink-soft)}
+.relief .rule{background:var(--ink)}
+/* §3: gold as text on ivory is ALWAYS --gilt-ink. The bright tone measures
+   2.36:1 here — the exact trap the token split exists to prevent. */
+.relief .k{color:var(--ink-soft)} .relief .k--gilt{color:var(--gilt-ink)}
+.relief .sw{color:var(--oxblood)}
+h1,h2,h3{color:inherit}
+.dark{background:var(--navy);color:var(--ivory-lit)}
+
+/* ---- shared voices ---- */
+.k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,238,227,.62)}
+.k--gilt{color:var(--gilt-lit)}
+.k--ox{color:var(--oxblood)}
+.dark .k{color:var(--oxblood-lit)}
+.dark .k--gilt{color:var(--gilt-lit)}
+h1,h2,h3{font-family:var(--f-display);font-weight:560;line-height:1.02;letter-spacing:-.01em}
+.d1{font-size:clamp(60px,9.5vw,140px);line-height:.93;letter-spacing:-.02em}
+.d2{font-size:clamp(40px,5.4vw,80px)}
+.t1{font-size:clamp(24px,2.6vw,34px)}
+.lede{font-size:clamp(19px,1.7vw,23px);color:rgba(243,238,227,.76);max-width:62ch}
+.dark .lede{color:rgba(242,237,224,.78)}
+.sw{font-style:italic;color:var(--gilt-lit);font-variation-settings:"WONK" 1}
+.dark .sw{color:var(--oxblood-lit)}
+
+/* the drawn rule — inkDraw */
+.rule{height:1px;background:var(--gilt);transform:scaleX(0);transform-origin:left}
+.dark .rule{background:var(--ivory-lit)}
+.rule--gilt{background:var(--gilt);height:2px}
+.in .rule{animation:inkDraw .4s var(--ease) forwards}
+@keyframes inkDraw{to{transform:scaleX(1)}}
+
+/* paper depth */
+.plate{background:var(--navy-lift);border:1px solid var(--hairline-dark);
+  box-shadow:0 18px 34px -26px rgba(0,0,0,.7)}
+.relief .plate{background:var(--paper-lift);border-color:var(--hairline);
+  box-shadow:0 1.5px 0 rgba(22,18,8,.06),0 14px 28px -20px rgba(22,18,8,.35)}
+.plate--gilt{border-top:3px solid var(--gilt)}
+
+/* entrance */
+.rv{opacity:0;transform:translateY(12px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+.in .rv,.rv.in{opacity:1;transform:none}
+
+/* spec tag — annotation chips naming the DESIGN.md section demonstrated */
+.spec{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
+  border:1px solid var(--gilt);padding:7px 13px;font-family:var(--f-mono);
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gilt-lit);background:transparent}
+.spec i{background:var(--gilt-lit)}
+.relief .spec{border-color:var(--oxblood);color:var(--oxblood);background:var(--paper-lift)}
+.relief .spec i{background:var(--oxblood)}
+.spec i{width:7px;height:7px;border-radius:50%;background:var(--oxblood);font-style:normal;animation:blinkDot 1.6s ease infinite}
+.dark .spec{background:transparent;border-color:var(--oxblood-lit);color:var(--oxblood-lit)}
+.dark .spec i{background:var(--oxblood-lit)}
+@keyframes blinkDot{50%{opacity:.25}}
+
+/* ---- preview banner ---- */
+.demo-note{background:var(--chambers-deep);color:var(--ivory-lit);padding:10px var(--gut);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.demo-note b{color:var(--gilt-lit);font-weight:500}
+
+/* =================== §8.1 THE MASTHEAD =================== */
+.masthead{position:sticky;top:0;z-index:40;background:rgba(0,14,38,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline-dark);color:var(--ivory-lit)}
+.mh-top{border-bottom:1px solid var(--hairline-dark)}
+.mh-top .wrap{display:flex;justify-content:space-between;gap:18px;padding-block:7px;flex-wrap:wrap}
+.mh-main .wrap{display:flex;align-items:center;gap:34px;padding-block:14px}
+.mh-mark{display:flex;align-items:baseline;gap:12px}
+.mh-mark b{font-family:var(--f-display);font-weight:600;font-size:24px;letter-spacing:.01em}
+.mh-mark span{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;color:var(--gilt-lit)}
+.mh-nav{display:flex;gap:26px;margin-left:auto}
+.mh-nav a{font-family:var(--f-display);font-size:15.5px;font-weight:500;position:relative;padding-block:4px}
+.mh-nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--gilt);transform:scaleX(0);transform-origin:left;transition:transform var(--t) var(--ease)}
+.mh-nav a:hover::after,.mh-nav a[aria-current]::after{transform:scaleX(1)}
+.mh-cta{background:var(--gilt);color:var(--navy);font-family:var(--f-mono);font-size:11.5px;
+  letter-spacing:.14em;text-transform:uppercase;padding:13px 20px;transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.mh-cta:hover{transform:translateY(-1px);box-shadow:0 6px 14px -8px rgba(28,23,16,.5)}
+.mh-menu{display:none;margin-left:auto;font-family:var(--f-mono);font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--gilt);padding:11px 16px;background:none;cursor:pointer;color:var(--ivory-lit)}
+/* §8.1: the inline nav is a desktop identity; the drawer is the phone pattern.
+   Below 920px the nav folds behind the menu mark, exactly as the build will. */
+@media(max-width:920px){
+  .mh-nav{display:none}
+  .mh-menu{display:inline-block}
+  .mh-top .wrap{justify-content:center}
+  .mh-top .wrap span:last-child{display:none}
+}
+/* the ticker */
+.ticker{border-bottom:1px solid var(--hairline-dark);overflow:hidden;background:var(--navy-deep)}
+.ticker-run{display:flex;gap:44px;width:max-content;padding-block:8px;animation:tickerRun 60s linear infinite;
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,238,227,.58)}
+.ticker:hover .ticker-run{animation-play-state:paused}
+.ticker-run em{font-style:normal;color:var(--gilt-lit)}
+@keyframes tickerRun{to{transform:translateX(-50%)}}
+
+/* =================== §8.2 THE PROOF LINE =================== */
+.hero{position:relative;padding-block:calc(var(--sec)*1.1) var(--sec);overflow:hidden}
+.hero-sky{position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;opacity:.62}
+.hero-sky path{stroke:var(--gilt);stroke-width:1;fill:none;
+  stroke-dasharray:4200;stroke-dashoffset:4200;animation:skyDraw 1.4s var(--ease) .2s forwards}
+@keyframes skyDraw{to{stroke-dashoffset:0}}
+.hero .wrap{position:relative}
+.hero h1{margin-block:18px 26px;max-width:12ch}
+.proof-strip{display:flex;gap:clamp(26px,5vw,64px);margin-top:44px;flex-wrap:wrap}
+.proof-strip>div{border-left:2px solid var(--gilt);padding-left:16px}
+.proof-strip b{display:block;font-family:var(--f-display);font-weight:600;font-size:clamp(28px,3vw,40px);font-variant-numeric:tabular-nums}
+
+/* =================== tokens strip =================== */
+.tokens{background:var(--navy-deep);border-block:1px solid var(--hairline-dark)}
+.tokens.relief{background:var(--paper-shade);color:var(--ink);border-color:var(--hairline)}
+.tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:34px}
+.tk{border:1px solid var(--hairline);background:var(--paper-lift)}
+.tk i{display:block;height:64px;font-style:normal}
+.tk span{display:block;padding:9px 11px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--ink-soft)}
+.type-ramp{margin-top:44px;display:grid;gap:10px}
+.type-ramp>div{display:flex;align-items:baseline;gap:22px;border-bottom:1px solid var(--hairline);padding-bottom:10px}
+.type-ramp .k{flex:none;width:120px}
+
+/* =================== §8.3 THE FILES =================== */
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:44px}
+.file{position:relative;padding:58px 22px 24px;cursor:pointer;
+  transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.file-tab{position:absolute;top:-1px;left:-1px;background:var(--navy-deep);
+  border:1px solid var(--hairline-dark);border-bottom:0;padding:7px 14px 6px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gilt-lit);
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 100%,0 100%);padding-right:26px;
+  transition:transform var(--t-fast) var(--ease)}
+.file h3{font-size:22px;margin-bottom:10px}
+.file p{font-size:15.5px;color:rgba(243,238,227,.72);line-height:1.6}
+.file .go{display:inline-block;margin-top:16px;font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gilt-lit)}
+.file::after{content:"";position:absolute;inset:auto 0 0 0;height:0;background:var(--oxblood);transition:height var(--t-fast) var(--ease)}
+.file:hover{transform:translateY(-2px);box-shadow:0 26px 40px -28px rgba(0,0,0,.85)}
+.file:hover .file-tab{transform:rotate(-1deg)}
+.file:hover::after{height:3px}
+.file::after{background:var(--gilt)}
+
+/* =================== §8.4 THE DOCKET =================== */
+.docket{margin-top:44px;border-top:1px solid var(--hairline-dark)}
+.dk{display:grid;grid-template-columns:86px 1fr;gap:20px;padding:24px 8px;position:relative;
+  border-bottom:1px solid var(--hairline-dark);transition:transform var(--t-fast) var(--ease);cursor:pointer}
+.dk .no{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:rgba(242,237,224,.55);padding-top:8px;transition:color var(--t-fast)}
+.dk h3{font-size:clamp(21px,2vw,27px);margin-bottom:6px}
+.dk p{font-size:15.5px;color:rgba(242,237,224,.72);max-width:58ch;line-height:1.6}
+.dk::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;
+  background:var(--oxblood-lit);transform:scaleX(0);transform-origin:left;transition:transform var(--t) var(--ease)}
+.dk:hover{transform:translateX(8px)}
+.dk:hover .no{color:var(--gilt-lit)}
+.dk:hover::after{transform:scaleX(1)}
+
+/* =================== §8.5 THE CLOCK =================== */
+.clock-plate{margin-top:44px;padding:clamp(26px,4vw,48px);display:grid;
+  grid-template-columns:minmax(150px,200px) 1fr;gap:clamp(28px,5vw,60px);align-items:start}
+@media(max-width:700px){.clock-plate{grid-template-columns:1fr}}
+.cface{width:100%;aspect-ratio:1;border:1px solid var(--ink);border-radius:50%;position:relative}
+.cface svg{position:absolute;inset:0}
+.cface line{stroke:var(--ink);stroke-width:1}
+.cface .sec-hand{stroke:var(--oxblood);stroke-width:1.5}
+.cbars{display:grid;gap:26px}
+.cbar .row{display:flex;justify-content:space-between;gap:14px;font-family:var(--f-mono);
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.cbar .row b{color:var(--ink);font-weight:500}
+.cbar .row .due{color:var(--gilt-ink)}
+.cbar .row .due.gone{color:var(--oxblood)}
+.track{height:10px;background:var(--paper-shade);border:1px solid var(--hairline);position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--gilt);transition:width .9s var(--ease)}
+.fill.gone{background:var(--oxblood)}
+.cdate{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.cdate label{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.cdate input{font-family:var(--f-mono);font-size:14px;padding:10px 14px;background:var(--paper);
+  border:1px solid var(--ink);color:var(--ink)}
+.cfoot{margin-top:26px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-soft)}
+
+/* =================== §8.6 THE LEDGER =================== */
+.ledger{margin-top:44px;padding:clamp(26px,4vw,52px);max-width:720px}
+.ledger .lh{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink);padding-bottom:12px;margin-bottom:8px}
+.li{display:flex;align-items:baseline;gap:8px;padding-block:13px;border-bottom:1px dotted var(--hairline);
+  font-family:var(--f-mono);font-size:14px;position:relative}
+.li .dots{flex:1;border-bottom:1px dotted var(--hairline);transform:translateY(-4px)}
+.li .val{color:var(--ink-soft)}
+.li .mark{position:absolute;left:0;top:50%;height:2px;width:100%;background:var(--oxblood);
+  transform:scaleX(0);transform-origin:left}
+.li.struck .mark{animation:redlineStrike .35s var(--ease) forwards}
+.li.struck .val{color:var(--oxblood)}
+@keyframes redlineStrike{to{transform:scaleX(1)}}
+.lclose{margin-top:26px;font-family:var(--f-display);font-size:clamp(20px,2.2vw,26px);font-weight:560;line-height:1.25}
+
+/* =================== §8.7 LETTERS OF RECORD =================== */
+.letters{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:44px;align-items:start}
+.letter{padding:30px 28px}
+.stars{color:var(--gilt);letter-spacing:4px;font-size:15px;margin-bottom:14px}
+.letter blockquote{font-family:var(--f-display);font-weight:430;font-size:19px;line-height:1.5;font-style:italic}
+.letter .who{margin-top:18px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+/* the score, set huge — no foil, the number does the work */
+.gplate{padding:34px 28px;text-align:center;display:grid;gap:6px;justify-items:center}
+.gplate b{font-family:var(--f-display);font-weight:600;font-size:96px;line-height:.9;color:var(--ink)}
+.gplate span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* =================== §8.8 THE JURISDICTION =================== */
+.juris{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(28px,5vw,60px);margin-top:44px;align-items:center}
+@media(max-width:760px){.juris{grid-template-columns:1fr}}
+.jmap path{stroke:var(--ink);stroke-width:1.1;fill:none;stroke-dasharray:1400;stroke-dashoffset:1400}
+.in .jmap path{animation:skyDraw 1.2s var(--ease) forwards}
+.in .jmap path:nth-child(2){animation-delay:.25s}
+.in .jmap path:nth-child(3){animation-delay:.5s}
+.jmap .pin{fill:var(--oxblood);opacity:0;transform:translateY(-6px)}
+.in .jmap .pin{animation:pinDrop .3s var(--ease) 1s forwards}
+@keyframes pinDrop{to{opacity:1;transform:none}}
+.jmap text{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;fill:var(--ink-soft)}
+.jplate{padding:30px}
+.jplate h3{font-size:26px;margin-bottom:14px}
+.jtowns{list-style:none;display:grid;gap:2px;margin-top:14px}
+.jtowns li{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.06em;padding:9px 0;border-bottom:1px solid var(--hairline);color:var(--ink-soft)}
+.jtowns li.linked{color:var(--ink);border-bottom:2px solid var(--gilt);cursor:pointer}
+
+/* =================== §8.9 THE RETAINER =================== */
+.retainer{max-width:800px;margin:44px auto 0;padding:clamp(34px,5.5vw,60px);text-align:center;
+  background:var(--navy-deep);border:1px solid var(--hairline-dark);border-top:3px solid var(--gold)}
+.retainer h2{color:var(--ivory-lit);font-size:clamp(30px,4vw,46px);margin-bottom:12px}
+.retainer p{color:rgba(242,237,224,.75);margin-bottom:28px}
+.ret-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:center}
+.ret-btn{background:var(--gilt);color:var(--navy);font-family:var(--f-mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;padding:16px 28px;cursor:pointer;border:0;
+  transition:transform var(--t-fast) var(--ease)}
+.ret-btn:hover{transform:translateY(-2px)}
+.ret-tel{font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;color:var(--gilt-lit)}
+
+/* =================== §8.10 THE LETTERHEAD (footer) =================== */
+.foot{background:var(--chambers-deep);color:var(--ivory-lit);padding-block:var(--sec) 40px}
+.foot-rule{height:5px;border-top:1px solid var(--gilt);border-bottom:2px solid var(--gilt);margin-bottom:54px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:clamp(26px,4vw,54px)}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot b.name{font-family:var(--f-display);font-weight:600;font-size:26px}
+.foot address{font-style:normal;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;
+  color:rgba(242,237,224,.65);margin-top:14px;line-height:2}
+.foot h4{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gilt-lit);font-weight:500;margin-bottom:16px}
+.foot ul{list-style:none;display:grid;gap:9px}
+.foot ul a{font-size:15px;color:rgba(242,237,224,.82);transition:color var(--t-fast)}
+.foot ul a:hover{color:var(--gilt-lit)}
+/* the monogram — a typographic mark, not a wax seal */
+.foot-mark span{font-family:var(--f-display);font-weight:600;font-size:64px;line-height:1;color:var(--gilt-lit)}
+.foot-legal{margin-top:54px;padding-top:22px;border-top:1px solid var(--hairline-dark);
+  font-size:13.5px;color:rgba(242,237,224,.55);max-width:80ch}
+
+/* =================== reduced motion =================== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .ticker-run{animation:none;transform:none}
+  .rv{opacity:1;transform:none}
+  .hero-sky path,.jmap path{stroke-dashoffset:0;animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-note"><b>DESIGN PREVIEW</b> <span>·</span> THE BRIEF, rendered from DESIGN.md <span>·</span> a faithful sample, not the build <span>·</span> <b>redesign branch</b></div>
+
+<!-- ============ §8.1 THE MASTHEAD ============ -->
+<header class="masthead">
+  <div class="mh-top">
+    <div class="wrap">
+      <span class="k">EST. · NO FEE UNLESS WE WIN</span>
+      <span class="k"><span class="k--gilt">(516) 444-1000</span> &nbsp;·&nbsp; 580 OAK ST, COPIAGUE NY</span>
+    </div>
+  </div>
+  <div class="mh-main">
+    <div class="wrap">
+      <a class="mh-mark" href="#"><b>GB Law Firm</b><span>ATTORNEYS AT LAW</span></a>
+      <nav class="mh-nav">
+        <a href="#" aria-current="page">Practice Areas</a>
+        <a href="#">Legal Team</a>
+        <a href="#">Case Results</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Contact</a>
+      </nav>
+      <button class="mh-menu" type="button">Menu</button>
+      <a class="mh-cta" href="#">Free Case Review</a>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-run">
+      <span>REAR-END COLLISIONS <em>·</em> HEAD-ON COLLISIONS <em>·</em> INTERSECTION &amp; T-BONE <em>·</em> DISTRACTED DRIVING <em>·</em> RIDESHARE <em>·</em> HIT-AND-RUN <em>·</em> UNINSURED MOTORIST <em>·</em> PILEUPS <em>·</em> PEDESTRIAN &amp; BICYCLE <em>·</em> TRUCK &amp; COMMERCIAL <em>·</em> SUFFOLK <em>·</em> NASSAU <em>·</em> QUEENS <em>·</em> BROOKLYN <em>·</em>&nbsp;</span>
+      <span>REAR-END COLLISIONS <em>·</em> HEAD-ON COLLISIONS <em>·</em> INTERSECTION &amp; T-BONE <em>·</em> DISTRACTED DRIVING <em>·</em> RIDESHARE <em>·</em> HIT-AND-RUN <em>·</em> UNINSURED MOTORIST <em>·</em> PILEUPS <em>·</em> PEDESTRIAN &amp; BICYCLE <em>·</em> TRUCK &amp; COMMERCIAL <em>·</em> SUFFOLK <em>·</em> NASSAU <em>·</em> QUEENS <em>·</em> BROOKLYN <em>·</em>&nbsp;</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ §8.2 THE PROOF LINE ============ -->
+<section class="hero" id="hero">
+  <svg class="hero-sky" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <path d="M0 250 H80 V190 H120 V250 H170 V160 H200 V140 H230 V250 H290 V200 H330 V250 H380 V120 H400 V90 H430 V120 H450 V250 H520 V170 H560 V250 H600 V60 L610 40 L615 12 L620 40 L630 60 V250 H700 V180 H740 V250 H800 V140 H840 V250 H900 V100 H930 V250 H990 V190 H1030 V250 H1080 V150 H1120 V250 H1200" />
+  </svg>
+  <div class="wrap">
+    <span class="spec"><i></i>THE HERO — display-1, the switch word, a line-drawn skyline</span>
+    <p class="k k--gilt">— THE RECORD · LONG ISLAND &amp; NEW YORK CITY</p>
+    <h1 class="d1">Injured? Your expectations should be <span class="sw">met.</span></h1>
+    <div class="rule" style="max-width:420px"></div>
+    <p class="lede" style="margin-top:24px">We exceed them. Prepared for trial from the first day, because that preparation is what changes the number.</p>
+    <div class="proof-strip">
+      <div><b data-count="15">0</b><span class="k">YEARS AT THE BAR</span></div>
+      <div><b data-count="4">0</b><span class="k">COUNTIES SERVED</span></div>
+      <div><b data-count="106">0</b><span class="k">FIVE-STAR REVIEWS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ tokens ============ -->
+<section class="tokens">
+  <div class="wrap">
+    <span class="spec"><i></i>TOKENS — navy, gold, and the type ramp</span>
+    <h2 class="d2">Warm paper. Engraved ink.<br/>Never <span class="sw">grey.</span></h2>
+    <div class="tk-grid">
+      <div class="tk"><i style="background:#F4EEE1;border-bottom:1px solid var(--hairline)"></i><span>--paper</span></div>
+      <div class="tk"><i style="background:#FBF7EC;border-bottom:1px solid var(--hairline)"></i><span>--paper-lift</span></div>
+      <div class="tk"><i style="background:#1C1710"></i><span>--ink</span></div>
+      <div class="tk"><i style="background:#14202E"></i><span>--chambers</span></div>
+      <div class="tk"><i style="background:#A9852F"></i><span>--gilt</span></div>
+      <div class="tk"><i style="background:#6E2430"></i><span>--oxblood</span></div>
+      <div class="tk"><i style="background:var(--foil)"></i><span>--foil</span></div>
+    </div>
+    <div class="type-ramp">
+      <div><span class="k">DISPLAY · FRAUNCES</span><span style="font-family:var(--f-display);font-weight:560;font-size:44px;line-height:1">The standard of proof</span></div>
+      <div><span class="k">BODY · SOURCE SERIF</span><span style="font-size:17.5px">The first sentence answers; the elaboration follows. Old-style figures 1954 in prose.</span></div>
+      <div><span class="k">RECORD · DM MONO</span><span class="k" style="color:var(--ivory-lit)">FILE 01 — EXHIBIT A · NO. 07 · EST. 2014 · (516) 444-1000</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.3 THE FILES ============ -->
+<section>
+  <div class="wrap">
+    <span class="spec"><i></i>THE FILES — practice areas as folder-tab cards</span>
+    <h2 class="d2">Every case starts<br/>as a <span class="sw">file.</span></h2>
+    <div class="files">
+      <article class="file plate">
+        <span class="file-tab">FILE 01 — REAR-END</span>
+        <h3>Rear-End Collisions</h3>
+        <p>The most common crashes on the LIE, Sunrise Highway and the Northern State.</p>
+        <span class="go">OPEN FILE →</span>
+      </article>
+      <article class="file plate">
+        <span class="file-tab">FILE 02 — HEAD-ON</span>
+        <h3>Head-On Collisions</h3>
+        <p>The cases where the full scope of damages is most often understated.</p>
+        <span class="go">OPEN FILE →</span>
+      </article>
+      <article class="file plate">
+        <span class="file-tab">FILE 03 — T-BONE</span>
+        <h3>Intersection &amp; T-Bone</h3>
+        <p>Side-impact collisions where fault turns on signal timing and sight lines.</p>
+        <span class="go">OPEN FILE →</span>
+      </article>
+      <article class="file plate">
+        <span class="file-tab">FILE 04 — DISTRACTED</span>
+        <h3>Distracted Driving</h3>
+        <p>Phone records, telematics and scene evidence are perishable.</p>
+        <span class="go">OPEN FILE →</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.4 THE DOCKET ============ -->
+<section class="dark">
+  <div class="wrap">
+    <span class="spec"><i></i>CASE-TYPE INDEX — ruled rows, gold on hover</span>
+    <h2 class="d2">The docket runs<br/>eleven <span class="sw">deep.</span></h2>
+    <div class="docket">
+      <div class="dk"><span class="no">No. 01</span><div><h3>Rear-End Collisions</h3><p>The trailing driver is usually at fault — carriers still argue brake-checking and pre-existing injury.</p></div></div>
+      <div class="dk"><span class="no">No. 02</span><div><h3>Intersection and T-Bone Crashes</h3><p>Won on evidence gathered early: signal timing, sight lines, witness accounts.</p></div></div>
+      <div class="dk"><span class="no">No. 03</span><div><h3>Rideshare Accidents</h3><p>Which policy applies changes what the claim is worth.</p></div></div>
+      <div class="dk"><span class="no">No. 04</span><div><h3>Hit-and-Run Crashes</h3><p>An unidentified driver does not end your claim.</p></div></div>
+      <div class="dk"><span class="no">…</span><div><h3 style="color:rgba(242,237,224,.5)">— and seven more, each a ruled line</h3></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.5 THE CLOCK ============ -->
+<section class="relief">
+  <div class="wrap">
+    <span class="spec"><i></i>THE CLOCK — live deadline calculator. The invention.</span>
+    <h2 class="d2">Three deadlines are<br/>running <span class="sw">now.</span></h2>
+    <p class="lede" style="margin-top:20px">The reviewer has a live weather widget on a hotel. A law firm has something better: the law's own clocks, computed for the visitor's actual crash.</p>
+    <div class="clock-plate plate plate--gilt">
+      <div>
+        <div class="cface" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <g id="ticks"></g>
+            <line id="hh" x1="50" y1="50" x2="50" y2="30" stroke-width="2.5"/>
+            <line id="mh" x1="50" y1="50" x2="50" y2="22"/>
+            <line id="sh" class="sec-hand" x1="50" y1="54" x2="50" y2="16"/>
+            <circle cx="50" cy="50" r="1.8" fill="#1C1710"/>
+          </svg>
+        </div>
+        <p class="k" style="text-align:center;margin-top:14px">EXHIBIT A — TRUE TIME</p>
+      </div>
+      <div>
+        <div class="cdate">
+          <label for="crash">WHEN WAS THE CRASH?</label>
+          <input type="date" id="crash" />
+        </div>
+        <div class="cbars">
+          <div class="cbar" data-days="30"><div class="row"><b>NO-FAULT APPLICATION</b><span class="due"></span></div><div class="track"><div class="fill"></div></div></div>
+          <div class="cbar" data-days="90"><div class="row"><b>MUNICIPAL NOTICE OF CLAIM</b><span class="due"></span></div><div class="track"><div class="fill"></div></div></div>
+          <div class="cbar" data-days="1095"><div class="row"><b>STATUTE OF LIMITATIONS</b><span class="due"></span></div><div class="track"><div class="fill"></div></div></div>
+        </div>
+        <p class="cfoot">COMPUTED ON THIS PAGE ONLY · NOTHING IS TRANSMITTED · GENERAL INFORMATION, NOT LEGAL ADVICE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.6 THE LEDGER ============ -->
+<section class="tokens relief">
+  <div class="wrap">
+    <span class="spec"><i></i>THE LEDGER — what the first offer leaves out</span>
+    <h2 class="d2">The first offer is an<br/><span class="sw">opening,</span> not a valuation.</h2>
+    <div class="ledger plate" id="ledger">
+      <div class="lh"><span>SETTLEMENT STATEMENT — FIRST OFFER</span><span>REF. 00-0000</span></div>
+      <div class="li"><span>Emergency treatment to date</span><span class="dots"></span><span class="val">INCLUDED</span><span class="mark"></span></div>
+      <div class="li strikeme"><span>Future surgery, not yet scheduled</span><span class="dots"></span><span class="val">OMITTED</span><span class="mark"></span></div>
+      <div class="li strikeme"><span>Physical therapy, ongoing</span><span class="dots"></span><span class="val">OMITTED</span><span class="mark"></span></div>
+      <div class="li strikeme"><span>Lost earnings after settlement</span><span class="dots"></span><span class="val">OMITTED</span><span class="mark"></span></div>
+      <div class="li strikeme"><span>Pain and suffering, serious-injury claim</span><span class="dots"></span><span class="val">OMITTED</span><span class="mark"></span></div>
+      <p class="lclose">Accepting it generally closes the claim for good — including for the treatment you have not had yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.7 LETTERS OF RECORD ============ -->
+<section class="relief">
+  <div class="wrap">
+    <span class="spec"><i></i>REVIEWS — verbatim, the 5.0 set huge</span>
+    <h2 class="d2">One hundred six letters,<br/>on the <span class="sw">record.</span></h2>
+    <div class="letters">
+      <article class="letter plate">
+        <div class="stars">★★★★★</div>
+        <blockquote>“With my very recent experience at Guverich Law it was swift &amp; outstanding to say the least! Phil was prompt and on point with getting my case taken care of.”</blockquote>
+        <p class="who">JASMIN W. · GOOGLE REVIEW · VERBATIM</p>
+      </article>
+      <div class="gplate plate plate--gilt">
+        <span>GOOGLE RATING</span>
+        <b>5.0</b>
+        <div class="stars">★★★★★</div>
+        <span>BASED ON 106+ REVIEWS</span>
+      </div>
+      <article class="letter plate">
+        <div class="stars">★★★★★</div>
+        <blockquote>“The team was professional, responsive, and truly cared about my case… I would highly recommend them to anyone needing legal help.”</blockquote>
+        <p class="who">MEGAN P. · GOOGLE REVIEW · VERBATIM</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.8 THE JURISDICTION ============ -->
+<section class="tokens relief">
+  <div class="wrap">
+    <span class="spec"><i></i>SERVICE AREAS — the line-drawn map</span>
+    <h2 class="d2">An engraved map of<br/>the <span class="sw">jurisdiction.</span></h2>
+    <div class="juris">
+      <svg class="jmap" viewBox="0 0 560 300" aria-label="Stylised map — final asset drawn from real geography">
+        <path d="M20 210 Q60 180 110 185 Q150 188 180 175 Q230 160 290 150 Q360 140 420 118 Q470 100 530 70 Q510 110 460 130 Q420 148 370 165 Q300 185 240 200 Q180 215 130 225 Q70 232 20 210 Z"/>
+        <path d="M60 150 Q90 120 130 125 Q160 130 175 150 Q150 165 115 168 Q85 168 60 150 Z"/>
+        <path d="M30 120 Q55 95 85 100 Q100 110 95 125 Q70 135 45 132 Q32 128 30 120 Z"/>
+        <circle class="pin" cx="140" cy="205" r="4"/>
+        <text x="152" y="209">COPIAGUE — THE OFFICE</text>
+        <text x="330" y="135">SUFFOLK</text>
+        <text x="150" y="172">NASSAU</text>
+        <text x="95" y="115">QUEENS</text>
+        <text x="38" y="145">KINGS</text>
+      </svg>
+      <div class="jplate plate plate--gilt">
+        <p class="k k--gilt">COUNTY PLATE</p>
+        <h3>Suffolk County</h3>
+        <p style="font-size:15px;color:var(--ink-soft)">The largest county on Long Island, and the one where distance does most of the damage.</p>
+        <ul class="jtowns">
+          <li class="linked">HUNTINGTON — has its own page</li>
+          <li>BABYLON</li>
+          <li>ISLIP</li>
+          <li>BROOKHAVEN</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.9 THE RETAINER ============ -->
+<section class="dark">
+  <div class="wrap">
+    <span class="spec"><i></i>CTA BAND — one design sitewide</span>
+    <div class="retainer">
+      <h2>No fee unless we win.</h2>
+      <p>Free case review. Fifteen minutes gives you the clarity to decide your next steps.</p>
+      <div class="ret-row">
+        <button class="ret-btn">Request a Free Case Review</button>
+        <span class="ret-tel">OR CALL (516) 444-1000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §8.10 THE LETTERHEAD ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <span class="spec" style="margin-bottom:40px"><i></i>THE FOOTER — designed as hard as the header</span>
+    <div class="foot-rule"></div>
+    <div class="foot-grid">
+      <div>
+        <b class="name">GB Law Firm</b>
+        <address>580 OAK ST, COPIAGUE, NY 11726<br/>(516) 444-1000<br/>NO FEE UNLESS WE WIN</address>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul><li><a href="#">Practice Areas</a></li><li><a href="#">Service Areas</a></li><li><a href="#">Legal Team</a></li><li><a href="#">Case Results</a></li></ul>
+      </div>
+      <div>
+        <h4>The Record</h4>
+        <ul><li><a href="#">Testimonials</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Sitemap</a></li></ul>
+      </div>
+      <div class="foot-mark"><span>GB</span></div>
+    </div>
+    <p class="foot-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. Use of this website does not create an attorney–client relationship.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal engine — sections gain .in, elements animate once */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.18});
+  document.querySelectorAll('section, footer').forEach(function(s){ io.observe(s); });
+
+  /* counterRoll */
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return; cio.unobserve(e.target);
+      var el=e.target, end=+el.dataset.count, t0=null;
+      if(reduced){ el.textContent=end; return; }
+      function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/500,1);
+        el.textContent=Math.round(end*(1-Math.pow(1-p,3)));
+        if(p<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+
+  /* redlineStrike — staggered when the ledger enters */
+  var lio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return; lio.unobserve(e.target);
+      e.target.querySelectorAll('.strikeme').forEach(function(li,i){
+        setTimeout(function(){ li.classList.add('struck'); }, 500+i*280);
+      });
+    });
+  },{threshold:.5});
+  var lg=document.getElementById('ledger'); if(lg) lio.observe(lg);
+
+  /* the clock face — ticks + true time */
+  var g=document.getElementById('ticks');
+  if(g){ for(var i=0;i<12;i++){ var a=i*30*Math.PI/180;
+    var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',50+44*Math.sin(a)); l.setAttribute('y1',50-44*Math.cos(a));
+    l.setAttribute('x2',50+47*Math.sin(a)); l.setAttribute('y2',50-47*Math.cos(a));
+    g.appendChild(l);} }
+  function hands(){ var d=new Date(),
+    s=d.getSeconds()*6, m=d.getMinutes()*6+d.getSeconds()*.1, h=(d.getHours()%12)*30+d.getMinutes()*.5;
+    var set=function(id,deg){ var e=document.getElementById(id);
+      if(e) e.setAttribute('transform','rotate('+deg+' 50 50)'); };
+    set('sh',s); set('mh',m); set('hh',h); }
+  hands(); if(!reduced) setInterval(hands,1000);
+
+  /* the deadline bars */
+  var input=document.getElementById('crash');
+  var DAY=86400000;
+  function fmt(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase(); }
+  function calc(){
+    var crash=input.valueAsDate||new Date(); var now=new Date();
+    document.querySelectorAll('.cbar').forEach(function(b){
+      var days=+b.dataset.days, due=new Date(crash.getTime()+days*DAY);
+      var total=due-crash, gone=now-crash;
+      var p=Math.max(0,Math.min(1,gone/total));
+      var fill=b.querySelector('.fill'), lab=b.querySelector('.due');
+      fill.style.width=(p*100)+'%';
+      fill.classList.toggle('gone',p>=1); lab.classList.toggle('gone',p>=1);
+      var left=Math.ceil((due-now)/DAY);
+      lab.textContent = p>=1 ? 'EXPIRED '+fmt(due) : left+' DAYS → '+fmt(due);
+    });
+  }
+  var today=new Date(); input.valueAsDate=today; input.max=today.toISOString().slice(0,10);
+  input.addEventListener('input',calc);
+  /* run once visible so the fill animates in view */
+  var kio=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ setTimeout(calc,300); kio.unobserve(e.target);} });
+  },{threshold:.4});
+  kio.observe(document.querySelector('.clock-plate'));
+})();
+</script>
+</body>
+</html>

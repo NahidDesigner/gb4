@@ -1,0 +1,2179 @@
+/* ============================================================================
+   GB LAW FIRM — DESIGN SYSTEM LAYER
+   DESIGN.md v6 §2 (tokens) and §3 (components).
+
+   Loaded AFTER styles.css, on the homepage only.
+
+   Every token is namespaced `--ds-*`. styles.css already defines unprefixed
+   tokens of the same names, shared by 22 other pages; two of them disagree
+   with §2 (--error is #9A2418 there, #8C2F1E here) and on-dark/on-dark-soft
+   do not exist there at all. Redefining the bare names would silently restyle
+   the rest of the page and every other page that shares the stylesheet. The
+   prefix makes this layer self-contained and the old build unreachable from it.
+
+   Nothing in this file is invented. Every value is transcribed from §2/§3.
+   If a section needs something not defined here, DESIGN.md §3 says stop and
+   report — not add a variant.
+   ========================================================================= */
+
+/* ------------------------------------------------------------- BODY FACE ---
+   styles.css declares Source Sans 3 at weight 800 only — it was the hero face
+   in the rejected build. §2 makes it the BODY face at 400/600, so every body
+   style resolved to the 800 file and rendered bold. These two faces are
+   declared here rather than in styles.css so the other 22 pages are unaffected.
+   ------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/source-sans-3-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/source-sans-3-latin-600-normal.woff2") format("woff2");
+}
+
+/* ---------------------------------------------------------------- §2 TOKENS */
+
+:root {
+  /* Bluestone — the ground the page is cut from */
+  --ds-stone-pale:    #E3E6E4;
+  --ds-stone-light:   #EDEFEE;
+  --ds-stone-mid:     #D3D8D6;
+  --ds-stone-deep:    #0A1628;
+  --ds-stone-raised:  #132540;
+  --ds-stone-black:   #06101F;
+
+  /* Cast bronze — the single polished signal */
+  --ds-bronze:        #C9A227;
+  --ds-bronze-lit:    #E7CE84;
+  --ds-bronze-ink:    #7A5D14;
+  --ds-bronze-deep:   #5E4A0E;
+  --ds-bronze-rake:   #DCBB4E;
+  --ds-bronze-body:   #B08F1E;
+  --ds-bronze-edge:   #8A6A12;
+
+  /* Verdigris — the patina third */
+  --ds-verdigris:     #3C625C;
+  --ds-verdigris-lit: #7FA8A0;
+
+  --ds-ink:           #10151A;
+  --ds-ink-soft:      #47525A;
+  --ds-on-dark:       #E8EDF2;
+  --ds-on-dark-soft:  rgba(232, 237, 242, .66);
+  --ds-rule-cut:      #BEC5C2;
+  --ds-rule-cut-dark: rgba(198, 214, 226, .19);
+  --ds-error:         #8C2F1E;
+
+  /* Type families */
+  --ds-font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --ds-font-body:    "Source Sans 3", -apple-system, sans-serif;
+  --ds-font-utility: "Archivo Narrow", "Archivo", sans-serif;
+
+  /* Shape — 0 is the default, 2px is the ceiling, inputs and buttons only */
+  --ds-rounded-none: 0px;
+  --ds-rounded-xs:   2px;
+
+  /* Spacing */
+  --ds-space-xxs: 4px;
+  --ds-space-xs:  8px;
+  --ds-space-sm:  12px;
+  --ds-space-md:  20px;
+  --ds-space-lg:  32px;
+  --ds-space-xl:  48px;
+  --ds-space-xxl: 80px;
+  --ds-space-section: clamp(88px, 11vh, 168px);
+
+  /* Layout */
+  --ds-container:        1200px;
+  --ds-container-narrow: 760px;
+  --ds-gutter-mobile:    24px;
+  --ds-grid-gap:         32px;
+  --ds-grid-gap-mobile:  20px;
+
+  /* Elevation — there is no shadow in this system (§2 shape law) */
+  --ds-elevation-flat: none;
+
+  /* Left-rail width used by `sequence-step` below 1025px, where the centred
+     alternating timeline collapses to one side. */
+  --ds-seq-rail: 84px;
+  /* Shared measure for the timeline's heading block and closing block, so both
+     centre on the rail's axis. */
+  --ds-seq-measure: 760px;
+
+  /* §5.1 Physics */
+  --ds-ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ds-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ds-t-fast: 180ms;
+  --ds-t-base: 420ms;
+  --ds-t-slow: 900ms;
+}
+
+/* ------------------------------------------------------------ §2 TYPOGRAPHY */
+
+.ds-display-xl {
+  font-family: var(--ds-font-display);
+  font-size: clamp(52px, 7vw, 104px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.ds-display-l {
+  font-family: var(--ds-font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+}
+.ds-display-m {
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.ds-display-s {
+  font-family: var(--ds-font-display);
+  font-size: 20px;               /* §2 type law: no Cinzel below 20px */
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ds-body {
+  font-family: var(--ds-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+.ds-body-lead {
+  font-family: var(--ds-font-body);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.ds-body-s {
+  font-family: var(--ds-font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.ds-label {
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ds-button-type {
+  font-family: var(--ds-font-utility);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+/* AMENDMENT 2026-08-06 (second revision) — the landmark now carries a dense
+   two-column grid rather than five stacked rows, so impact comes from quantity
+   and the figure steps down to fit. Was clamp(40px, 6.3vw, 87px). */
+.ds-figure {
+  font-family: var(--ds-font-display);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* --------------------------------------------------------------- SCAFFOLDING */
+
+.ds-container {
+  width: 100%;
+  max-width: var(--ds-container);
+  margin-inline: auto;
+  padding-inline: var(--ds-gutter-mobile);
+}
+.ds-container-narrow {
+  width: 100%;
+  max-width: var(--ds-container-narrow);
+  margin-inline: auto;
+  padding-inline: var(--ds-gutter-mobile);
+}
+.ds-section { padding-block: var(--ds-space-section); }
+
+/* §11.3 — density varies. Bands and directories run visibly tighter than
+   landmarks. This is the tight variant; landmarks use .ds-section. */
+.ds-section--tight { padding-block: var(--ds-space-xxl); }
+
+.ds-sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Focus — §9 acceptance gate: 2px bronze outline, 2px offset, on everything */
+.ds-scope :focus-visible,
+.ds-preloader :focus-visible {
+  outline: 2px solid var(--ds-bronze);
+  outline-offset: 2px;
+}
+
+/* ============================================================== §3 COMPONENTS
+   Rules and marks
+   ========================================================================= */
+
+/* `rule-cut` — the system hairline. Never decorative above a heading; that was
+   the rejected build's signature tic (§3). */
+.ds-rule-cut {
+  border: 0;
+  border-top: 1px solid var(--ds-rule-cut);
+  margin: 0;
+}
+.ds-on-dark .ds-rule-cut,
+.ds-rule-cut--dark { border-top-color: var(--ds-rule-cut-dark); }
+
+/* `rule-bronze` — 2px, max 64px long, at most twice per page. Draws on entry. */
+.ds-rule-bronze {
+  display: block;
+  width: 64px;
+  max-width: 64px;
+  height: 2px;
+  border: 0;
+  background: var(--ds-bronze);
+  transform-origin: left center;
+  margin: 0;
+}
+.ds-js .ds-reveal.is-in .ds-rule-bronze {
+  transform: scaleX(1);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+
+/* `eyebrow` — label type, bronze-ink on pale, bronze on dark. No rule, no icon. */
+.ds-eyebrow {
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-bronze-ink);
+  margin: 0 0 var(--ds-space-sm);
+}
+.ds-on-dark .ds-eyebrow { color: var(--ds-bronze); }
+
+/* --------------------------------------------------------------- §3 Buttons */
+
+.ds-button-primary,
+.ds-button-secondary,
+.ds-button-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 18px 36px;
+  border-radius: var(--ds-rounded-xs);
+  font-family: var(--ds-font-utility);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--ds-elevation-flat);      /* never a shadow */
+  transition: background-color var(--ds-t-fast) var(--ds-ease-out),
+              border-color var(--ds-t-fast) var(--ds-ease-out),
+              color var(--ds-t-fast) var(--ds-ease-out);
+}
+
+.ds-button-primary {
+  background: var(--ds-bronze);
+  color: var(--ds-stone-deep);
+  border: 1px solid var(--ds-bronze);
+}
+.ds-button-primary:hover {
+  background: var(--ds-bronze-body);
+  border-color: var(--ds-bronze-body);
+}
+/* §3: never scales, never lifts, never gains a shadow. */
+
+.ds-button-secondary {
+  background: transparent;
+  border: 1px solid var(--ds-ink);
+  color: var(--ds-ink);
+}
+.ds-button-secondary:hover { border-color: var(--ds-bronze-ink); color: var(--ds-bronze-ink); }
+.ds-on-dark .ds-button-secondary { border-color: var(--ds-bronze); color: var(--ds-on-dark); }
+.ds-on-dark .ds-button-secondary:hover { border-color: var(--ds-bronze-lit); color: var(--ds-bronze-lit); }
+
+/* `button-text` — label type, 1px underline growing 0 → 100% on hover. */
+.ds-button-text {
+  display: inline-block;
+  position: relative;
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-ink);
+  text-decoration: none;
+  padding-bottom: var(--ds-space-xxs);
+}
+.ds-on-dark .ds-button-text { color: var(--ds-on-dark); }
+.ds-button-text::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--ds-bronze);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-button-text:hover::after,
+.ds-button-text:focus-visible::after { transform: scaleX(1); }
+
+/* `button-call` — bronze fill carrying a phone number, numerals tabular.
+   §11.1 permits no phone glyph, so this is the number alone. */
+.ds-button-call {
+  background: var(--ds-bronze);
+  color: var(--ds-stone-deep);
+  border: 1px solid var(--ds-bronze);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+.ds-button-call:hover { background: var(--ds-bronze-body); border-color: var(--ds-bronze-body); }
+
+/* ------------------------------------------------- §3 Header and navigation */
+
+.ds-site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 120;
+  height: 72px;
+  display: grid;
+  /* minmax(0,1fr) so the flanking tracks yield before the centre mark does */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ds-space-md);
+  padding-inline: var(--ds-space-lg);
+  background: var(--ds-stone-deep);
+  border-bottom: 1px solid var(--ds-rule-cut-dark);
+
+  /* AMENDMENT 2026-08-06 — the header is absent over the hero and arrives on
+     exit. The locked hero carries its own brand lockup and its own Menu/Search
+     controls, so a second header over it put two brand marks and two nav
+     controls on screen at once. It is translated out rather than display:none
+     so the arrival is a slide, and so the drawer/search controls inside it stay
+     in the DOM and keep their app.js bindings at all times. */
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition: transform var(--ds-t-base) var(--ds-ease-out),
+              visibility 0s linear var(--ds-t-base);
+}
+/* Past the hero: slides down, already solid */
+.ds-site-header.is-solid {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform var(--ds-t-base) var(--ds-ease-out),
+              visibility 0s linear 0s;
+}
+
+.ds-site-header__utils {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-lg);
+}
+.ds-site-header__utils--start { justify-self: start; }
+.ds-site-header__utils--end   { justify-self: end; }
+
+/* The logo is centered and brand-scale — a firm brand mark, not a header logo */
+.ds-site-header__mark {
+  justify-self: center;
+  display: block;
+  line-height: 0;
+}
+/* AMENDMENT 2026-08-06 — §3 now sizes the mark by HEIGHT, not width. Every
+   logo asset is 560x406 (1.379:1), so the old 180px-wide rule computed to 131px
+   and overflowed the bar. 52px in a 72px bar; brand prominence is carried by
+   the hero instead, per client brief (DESIGN.md §12). */
+.ds-site-header__mark img {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: none;
+}
+
+/* `nav-trigger` — label text plus a 3-line glyph. The word is part of the
+   register, so the glyph never appears alone (§3). */
+.ds-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-sm);
+  min-height: 48px;                 /* §8 touch target */
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-on-dark);
+  text-decoration: none;
+  transition: color var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-nav-trigger:hover { color: var(--ds-bronze-lit); }
+
+.ds-nav-trigger__glyph {
+  display: block;
+  width: 20px; height: 12px;
+  position: relative;
+  flex: none;
+}
+.ds-nav-trigger__glyph::before,
+.ds-nav-trigger__glyph::after,
+.ds-nav-trigger__glyph span {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: currentColor;
+  transition: background-color var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-nav-trigger__glyph::before { top: 0; }
+.ds-nav-trigger__glyph span    { top: 50%; transform: translateY(-50%); }
+.ds-nav-trigger__glyph::after  { bottom: 0; }
+
+/* `sticky-call-bar` — mobile only, appears after the hero exits. */
+.ds-sticky-call-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 118;
+  height: 64px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--ds-bronze);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(100%);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-sticky-call-bar.is-up { transform: translateY(0); }
+
+/* -------------------------------------------------------- §3 Proof components
+
+   `figure-cell` — the settlements landmark unit and the system's signature.
+   Separated from neighbours by rule-cut only: no card, no border box, no fill.
+   ========================================================================= */
+
+.ds-figure-cell {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--ds-space-md);
+  border-top: 1px solid var(--ds-rule-cut-dark);
+}
+.ds-figure-cell__amount {
+  display: block;
+  font-family: var(--ds-font-display);
+  font-size: clamp(28px, 3.2vw, 44px);   /* §2 typography.figure, amended */
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  color: var(--ds-bronze-lit);
+  margin: 0 0 var(--ds-space-sm);
+}
+/* `margin-top: auto` — the cell is a flex column of fixed height (the grid row
+   equalises it), so this pushes ALL slack above the label and pins the label +
+   detail pair to the cell's base.
+
+   This replaces the earlier `min-height: 2.8em`, which reserved two lines inside
+   the label itself and so parked the slack BELOW it — inflating the label/detail
+   gap to ~21px in one-line cells, wider than the 12px figure/label gap above it.
+
+   Where one label wraps and its neighbour does not, the difference has to go
+   somewhere. It goes here, into the larger of the two gaps, so the tighter
+   label/detail pairing survives in every cell. */
+.ds-figure-cell__case {
+  display: block;
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-on-dark);
+  margin: auto 0 var(--ds-space-xxs);   /* slack above; 4px to the detail */
+}
+/* Last item in the flex column, so it sits on the cell's base. With the grid row
+   equalising cell heights, that base is shared — which is what puts the detail
+   lines of both columns on one line. */
+.ds-figure-cell__detail {
+  display: block;
+  font-family: var(--ds-font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ds-on-dark-soft);
+  margin: 0;
+}
+
+/* `stat-band` — a row of figure-cell at reduced scale. */
+.ds-stat-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--ds-grid-gap);
+}
+.ds-stat-band .ds-figure-cell__amount { font-size: clamp(28px, 3vw, 40px); }
+
+/* `review-card` */
+.ds-review-card {
+  background: var(--ds-stone-light);
+  border: 1px solid var(--ds-rule-cut);
+  border-radius: var(--ds-rounded-none);
+  padding: 28px;
+  height: 100%;
+  box-shadow: var(--ds-elevation-flat);
+}
+.ds-review-card__stars { display: flex; gap: 2px; color: var(--ds-bronze); }
+.ds-review-card__stars svg { width: 12px; height: 12px; fill: currentColor; }
+.ds-review-card__excerpt {
+  font-family: var(--ds-font-body);
+  font-size: 15px; line-height: 1.6;
+  color: var(--ds-ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: var(--ds-space-sm) 0;
+}
+.ds-review-card__name {
+  font-family: var(--ds-font-utility);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ds-ink);
+}
+.ds-review-card__source {
+  font-family: var(--ds-font-body);
+  font-size: 15px; color: var(--ds-ink-soft);
+}
+
+/* `review-summary` */
+.ds-review-summary { display: flex; align-items: center; gap: var(--ds-space-md); }
+.ds-review-summary__score {
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600; line-height: 1.2;
+}
+
+/* `badge-marquee` */
+.ds-badge-marquee {
+  background: var(--ds-stone-deep);
+  height: 88px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.ds-badge-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-xl);
+  flex: none;
+  animation: ds-marquee 40s linear infinite;
+}
+.ds-badge-marquee:hover .ds-badge-marquee__track { animation-play-state: paused; }
+.ds-badge-marquee__item {
+  display: flex; align-items: center; gap: var(--ds-space-xl);
+  color: var(--ds-on-dark);
+}
+.ds-badge-marquee__item img { height: 32px; width: auto; }
+.ds-badge-marquee__dot { width: 6px; height: 6px; background: var(--ds-bronze); flex: none; }
+@keyframes ds-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); }}
+
+/* `sequence-step` — the numbered progression unit.
+   The numeral and the connector share one vertical axis at the rail's centre, so
+   the steps read as stations on a route rather than as a numbered list. That
+   axis, the 48px numeral and the drawn connector are the whole difference
+   between archetype E and the "numbered text list" §7 forbids. */
+/* Each step spans the full container and is split at the container's centre
+   line. The slot sits in column 1 for odd steps and column 2 for even, so the
+   numerals flank a single continuous central rail. */
+/* space-xl, not space-xxl. At 80px the worst consecutive pair ran 510px and the
+   side-to-side jump on top of that cost the spine its continuity. At 48px three
+   steps sit inside a 900px viewport, so each step is read against its
+   neighbours rather than alone. */
+.ds-sequence-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0;
+  padding-bottom: var(--ds-space-xl);
+}
+.ds-sequence-step:last-child { padding-bottom: 0; }
+
+/* The rail. One segment per step, abutting so they read as one line; each draws
+   as its own step enters, which is what makes the draw progressive rather than
+   a single sweep. `left` rather than translateX so `transform` stays free for
+   scaleY — sharing it would make the draw fight the centring. */
+.ds-sequence-step__line {
+  position: absolute;
+  left: calc(50% - 0.5px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ds-rule-cut);
+  transform-origin: top center;
+}
+
+.ds-sequence-step__slot {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-space-lg);
+}
+/* Odd — left of the rail. row-reverse puts the numeral hard against the rail
+   and pushes the text outward, away from it.
+
+   Text is left-aligned on BOTH sides. Mirroring it (right-aligned on the left
+   steps) gave the tidier symmetry, but these paragraphs run three to four lines
+   and ragged-left body copy is measurably slower to read. The alternating sides
+   already carry the symmetry; the text does not need to. */
+.ds-sequence-step:nth-child(odd) .ds-sequence-step__slot {
+  grid-column: 1;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  text-align: left;
+  padding-right: var(--ds-space-xl);
+}
+/* Even — right of the rail, numeral against it, text running outward. */
+.ds-sequence-step:nth-child(even) .ds-sequence-step__slot {
+  grid-column: 2;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: var(--ds-space-xl);
+}
+
+/* Fixed box, digits aligned toward the rail.
+
+   Cinzel ships no tabular-figures table, so `tnum` is silently ignored here and
+   the numerals set proportionally — 101.8px for "01" against 125.7px for "06".
+   Left to itself that 24px spread moved the body's edge from step to step and
+   the left-aligned text lost its common start. A fixed box in em (so it tracks
+   the clamp) pins the body edge, and aligning the digits toward the rail keeps
+   them hard against it regardless of their own width. */
+.ds-sequence-step__num {
+  flex: none;
+  width: 1.32em;
+  font-family: var(--ds-font-display);
+  font-size: clamp(64px, 7vw, 120px);
+  font-weight: 600;
+  line-height: 0.9;
+  color: var(--ds-bronze-ink);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+.ds-sequence-step:nth-child(odd)  .ds-sequence-step__num { text-align: right; }
+.ds-sequence-step:nth-child(even) .ds-sequence-step__num { text-align: left; }
+
+/* Fills the space left of the numeral rather than shrink-wrapping to its text,
+   so the block's outer edge is fixed and left-aligned text starts on the same
+   line in every step instead of drifting with the length of the copy. */
+.ds-sequence-step__body { flex: 1 1 auto; max-width: 42ch; }
+.ds-sequence-step__title {
+  font-family: var(--ds-font-display);
+  font-size: 20px;                     /* §2 display-s — the floor for Cinzel */
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ds-ink);
+  margin: 0 0 var(--ds-space-sm);
+}
+.ds-sequence-step__text {
+  font-family: var(--ds-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ds-ink-soft);
+  margin: 0;
+}
+
+/* §5.4 archetype E — the connector DRAWS on entry; that is the archetype.
+   Collapsed only under JS, so a failed script leaves every line drawn (§5.6). */
+.ds-js .ds-sequence-step__line { transform: scaleY(0); }
+.ds-js .ds-sequence-step.is-drawn .ds-sequence-step__line {
+  transform: scaleY(1);
+  transition: transform var(--ds-t-slow) var(--ds-ease-out);
+}
+
+/* `index-column` */
+.ds-index-column { columns: 3; column-gap: var(--ds-grid-gap); list-style: none; margin: 0; padding: 0; }
+.ds-index-column li { break-inside: avoid; border-top: 1px solid var(--ds-rule-cut); }
+.ds-index-column a {
+  display: block; padding-block: 12px;
+  font-family: var(--ds-font-body); font-size: 15px; line-height: 1.6;
+  color: var(--ds-ink); text-decoration: none;
+  transition: color var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-index-column a:hover { color: var(--ds-bronze-ink); }
+
+/* `accordion-row` */
+.ds-accordion-row { border-top: 1px solid var(--ds-rule-cut); }
+.ds-accordion-row__q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: var(--ds-space-md); padding-block: var(--ds-space-md);
+  background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--ds-font-display); font-size: 20px; font-weight: 600;
+  line-height: 1.3; color: var(--ds-ink);
+}
+.ds-accordion-row__mark {
+  flex: none; position: relative; width: 16px; height: 16px;
+  transition: transform var(--ds-t-base) var(--ds-ease-inout);
+}
+.ds-accordion-row__mark::before,
+.ds-accordion-row__mark::after {
+  content: ""; position: absolute; background: var(--ds-bronze-ink);
+}
+.ds-accordion-row__mark::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.ds-accordion-row__mark::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.ds-accordion-row[open] .ds-accordion-row__mark { transform: rotate(45deg); }
+
+/* `inline-callout` */
+.ds-inline-callout {
+  border-left: 3px solid var(--ds-bronze);
+  padding-left: var(--ds-space-md);
+  font-family: var(--ds-font-body); font-size: 17px; font-weight: 600; line-height: 1.65;
+}
+
+/* `resource-row` */
+.ds-resource-row {
+  display: flex; align-items: center; gap: var(--ds-space-md);
+  padding-block: var(--ds-space-md);
+  border-top: 1px solid var(--ds-rule-cut);
+  border-bottom: 1px solid var(--ds-rule-cut);
+  text-decoration: none; color: var(--ds-ink);
+}
+.ds-resource-row__title { font-family: var(--ds-font-body); font-size: 17px; font-weight: 600; }
+.ds-resource-row__desc  { font-family: var(--ds-font-body); font-size: 15px; color: var(--ds-ink-soft); }
+.ds-resource-row__arrow { margin-left: auto; transition: transform var(--ds-t-fast) var(--ds-ease-out); }
+.ds-resource-row:hover .ds-resource-row__arrow { transform: translateX(4px); }
+
+/* ----------------------------------------------------------------- §3 Forms */
+
+.ds-text-input,
+.ds-textarea {
+  width: 100%;
+  background: var(--ds-stone-light);
+  border: 1px solid var(--ds-rule-cut);
+  border-radius: var(--ds-rounded-xs);
+  padding: 14px 16px;
+  font-family: var(--ds-font-body); font-size: 17px; line-height: 1.65;
+  color: var(--ds-ink);
+  box-shadow: var(--ds-elevation-flat);
+  transition: border-color var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-text-input { height: 56px; }
+.ds-textarea   { min-height: 140px; }
+/* No glow, no ring, no shadow (§3) */
+.ds-text-input:focus,
+.ds-textarea:focus { outline: none; border: 2px solid var(--ds-bronze); }
+.ds-text-input[aria-invalid="true"],
+.ds-textarea[aria-invalid="true"] { border-color: var(--ds-error); }
+.ds-field__label {
+  display: block; margin-bottom: var(--ds-space-xs);
+  font-family: var(--ds-font-utility); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ds-ink-soft);
+}
+.ds-field__error { font-family: var(--ds-font-body); font-size: 15px; color: var(--ds-error); }
+
+.ds-form-panel {
+  background: var(--ds-stone-light);
+  border: 1px solid var(--ds-rule-cut);
+  border-radius: var(--ds-rounded-none);
+  padding: 48px;
+  box-shadow: var(--ds-elevation-flat);
+}
+.ds-form-panel__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; line-height: 1.2;
+  text-align: center; margin: 0 0 var(--ds-space-lg);
+}
+.ds-form-panel .ds-button-primary { width: 100%; }
+
+/* ------------------------------------------------------------ §3 Structural */
+
+.ds-cta-band {
+  background: var(--ds-stone-deep);
+  border-top: 1px solid var(--ds-bronze);
+  border-bottom: 1px solid var(--ds-bronze);
+  min-height: 120px;
+  display: flex; align-items: center;
+}
+.ds-cta-band__inner {
+  width: 100%; max-width: var(--ds-container); margin-inline: auto;
+  padding-inline: var(--ds-gutter-mobile);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--ds-space-lg);
+}
+.ds-cta-band__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; line-height: 1.2;
+  color: var(--ds-bronze); margin: 0;
+}
+
+/* `preloader` — stone-deep full-bleed field carrying the centered logo mark.
+   Choreography in §5.2. Homepage only, session-flagged. */
+/* Displayed ONLY when JS is present. With JS off the field never renders, so a
+   failed script can never leave an opaque panel sitting over the page (§5.6). */
+.ds-preloader { display: none; }
+.ds-js .ds-preloader {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  background: var(--ds-stone-deep);
+  transform: translateY(0);
+  transition: transform var(--ds-t-slow) var(--ds-ease-inout);
+}
+.ds-preloader__lockup { display: grid; justify-items: center; gap: var(--ds-space-md); }
+.ds-preloader__mark {
+  width: min(268px, 62vw); height: auto;
+  opacity: 0;
+  transition: opacity var(--ds-t-slow) var(--ds-ease-out);
+}
+.ds-preloader__rule {
+  width: 0; height: 1px;
+  background: var(--ds-bronze);
+  transition: width var(--ds-t-slow) var(--ds-ease-out);
+}
+.ds-preloader.is-mark-in  .ds-preloader__mark { opacity: 1; }
+.ds-preloader.is-rule-in  .ds-preloader__rule { width: min(268px, 62vw); }
+.ds-preloader.is-lifting  { transform: translateY(-100%); }
+.ds-preloader[hidden] { display: none; }
+
+/* `footer` */
+.ds-footer { background: var(--ds-stone-black); padding-top: 96px; color: var(--ds-on-dark-soft); }
+.ds-footer__mark { display: block; margin-inline: auto; }
+.ds-footer__colhead {
+  font-family: var(--ds-font-utility); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ds-bronze);
+}
+.ds-footer__legal { font-family: var(--ds-font-body); font-size: 15px; opacity: .6; }
+
+/* ============================================================ §5.3 REVEAL ==
+   One rule for the entire page. Transform and opacity only. Fires once.
+   ========================================================================= */
+
+/* Hiding is applied ONLY once JS has proved it can un-hide: `ds-js` is set on
+   <html> by an inline script before paint. With JS off the class never lands,
+   so nothing is ever hidden and the page reads in full (§5.6). */
+.ds-js .ds-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ds-t-base) var(--ds-ease-out),
+              transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-reveal.is-in { opacity: 1; transform: none; }
+
+/* Headings lead, body follows 120ms (§5.3) */
+.ds-js .ds-reveal--lag { transition-delay: 120ms; }
+
+/* The bronze rule and the sequence connector only pre-collapse under JS too */
+.ds-js .ds-reveal .ds-rule-bronze { transform: scaleX(0); }
+.ds-js .ds-reveal .ds-sequence-step__line { transform: scaleY(0); }
+
+/* ================================================== SECTION #7 — SETTLEMENTS
+   Archetype B (full-bleed grid). Page landmark and the system signature (§7).
+
+   §11.2 asymmetry is carried by the 5/7 column split — the spec's own worked
+   example — plus a landmark figure that breaks the container's left edge.
+   ========================================================================= */
+
+.ds-settlements {
+  background: var(--ds-stone-deep);
+  padding-block: var(--ds-space-section);   /* §11.3 — landmarks get the full measure */
+  /* `clip`, not `hidden`: hidden establishes a scroll container, which silently
+     disables `position: sticky` on the landmark inside it. `clip` contains the
+     §11.2 left-edge break without creating one. */
+  overflow-x: clip;
+}
+.ds-settlements__grid {
+  width: 100%; max-width: var(--ds-container);
+  margin-inline: auto;
+  padding-inline: var(--ds-gutter-mobile);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ds-grid-gap-mobile);
+}
+
+/* The landmark block */
+.ds-settlements__landmark { align-self: start; }
+.ds-settlements__figure {
+  font-family: var(--ds-font-display);
+  font-size: clamp(52px, 7vw, 104px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  color: var(--ds-bronze-lit);
+  margin: 0;
+}
+.ds-settlements__figure sup { font-size: .42em; vertical-align: super; letter-spacing: 0; }
+.ds-settlements__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 600; line-height: 1.12; letter-spacing: 0.005em;
+  color: var(--ds-on-dark);
+  margin: var(--ds-space-sm) 0 0;
+}
+.ds-settlements__lead {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 400; line-height: 1.6;
+  color: var(--ds-on-dark-soft);
+  margin: var(--ds-space-md) 0 0;
+  max-width: 34ch;
+}
+
+/* AMENDMENT 2026-08-06 — a two-column grid of cells, not a stacked list.
+   Separation is rule-cut alone: no cards, no shadows, no gradients (§3). The
+   column-gap is wide enough that the two columns read as two registers rather
+   than one four-column table. */
+.ds-settlements__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--ds-space-xl);
+}
+/* Close the bottom of each column, not just the final cell */
+.ds-settlements__list > li:last-child { border-bottom: 1px solid var(--ds-rule-cut-dark); }
+
+/* The case-count line was removed 2026-08-06 — it was new copy, and this
+   project's copy is locked. The left column's height is now earned by the CTA
+   moving up into this block instead. */
+.ds-settlements__cta { margin: var(--ds-space-xl) 0 0; }
+
+.ds-settlements__foot {
+  margin-top: var(--ds-space-xl);
+  display: flex; flex-direction: column; gap: var(--ds-space-md);
+  align-items: flex-start;
+}
+.ds-settlements__note {
+  font-family: var(--ds-font-body);
+  font-size: 15px; line-height: 1.6;
+  color: var(--ds-on-dark-soft);
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* ============================================ SECTION #14 — AFTER A CRASH ===
+   Archetype E (numbered sequence). Second landmark (§7, §8).
+
+   Clean sheet. The rejected build set this as a plain <ol> of number + heading +
+   paragraph inside the narrow read column, with no connector — §7's "numbered
+   text list", which RULE 3 forbids reusing. What makes this a progression is the
+   shared vertical axis, the 48px structural numerals, and the connector drawing
+   step by step as the reader descends.
+
+   §11.1 — the numerals ARE the wayfinding here, so no icon appears anywhere in
+   this section. §11.3 — a landmark, so it keeps the full --ds-space-section.
+   §2 ground rhythm — stone-pale. #13 is pale and #15 is dark, so this is the
+   second of two consecutive pale sections, at the limit and not over it.
+   ========================================================================= */
+
+.ds-sequence-section {
+  background: var(--ds-stone-pale);
+  padding-block: var(--ds-space-section);
+}
+/* Heading and lede sit ABOVE the timeline, never beside it — a heading column
+   with content alongside is archetype A, banned outright by §4 Rule 2. */
+.ds-sequence-section__head {
+  max-width: var(--ds-seq-measure);
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: var(--ds-space-xxl);
+}
+.ds-sequence-section__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  color: var(--ds-ink);
+  margin: 0;
+}
+.ds-sequence-section__lead {
+  font-family: var(--ds-font-body);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ds-ink-soft);
+  margin: var(--ds-space-md) auto 0;
+  max-width: 62ch;
+}
+.ds-sequence {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Closing callout and resource-row centre under the timeline on the same
+   measure, so the section closes on the rail's axis rather than drifting. */
+.ds-sequence-section__foot {
+  max-width: var(--ds-seq-measure);
+  margin: var(--ds-space-xxl) auto 0;
+}
+.ds-sequence-section__close {
+  font-family: var(--ds-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ds-ink);
+  margin: 0;
+  text-align: center;
+}
+.ds-sequence-section__close a {
+  color: var(--ds-bronze-ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ds-bronze);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ds-sequence-section .ds-resource-row { margin-top: var(--ds-space-xl); }
+
+/* ============================================ SECTION #5 — THE STATEMENT ====
+   Archetype C, reassigned from D on 2026-08-06. Built clean-sheet: the previous
+   markup and every rule that styled it were deleted, not amended.
+
+   The three defects this replaces: a §11.5 SVG duotone that rendered the
+   photograph mustard-yellow; a split into two half-sections (heading on an
+   image band, the copy it introduces on a separate pale ground beneath); and a
+   third use of archetype D, which rebuilt the compositional monotony §1 exists
+   to remove.
+
+   This is the page's TYPOGRAPHIC moment and the counterweight to #9. #9 is
+   image-dominant with type as caption; #5 is type-dominant with no image at
+   all, so scrolling between them changes register rather than repeating one.
+
+   ONE GROUND, ONE OBJECT. A single full-bleed stone-deep field. `rule-cut`
+   hairlines are the section's only structural device — no plate, no panel, no
+   second ground beneath the heading.
+
+   §2 bronze law: exactly ONE bronze element in section content, the phone link.
+   The address row is on-dark-soft deliberately; making it bronze would put a
+   second signal on a line whose job is reference, not action.
+   §11.6 remove-one-thing: the pin glyph that sat on the old map card is gone.
+   §11.1 admits the resource-row arrow and nothing else here.
+   ========================================================================= */
+
+.ds-statement {
+  background: var(--ds-stone-deep);
+  padding-block: var(--ds-space-section);
+}
+
+/* display-xl (§2) — the largest type on the page after the settlement figures.
+   It has to read as a statement, not a label, so it takes the top third alone.
+   Full container width, on the container margin, no offset: at this type size
+   a 72px pull was too small to register as a decision and only read as the
+   heading sitting fractionally off the grid everything else lines up to. The
+   asymmetry this section carries is the three-column division below, which is
+   structural rather than a nudge. */
+.ds-statement__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(52px, 7vw, 104px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--ds-on-dark);
+  margin: 0 0 clamp(72px, 8vh, 112px);
+}
+
+/* The horizontal hairlines — CTA and the two that bracket the address anchor.
+   Colour comes from `.ds-on-dark .ds-rule-cut` on the section, so no
+   rule-cut-dark value is restated here. */
+.ds-statement__rule { transform-origin: left center; }
+
+/* ---- The three-beat argument --------------------------------------------
+   The problem, the credibility, the method — one paragraph per column. Grid,
+   not `column-count`: multicol reflows one continuous text and balances it,
+   which is what left a six-line hole when three paragraphs had to fill two
+   columns. Grid makes each paragraph an addressable item, so the column count
+   matches the argument's beat count and there is nothing to balance.
+
+   `gap: 0` and the division is carried by the rules themselves — a gap plus a
+   rule would put the line in the middle of empty space instead of on the
+   column edge it divides. */
+.ds-statement__columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  align-items: stretch;                     /* every column takes the row height */
+  margin: 0 0 clamp(72px, 8vh, 112px);
+}
+
+/* The wrapper exists so the rule can be full-height. Stretched by the grid to
+   the tallest column, it carries the division as a pseudo-element rather than
+   a `border-left`, because a border cannot be drawn on with a transform and
+   these rules have to draw top-to-bottom on entry. Ragged rules ending at each
+   paragraph's own last line would read as three underlines, not architecture. */
+.ds-statement__col {
+  position: relative;
+  padding-right: 40px;
+}
+.ds-statement__col + .ds-statement__col { padding-left: 40px; }
+.ds-statement__col:last-child { padding-right: 0; }
+
+.ds-statement__col + .ds-statement__col::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 1px;
+  background: var(--ds-rule-cut-dark);
+  transform-origin: top center;
+}
+
+.ds-statement__col p {
+  font-family: var(--ds-font-body);
+  font-size: 17px; font-weight: 400; line-height: 1.65;
+  color: var(--ds-on-dark);
+  margin: 0;                                /* top-aligned; uneven bottoms are correct */
+}
+
+/* body-lead at 600, full container width — it spans both columns, which is
+   what separates it from the text above it. The rule above it is the section's
+   real break: argument ends, action begins. */
+.ds-statement__cta {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 600; line-height: 1.6;
+  color: var(--ds-on-dark);
+  margin: 40px 0 48px;
+}
+
+/* The section's one bronze element. Underline grows 0 -> 100% on hover and on
+   focus, the same device as §3 `button-text`, restated here because the link is
+   inline in body copy and must not take label type. */
+.ds-statement__tel {
+  position: relative;
+  color: var(--ds-bronze);
+  text-decoration: none;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ds-statement__tel::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--ds-bronze);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-statement__tel:hover::after,
+.ds-statement__tel:focus-visible::after { transform: scaleX(1); }
+
+/* §3 `resource-row`, dark form. Borders are dropped because this section's own
+   rules sit above and below it; everything else — flex, padding, the arrow at
+   the right edge, the 4px translate on hover — is the base component. */
+.ds-resource-row--dark {
+  border-top: 0;
+  border-bottom: 0;
+  color: var(--ds-on-dark-soft);
+}
+.ds-resource-row--dark .ds-resource-row__title {
+  font-family: var(--ds-font-utility);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* `.ic` is 1em, which at 12px label type is too small to register as the row's
+   affordance. Sized off the type scale because glyph dimensions are not in it. */
+.ds-resource-row--dark .ds-resource-row__arrow { width: 18px; height: 18px; }
+
+/* ---- §5.3 reveal — heading leads, body follows 120ms, rules draw -----------
+   `.is-drawn` lands on the container, so one observer drives the whole
+   sequence and the stagger is real rather than four independent firings.
+   Hidden only under `.ds-js`, so with JS off nothing is ever hidden (§5.6). */
+.ds-js .ds-statement__heading,
+.ds-js .ds-statement__columns {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ds-t-base) var(--ds-ease-out),
+              transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-statement__inner.is-drawn .ds-statement__heading {
+  opacity: 1; transform: none;
+}
+/* One block, not per-paragraph and not per-column */
+.ds-js .ds-statement__inner.is-drawn .ds-statement__columns {
+  opacity: 1; transform: none;
+  transition-delay: 120ms;
+}
+.ds-js .ds-statement__rule {
+  transform: scaleX(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-statement__inner.is-drawn .ds-statement__rule { transform: scaleX(1); }
+.ds-js .ds-statement__inner.is-drawn .ds-statement__rule:nth-of-type(2) { transition-delay:  80ms; }
+.ds-js .ds-statement__inner.is-drawn .ds-statement__rule:nth-of-type(3) { transition-delay: 160ms; }
+
+/* The vertical divisions draw top-to-bottom, left to right, starting with the
+   body block they divide — 120ms, then 200ms. They are the only thing in the
+   section that draws on the Y axis, which is the point: the horizontal rules
+   close bands, these ones build a structure. */
+.ds-js .ds-statement__col + .ds-statement__col::before {
+  transform: scaleY(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-statement__inner.is-drawn .ds-statement__col + .ds-statement__col::before {
+  transform: scaleY(1);
+  transition-delay: 120ms;
+}
+.ds-js .ds-statement__inner.is-drawn .ds-statement__col:last-child::before {
+  transition-delay: 200ms;
+}
+
+/* ================================================= ARCHETYPE D — IMAGERY ====
+   Section #9. One use on the page, and the only one.
+
+   D ran three times in the rejected direction — #5, #9, #15 — which was the
+   photo monotony §1 exists to eliminate. Both of the others were reassigned on
+   2026-08-06 and rebuilt with no photograph at all: #5 to C ("SECTION #5 — THE
+   STATEMENT") and #15 to F ("SECTION #15 — THE PIVOT"). Neither was given a
+   different picture; the pictures were the problem.
+
+   §11.5 — every photograph in assets/ is generic stock, and the four practice
+   images are literally the "generic stock crash imagery" §11.5 bans by name.
+   §11.5's prescribed fallback is a duotone in stone-deep and bronze, applied
+   via the #ds-duotone SVG filter defined in index.html. #9's louver is the only
+   consumer that remains.
+   ========================================================================= */
+
+.ds-duotone {
+  filter: url(#ds-duotone);
+  /* If the filter fails to resolve, a greyscale image is a better failure than
+     full-colour stock the brief rejects. */
+  -webkit-filter: grayscale(1);
+}
+@supports (filter: url(#ds-duotone)) {
+  .ds-duotone { -webkit-filter: url(#ds-duotone); }}
+
+/* Full-bleed escape from the centred container */
+/* `100vw` INCLUDES the scrollbar, so a 100vw child of a 1425px content area is
+   1440px wide and overflows the document by the scrollbar's width. That was the
+   source of the page's 8px horizontal overflow, originally traced to #5's image
+   frame (that frame no longer exists — #5 is archetype C and carries no image).
+   Every element this is used on is already a direct child of a full-width
+   section, so 100% is the true edge and needs no negative margins.
+   NOTE: no consumer remains in the markup; kept as scaffolding for the next
+   full-bleed element rather than re-derived. */
+.ds-bleed {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ========================================== SECTION #10 — THE CASE INDEX ===
+   Archetype F (dense wall). §7 is explicit: "this is a directory, not a
+   section." Built clean-sheet 2026-08-06; every legacy rule that styled it
+   (`.index-dark`, `.index-head`, `.cindex`, `.ci-n`, `.index-foot` and their
+   two responsive blocks, ~110 lines in styles.css) was deleted, not amended.
+
+   WHY A GRID AND NOT A REGISTER. The previous treatment set the eleven entries
+   as eleven full-width ruled rows. A register is a document — it is read down,
+   one row at a time, and at ~110px a row this one ran past two screens. A
+   directory is read *across*: you scan the names, find yours, then read one
+   description. Three columns puts the whole set on one screen, which is the
+   only way the reader learns what the list contains before committing to it.
+
+   Grid, not `column-count`: each entry has to be its own addressable cell so
+   it can carry the divisions and hold a row height. Same vertical-rule device
+   as #5 and #15's band — the rules span the row, never the text.
+   ========================================================================= */
+
+.ds-caseindex {
+  background: var(--ds-stone-deep);
+  padding-block: var(--ds-space-section);
+}
+
+.ds-caseindex__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(34px, 4vw, 56px);          /* display-l */
+  font-weight: 600; line-height: 1.12; letter-spacing: 0.005em;
+  color: var(--ds-on-dark);
+  margin: 0 0 var(--ds-space-lg);             /* 32px */
+}
+
+.ds-caseindex__lede {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 400; line-height: 1.6;   /* body-lead */
+  color: var(--ds-on-dark-soft);
+  max-width: 68ch;
+  margin: 0 0 clamp(56px, 6vh, 80px);
+}
+
+/* The two hairlines that bracket the grid. Zero margin on both sides: the
+   cells' own 28px padding is the air, so each rule reads as the grid's edge
+   rather than as a divider floating above it. */
+.ds-caseindex__rule { transform-origin: left center; }
+
+.ds-caseindex__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  align-items: stretch;               /* every cell takes its row's height */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 28px on all four sides, except where a cell meets the container edge —
+   column one loses its left padding and column three its right, so the grid's
+   outer text edges land on exactly the same margin as the heading, the lede,
+   the rules and the closing paragraph. A uniform 28px would have inset the
+   names 28px from every other element on the page and read as an accident.
+   Between columns the full 56px survives, 28px either side of the rule. */
+.ds-caseindex__cell {
+  position: relative;
+  padding: 28px;
+}
+.ds-caseindex__cell:nth-child(3n+1) { padding-left: 0; }
+.ds-caseindex__cell:nth-child(3n)   { padding-right: 0; }
+
+/* Vertical division on the left edge of columns two and three. Pseudo-element
+   rather than `border-left` because a border cannot be drawn on with a
+   transform, and `top: 0; bottom: 0` inside a stretched cell means it runs the
+   row's full height rather than its own text's. */
+.ds-caseindex__cell:not(:nth-child(3n+1))::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 1px;
+  background: var(--ds-rule-cut-dark);
+  transform-origin: top center;
+}
+
+/* Horizontal division above every row after the first. Three cell-width rules
+   butt together at `gap: 0` and read as one continuous line — which is why the
+   twelfth cell has to exist even though it is empty. */
+.ds-caseindex__cell:nth-child(n+4)::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--ds-rule-cut-dark);
+  transform-origin: left center;
+}
+
+.ds-caseindex__name {
+  font-family: var(--ds-font-display);
+  font-size: 20px; font-weight: 600; line-height: 1.3;   /* display-s */
+  color: var(--ds-on-dark);
+  margin: 0 0 var(--ds-space-sm);
+}
+.ds-caseindex__desc {
+  font-family: var(--ds-font-body);
+  font-size: 15px; line-height: 1.6;                     /* body-s */
+  color: var(--ds-on-dark-soft);
+  margin: 0;
+}
+
+.ds-caseindex__foot {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 400; line-height: 1.6;   /* body-lead */
+  color: var(--ds-on-dark);
+  margin: 40px 0 0;
+}
+
+/* The section's one bronze element. */
+.ds-caseindex__tel {
+  position: relative;
+  color: var(--ds-bronze);
+  text-decoration: none;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ds-caseindex__tel::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--ds-bronze);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-caseindex__tel:hover::after,
+.ds-caseindex__tel:focus-visible::after { transform: scaleX(1); }
+
+/* ---- §5.3 reveal — heading 0 · lede 120 · everything below 240 ------------
+   The grid arrives as ONE block. Eleven staggered cells would be eleven
+   animated elements in a viewport (§5.6) and would turn a directory into a
+   performance; the whole point of the grid is that it is apprehended at once. */
+.ds-js .ds-caseindex__heading,
+.ds-js .ds-caseindex__lede,
+.ds-js .ds-caseindex__grid,
+.ds-js .ds-caseindex__foot {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ds-t-base) var(--ds-ease-out),
+              transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__heading,
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__lede,
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__grid,
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__foot {
+  opacity: 1; transform: none;
+}
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__lede { transition-delay: 120ms; }
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__grid,
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__foot { transition-delay: 240ms; }
+
+.ds-js .ds-caseindex__rule {
+  transform: scaleX(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__rule { transform: scaleX(1); }
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__rule:nth-of-type(1) { transition-delay: 120ms; }
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__rule:nth-of-type(2) { transition-delay: 240ms; }
+
+.ds-js .ds-caseindex__cell::before {
+  transform: scaleY(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-caseindex__cell::after {
+  transform: scaleX(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__cell::before { transform: scaleY(1); transition-delay: 240ms; }
+.ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__cell::after  { transform: scaleX(1); transition-delay: 240ms; }
+
+/* ============================================ SECTION #15 — THE PIVOT ======
+   Archetype F (dense wall), reassigned from D on 2026-08-06. Built clean-sheet:
+   the previous markup and every rule that styled it were deleted, not amended.
+
+   THIS IS THE PAGE'S PIVOT. Every section above it is about roads. This is
+   where the site widens to property, and the old build gave the reader no
+   signal that the subject had changed — it was another dark section with
+   another photograph. The pale ground is the change of chapter, and it makes
+   the section unmistakably not another car-crash band.
+
+   NO PHOTOGRAPH. winter.jpg carried a Boston MBTA bus with legible destination
+   signage, and it illustrated nothing in copy that is about icy walkways and
+   wet store floors. Removed rather than replaced, so the §11.5 duotone goes
+   with it and D drops to a single use on the page.
+
+   THE HAZARD BAND is the section's structure and the reason it is F. The copy
+   already named its own contents — five hazards buried mid-sentence in the
+   densest paragraph on the page. Pulling them out as a ruled band gives the
+   section something scannable above the reasoning, and gives the reasoning
+   itself the width and the type size to actually be read. Same vertical-rule
+   device as #5, so the two type-led sections share a family; different
+   structure, so they are not the same composition.
+   ========================================================================= */
+
+.ds-premises {
+  background: var(--ds-stone-pale);
+  padding-block: var(--ds-space-section);
+}
+
+.ds-premises__heading {
+  font-family: var(--ds-font-display);
+  font-size: clamp(34px, 4vw, 56px);          /* display-l */
+  font-weight: 600; line-height: 1.12; letter-spacing: 0.005em;
+  color: var(--ds-ink);
+  margin: 0 0 var(--ds-space-lg);             /* 32px to the lede */
+}
+
+/* The lede keeps its 68ch measure. It is an introduction and reads as one —
+   a short column against the full-width paragraph beneath it. */
+.ds-premises__lede {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 400; line-height: 1.6;   /* body-lead */
+  color: var(--ds-ink-soft);
+  max-width: 68ch;
+  margin: 0 0 clamp(56px, 6vh, 80px);
+}
+
+/* The dense one. body-lead rather than body because this is the heaviest legal
+   reasoning on the page — duty of care, what the owner knew, evidence that
+   disappears once the ice melts — and at 17px nobody read it.
+
+   No max-width: it fills the container. It carried a 72ch measure while the
+   hazard band sat above it, which gave it a left column to sit under; with the
+   band cut there is nothing above it to align to and a narrow column read as
+   an indent with no cause. The two gaps around it are now identical, so the
+   rhythm stays even where the band used to be. */
+.ds-premises__explain {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 400; line-height: 1.6;
+  color: var(--ds-ink);
+  margin: 0 0 clamp(56px, 6vh, 80px);
+}
+
+.ds-premises__rule { transform-origin: left center; }
+
+.ds-premises__cta {
+  font-family: var(--ds-font-body);
+  font-size: 19px; font-weight: 600; line-height: 1.6;
+  color: var(--ds-ink);
+  margin: 40px 0 0;
+}
+
+/* The section's one bronze element. Same underline-grow device as §3
+   `button-text` and as #5's phone link, in bronze-ink because this is a pale
+   ground — bronze at 4.9:1 as text (§2), not the on-dark bronze. */
+.ds-premises__tel {
+  position: relative;
+  color: var(--ds-bronze-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ds-premises__tel::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--ds-bronze-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-premises__tel:hover::after,
+.ds-premises__tel:focus-visible::after { transform: scaleX(1); }
+
+/* ---- §5.3 reveal ----------------------------------------------------------
+   heading 0 · lede 120 · explanation + CTA + its rule 240. The band held the
+   180ms slot; with it cut, the body moved 300 -> 240 rather than leaving a
+   dead beat in the middle of a three-step cascade. */
+.ds-js .ds-premises__heading,
+.ds-js .ds-premises__lede,
+.ds-js .ds-premises__explain,
+.ds-js .ds-premises__cta {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ds-t-base) var(--ds-ease-out),
+              transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-premises__inner.is-drawn .ds-premises__heading,
+.ds-js .ds-premises__inner.is-drawn .ds-premises__lede,
+.ds-js .ds-premises__inner.is-drawn .ds-premises__explain,
+.ds-js .ds-premises__inner.is-drawn .ds-premises__cta {
+  opacity: 1; transform: none;
+}
+.ds-js .ds-premises__inner.is-drawn .ds-premises__lede     { transition-delay: 120ms; }
+.ds-js .ds-premises__inner.is-drawn .ds-premises__explain,
+.ds-js .ds-premises__inner.is-drawn .ds-premises__cta      { transition-delay: 240ms; }
+
+.ds-js .ds-premises__rule {
+  transform: scaleX(0);
+  transition: transform var(--ds-t-base) var(--ds-ease-out);
+}
+.ds-js .ds-premises__inner.is-drawn .ds-premises__rule { transform: scaleX(1); }
+.ds-js .ds-premises__inner.is-drawn .ds-premises__rule--cta { transition-delay: 240ms; }
+
+/* ------------------------------------------------------------- §8 RESPONSIVE */
+
+/* tablet — 640–1024px */
+@media (min-width: 640px) {
+  .ds-settlements__grid { gap: var(--ds-grid-gap); }}
+
+/* desktop — > 1024px */
+@media (min-width: 1025px) {
+
+
+  /* §11.2 — an intentionally uneven column split, 5/7 rather than 6/6 */
+  .ds-settlements__grid {
+    grid-template-columns: 5fr 7fr;
+    column-gap: var(--ds-space-xxl);
+    align-items: start;
+  }
+  /* §11.2 — the landmark figure breaks the container's left edge */
+  .ds-settlements__landmark {
+    margin-left: calc(var(--ds-space-xxl) * -1);
+
+    /* AMENDMENT 2026-08-06 — the landmark pins while the record scrolls past it,
+       releasing at the section's end. Desktop only: below 1025px the grid is a
+       single column and a sticky block would pin over the very cells it
+       introduces. `align-items: start` above is what gives the grid item a
+       track taller than itself for sticky to travel in. */
+    position: sticky;
+    top: calc(72px + var(--ds-space-xl));   /* clears the 72px header bar */
+  }
+  .ds-settlements__figure   { margin-left: 0; }
+
+  /* Two columns above 1025px; one below, per the §3 amendment */
+  .ds-settlements__list { grid-template-columns: 1fr 1fr; }
+
+  /* The grid's first rule aligns to the CAP HEIGHT of the $100M+ figure, not to
+     its line-box top. Measured, not guessed: at the desktop clamp the figure is
+     100.8px Cinzel on a 102.82px line box, so half-leading is negative (-16.09)
+     and the glyph ascent sits 18.57px under the font ascent — leaving the cap
+     2.48px below the element top. */
+  .ds-settlements__record { margin-top: 2.48px; }
+  /* With 14 cells the grid fills row-wise, so cell 8 starts column 2 and needs
+     its own top rule; only the last cell of EACH column takes a bottom rule. */
+  .ds-settlements__list > li:nth-last-child(2) { border-bottom: 1px solid var(--ds-rule-cut-dark); }}
+
+/* ================================================== HERO BOTTOM SCRIM =======
+   AMENDMENT 2026-08-06 — a stone-deep gradient rising from the hero's base so
+   it blends into the section beneath instead of cutting hard.
+
+   The hero is LOCKED (§0, §6). This adds no element to the hero and changes
+   none of its layout, copy, image or type — it is a pseudo-element on the
+   section box, authored here in the design-system layer rather than in the
+   hero's own rules, so it lifts out by deleting this block alone.
+   ========================================================================= */
+
+.hero { position: relative; }
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: clamp(96px, 14vh, 200px);
+  /* Stone-deep scrim as specified, but the final stop is stone-black because
+     that is what the next section (.creds) actually is — #06101F, not #0A1628.
+     Ending on stone-deep would have left a visible step exactly where the
+     amendment exists to remove one. */
+  background: linear-gradient(to bottom,
+    rgba(10, 22, 40, 0) 0%,
+    rgba(10, 22, 40, .55) 50%,
+    var(--ds-stone-deep) 82%,
+    var(--ds-stone-black) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* mobile — < 640px */
+@media (max-width: 639px) {
+  /* §3 amended 2026-08-06: 44px mark in a 64px bar at mobile */
+  .ds-site-header { height: 64px; padding-inline: var(--ds-gutter-mobile); }
+  .ds-site-header__mark img { height: 44px; width: auto; max-width: none; }
+  .ds-site-header__utils { gap: var(--ds-space-md); }
+  /* §3 gives the phone number to `sticky-call-bar` on mobile. */
+  .ds-site-header .ds-button-call { display: none; }
+  .ds-sticky-call-bar { display: flex; }
+  .ds-index-column { columns: 1; }
+  .ds-form-panel { padding: 24px; }
+  .ds-settlements { padding-block: var(--ds-space-xxl); }
+
+  .ds-sequence-section { padding-block: var(--ds-space-xxl); }
+  .ds-premises { padding-block: var(--ds-space-xxl); }}
+
+/* ---- §3 sequence-step: collapse below 1025px --------------------------------
+   The alternating timeline needs two usable half-columns; under 1025px there is
+   not enough width for text to run outward from a centre rail without the
+   measure collapsing. It becomes a single left-rail column with every step on
+   one side, per the §3 amendment. */
+@media (max-width: 1024px) {
+
+  /* ---- #5 — the statement, single column ----------------------------------
+     The heading steps display-xl -> display-l. The three-column grid collapses
+     to one, and the vertical divisions rotate to horizontal ones between the
+     paragraphs — the same device and the same elements, turned 90°, so the
+     three-beat division survives the collapse instead of disappearing with the
+     columns. Rhythm keeps its desktop proportions at phone scale. */
+  .ds-statement__heading {
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.12;
+    letter-spacing: 0.005em;
+    margin-bottom: 56px;
+  }
+  .ds-statement__columns {
+    grid-template-columns: 1fr;
+    margin-bottom: 56px;
+  }
+  /* 32px of air on each side of every divider */
+  .ds-statement__col {
+    padding: 32px 0;
+  }
+  .ds-statement__col:first-child { padding-top: 0; }
+  .ds-statement__col:last-child  { padding-bottom: 0; }
+  .ds-statement__col + .ds-statement__col { padding-left: 0; }
+
+  /* Same pseudo-element, re-laid as a horizontal rule across the column top */
+  .ds-statement__col + .ds-statement__col::before {
+    top: 0; bottom: auto; left: 0; right: 0;
+    width: auto; height: 1px;
+    transform-origin: left center;
+  }
+  .ds-js .ds-statement__col + .ds-statement__col::before { transform: scaleX(0); }
+  .ds-js .ds-statement__inner.is-drawn .ds-statement__col + .ds-statement__col::before {
+    transform: scaleX(1);
+  }
+
+  .ds-statement__cta { margin: 24px 0 32px; }
+
+  /* ---- #10 — the case index, single column --------------------------------
+     Three columns collapse to one and the vertical divisions rotate to
+     horizontal ones between entries — the same elements turned 90°, as in #5
+     and #15. The twelfth cell is empty and therefore has nothing to divide, so
+     it is removed outright rather than left to draw a stray rule under the
+     last entry. */
+  .ds-caseindex__heading {
+    font-size: clamp(24px, 2.4vw, 32px);      /* display-m */
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+  .ds-caseindex__grid { grid-template-columns: 1fr; }
+  .ds-caseindex__cell--empty { display: none; }
+
+  .ds-caseindex__cell,
+  .ds-caseindex__cell:nth-child(3n+1),
+  .ds-caseindex__cell:nth-child(3n) { padding: 24px 0; }
+
+  /* The row rules go: at one column the ::before below IS the divider.
+     Matched to the base rule's specificity (0-2-1) on purpose — a plain
+     `.ds-caseindex__cell::after` scores 0-1-1, lost to
+     `:nth-child(n+4)::after`, and left every cell from the fourth down
+     carrying two coincident 1px lines at the same y. Both are
+     rule-cut-dark at .19 alpha, so they composited to ~.34 and those
+     dividers rendered visibly brighter than the ones above them. */
+  .ds-caseindex__cell:nth-child(n+4)::after { content: none; }
+  .ds-caseindex__cell:first-child::before { content: none; }
+  .ds-caseindex__cell + .ds-caseindex__cell::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: auto; left: 0; right: 0;
+    width: auto; height: 1px;
+    background: var(--ds-rule-cut-dark);
+    transform-origin: left center;
+  }
+  .ds-js .ds-caseindex__cell + .ds-caseindex__cell::before { transform: scaleX(0); }
+  .ds-js .ds-caseindex__inner.is-drawn .ds-caseindex__cell + .ds-caseindex__cell::before {
+    transform: scaleX(1);
+  }
+
+  /* ---- #15 — the pivot -----------------------------------------------------
+     Heading steps display-l -> display-m. Body copy stays at body-lead: this is
+     the densest reasoning on the page and shrinking it on a phone would undo
+     the one thing the rebuild was for. Nothing else changes — with the hazard
+     band cut the section is a single measured column at every width. */
+  .ds-premises__heading {
+    font-size: clamp(24px, 2.4vw, 32px);      /* display-m */
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+
+  .ds-sequence-step {
+    grid-template-columns: 1fr;
+    padding-bottom: var(--ds-space-xl);
+  }
+  /* Rail moves from the container's centre to its left edge.
+
+     It also changes colour here. `rule-cut` on `stone-pale` measures 1.4:1 —
+     below the threshold at which a 1px line is perceptible at all, which is why
+     the spine read as missing on a phone. Widening it does not help; the deficit
+     is contrast, not weight. `ink-soft` measures 6.37:1 and stays neutral.
+     `bronze-ink` would also have read (4.91:1) and would tie the rail to the
+     numerals, but it counts against §2's two-bronze-per-viewport limit, and the
+     collapsed layout already shows bronze numerals — so the neutral wins.
+     Scoped to the collapsed layout: at desktop the rail is a long unbroken
+     central spine and reads at rule-cut, where §3's token stands. */
+  .ds-sequence-step__line { left: 0; background: var(--ds-ink-soft); }
+
+  .ds-sequence-step:nth-child(odd) .ds-sequence-step__slot,
+  .ds-sequence-step:nth-child(even) .ds-sequence-step__slot {
+    grid-column: 1;
+    flex-direction: row;          /* numeral adjacent to the rail, text outward */
+    text-align: left;
+    padding-left: var(--ds-space-lg);
+    padding-right: 0;
+  }
+  .ds-sequence-step__body { max-width: none; }
+  /* Collapsed layout is left-aligned throughout, so the numeral stops hugging
+     a centre rail and simply starts at the column edge. */
+  .ds-sequence-step:nth-child(odd)  .ds-sequence-step__num,
+  .ds-sequence-step:nth-child(even) .ds-sequence-step__num { text-align: left; width: auto; }
+
+  /* Head and foot stop centring — with every step on one side, a centred
+     heading would read as a different section from the timeline under it. */
+  .ds-sequence-section__head,
+  .ds-sequence-section__foot { max-width: none; margin-inline: 0; text-align: left; }
+  .ds-sequence-section__lead { margin-inline: 0; }
+  .ds-sequence-section__close { text-align: left; }}
+
+/* ---- §3 sequence-step: stack the numeral at phone widths --------------------
+   Must sit AFTER the 1024px block — both match at 375px and they share
+   specificity, so source order decides.
+
+   The numeral clamp floor is 64px. Beside the body that left ~23ch of text on a
+   375px screen, which is not a readable measure. Stacking the numeral above the
+   body keeps the specified numeral scale and returns the body to the full column.
+   The numeral is still hard against the rail and every step is still on one
+   side of it. */
+@media (max-width: 639px) {
+  .ds-sequence-step { padding-bottom: var(--ds-space-lg); }
+  .ds-sequence-step:nth-child(odd) .ds-sequence-step__slot,
+  .ds-sequence-step:nth-child(even) .ds-sequence-step__slot {
+    flex-direction: column;
+    align-items: stretch;          /* column flex would otherwise shrink-to-fit */
+    gap: var(--ds-space-xs);
+    padding-left: var(--ds-space-md);
+  }
+  .ds-sequence-step__num { line-height: 0.8; }}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .ds-index-column { columns: 2; }}
+
+/* ------------------------------------------------------ §5.6 REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-reveal { opacity: 1; transform: none; transition: none; }
+  .ds-reveal .ds-rule-bronze { transform: scaleX(1); transition: none; }
+  .ds-reveal.is-in .ds-sequence-step__line { transform: scaleY(1); transition: none; }
+
+  /* #5 — all instant, every rule at full extent. ds.js already lands
+     `is-drawn` immediately under reduced motion; this kills the transitions
+     with it. `transform: none` on the divisions covers both axes, so the one
+     declaration is correct at desktop and at mobile. */
+  .ds-js .ds-statement__heading,
+  .ds-js .ds-statement__columns { opacity: 1; transform: none; transition: none; }
+  .ds-js .ds-statement__rule { transform: scaleX(1); transition: none; }
+  .ds-js .ds-statement__col + .ds-statement__col::before { transform: none; transition: none; }
+  .ds-statement__tel::after { transition: none; }
+
+  /* #10 — all instant, every rule at full extent. `transform: none` on the
+     cell divisions covers both axes, so one declaration is right at desktop
+     and at mobile. */
+  .ds-js .ds-caseindex__heading,
+  .ds-js .ds-caseindex__lede,
+  .ds-js .ds-caseindex__grid,
+  .ds-js .ds-caseindex__foot { opacity: 1; transform: none; transition: none; }
+  .ds-js .ds-caseindex__rule { transform: scaleX(1); transition: none; }
+  .ds-js .ds-caseindex__cell::before,
+  .ds-js .ds-caseindex__cell::after { transform: none; transition: none; }
+  .ds-caseindex__tel::after { transition: none; }
+
+  /* #15 — same treatment: all instant, every rule at full extent. */
+  .ds-js .ds-premises__heading,
+  .ds-js .ds-premises__lede,
+  .ds-js .ds-premises__explain,
+  .ds-js .ds-premises__cta { opacity: 1; transform: none; transition: none; }
+  .ds-js .ds-premises__rule { transform: scaleX(1); transition: none; }
+  .ds-premises__tel::after { transition: none; }
+  .ds-badge-marquee__track { animation: none; }
+  .ds-preloader,
+  .ds-preloader__mark,
+  .ds-preloader__rule { transition: none; }
+  .ds-site-header { transition: none; }
+  .ds-sticky-call-bar { transition: none; }}
+
+/* ============================================================================
+   SECTION #9 — PRACTICE AREAS   ·   §3 `practice-areas`
+   Written from scratch 2026-08-06. Nothing here is inherited from the previous
+   implementations; all of their rules were deleted before this was written.
+
+   MECHANIC: a radio group. Single selection is enforced by HTML, so "two
+   expanded" and "none expanded" are unreachable rather than defended against.
+   Everything below keys off `:checked` and nothing else — one source of truth.
+
+   MOTION: `flex-grow` is the ONLY animated property (620ms, ease-inout). Every
+   other state change is instant, by spec. Content does not fade; it is revealed
+   by the width animation itself, because the content is pinned to the expanded
+   width and clipped by the panel's `overflow: hidden`.
+
+   Mobile-first: the base rules are the stacked layout; the horizontal louver is
+   added at 1025px.
+   ========================================================================= */
+
+/* Hairlines, not frames: the panels are separated by 1px rule-cut-dark rather
+   than a 2px gap. Two dark photographs meeting across a gap read as mush; a
+   rule reads as structure. The section takes the same rule top and bottom. */
+.ds-pa {
+  background: var(--ds-stone-deep);
+  /* No top border: it fell exactly at the #8 / band junction and drew the seam
+     the band exists to avoid. The bottom border stays — that one separates #9
+     from #10, which is a real boundary. */
+  border-bottom: 1px solid var(--ds-rule-cut-dark);
+}
+
+.ds-pa__row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Query container so each panel's image can be sized to the EXPANDED width
+     rather than its own, which is what makes collapsing crop the photograph
+     instead of squashing it. */
+  container-type: inline-size;
+}
+
+/* Visually hidden, still focusable and still in the tab order. */
+.ds-pa__radio {
+  position: absolute;
+  top: 0; left: 0;
+  width: 1px; height: 1px;
+  margin: 0; padding: 0; border: 0;
+  opacity: 0;
+  pointer-events: none;
+  appearance: none;
+}
+
+.ds-pa__panel {
+  position: relative;
+  overflow: hidden;                 /* the crop */
+  border-top: 1px solid var(--ds-rule-cut-dark);
+  display: block;
+  background: var(--ds-stone-deep);
+  border-radius: 0;
+  cursor: pointer;
+  flex: 0 0 76px;                   /* collapsed row */
+  transition: flex-basis 620ms var(--ds-ease-inout);
+}
+/* The section's own top border already draws the first edge */
+.ds-pa__panel:first-of-type { border-top: 0; }
+
+.ds-pa__img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  filter: saturate(0.55) contrast(1.06);
+  opacity: .34;
+}
+
+.ds-pa__scrimbase {
+  position: absolute;
+  left: 0; bottom: 0; right: 0; top: 0;
+  opacity: 0;
+  /* Flat across the FULL height of the text block — rule, name, description and
+     link — then ramps above it. The gradient must never ramp THROUGH the text;
+     that was what put the description at ~3:1. Alpha is solved, not nudged. */
+  background: linear-gradient(to top,
+    rgba(10, 22, 40, .78) 0%,
+    rgba(10, 22, 40, .78) 34%,
+    rgba(10, 22, 40, 0) 56%);
+}
+
+
+.ds-pa__num {
+  position: absolute;
+  top: 50%; left: var(--ds-gutter-mobile);
+  transform: translateY(-50%);
+  font-family: var(--ds-font-utility);
+  font-size: 12px; font-weight: 600; line-height: 1.4;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ds-bronze);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.ds-pa__vname {
+  position: absolute;
+  top: 50%; left: 62px; right: var(--ds-gutter-mobile);
+  transform: translateY(-50%);
+  font-family: var(--ds-font-display);
+  font-size: 20px; font-weight: 600; line-height: 1.2;
+  color: var(--ds-on-dark-soft);
+}
+
+.ds-pa__body {
+  position: absolute;
+  left: var(--ds-gutter-mobile); bottom: var(--ds-gutter-mobile);
+  width: calc(100% - (var(--ds-gutter-mobile) * 2));
+  opacity: 0;
+}
+.ds-pa__rule {
+  display: block;
+  width: 40px; height: 2px;
+  background: var(--ds-bronze);
+  margin-bottom: var(--ds-space-sm);
+}
+.ds-pa__name {
+  display: block;
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600; line-height: 1.2;
+  color: var(--ds-on-dark);
+}
+/* on-dark, not on-dark-soft: at 66% alpha the description measured ~3:1 over
+   the scrim's ramp. Alpha was the limiter, so the opaque token is the fix. */
+.ds-pa__desc {
+  display: block;
+  font-family: var(--ds-font-body);
+  font-size: 15px; line-height: 1.6;
+  color: var(--ds-on-dark);
+  margin-top: var(--ds-space-xs);
+  max-width: 42ch;
+}
+
+/* The name is a link to the practice-area page: on-dark, no rest underline,
+   a 1px bronze underline growing 0 -> 100% on hover/focus. */
+a.ds-pa__name {
+  position: relative;
+  text-decoration: none;
+  width: fit-content;
+}
+a.ds-pa__name::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--ds-bronze);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+a.ds-pa__name:hover::after,
+a.ds-pa__name:focus-visible::after { transform: scaleX(1); }
+
+/* `button-text` — 20px above the panel's bottom padding */
+.ds-pa__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-xs);
+  margin-top: 20px;
+  font-family: var(--ds-font-utility);
+  font-size: 12px; font-weight: 600; line-height: 1.4;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ds-bronze);
+  text-decoration: none;
+}
+.ds-pa__arrow {
+  width: 14px; height: 14px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  transition: transform var(--ds-t-fast) var(--ds-ease-out);
+}
+.ds-pa__link:hover .ds-pa__arrow,
+.ds-pa__link:focus-visible .ds-pa__arrow { transform: translateX(4px); }
+
+/* COLLAPSED: visibility:hidden, not opacity:0 — hidden links must leave the tab
+   order. The radio carries an explicit aria-label so its accessible name
+   survives the body being hidden. */
+.ds-pa__body { visibility: hidden; }
+
+/* Navy band above the panels. Same stone-deep as #8 and no border between them,
+   so #8 -> band -> panel row is one continuous dark region. The band is
+   full-width, so centring here is centring on the viewport, not on a container. */
+.ds-pa__band {
+  height: clamp(72px, 10vh, 104px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ds-stone-deep);
+}
+.ds-pa__heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--ds-font-display);
+  font-size: clamp(24px, 2.4vw, 32px);      /* display-m at mobile */
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ds-on-dark);
+}
+
+/* ---- STATE: driven only by :checked ------------------------------------- */
+
+.ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1),
+.ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2),
+.ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3),
+.ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) {
+  flex-basis: 380px;
+}
+.ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1) .ds-pa__body,
+.ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2) .ds-pa__body,
+.ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3) .ds-pa__body,
+.ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) .ds-pa__body { visibility: visible; }
+
+.ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1) :is(.ds-pa__scrimbase, .ds-pa__body),
+.ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2) :is(.ds-pa__scrimbase, .ds-pa__body),
+.ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3) :is(.ds-pa__scrimbase, .ds-pa__body),
+.ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) :is(.ds-pa__scrimbase, .ds-pa__body) {
+  opacity: 1;
+}
+.ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1) .ds-pa__img,
+.ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2) .ds-pa__img,
+.ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3) .ds-pa__img,
+.ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) .ds-pa__img {
+  opacity: 1;
+}
+/* The expanded panel carries no numeral and no vertical label — the body and,
+   on panel 01, the heading identify it. */
+.ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1) :is(.ds-pa__num, .ds-pa__vname),
+.ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2) :is(.ds-pa__num, .ds-pa__vname),
+.ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3) :is(.ds-pa__num, .ds-pa__vname),
+.ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) :is(.ds-pa__num, .ds-pa__vname) {
+  opacity: 0;
+}
+/* The heading belongs to panel 01, so it shows only while panel 01 is open. */
+
+/* Keyboard focus lands on the radio; the ring is drawn on its panel. */
+.ds-pa__radio:nth-of-type(1):focus-visible ~ .ds-pa__panel:nth-of-type(1),
+.ds-pa__radio:nth-of-type(2):focus-visible ~ .ds-pa__panel:nth-of-type(2),
+.ds-pa__radio:nth-of-type(3):focus-visible ~ .ds-pa__panel:nth-of-type(3),
+.ds-pa__radio:nth-of-type(4):focus-visible ~ .ds-pa__panel:nth-of-type(4) {
+  outline: 2px solid var(--ds-bronze);
+  outline-offset: -4px;
+}
+
+/* ---- DESKTOP: the horizontal louver (>= 1025px) -------------------------- */
+/* The text block is a larger share of a 380px mobile row than of a 648px
+   desktop panel — measured at 49.9% against 28.8% — so the plateau has to run
+   further before it ramps. Desktop's 34% would let the gradient pass through
+   the name and rule here. */
+.ds-pa__scrimbase {
+  background: linear-gradient(to top,
+    rgba(10, 22, 40, .78) 0%,
+    rgba(10, 22, 40, .78) 54%,
+    rgba(10, 22, 40, 0) 74%);
+}
+
+@media (min-width: 1025px) {
+  .ds-pa__band { height: clamp(96px, 12vh, 152px); }
+  .ds-pa__heading { font-size: clamp(34px, 4vw, 56px); }   /* display-l */
+
+  .ds-pa__scrimbase {
+    background: linear-gradient(to top,
+      rgba(10, 22, 40, .78) 0%,
+      rgba(10, 22, 40, .78) 34%,
+      rgba(10, 22, 40, 0) 56%);
+  }
+  .ds-pa__row {
+    flex-direction: row;
+    height: clamp(560px, 72vh, 760px);
+    gap: 0;                          /* the rules do the separating */
+  }
+  .ds-pa__panel {
+    flex: 14 1 0%;
+    transition: flex-grow 620ms var(--ds-ease-inout);
+    border-top: 0;
+    border-left: 1px solid var(--ds-rule-cut-dark);
+  }
+  .ds-pa__panel:first-of-type { border-left: 0; }
+  /* Pinned to the expanded width so collapsing crops rather than squashes */
+  .ds-pa__img { width: 58cqw; max-width: none; }
+  .ds-pa__scrimbase { width: 58cqw; right: auto; }
+
+  .ds-pa__num {
+    top: 40px; left: 40px;
+    transform: none;
+  }
+  .ds-pa__vname {
+    top: 50%; left: 50%; right: auto;
+    transform: translate(-50%, -50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+  }
+  .ds-pa__body {
+    left: 40px; bottom: 40px;
+    width: calc(58cqw - 80px);
+  }
+
+  .ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1),
+  .ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2),
+  .ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3),
+  .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) {
+    flex-basis: 0%;
+    flex-grow: 58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-pa__panel { transition: none; }
+}

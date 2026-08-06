@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+._*
+
+# Editor / tooling scratch — not part of the site
+.claude/
+.codex/
+.cursor/
+.impeccable/
+
+# Reference material, intentionally not published
+original-untouched/
