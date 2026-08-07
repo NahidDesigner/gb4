@@ -10906,3 +10906,15 @@
     margin: 2rem auto 0;
   }
 }
+
+/* EDIT 45 — Desktop settlement card amount breathing room
+   Desktop QA: the result amounts were filling too much of each case-result
+   card, leaving the right edge cramped. Keep the case-results card language,
+   but scale the amount down enough to breathe inside the fixed four-card rail. */
+@media (min-width: 981px) {
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__amount {
+    font-size: clamp(2.8rem, 3.55vw, 4rem);
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+  }
+}
