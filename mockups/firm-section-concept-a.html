@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GB Law Firm — Opening Section Concept A</title>
+<style>
+  @font-face{
+    font-family:"Archivo Narrow";
+    font-style:normal;
+    font-weight:700;
+    font-display:swap;
+    src:url("../assets/fonts/archivo-narrow-latin-700-normal.woff2") format("woff2");
+  }
+  @font-face{
+    font-family:"Archivo Narrow";
+    font-style:normal;
+    font-weight:600;
+    font-display:swap;
+    src:url("../assets/fonts/archivo-narrow-latin-600-normal.woff2") format("woff2");
+  }
+  @font-face{
+    font-family:"Source Sans 3";
+    font-style:normal;
+    font-weight:400;
+    font-display:swap;
+    src:url("../assets/fonts/source-sans-3-latin-400-normal.woff2") format("woff2");
+  }
+  @font-face{
+    font-family:"Source Sans 3";
+    font-style:normal;
+    font-weight:700;
+    font-display:swap;
+    src:url("../assets/fonts/source-sans-3-latin-800-normal.woff2") format("woff2");
+  }
+
+  :root{
+    --navy:#0A1628;
+    --navy-2:#132540;
+    --navy-3:#06101F;
+    --gold:#C9A227;
+    --gold-soft:#E7CE84;
+    --paper:#F2F0EB;
+    --paper-2:#E8ECEA;
+    --mist:#D3D8D6;
+    --ink:#091629;
+    --body:#243A52;
+    --rule:rgba(10,22,40,.16);
+    --rule-dark:rgba(231,206,132,.28);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    background:#111827;
+    color:var(--ink);
+    font-family:"Source Sans 3",system-ui,sans-serif;
+  }
+
+  .frame{
+    width:1920px;
+    height:980px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 20% 98%, rgba(201,162,39,.18), transparent 26rem),
+      linear-gradient(110deg, var(--paper) 0 54%, var(--paper-2) 54% 75%, var(--navy) 75% 100%);
+    position:relative;
+  }
+
+  .frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, transparent 0 8%, rgba(10,22,40,.12) 8% calc(8% + 1px), transparent calc(8% + 1px) 100%),
+      linear-gradient(90deg, transparent 0 70.5%, rgba(201,162,39,.55) 70.5% calc(70.5% + 1px), transparent calc(70.5% + 1px) 100%),
+      linear-gradient(180deg, transparent 0 6%, rgba(10,22,40,.14) 6% calc(6% + 1px), transparent calc(6% + 1px) 100%),
+      linear-gradient(180deg, transparent 0 89.5%, rgba(10,22,40,.12) 89.5% calc(89.5% + 1px), transparent calc(89.5% + 1px) 100%);
+    pointer-events:none;
+  }
+
+  .frame::after{
+    content:"";
+    position:absolute;
+    right:-8rem;
+    top:0;
+    width:42rem;
+    height:100%;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.08), transparent 24%),
+      linear-gradient(138deg, transparent 0 41%, rgba(201,162,39,.16) 41% calc(41% + 1px), transparent calc(41% + 1px) 100%);
+    opacity:.78;
+  }
+
+  .section{
+    position:relative;
+    z-index:1;
+    width:min(1520px, calc(100% - 220px));
+    margin:0 auto;
+    height:100%;
+    display:grid;
+    grid-template-columns:minmax(480px,.82fr) minmax(620px,1fr);
+    column-gap:84px;
+    align-items:center;
+  }
+
+  .lead{
+    align-self:center;
+    display:grid;
+    grid-template-rows:auto auto auto;
+    gap:38px;
+  }
+
+  h1{
+    margin:0;
+    max-width:640px;
+    font-family:"Archivo Narrow",Arial,sans-serif;
+    font-size:84px;
+    line-height:.92;
+    letter-spacing:-.035em;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+
+  .proof-card{
+    width:468px;
+    min-height:340px;
+    padding:54px 54px 48px;
+    display:grid;
+    align-content:center;
+    position:relative;
+    color:#fff;
+    background:
+      linear-gradient(140deg, transparent 0 68%, rgba(211,216,214,.1) 68% 100%),
+      linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+      var(--navy);
+    box-shadow:
+      0 28px 56px rgba(10,22,40,.16),
+      inset 0 1px 0 rgba(255,255,255,.08);
+  }
+
+  .proof-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:5px;
+    height:100%;
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold),var(--gold-soft));
+  }
+
+  .proof-card::after{
+    content:"";
+    position:absolute;
+    left:54px;
+    right:54px;
+    bottom:38px;
+    height:1px;
+    background:linear-gradient(90deg,var(--gold),transparent);
+  }
+
+  .proof-card p{
+    margin:0;
+    max-width:28ch;
+    font-size:28px;
+    line-height:1.42;
+    color:#F8FAFC;
+  }
+
+  .micro-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    max-width:590px;
+    padding-top:8px;
+    color:#152238;
+    font-weight:700;
+    font-size:18px;
+  }
+  .micro-row::before{
+    content:"";
+    width:80px;
+    height:2px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    flex:none;
+  }
+
+  .right{
+    align-self:center;
+    display:grid;
+    grid-template-columns:1fr 220px;
+    grid-template-rows:auto auto auto;
+    gap:30px 34px;
+  }
+
+  .copy-panel{
+    position:relative;
+    padding:36px 40px 34px;
+    background:rgba(242,240,235,.76);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+
+  .copy-panel.primary{
+    grid-column:1 / 3;
+    padding-right:260px;
+    min-height:210px;
+  }
+
+  .copy-panel.secondary{
+    grid-column:1 / 2;
+    min-height:220px;
+  }
+
+  .copy-panel p{
+    margin:0;
+    max-width:70ch;
+    color:var(--body);
+    font-size:21px;
+    line-height:1.62;
+  }
+
+  .stamp{
+    grid-column:2 / 3;
+    grid-row:2 / 3;
+    align-self:stretch;
+    min-height:220px;
+    display:grid;
+    place-items:center;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
+      var(--navy);
+    border:1px solid rgba(201,162,39,.46);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .stamp::before{
+    content:"";
+    position:absolute;
+    inset:28px;
+    border-top:1px solid rgba(231,206,132,.35);
+    border-bottom:1px solid rgba(231,206,132,.35);
+  }
+
+  .stamp img{
+    width:116px;
+    height:auto;
+    display:block;
+    filter:drop-shadow(0 14px 24px rgba(0,0,0,.32));
+  }
+
+  .stamp i{
+    position:absolute;
+    right:32px;
+    bottom:28px;
+    width:54px;
+    height:54px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(231,206,132,.62);
+    border-radius:50%;
+    font-style:normal;
+    color:var(--gold-soft);
+    font-size:27px;
+  }
+
+  .address{
+    grid-column:1 / 3;
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    padding:0 0 0 36px;
+    border-top:1px solid rgba(10,22,40,.2);
+    color:var(--ink);
+    font-size:18px;
+    font-weight:800;
+  }
+  .address .go{
+    width:84px;
+    align-self:stretch;
+    display:grid;
+    place-items:center;
+    background:var(--navy);
+    color:var(--gold-soft);
+    font-size:34px;
+  }
+
+  .route{
+    position:absolute;
+    left:96px;
+    right:80px;
+    top:110px;
+    height:1px;
+    background:linear-gradient(90deg,rgba(10,22,40,.22),rgba(10,22,40,0) 42%,rgba(201,162,39,.45) 76%,rgba(201,162,39,0));
+  }
+
+  .route b{
+    position:absolute;
+    left:31%;
+    top:-4px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 9px rgba(201,162,39,.1);
+  }
+
+</style>
+</head>
+<body>
+  <main class="frame" aria-label="Opening firm section mockup">
+    <div class="route" aria-hidden="true"><b></b></div>
+    <section class="section">
+      <div class="lead">
+        <h1>Long Island Car Accident Lawyers. Trial-Ready Representation.</h1>
+        <article class="proof-card">
+          <p>After a serious car accident, the insurance company is not on your side. Their adjusters are trained to minimize what your claim is worth, and their lawyers are paid to pay you less. The right attorney changes that.</p>
+        </article>
+        <div class="micro-row">The first call is free and confidential. No fees unless we win.</div>
+      </div>
+      <div class="right">
+        <article class="copy-panel primary">
+          <p>Phil Gurevich and Albert Buznik have spent years representing injured clients across Long Island. Over that time, we have built real relationships inside the local community. People who have worked with us regularly send their family and friends to our office. Not through a billboard or an ad, but through someone who has already been through the process and trusts our work.</p>
+        </article>
+        <article class="copy-panel secondary">
+          <p>Our attorneys are admitted to practice in New York state and federal courts. They handle every case with one core question in mind: what would this case be worth if we took it to trial? Preparing for that answer is what successfully changes the insurance company's settlement offer.</p>
+        </article>
+        <aside class="stamp" aria-label="GB Law Firm marker">
+          <div>
+            <img src="../assets/GBlogo-rev.png" width="560" height="406" alt="" />
+            <i aria-hidden="true">→</i>
+          </div>
+        </aside>
+        <a class="address" href="https://maps.google.com/?q=580+Oak+St+Copiague+NY+11726">
+          <span>580 Oak St, Copiague, NY 11726 — open in Maps</span>
+          <span class="go">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

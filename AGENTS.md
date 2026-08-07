@@ -1,5 +1,21 @@
 # GB LAW FIRM — PROJECT RULES
 
+## Current design direction override
+
+The active client direction supersedes the older `DESIGN.md` visual language. Use the
+new GB theme built in the current site: deep navy, restrained gold, premium legal texture,
+Source Sans/Atlas heading system, and the approved homepage hero/header behavior. Preserve
+the locked copy and HTML semantics unless the user explicitly asks otherwise.
+
+## Visual QA protocol
+
+For every section-level visual edit, add two checks beyond a normal browser reload:
+
+1. **Computed geometry check:** measure the changed elements for overflow, alignment,
+   visible item count, and key micro-placement details such as suffix/baseline offsets.
+2. **Paired screenshot check:** capture/review both desktop and mobile views for the
+   edited section before reporting back.
+
 ## Read first, every session
 
 **`DESIGN.md` at the repo root is the sole design authority.** Read it fully before any

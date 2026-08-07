@@ -111,15 +111,11 @@
 
       const horizontalIntent = event.shiftKey || absX > absY * 1.15;
 
+      if (!horizontalIntent) return;
+
       event.preventDefault();
-
-      if (horizontalIntent) {
-        const horizontalDelta = absX > 0 ? deltaX : deltaY;
-        settlementScroller.scrollLeft += horizontalDelta;
-        return;
-      }
-
-      window.scrollBy({ top: deltaY, left: 0, behavior: 'auto' });
+      const horizontalDelta = absX > 0 ? deltaX : deltaY;
+      settlementScroller.scrollLeft += horizontalDelta;
     }, { passive: false });
   }
 
