@@ -121,7 +121,7 @@ ATTORNEYS = {
  },
  "albert-buznik": {
    "name": "Albert Buznik", "jobTitle": "Founding Partner",
-   "image": f"{SITE}/assets/team-buznik.jpg",
+   "image": f"{SITE}/assets/team-buznik.webp",
    "alumniOf": "Nova Southeastern University, Shepard Broad Law Center",
    "knowsAbout": ["Personal injury litigation", "Medical malpractice",
                   "Commercial litigation", "Trial advocacy"],

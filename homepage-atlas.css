@@ -6671,6 +6671,100 @@
     rgba(10, 22, 40, 0.88);
 }
 
+/* EDIT 50 — Homepage-only light sticky header trial
+   The hero still owns the immersive dark/navy introduction. Once the sticky
+   header appears after the hero, it shifts to a quieter ivory glass surface so
+   the page breathes and the larger brand mark reads clearly. Scoped only to
+   `.atlas-home`; inner pages stay untouched until client approval. */
+.atlas-home .ds-site-header,
+.atlas-home .ds-site-header.is-solid {
+  height: 100px;
+  min-height: 100px;
+  color: var(--atlas-navy);
+  background:
+    linear-gradient(180deg, rgba(251, 249, 243, 0.96), rgba(244, 240, 231, 0.92));
+  border-bottom: 1px solid rgba(201, 162, 39, 0.58);
+  box-shadow: 0 18px 44px rgba(10, 22, 40, 0.13);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.atlas-home .ds-site-header__mark {
+  width: auto;
+}
+
+.atlas-home .ds-site-header__mark img {
+  height: 95px;
+  width: auto;
+}
+
+.atlas-home .ds-nav-trigger,
+.atlas-home .ds-site-header.is-solid .ds-nav-trigger {
+  color: var(--atlas-navy);
+}
+
+.atlas-home .ds-nav-trigger:hover,
+.atlas-home .ds-nav-trigger:focus-visible {
+  color: var(--atlas-gold);
+}
+
+.atlas-home .ds-button-call {
+  border-color: rgba(201, 162, 39, 0.76);
+  color: var(--atlas-navy);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.3)),
+    rgba(251, 249, 243, 0.8);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48),
+    0 8px 22px rgba(10, 22, 40, 0.08);
+}
+
+.atlas-home .ds-button-call:hover,
+.atlas-home .ds-button-call:focus-visible {
+  color: var(--atlas-navy);
+  border-color: var(--atlas-gold);
+  background:
+    linear-gradient(180deg, rgba(255, 244, 199, 0.72), rgba(255, 255, 255, 0.42)),
+    rgba(251, 249, 243, 0.88);
+}
+
+@media (min-width: 1600px) {
+  .atlas-home .ds-site-header,
+  .atlas-home .ds-site-header.is-solid {
+    height: 116px;
+    min-height: 116px;
+  }
+
+  .atlas-home .ds-site-header__mark img {
+    height: 108px;
+  }
+}
+
+@media (min-width: 2100px) {
+  .atlas-home .ds-site-header,
+  .atlas-home .ds-site-header.is-solid {
+    height: 124px;
+    min-height: 124px;
+  }
+
+  .atlas-home .ds-site-header__mark img {
+    height: 116px;
+  }
+}
+
+@media (max-width: 760px) {
+  .atlas-home .ds-site-header,
+  .atlas-home .ds-site-header.is-solid {
+    height: 80px;
+    min-height: 80px;
+    padding-inline: 1rem;
+  }
+
+  .atlas-home .ds-site-header__mark img {
+    height: 70px;
+  }
+}
+
 .atlas-home .cta-wrap .btn {
   border-color: rgba(201, 162, 39, 0.76);
   color: var(--atlas-gold-soft);
