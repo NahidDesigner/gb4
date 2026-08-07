@@ -10989,3 +10989,27 @@
     letter-spacing: -0.018em;
   }
 }
+
+/* EDIT 48 — FAQ typography family lock
+   The FAQ rebuild still had the older serif experiment on the heading,
+   questions, and generated numbers. The current site voice is Atlas Display
+   for headings and Atlas Text for reading copy, so lock the FAQ back into the
+   same system without touching the approved FAQ layout. */
+.atlas-home #questions,
+.atlas-home #questions .acc-body,
+.atlas-home #questions .acc-body p {
+  font-family: var(--atlas-body, "Atlas Text", sans-serif);
+}
+
+.atlas-home #questions::before,
+.atlas-home #questions .faq-title-accent {
+  font-family: var(--atlas-utility, "Atlas Text", sans-serif);
+}
+
+.atlas-home #questions .h2,
+.atlas-home #questions > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2,
+.atlas-home #questions summary,
+.atlas-home #questions summary span,
+.atlas-home #questions summary::before {
+  font-family: var(--atlas-display, "Atlas Display", sans-serif);
+}

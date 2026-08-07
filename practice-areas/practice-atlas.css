@@ -2090,3 +2090,27 @@ main #faq .acc-body p {
     line-height: 1.65;
   }
 }
+
+/* EDIT 25 — FAQ typography family lock
+   Practice pages share the same FAQ design as the homepage, but the latest
+   FAQ layer was still carrying the old serif stack. Keep the approved layout,
+   use Atlas Display for FAQ title/questions/numbers, and Atlas Text for copy. */
+main #faq,
+main #faq .acc-body,
+main #faq .acc-body p {
+  font-family: "Atlas Text", sans-serif;
+}
+
+main #faq::before,
+main #faq .faq-title-accent {
+  font-family: "Atlas Text", sans-serif;
+}
+
+main #faq .wrap--read > .h2,
+main #faq .h2,
+main #faq > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2,
+main #faq .acc summary,
+main #faq .acc summary span,
+main #faq .acc summary::before {
+  font-family: "Atlas Display", sans-serif;
+}

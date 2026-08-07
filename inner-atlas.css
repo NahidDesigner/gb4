@@ -3637,3 +3637,37 @@ main #faq .acc-body p {
     padding: 0 1rem 1.25rem 4.95rem;
   }
 }
+
+/* EDIT 26 — Sitewide FAQ typography family lock
+   Inner pages inherit the same FAQ pattern as the homepage, but earlier FAQ
+   experiments still forced the old serif stack. Keep the existing FAQ layout
+   and bring its typography back to the current Atlas site system. */
+main #faq,
+main #faq .acc-body,
+main #faq .acc-body p,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc-body,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc-body p {
+  font-family: "Atlas Text", sans-serif;
+}
+
+main #faq::before,
+main #faq .faq-title-accent,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq::before,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .faq-title-accent {
+  font-family: "Atlas Text", sans-serif;
+}
+
+main #faq .wrap--read > .h2,
+main #faq .h2,
+main #faq > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2,
+main #faq .acc summary,
+main #faq .acc summary span,
+main #faq .acc summary::before,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap--read > .h2,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .h2,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary span,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary::before {
+  font-family: "Atlas Display", sans-serif;
+}
