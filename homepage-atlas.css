@@ -6727,6 +6727,28 @@
    The page now keeps conversion in the header, real forms, final contact area,
    footer, and locked mobile action bar. Section endings return to content /
    resource rhythm instead of repeating "call/free review" after every beat. */
+.atlas-home .search {
+  --search-court-image: url("assets/towers.jpg");
+}
+
+.atlas-home .search .search-form button {
+  min-width: 0;
+  min-height: auto;
+  border: 0;
+  background: transparent;
+  color: var(--search-gold-soft);
+  box-shadow: none;
+  font-size: 0;
+}
+
+.atlas-home .search .search-form button:hover,
+.atlas-home .search .search-form button:focus-visible {
+  color: #fff;
+  border: 0;
+  background: rgba(201, 162, 39, 0.1);
+  box-shadow: none;
+}
+
 .atlas-home #firm .ds-statement__inner {
   grid-template-areas:
     "heading community"
@@ -9995,5 +10017,892 @@
   .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(3n),
   .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(4n) {
     flex-basis: calc((100% - (var(--settlement-card-gap) * 3)) / 4);
+  }
+}
+
+/* EDIT 40 — Testimonial theater
+   The review section was still behaving like a generic horizontal card rail.
+   This rebuild matches the new premium reference: proof/control column on the
+   left, one large testimonial chamber on the right, truthful phrase highlights,
+   and a blended Lady Justice art layer behind the featured story. */
+.atlas-home #clients.reviews-premium {
+  --rv-gold: #d5ad31;
+  --rv-gold-soft: #f4dd87;
+  --rv-cream: #fff9ec;
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(6.75rem, 9vw, 9.5rem);
+  color: var(--atlas-white);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(33, 107, 136, 0.28), transparent 30rem),
+    radial-gradient(circle at 88% 42%, rgba(213, 173, 49, 0.14), transparent 34rem),
+    linear-gradient(180deg, #071425 0%, #08182a 52%, #050f1d 100%);
+}
+
+.atlas-home #clients.reviews-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 26% 34%, rgba(255, 255, 255, 0.07), transparent 18rem),
+    radial-gradient(circle at 72% 42%, rgba(213, 173, 49, 0.09), transparent 24rem);
+  opacity: 0.72;
+}
+
+.atlas-home #clients .reviews-premium__inner {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.62fr);
+  gap: clamp(3rem, 5vw, 5.5rem);
+  align-items: center;
+  width: min(calc(100% - (2 * var(--atlas-gutter))), 1440px);
+  max-width: none;
+}
+
+.atlas-home #clients .rv-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-self: center;
+  width: 100%;
+  max-width: 27rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.atlas-home #clients .rv-kicker {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  width: min(100%, 15rem);
+  margin: 0 0 clamp(2.4rem, 4vw, 3.1rem);
+  color: var(--rv-gold-soft);
+  font-family: var(--atlas-utility);
+  font-size: clamp(0.76rem, 0.9vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.atlas-home #clients .rv-kicker::after {
+  content: "";
+  height: 1px;
+  background:
+    radial-gradient(circle at 50% 50%, #fff6c6 0 2px, transparent 3px),
+    linear-gradient(90deg, var(--rv-gold-soft), rgba(213, 173, 49, 0));
+  box-shadow: 0 0 18px rgba(244, 221, 135, 0.5);
+}
+
+.atlas-home #clients .rv-title {
+  display: grid;
+  gap: 0.08em;
+  margin: 0;
+  color: var(--atlas-white);
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(3.15rem, 5vw, 5.65rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.atlas-home #clients .rv-title span:last-child {
+  color: var(--rv-gold);
+  text-shadow: 0 12px 34px rgba(213, 173, 49, 0.2);
+}
+
+.atlas-home #clients .rv-intro {
+  max-width: 29rem;
+  margin: clamp(1.7rem, 3vw, 2.35rem) 0 clamp(2.1rem, 4vw, 3rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.15vw, 1.16rem);
+  line-height: 1.72;
+}
+
+.atlas-home #clients .rv-score {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem 1rem;
+  margin: 0 0 clamp(2rem, 3.2vw, 3rem);
+  padding: clamp(1.35rem, 2vw, 1.75rem) clamp(1.35rem, 2.4vw, 2rem);
+  border: 1px solid rgba(213, 173, 49, 0.58);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(9, 24, 42, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 24px 58px rgba(0, 0, 0, 0.24);
+}
+
+.atlas-home #clients .rv-g {
+  width: clamp(2rem, 3vw, 2.75rem);
+  height: clamp(2rem, 3vw, 2.75rem);
+}
+
+.atlas-home #clients .rv-score > b {
+  color: var(--atlas-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4rem, 5vw, 5.3rem);
+  font-weight: 700;
+  line-height: 0.84;
+}
+
+.atlas-home #clients .rv-score > span {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.atlas-home #clients .rvstars {
+  color: var(--rv-gold);
+}
+
+.atlas-home #clients .rv-score em {
+  max-width: 14rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--atlas-utility);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.atlas-home #clients .rv-acts {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.25rem 1.75rem;
+  align-items: center;
+}
+
+.atlas-home #clients .rv-nav {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.atlas-home #clients .rv-btn {
+  width: 3.45rem;
+  height: 3.45rem;
+  border: 1px solid rgba(213, 173, 49, 0.84);
+  border-radius: 999px;
+  color: var(--rv-gold-soft);
+  background: transparent;
+}
+
+.atlas-home #clients .rv-btn + .rv-btn {
+  border-left: 1px solid rgba(213, 173, 49, 0.84);
+}
+
+.atlas-home #clients .rv-btn:hover:not(:disabled),
+.atlas-home #clients .rv-btn:focus-visible:not(:disabled) {
+  color: #061323;
+  background: var(--rv-gold);
+  border-color: var(--rv-gold);
+}
+
+.atlas-home #clients .rv-btn:disabled {
+  opacity: 0.42;
+}
+
+.atlas-home #clients .rv-links {
+  display: grid;
+  gap: 0.9rem;
+  padding-left: 1.65rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.atlas-home #clients .rv-all {
+  justify-self: start;
+  width: fit-content;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(213, 173, 49, 0.72);
+  font-family: var(--atlas-utility);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.atlas-home #clients .rv-all--quiet {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.atlas-home #clients .rv-all:hover,
+.atlas-home #clients .rv-all:focus-visible {
+  color: var(--rv-gold-soft);
+}
+
+.atlas-home #clients .rv-stage {
+  position: relative;
+  min-width: 0;
+}
+
+.atlas-home #clients .rv-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: clamp(-1.5rem, -2vw, -1rem) clamp(-0.75rem, -1vw, -0.3rem) auto auto;
+  width: clamp(11rem, 23vw, 24rem);
+  height: clamp(8rem, 16vw, 17rem);
+  pointer-events: none;
+  opacity: 0.18;
+  background:
+    radial-gradient(circle at 32% 70%, transparent 0 3.2rem, rgba(255, 255, 255, 0.45) 3.3rem 3.45rem, transparent 3.55rem),
+    radial-gradient(circle at 78% 34%, transparent 0 3.8rem, rgba(255, 255, 255, 0.45) 3.9rem 4.05rem, transparent 4.15rem);
+}
+
+.atlas-home #clients .rvmarq {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  background:
+    linear-gradient(90deg, rgba(8, 20, 36, 0.96) 0 47%, rgba(8, 20, 36, 0.7) 72%, rgba(8, 20, 36, 0.42)),
+    url("assets/generated/lady-justice-review-bg.jpg") right center / cover no-repeat,
+    rgba(11, 28, 47, 0.74);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 30px 86px rgba(0, 0, 0, 0.3);
+}
+
+.atlas-home #clients .rvmarq::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -1.5rem;
+  bottom: 0;
+  width: min(44%, 27rem);
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.58;
+  background: url("assets/generated/lady-justice-statue.png") right bottom / contain no-repeat;
+  filter: saturate(1.15) contrast(1.08);
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 24%, #000 82%, transparent 100%);
+}
+
+.atlas-home #clients .rvmarq-run {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 0;
+}
+
+.atlas-home #clients .rvcard {
+  position: relative;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+  min-height: clamp(29rem, 41vw, 39rem);
+  padding: clamp(3.25rem, 5vw, 5rem) clamp(2.25rem, 5vw, 5.4rem);
+  border: 0;
+  border-radius: 0;
+  color: #ffffff;
+  background: transparent;
+  box-shadow: none;
+  scroll-snap-align: start;
+}
+
+.atlas-home #clients .rvcard .rvstars {
+  display: none;
+}
+
+.atlas-home #clients .rvcard::before {
+  content: "“";
+  display: block;
+  margin: 0 0 clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--rv-gold);
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(5.2rem, 8vw, 7.8rem);
+  font-weight: 600;
+  line-height: 0.56;
+}
+
+.atlas-home #clients .rvcard::after {
+  content: "”";
+  position: absolute;
+  right: clamp(6rem, 19vw, 18rem);
+  bottom: clamp(8rem, 8vw, 10rem);
+  color: var(--rv-gold);
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(5rem, 7vw, 7rem);
+  line-height: 0.5;
+}
+
+.atlas-home #clients .rvcard blockquote {
+  max-width: min(70ch, 75%);
+  margin: 0;
+}
+
+.atlas-home #clients .rvcard blockquote p {
+  margin: 0;
+  color: #ffffff;
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(2rem, 3.05vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.28;
+}
+
+.atlas-home #clients .rvcard mark {
+  color: var(--rv-gold);
+  background: transparent;
+  text-shadow: 0 12px 32px rgba(213, 173, 49, 0.18);
+}
+
+.atlas-home #clients .rvfoot {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(1rem, 2vw, 1.45rem);
+  align-items: center;
+  max-width: min(40rem, 66%);
+  margin-top: clamp(2.2rem, 4vw, 3.3rem);
+}
+
+.atlas-home #clients .rvfoot::before {
+  content: "";
+  width: 4.35rem;
+  height: 4.35rem;
+  border: 1px solid rgba(213, 173, 49, 0.8);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 34%, var(--rv-gold) 0 0.48rem, transparent 0.52rem),
+    radial-gradient(ellipse at 50% 74%, var(--rv-gold) 0 1.05rem, transparent 1.08rem),
+    rgba(7, 20, 36, 0.48);
+}
+
+.atlas-home #clients .rvwho {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.atlas-home #clients .rvwho b {
+  color: var(--rv-gold);
+  font-family: var(--atlas-utility);
+  font-size: clamp(0.86rem, 1vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.atlas-home #clients .rvwho em {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.94rem, 1.1vw, 1.06rem);
+  font-style: normal;
+  line-height: 1.4;
+}
+
+.atlas-home #clients .rvg {
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.atlas-home #clients .rv-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: clamp(2.2rem, 4vw, 3.25rem);
+}
+
+.atlas-home #clients .rv-dots button {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+}
+
+.atlas-home #clients .rv-dots button[aria-current="true"] {
+  background: var(--rv-gold);
+  box-shadow: 0 0 0 4px rgba(213, 173, 49, 0.15);
+}
+
+@media (max-width: 1020px) {
+  .atlas-home #clients .reviews-premium__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .atlas-home #clients .rv-head {
+    max-width: none;
+  }
+
+  .atlas-home #clients .rv-acts {
+    max-width: 37rem;
+  }
+
+  .atlas-home #clients .rvcard blockquote {
+    max-width: min(68ch, 76%);
+  }
+}
+
+@media (max-width: 700px) {
+  .atlas-home #clients.reviews-premium {
+    padding-block: clamp(3.75rem, 12vw, 5rem);
+  }
+
+  .atlas-home #clients .reviews-premium__inner {
+    width: min(calc(100% - 2rem), 420px);
+    gap: 1.65rem;
+  }
+
+  .atlas-home #clients .rv-head {
+    align-items: center;
+    text-align: center;
+  }
+
+  .atlas-home #clients .rv-kicker {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    width: 100%;
+    margin-bottom: 1.35rem;
+    font-size: 0.7rem;
+  }
+
+  .atlas-home #clients .rv-kicker::after {
+    width: 4rem;
+  }
+
+  .atlas-home #clients .rv-title {
+    font-size: clamp(2.35rem, 11vw, 3.1rem);
+  }
+
+  .atlas-home #clients .rv-intro {
+    margin: 1.15rem auto 1.45rem;
+    font-size: 1rem;
+  }
+
+  .atlas-home #clients .rv-score {
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 0.55rem 0.75rem;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+  }
+
+  .atlas-home #clients .rv-score > span {
+    grid-column: 1 / -1;
+    justify-items: center;
+  }
+
+  .atlas-home #clients .rv-score > b {
+    font-size: clamp(3.1rem, 16vw, 4rem);
+  }
+
+  .atlas-home #clients .rv-score em {
+    max-width: none;
+    text-align: center;
+  }
+
+  .atlas-home #clients .rv-acts {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    justify-items: center;
+  }
+
+  .atlas-home #clients .rv-nav {
+    order: 2;
+  }
+
+  .atlas-home #clients .rv-links {
+    order: 1;
+    padding-left: 0;
+    border-left: 0;
+    justify-items: center;
+  }
+
+  .atlas-home #clients .rv-all {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .atlas-home #clients .rvmarq {
+    border-radius: 14px;
+    background:
+      linear-gradient(180deg, rgba(8, 20, 36, 0.94) 0 46%, rgba(8, 20, 36, 0.76)),
+      url("assets/generated/lady-justice-review-bg.jpg") center bottom / cover no-repeat,
+      rgba(8, 20, 36, 0.9);
+  }
+
+  .atlas-home #clients .rvmarq::after {
+    right: 50%;
+    bottom: 0;
+    width: 78%;
+    height: 42%;
+    opacity: 0.32;
+    transform: translateX(54%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 28%, #000 70%, transparent 100%);
+  }
+
+  .atlas-home #clients .rvcard {
+    min-height: 560px;
+    padding: 2rem 1.25rem 2.25rem;
+    text-align: center;
+  }
+
+  .atlas-home #clients .rvcard::before {
+    margin-inline: auto;
+    font-size: 5rem;
+  }
+
+  .atlas-home #clients .rvcard::after {
+    right: 1.25rem;
+    bottom: 6.9rem;
+    font-size: 4.2rem;
+    opacity: 0.9;
+  }
+
+  .atlas-home #clients .rvcard blockquote {
+    max-width: 100%;
+  }
+
+  .atlas-home #clients .rvcard blockquote p {
+    font-size: clamp(1.45rem, 6.7vw, 1.86rem);
+    line-height: 1.34;
+  }
+
+  .atlas-home #clients .rvfoot {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    max-width: 100%;
+    margin-top: 1.85rem;
+  }
+
+  .atlas-home #clients .rvfoot::before {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
+
+  .atlas-home #clients .rv-dots {
+    margin-top: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-home #clients .rvmarq-run {
+    scroll-behavior: auto;
+  }
+}
+
+/* EDIT 41 — Testimonial theater QA reset
+   Remove inherited rail padding so each testimonial slide fills the chamber
+   cleanly without exposing a sliced next card at the right edge. */
+.atlas-home #clients.reviews-premium .rvmarq > .rvmarq-run {
+  padding-block: 0;
+  padding-inline: 0;
+  scroll-padding-inline: 0;
+}
+
+.atlas-home #clients.reviews-premium .rvmarq > .rvmarq-run > .rvcard {
+  flex-basis: 100%;
+  inline-size: 100%;
+  min-inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+@media (max-width: 700px) {
+  .atlas-home #clients.reviews-premium .rv-title {
+    font-size: clamp(2.35rem, 11vw, 3.1rem);
+  }
+}
+
+/* EDIT 42 — Testimonial reference fidelity
+   The first theater pass got the structure right, but older high-specificity
+   review rules were still winning the type cascade. This final layer restores
+   the reference mood: serif story title/quote, warmer highlight phrases, and a
+   Lady Justice figure that reads as intentionally blended instead of hidden. */
+.atlas-home #clients.reviews-premium .rv-title,
+.atlas-home #clients.reviews-premium .rv-title span,
+.atlas-home #clients.reviews-premium .rvcard::before,
+.atlas-home #clients.reviews-premium .rvcard::after {
+  font-family: "GB Hero Serif", Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.atlas-home #clients.reviews-premium .rvcard blockquote p,
+.atlas-home #clients.reviews-premium .rvcard blockquote mark {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.atlas-home #clients.reviews-premium .rv-title {
+  font-size: clamp(3.35rem, 5.65vw, 6.45rem);
+  font-weight: 600;
+  line-height: 0.94;
+}
+
+.atlas-home #clients.reviews-premium .rv-title span:last-child {
+  color: var(--rv-gold);
+  text-shadow: 0 12px 34px rgba(213, 173, 49, 0.2);
+}
+
+.atlas-home #clients.reviews-premium .rvmarq {
+  background:
+    linear-gradient(90deg, rgba(8, 20, 36, 0.98) 0 42%, rgba(8, 20, 36, 0.82) 62%, rgba(8, 20, 36, 0.34) 100%),
+    url("assets/generated/lady-justice-review-bg.jpg") right center / cover no-repeat,
+    rgba(11, 28, 47, 0.82);
+}
+
+.atlas-home #clients.reviews-premium .rvmarq::after {
+  opacity: 0.8;
+  filter: saturate(1.35) brightness(1.22) contrast(1.14);
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 86%, transparent 100%);
+}
+
+.atlas-home #clients.reviews-premium .rvcard blockquote p {
+  font-size: clamp(2.05rem, 2.72vw, 3.05rem);
+  font-weight: 400;
+  line-height: 1.22;
+}
+
+.atlas-home #clients.reviews-premium .rvcard mark {
+  color: var(--rv-gold);
+  background: transparent;
+  text-shadow: 0 10px 30px rgba(213, 173, 49, 0.22);
+}
+
+@media (max-width: 1020px) {
+  .atlas-home #clients.reviews-premium .rv-title {
+    font-size: clamp(3.15rem, 8vw, 5rem);
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote p {
+    font-size: clamp(1.95rem, 4.8vw, 2.75rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .atlas-home #clients.reviews-premium .rv-title {
+    font-size: clamp(2.55rem, 12vw, 3.45rem);
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote p {
+    font-size: clamp(1.45rem, 6.1vw, 1.78rem);
+    line-height: 1.35;
+  }
+
+  .atlas-home #clients.reviews-premium .rvmarq::after {
+    opacity: 0.44;
+  }
+}
+
+/* EDIT 43 — Testimonial width + site type consistency
+   User QA: the featured review had too much unused right-side space, the
+   section title split awkwardly, and only the first review carried highlights.
+   This layer makes the testimonial chamber wider, returns the quote/title to
+   the site's established display voice, and prevents word-by-word title wraps. */
+.atlas-home #clients.reviews-premium .reviews-premium__inner {
+  grid-template-columns: minmax(18.5rem, 0.68fr) minmax(0, 1.92fr);
+  gap: clamp(2rem, 3vw, 3rem);
+  width: min(calc(100% - 4rem), 1500px);
+}
+
+.atlas-home #clients.reviews-premium .rv-head {
+  max-width: 21rem;
+}
+
+.atlas-home #clients.reviews-premium .rv-title,
+.atlas-home #clients.reviews-premium .rv-title span,
+.atlas-home #clients.reviews-premium .rvcard blockquote p,
+.atlas-home #clients.reviews-premium .rvcard blockquote mark {
+  font-family: "Atlas Display", "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+}
+
+.atlas-home #clients.reviews-premium .rv-title {
+  gap: 0;
+  font-size: clamp(2.8rem, 3.85vw, 4.4rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.atlas-home #clients.reviews-premium .rv-title span {
+  display: block;
+  white-space: nowrap;
+}
+
+.atlas-home #clients.reviews-premium .rvmarq {
+  background:
+    linear-gradient(90deg, rgba(8, 20, 36, 0.98) 0 36%, rgba(8, 20, 36, 0.86) 60%, rgba(8, 20, 36, 0.44) 100%),
+    url("assets/generated/lady-justice-review-bg.jpg") right center / cover no-repeat,
+    rgba(11, 28, 47, 0.82);
+}
+
+.atlas-home #clients.reviews-premium .rvmarq::after {
+  right: -0.65rem;
+  width: min(34%, 24rem);
+}
+
+.atlas-home #clients.reviews-premium .rvcard {
+  padding-inline: clamp(2.5rem, 4.4vw, 5.25rem);
+}
+
+.atlas-home #clients.reviews-premium .rvcard blockquote {
+  margin: clamp(2.45rem, 3.2vw, 3.35rem) 0 clamp(1.4rem, 2.2vw, 2rem);
+  max-width: min(86ch, 86%);
+}
+
+.atlas-home #clients.reviews-premium .rvcard blockquote p {
+  width: 100%;
+  max-width: none;
+  font-size: clamp(2.25rem, 3.05vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.atlas-home #clients.reviews-premium .rvcard mark {
+  font-weight: 700;
+}
+
+.atlas-home #clients.reviews-premium .rvcard::after {
+  right: clamp(3.25rem, 11vw, 11rem);
+}
+
+@media (max-width: 1020px) {
+  .atlas-home #clients.reviews-premium .reviews-premium__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-home #clients.reviews-premium .rv-head {
+    max-width: none;
+  }
+
+  .atlas-home #clients.reviews-premium .rv-title {
+    font-size: clamp(3rem, 7vw, 4.25rem);
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote {
+    max-width: min(72ch, 88%);
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote p {
+    font-size: clamp(2rem, 4.6vw, 2.85rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .atlas-home #clients.reviews-premium .rv-title {
+    font-size: clamp(2.22rem, 10.2vw, 2.72rem);
+    line-height: 0.96;
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard {
+    min-height: 0;
+    padding: 1.8rem 1.35rem 1.75rem;
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote {
+    margin: 1.2rem 0 0.95rem;
+    max-width: 100%;
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard blockquote p {
+    font-size: clamp(1.48rem, 6.45vw, 1.72rem);
+    line-height: 1.18;
+  }
+
+  .atlas-home #clients.reviews-premium .rvcard .rvfoot {
+    margin-top: 1.2rem;
+  }
+
+  .atlas-home #clients.reviews-premium .rvmarq::after {
+    width: 86%;
+    opacity: 0.34;
+  }
+}
+
+/* EDIT 44 — Real-device settlements mobile stack
+   Actual phone QA showed older settlement grid placement surviving in the
+   proof lockup, splitting the eyebrow left and the $100M+ figure right. On
+   phone, the proof area is a centered vertical composition every time. */
+@media (max-width: 760px) {
+  .atlas-home #settlements.settlements-premium .ds-settlements__landmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.45rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__proof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__eyebrow,
+  .atlas-home #settlements.settlements-premium .ds-settlements__figure,
+  .atlas-home #settlements.settlements-premium .ds-settlements__lead {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__eyebrow {
+    display: grid;
+    justify-items: center;
+    width: fit-content;
+    margin: 0 auto 1.2rem;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__figure {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: clamp(4.45rem, 21.5vw, 5.65rem);
+    letter-spacing: -0.068em;
+    transform: none;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__figure sup {
+    top: 0.03em;
+    margin-left: 0.04em;
+    font-size: 0.31em;
+    line-height: 1;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__figure::after {
+    left: 50%;
+    right: auto;
+    width: min(13.5rem, 82vw);
+    transform: translateX(-50%);
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-settlements__lead {
+    max-width: 20rem;
+    margin: 2rem auto 0;
   }
 }

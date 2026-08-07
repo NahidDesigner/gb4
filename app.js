@@ -261,6 +261,31 @@
   var searchHint = $('#searchHint');
 
   if (searchForm && searchInput && searchOut) {
+    var searchPanel = $('#search');
+    if (searchPanel && !searchPanel.querySelector('.search-shortcuts')) {
+      var shortcuts = document.createElement('nav');
+      shortcuts.className = 'search-shortcuts';
+      shortcuts.setAttribute('aria-label', 'Helpful links');
+      shortcuts.innerHTML = [
+        '<p class="search-shortcuts__label"><span></span>Helpful Links<span></span></p>',
+        '<div class="search-shortcuts__links">',
+        '<a href="/">Home</a>',
+        '<a href="/#firm">About Us</a>',
+        '<a href="/#practice">Practice Areas</a>',
+        '<a href="/our-team/">Our Attorneys</a>',
+        '<a href="/contact/">Contact Us</a>',
+        '</div>'
+      ].join('');
+
+      var homeLink = document.createElement('a');
+      homeLink.className = 'search-home';
+      homeLink.href = '/';
+      homeLink.innerHTML = 'Return to Homepage<span aria-hidden="true"></span>';
+
+      searchForm.insertAdjacentElement('afterend', shortcuts);
+      shortcuts.insertAdjacentElement('afterend', homeLink);
+    }
+
     // Only sections with a real heading are addressable; otherwise a result
     // renders with a raw class name as its title.
     var index = $$('main section[id], main header[id]').map(function (sec) {
