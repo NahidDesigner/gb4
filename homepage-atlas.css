@@ -10918,3 +10918,35 @@
     letter-spacing: -0.045em;
   }
 }
+
+/* EDIT 46 — Mobile settlement card centered content
+   Phone QA: the case-result card content was still using the desktop left
+   alignment and a narrow case-title measure. Mobile now treats each visible
+   case as one centered proof card, with the title using the full card width. */
+@media (max-width: 760px) {
+  .atlas-home #settlements.settlements-premium .ds-figure-cell,
+  .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(odd),
+  .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(even),
+  .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(3n),
+  .atlas-home #settlements.settlements-premium .ds-figure-cell:nth-child(4n) {
+    align-items: center;
+    text-align: center;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__amount,
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__case,
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__detail {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__case {
+    margin-inline: auto;
+    letter-spacing: 0.105em;
+  }
+
+  .atlas-home #settlements.settlements-premium .ds-figure-cell__detail {
+    margin-inline: auto;
+  }
+}

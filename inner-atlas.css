@@ -1284,6 +1284,48 @@ main:has(#results) .results-note b {
   }
 }
 
+/* EDIT 25 — Case Results mobile card alignment
+   Match the homepage settlement-card mobile correction: on narrow devices the
+   amount, case title, and detail read as one centered proof block. Desktop keeps
+   its current record-wall composition. */
+@media (max-width: 760px) {
+  main:has(#results) .results {
+    padding: clamp(0.95rem, 4.5vw, 1.25rem);
+  }
+
+  main:has(#results) .rcard,
+  main:has(#results) .rcard:nth-child(n) {
+    align-items: center;
+    justify-content: flex-start;
+    min-height: clamp(15.5rem, 58vw, 18.5rem);
+    padding: clamp(2.15rem, 8vw, 2.8rem) clamp(1.4rem, 6vw, 1.85rem);
+    text-align: center;
+  }
+
+  main:has(#results) .rcard-amt,
+  main:has(#results) .rcard-t,
+  main:has(#results) .rcard-d {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  main:has(#results) .rcard-amt {
+    font-size: clamp(3.25rem, 17vw, 4.65rem);
+    letter-spacing: -0.045em;
+  }
+
+  main:has(#results) .rcard-t {
+    margin-top: clamp(1.75rem, 7vw, 2.3rem);
+    letter-spacing: 0.105em;
+  }
+
+  main:has(#results) .rcard-d {
+    margin-top: 0.75rem;
+  }
+}
+
 /* ==========================================================================
    Testimonials — proof wall
    ==========================================================================
