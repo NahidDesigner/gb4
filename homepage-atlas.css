@@ -10950,3 +10950,42 @@
     margin-inline: auto;
   }
 }
+
+/* EDIT 47 — Mobile section heading scale guard
+   Phone QA: the premium reference sections were still letting several headings
+   behave like desktop billboards. Keep the approved visual system, but bring the
+   mobile scales back into a composed reading range. Also widen the No Fee CTA
+   title so it no longer stacks into a cramped narrow column. */
+@media (max-width: 760px) {
+  .atlas-home #casetypes.ds-caseindex .ds-caseindex__heading {
+    max-width: 13.6ch;
+    font-size: clamp(2.75rem, 11.4vw, 3.45rem);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+  }
+
+  .atlas-home #first48.ds-sequence-section .ds-sequence-section__heading {
+    max-width: 11.4ch;
+    font-size: clamp(2.55rem, 10.8vw, 3.25rem);
+    line-height: 0.96;
+    letter-spacing: -0.038em;
+  }
+
+  .atlas-home #process.sec .h2 {
+    max-width: 12.2ch;
+    font-size: clamp(2.45rem, 10.2vw, 3.2rem);
+    line-height: 0.96;
+    letter-spacing: -0.038em;
+  }
+
+  .atlas-home #process.sec::after {
+    font-size: clamp(6rem, 25vw, 7.5rem);
+  }
+
+  .atlas-home .cta-wrap .cta-h {
+    max-width: min(100%, 15.5ch);
+    font-size: clamp(1.55rem, 6.6vw, 2.05rem);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+  }
+}
