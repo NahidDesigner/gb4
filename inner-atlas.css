@@ -2748,6 +2748,10 @@ main:has(#index) .swidget-h {
   line-height: 1.72;
 }
 
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .dark .rte--light p {
+  color: rgba(246, 248, 246, 0.86);
+}
+
 :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .wrap--read {
   max-width: min(100%, 74rem);
 }
@@ -2779,8 +2783,19 @@ main:has(#index) .swidget-h {
   font-weight: 800;
 }
 
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .dark .rte-strong--light {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+    rgba(10, 22, 40, 0.5);
+  color: #fff;
+}
+
 :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .rte-strong .tel {
   color: var(--inner-gold);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) .dark .rte-strong--light .tel--light {
+  color: #f4d982;
 }
 
 main:has(#counties) .sa-jump {
