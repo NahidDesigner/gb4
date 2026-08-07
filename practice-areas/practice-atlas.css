@@ -1432,19 +1432,24 @@ main #faq .acc-body p {
   min-height: 46px;
   margin-left: clamp(1rem, 2vw, 1.5rem);
   padding: 0 1.35rem;
-  border: 1px solid var(--pa-gold);
+  border: 1px solid rgba(201, 162, 39, 0.72);
   border-radius: 999px;
-  background: var(--pa-gold);
-  color: var(--pa-atlantic);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 40, 0.72);
+  color: var(--pa-white);
   font-weight: 800;
   letter-spacing: 0.06em;
+  box-shadow: inset 0 -1px 0 rgba(201, 162, 39, 0.34);
 }
 
 .railhead .rh-call:hover,
 .railhead .rh-call:focus-visible {
   border-color: #f0d078;
-  background: #f0d078;
-  color: var(--pa-atlantic);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.07)),
+    rgba(10, 22, 40, 0.88);
+  color: var(--pa-white);
 }
 
 .railhead .rh-search:hover,
@@ -1905,19 +1910,26 @@ main #faq {
 
 main #faq::before {
   content: "FAQ";
-  position: relative;
+  position: absolute;
+  top: clamp(3.4rem, 5vw, 5.25rem);
   left: 50%;
   display: inline-flex;
   align-items: center;
-  gap: 1.1rem;
-  margin: 0 auto clamp(1.25rem, 2vw, 1.65rem);
+  justify-content: center;
+  width: clamp(9rem, 18vw, 13rem);
+  margin: 0;
   transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34)) left 50% / 3.2rem 1px no-repeat,
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34)) right 50% / 3.2rem 1px no-repeat;
   color: var(--pa-gold);
   font-family: "Atlas Text", sans-serif;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.28em;
   line-height: 1;
+  text-indent: 0.28em;
+  z-index: 2;
 }
 
 main #faq::after {
@@ -1925,8 +1937,7 @@ main #faq::after {
   position: absolute;
   inset: 0 0 auto;
   height: 24rem;
-  background:
-    linear-gradient(90deg, transparent calc(50% - 5.6rem), rgba(201, 162, 39, 0.25) calc(50% - 5.6rem) calc(50% - 2.4rem), transparent calc(50% - 2.4rem) calc(50% + 2.4rem), rgba(201, 162, 39, 0.25) calc(50% + 2.4rem) calc(50% + 5.6rem), transparent calc(50% + 5.6rem));
+  background: radial-gradient(circle at 50% 20%, rgba(201, 162, 39, 0.1), transparent 18rem);
   opacity: 0.55;
   pointer-events: none;
 }
@@ -1962,9 +1973,19 @@ main #faq > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2 {
   text-wrap: balance;
 }
 
-main #faq .h2::before,
-main #faq .h2::after {
+main #faq .h2::before {
   display: none;
+}
+
+main #faq .h2::after {
+  content: "";
+  display: block;
+  width: clamp(7rem, 15vw, 11rem);
+  height: 1px;
+  margin: clamp(1.15rem, 2vw, 1.55rem) auto 0;
+  background:
+    linear-gradient(90deg, transparent 0 42%, var(--pa-gold) 42% 58%, transparent 58% 100%),
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34));
 }
 
 main #faq .faq-title-accent {
@@ -1995,9 +2016,19 @@ main #faq .acc details:last-child {
 }
 
 main #faq .acc details[open] {
-  border-left: 6px solid var(--pa-gold);
+  border-left: 0;
   background: rgba(255, 255, 255, 0.58);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+main #faq .acc details[open]::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--pa-gold), rgba(201, 162, 39, 0.74));
+  box-shadow: 1px 0 0 rgba(201, 162, 39, 0.22);
+  pointer-events: none;
 }
 
 main #faq .acc summary {
@@ -2115,7 +2146,11 @@ main #faq .acc-body p {
   }
 
   main #faq .acc details[open] {
-    border-left-width: 4px;
+    border-left: 0;
+  }
+
+  main #faq .acc details[open]::before {
+    width: 1px;
   }
 
   main #faq .acc summary {

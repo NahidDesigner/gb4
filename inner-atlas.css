@@ -1,5 +1,21 @@
 @import url("practice-areas/practice-atlas.css?v=inner-import-2");
 
+@font-face {
+  font-family: "GB Editorial Serif";
+  src: url("assets/fonts/cinzel-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GB Editorial Serif";
+  src: url("assets/fonts/cinzel-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Inner-page Atlas overlay.
    This file is intentionally a layer after styles.css: it preserves each page's
    HTML, copy, schema, forms and JS, while removing the rejected competing-heading
@@ -508,19 +524,24 @@ main:not(:has(.hero)) {
   min-height: 46px;
   margin-left: clamp(1rem, 2vw, 1.5rem);
   padding: 0 1.35rem;
-  border: 1px solid #c9a227;
+  border: 1px solid rgba(201, 162, 39, 0.72);
   border-radius: 999px;
-  background: #c9a227;
-  color: var(--inner-atlantic);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 40, 0.72);
+  color: #fff;
   font-weight: 800;
   letter-spacing: 0.06em;
+  box-shadow: inset 0 -1px 0 rgba(201, 162, 39, 0.34);
 }
 
 .railhead .rh-call:hover,
 .railhead .rh-call:focus-visible {
   border-color: #f0d078;
-  background: #f0d078;
-  color: var(--inner-atlantic);
+  background:
+    linear-gradient(180deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.07)),
+    rgba(10, 22, 40, 0.88);
+  color: #fff;
 }
 
 .railhead .rh-search:hover,
@@ -1917,6 +1938,422 @@ main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:first-child
   z-index: 1;
 }
 
+/* EDIT 35 — Team index partner roster, rebuilt from the approved editorial
+   reference. Scoped to `.team-roster` so the individual attorney profile pages
+   keep their existing dark identity treatment. */
+main:has(.team-roster) .team-roster {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4.4rem, 7vw, 7.2rem) var(--pa-gutter, 1.25rem) clamp(5rem, 8vw, 8rem);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(201, 162, 39, 0.1), transparent 28rem),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 46%),
+    var(--inner-page);
+}
+
+main:has(.team-roster) .team-roster::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 28rem;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.1), transparent 13rem),
+    url("assets/towers.jpg") right 8% top 4rem / clamp(28rem, 42vw, 46rem) auto no-repeat;
+  opacity: 0.055;
+  pointer-events: none;
+}
+
+main:has(.team-roster) .team-roster > .wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1400px);
+  max-width: 1400px;
+  padding: 0;
+}
+
+main:has(.team-roster) .team-partner,
+main:has(.team-roster) .team-partner:nth-child(n) {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(20rem, 27.5rem) minmax(0, 1fr) clamp(5.25rem, 8vw, 8.5rem);
+  gap: clamp(3rem, 5.8vw, 6.25rem);
+  align-items: center;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+main:has(.team-roster) .team-partner__portrait,
+main:has(.team-roster) .team-partner .bio-plate,
+main:has(.team-roster) .team-partner .bio-plate:nth-child(n) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.03;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: block;
+  border: 1px solid rgba(201, 162, 39, 0.34);
+  border-top: 0;
+  border-image: none;
+  background: #fff;
+  box-shadow:
+    10px 10px 0 rgba(201, 162, 39, 0.78),
+    0 30px 72px rgba(10, 22, 40, 0.13);
+}
+
+main:has(.team-roster) .team-partner--dark .team-partner__portrait {
+  background:
+    radial-gradient(circle at 32% 28%, rgba(240, 208, 120, 0.1), transparent 17rem),
+    var(--inner-atlantic);
+}
+
+main:has(.team-roster) .team-partner--light .team-partner__portrait {
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    10px 10px 0 rgba(201, 162, 39, 0.32),
+    0 30px 72px rgba(10, 22, 40, 0.1);
+}
+
+main:has(.team-roster) .team-partner__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.24), transparent 48%),
+    radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.12), transparent 14rem);
+  pointer-events: none;
+}
+
+main:has(.team-roster) .team-partner__portrait img,
+main:has(.team-roster) .team-partner .bio-plate img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: grayscale(1) contrast(1.05);
+  transform: none;
+}
+
+main:has(.team-roster) .team-partner--dark .team-partner__portrait img {
+  object-position: center 20%;
+}
+
+main:has(.team-roster) .team-partner--light .team-partner__portrait img {
+  object-position: center 13%;
+}
+
+main:has(.team-roster) .team-partner__initials {
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  top: 4%;
+  color: rgba(201, 162, 39, 0.15);
+  font-family: "GB Editorial Serif", Georgia, serif;
+  font-size: clamp(6.2rem, 12vw, 10.5rem);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+main:has(.team-roster) .team-partner--dark .team-partner__initials {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+main:has(.team-roster) .team-partner__rail {
+  position: absolute;
+  left: -3.15rem;
+  top: clamp(2rem, 4vw, 3.3rem);
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  color: var(--inner-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  line-height: 1;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+main:has(.team-roster) .team-partner__rail::before,
+main:has(.team-roster) .team-partner__rail::after {
+  content: "";
+  width: 1px;
+  height: 4.3rem;
+  justify-self: center;
+  background: linear-gradient(180deg, transparent, var(--inner-gold), transparent);
+}
+
+main:has(.team-roster) .team-partner__body,
+main:has(.team-roster) .team-partner .bio-body {
+  position: relative;
+  align-self: center;
+  max-width: 56rem;
+  padding: clamp(0.75rem, 2vw, 1.3rem) clamp(0.25rem, 1vw, 0.8rem);
+}
+
+main:has(.team-roster) .team-partner__body::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  right: clamp(-2.5rem, -2.2vw, -1.25rem);
+  bottom: 18%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201, 162, 39, 0.75), transparent);
+}
+
+main:has(.team-roster) .team-partner .bio-role {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 clamp(1rem, 1.7vw, 1.45rem);
+  color: var(--inner-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+main:has(.team-roster) .team-partner .bio-role::before {
+  content: "";
+  width: 2.1rem;
+  height: 1px;
+  background: var(--inner-gold);
+}
+
+main:has(.team-roster) .team-partner .h2,
+main:has(.team-roster) .team-partner .bio-body .h2 {
+  position: relative;
+  max-width: none;
+  margin: 0 0 clamp(1.45rem, 2.4vw, 2rem);
+  color: var(--inner-atlantic);
+  font-family: "GB Editorial Serif", Georgia, serif;
+  font-size: clamp(3.3rem, 6.2vw, 5.6rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-transform: none;
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+main:has(.team-roster) .team-partner .h2::after {
+  content: "";
+  display: block;
+  width: clamp(4rem, 7vw, 6.2rem);
+  height: 1px;
+  margin-top: clamp(1rem, 1.7vw, 1.3rem);
+  background: linear-gradient(90deg, var(--inner-gold), rgba(201, 162, 39, 0));
+}
+
+main:has(.team-roster) .team-partner .bio-body > p:not(.bio-role):not(.bio-more) {
+  max-width: 68ch;
+  margin: 0;
+  color: #34495f;
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.04rem, 1.2vw, 1.14rem);
+  line-height: 1.72;
+}
+
+main:has(.team-roster) .team-partner .bio-more {
+  margin-top: clamp(1.65rem, 2.4vw, 2.15rem);
+}
+
+main:has(.team-roster) .team-partner .bio-more a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-bottom: 0.85rem;
+  color: var(--inner-atlantic);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+main:has(.team-roster) .team-partner .bio-more a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: clamp(4rem, 6vw, 5.5rem);
+  height: 1px;
+  background: var(--inner-gold);
+}
+
+main:has(.team-roster) .team-partner .bio-more .ic {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--inner-gold);
+  stroke-width: 2;
+}
+
+main:has(.team-roster) .team-partner__seal {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: clamp(4.8rem, 7vw, 6.4rem);
+  height: clamp(4.8rem, 7vw, 6.4rem);
+  color: rgba(201, 162, 39, 0.88);
+  border: 1px solid rgba(201, 162, 39, 0.42);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.26)),
+    rgba(201, 162, 39, 0.08);
+  clip-path: polygon(50% 0, 91% 17%, 91% 65%, 50% 100%, 9% 65%, 9% 17%);
+}
+
+main:has(.team-roster) .team-partner__seal .ic {
+  width: 2.35rem;
+  height: 2.35rem;
+  stroke-width: 1.4;
+}
+
+main:has(.team-roster) .team-roster__divider {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.1rem);
+  margin: clamp(3rem, 5.2vw, 4.7rem) 0;
+  color: var(--inner-gold);
+  font-family: "GB Editorial Serif", Georgia, serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.15rem);
+  line-height: 1;
+}
+
+main:has(.team-roster) .team-roster__divider::before,
+main:has(.team-roster) .team-roster__divider::after {
+  content: "";
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0), rgba(201, 162, 39, 0.7));
+}
+
+main:has(.team-roster) .team-roster__divider::after {
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.7), rgba(201, 162, 39, 0));
+}
+
+@media (max-width: 1100px) {
+  main:has(.team-roster) .team-partner,
+  main:has(.team-roster) .team-partner:nth-child(n) {
+    grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  main:has(.team-roster) .team-partner__seal {
+    display: none;
+  }
+
+  main:has(.team-roster) .team-partner__body::after {
+    content: none;
+  }
+
+  main:has(.team-roster) .team-partner__rail {
+    left: -2.15rem;
+  }
+}
+
+@media (max-width: 720px) {
+  main:has(.team-roster) .team-roster {
+    padding: 3.4rem var(--pa-gutter, 1.25rem) calc(5.6rem + env(safe-area-inset-bottom));
+  }
+
+  main:has(.team-roster) .team-roster > .wrap {
+    width: min(100%, 25rem);
+  }
+
+  main:has(.team-roster) .team-partner,
+  main:has(.team-roster) .team-partner:nth-child(n) {
+    grid-template-columns: 1fr;
+    gap: 1.55rem;
+  }
+
+  main:has(.team-roster) .team-partner__rail {
+    display: none;
+  }
+
+  main:has(.team-roster) .team-partner__rail::before,
+  main:has(.team-roster) .team-partner__rail::after {
+    content: none;
+  }
+
+  main:has(.team-roster) .team-partner__rail::after {
+    content: none;
+  }
+
+  main:has(.team-roster) .team-partner__portrait,
+  main:has(.team-roster) .team-partner .bio-plate,
+  main:has(.team-roster) .team-partner .bio-plate:nth-child(n) {
+    order: -1;
+    aspect-ratio: 1 / 1.06;
+    box-shadow:
+      7px 7px 0 rgba(201, 162, 39, 0.54),
+      0 22px 48px rgba(10, 22, 40, 0.13);
+  }
+
+  main:has(.team-roster) .team-partner__body,
+  main:has(.team-roster) .team-partner .bio-body {
+    padding: 0;
+  }
+
+  main:has(.team-roster) .team-partner .bio-role {
+    margin-bottom: 0.9rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+  }
+
+  main:has(.team-roster) .team-partner .bio-role::before {
+    width: 1.55rem;
+  }
+
+  main:has(.team-roster) .team-partner .h2,
+  main:has(.team-roster) .team-partner .bio-body .h2 {
+    font-size: clamp(2.75rem, 13vw, 4.35rem);
+    letter-spacing: -0.045em;
+  }
+
+  main:has(.team-roster) .team-partner .bio-body > p:not(.bio-role):not(.bio-more) {
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  main:has(.team-roster) .team-partner .bio-more a {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+  }
+
+  main:has(.team-roster) .team-roster__divider {
+    margin: 3.1rem 0;
+  }
+}
+
+main:has(.team-roster) #philip-gurevich.team-partner .bio-body .h2,
+main:has(.team-roster) #albert-buznik.team-partner .bio-body .h2 {
+  color: var(--inner-atlantic);
+  font-family: "GB Editorial Serif", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-transform: none;
+  text-shadow: none;
+}
+
 main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) {
   position: relative;
   z-index: 1;
@@ -2742,19 +3179,26 @@ main #faq {
 
 main #faq::before {
   content: "FAQ";
-  position: relative;
+  position: absolute;
+  top: clamp(3.4rem, 5vw, 5.25rem);
   left: 50%;
   display: inline-flex;
   align-items: center;
-  gap: 1.1rem;
-  margin: 0 auto clamp(1.25rem, 2vw, 1.65rem);
+  justify-content: center;
+  width: clamp(9rem, 18vw, 13rem);
+  margin: 0;
   transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34)) left 50% / 3.2rem 1px no-repeat,
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34)) right 50% / 3.2rem 1px no-repeat;
   color: var(--inner-gold);
   font-family: "Atlas Text", sans-serif;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.28em;
   line-height: 1;
+  text-indent: 0.28em;
+  z-index: 2;
 }
 
 main #faq::after {
@@ -2762,8 +3206,7 @@ main #faq::after {
   position: absolute;
   inset: 0 0 auto;
   height: 24rem;
-  background:
-    linear-gradient(90deg, transparent calc(50% - 5.6rem), rgba(201, 162, 39, 0.25) calc(50% - 5.6rem) calc(50% - 2.4rem), transparent calc(50% - 2.4rem) calc(50% + 2.4rem), rgba(201, 162, 39, 0.25) calc(50% + 2.4rem) calc(50% + 5.6rem), transparent calc(50% + 5.6rem));
+  background: radial-gradient(circle at 50% 20%, rgba(201, 162, 39, 0.1), transparent 18rem);
   opacity: 0.55;
   pointer-events: none;
 }
@@ -2799,9 +3242,19 @@ main #faq > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2 {
   text-wrap: balance;
 }
 
-main #faq .h2::before,
-main #faq .h2::after {
+main #faq .h2::before {
   display: none;
+}
+
+main #faq .h2::after {
+  content: "";
+  display: block;
+  width: clamp(7rem, 15vw, 11rem);
+  height: 1px;
+  margin: clamp(1.15rem, 2vw, 1.55rem) auto 0;
+  background:
+    linear-gradient(90deg, transparent 0 42%, var(--inner-gold) 42% 58%, transparent 58% 100%),
+    linear-gradient(90deg, rgba(201, 162, 39, 0.34), rgba(201, 162, 39, 0.34));
 }
 
 main #faq .faq-title-accent {
@@ -2832,9 +3285,19 @@ main #faq .acc details:last-child {
 }
 
 main #faq .acc details[open] {
-  border-left: 6px solid var(--inner-gold);
+  border-left: 0;
   background: rgba(255, 255, 255, 0.58);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+main #faq .acc details[open]::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--inner-gold), rgba(201, 162, 39, 0.74));
+  box-shadow: 1px 0 0 rgba(201, 162, 39, 0.22);
+  pointer-events: none;
 }
 
 main #faq .acc summary {
@@ -2952,7 +3415,11 @@ main #faq .acc-body p {
   }
 
   main #faq .acc details[open] {
-    border-left-width: 4px;
+    border-left: 0;
+  }
+
+  main #faq .acc details[open]::before {
+    width: 1px;
   }
 
   main #faq .acc summary {
@@ -2980,5 +3447,151 @@ main #faq .acc-body p {
   main #faq .acc-body p {
     font-size: 0.98rem;
     line-height: 1.65;
+  }
+}
+
+/* Service-area specificity lock: older local/county rules use `main:has(...)`
+   selectors, so the shared FAQ skin needs the same route weight here. */
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap--read,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap--read:has(> .h2) {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: min(100%, 1180px);
+  max-width: 1180px;
+  gap: clamp(2rem, 3.8vw, 3rem);
+  padding: 0;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap--read > .h2,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .h2 {
+  position: static;
+  top: auto;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  color: #081429;
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(3.2rem, 5.7vw, 5.85rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+  text-align: center;
+  text-transform: none;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .faq-title-accent {
+  display: block;
+  color: var(--inner-gold);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 28px 74px rgba(10, 22, 40, 0.08);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details {
+  border-top: 0;
+  border-bottom: 1px solid rgba(10, 22, 40, 0.14);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] {
+  border-left: 0;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary {
+  display: grid;
+  grid-template-columns: clamp(4.2rem, 8vw, 7rem) 1px minmax(0, 1fr) 3.1rem;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  min-height: clamp(5.05rem, 7.2vw, 6.25rem);
+  padding: 0 clamp(1.25rem, 3vw, 3.2rem);
+  color: #081429;
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary::before {
+  grid-column: 1;
+  color: var(--inner-gold);
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(2.45rem, 4.7vw, 4.25rem);
+  font-weight: 400;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary span {
+  grid-column: 3;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary::after {
+  grid-column: 2;
+  grid-row: 1;
+  background: rgba(201, 162, 39, 0.36);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .sign {
+  grid-column: 4;
+  grid-row: 1;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-color: rgba(201, 162, 39, 0.58);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .sign::before,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .sign::after {
+  background: var(--inner-gold);
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] .sign {
+  border-color: #081429;
+  background: #081429;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] .sign::before,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] .sign::after {
+  background: #fff;
+}
+
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc-body,
+:is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] .acc-body {
+  padding: 0 clamp(1.25rem, 3vw, 3.2rem) clamp(1.55rem, 3vw, 2.25rem) clamp(6.7rem, 12.7vw, 11.1rem);
+}
+
+@media (max-width: 700px) {
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .wrap--read > .h2,
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .h2 {
+    max-width: 9.5em;
+    font-size: clamp(2.35rem, 12vw, 3.35rem);
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary {
+    grid-template-columns: 3rem 1px minmax(0, 1fr) 2.35rem;
+    gap: 0.75rem;
+    min-height: 4.45rem;
+    padding: 0.85rem 0.9rem;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary::before {
+    font-size: 2.1rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .sign {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc-body,
+  :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc details[open] .acc-body {
+    padding: 0 1rem 1.25rem 4.95rem;
   }
 }
