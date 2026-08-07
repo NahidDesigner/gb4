@@ -149,6 +149,28 @@
     if (actionbar) actionbar.classList.add('is-up');
   }
 
+  /* ---------- Premium FAQ heading accents ---------------------------------
+     The FAQ sections keep their existing headings in the HTML for no-JS users.
+     When JS is available, split only the subject after "About" into the gold
+     display span used by the current GB visual language. */
+
+  $$('#questions .h2, #faq .h2').forEach(function (heading) {
+    if (heading.querySelector('.faq-title-accent')) return;
+    var text = heading.textContent.trim().replace(/\s+/g, ' ');
+    var marker = ' About ';
+    var i = text.indexOf(marker);
+    if (i === -1) return;
+    var lead = text.slice(0, i + marker.length);
+    var subject = text.slice(i + marker.length);
+    if (!subject) return;
+    heading.textContent = '';
+    heading.appendChild(document.createTextNode(lead));
+    var accent = document.createElement('span');
+    accent.className = 'faq-title-accent';
+    accent.textContent = subject;
+    heading.appendChild(accent);
+  });
+
   /* ---------- Carousels ----------------------------------------------------
      A scroll-snap track that already works with swipe, trackpad and keyboard
      before any of this runs. The buttons are an addition, not the mechanism. */

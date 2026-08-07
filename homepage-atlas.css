@@ -9199,3 +9199,257 @@
     height: 1.65rem;
   }
 }
+
+/* EDIT 31 — Premium numbered FAQ system
+   Reference-led FAQ rebuild for the new GB theme. Numbers are generated with
+   counters so the content stays clean and the same pattern can be reused on
+   inner pages. */
+.atlas-home #questions {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.5rem, 8vw, 8.5rem) var(--atlas-gutter);
+  background:
+    radial-gradient(circle at 50% 10%, rgba(201, 162, 39, 0.08), transparent 28rem),
+    linear-gradient(112deg, rgba(255, 255, 255, 0) 0 67%, rgba(220, 231, 231, 0.54) 67% 100%),
+    var(--atlas-paper);
+  color: #081429;
+}
+
+.atlas-home #questions::before {
+  content: "FAQ";
+  position: relative;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 0 auto clamp(1.25rem, 2vw, 1.65rem);
+  transform: translateX(-50%);
+  color: var(--atlas-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  line-height: 1;
+}
+
+.atlas-home #questions::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 24rem;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 5.6rem), rgba(201, 162, 39, 0.25) calc(50% - 5.6rem) calc(50% - 2.4rem), transparent calc(50% - 2.4rem) calc(50% + 2.4rem), rgba(201, 162, 39, 0.25) calc(50% + 2.4rem) calc(50% + 5.6rem), transparent calc(50% + 5.6rem));
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.atlas-home #questions .wrap,
+.atlas-home #questions > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: min(100%, 1180px);
+  max-width: 1180px;
+  gap: clamp(2rem, 3.8vw, 3rem);
+  padding: 0;
+}
+
+.atlas-home #questions .h2,
+.atlas-home #questions > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2 {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  color: #081429;
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(3.2rem, 5.7vw, 5.85rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+  text-align: center;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.atlas-home #questions .h2::before,
+.atlas-home #questions .h2::after {
+  display: none;
+}
+
+.atlas-home #questions .faq-title-accent {
+  display: block;
+  color: var(--atlas-gold);
+}
+
+.atlas-home #questions .acc {
+  counter-reset: gb-faq;
+  margin: 0 auto;
+  width: min(100%, 1080px);
+  border: 1px solid rgba(10, 22, 40, 0.16);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 28px 74px rgba(10, 22, 40, 0.08);
+}
+
+.atlas-home #questions details {
+  counter-increment: gb-faq;
+  position: relative;
+  border: 0;
+  border-bottom: 1px solid rgba(10, 22, 40, 0.14);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+}
+
+.atlas-home #questions details:last-child {
+  border-bottom: 0;
+}
+
+.atlas-home #questions details[open] {
+  border-left: 6px solid var(--atlas-gold);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.atlas-home #questions summary {
+  display: grid;
+  grid-template-columns: clamp(4.2rem, 8vw, 7rem) 1px minmax(0, 1fr) 3.1rem;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  align-items: center;
+  min-height: clamp(5.05rem, 7.2vw, 6.25rem);
+  padding: 0 clamp(1.25rem, 3vw, 3.2rem);
+  color: #081429;
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  text-transform: none;
+}
+
+.atlas-home #questions summary::-webkit-details-marker {
+  display: none;
+}
+
+.atlas-home #questions summary::before {
+  content: counter(gb-faq, decimal-leading-zero);
+  grid-column: 1;
+  color: var(--atlas-gold);
+  font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+  font-size: clamp(2.45rem, 4.7vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.atlas-home #questions summary span {
+  grid-column: 3;
+  min-width: 0;
+}
+
+.atlas-home #questions summary::after {
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  width: 1px;
+  align-self: stretch;
+  background: rgba(201, 162, 39, 0.36);
+}
+
+.atlas-home #questions .sign {
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(201, 162, 39, 0.58);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.atlas-home #questions .sign::before,
+.atlas-home #questions .sign::after {
+  background: var(--atlas-gold);
+}
+
+.atlas-home #questions details[open] .sign {
+  border-color: #081429;
+  background: #081429;
+}
+
+.atlas-home #questions details[open] .sign::before,
+.atlas-home #questions details[open] .sign::after {
+  background: #fff;
+}
+
+.atlas-home #questions details[open] .sign::after {
+  transform: scaleY(0);
+}
+
+.atlas-home #questions .acc-body,
+.atlas-home #questions details[open] .acc-body {
+  margin: 0;
+  padding: 0 clamp(1.25rem, 3vw, 3.2rem) clamp(1.55rem, 3vw, 2.25rem) clamp(6.7rem, 12.7vw, 11.1rem);
+  border: 0;
+  background: transparent;
+}
+
+.atlas-home #questions .acc-body p {
+  max-width: 76ch;
+  color: rgba(10, 22, 40, 0.82);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1rem, 1.08vw, 1.1rem);
+  line-height: 1.75;
+}
+
+@media (max-width: 700px) {
+  .atlas-home #questions {
+    padding-block: clamp(4.25rem, 16vw, 5.75rem);
+  }
+
+  .atlas-home #questions .wrap,
+  .atlas-home #questions > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) {
+    gap: 1.6rem;
+  }
+
+  .atlas-home #questions .h2,
+  .atlas-home #questions > .wrap.wrap--read:has(> .h2):has(> :not(.h2)) > .h2 {
+    max-width: 9.5em;
+    font-size: clamp(2.35rem, 12vw, 3.35rem);
+    line-height: 1;
+  }
+
+  .atlas-home #questions .acc {
+    width: 100%;
+  }
+
+  .atlas-home #questions details[open] {
+    border-left-width: 4px;
+  }
+
+  .atlas-home #questions summary {
+    grid-template-columns: 3rem 1px minmax(0, 1fr) 2.35rem;
+    gap: 0.75rem;
+    min-height: 4.45rem;
+    padding: 0.85rem 0.9rem;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+  }
+
+  .atlas-home #questions summary::before {
+    font-size: 2.1rem;
+  }
+
+  .atlas-home #questions .sign {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .atlas-home #questions .acc-body,
+  .atlas-home #questions details[open] .acc-body {
+    padding: 0 1rem 1.25rem 4.95rem;
+  }
+
+  .atlas-home #questions .acc-body p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+}
