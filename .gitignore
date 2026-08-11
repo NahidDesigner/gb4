@@ -13,7 +13,9 @@ restore-points/
 
 # Visual-QA captures — the AGENTS.md protocol generates paired desktop/mobile
 # shots for every section edit. Kept local; they are verification, not source.
+# Glob so new capture directories (qa-screenshots/, …) are covered on sight.
 screenshots/
+*screenshots/
 
 # Reference material, intentionally not published
 original-untouched/

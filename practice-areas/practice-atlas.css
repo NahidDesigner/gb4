@@ -6,6 +6,510 @@
   font-display: swap;
 }
 
+/* EDIT 39 — Terms You Will Hear: reference-matched dark legal stage
+   Replaces the earlier index/list composition with the supplied six-card
+   Lady Justice reference while preserving the page-specific ordered copy. */
+main #terms.terms-stage {
+  --terms-navy: #061321;
+  --terms-navy-2: #0a1a2b;
+  --terms-gold: #d1a423;
+  --terms-gold-soft: #ffe89a;
+  --terms-blue: #66a8ff;
+  --terms-ink: #ffffff;
+  --terms-muted: rgba(255, 255, 255, 0.78);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: 120px;
+  padding: clamp(2.65rem, 3.55vw, 3.85rem) 0 clamp(2.7rem, 3.55vw, 3.85rem);
+  background:
+    radial-gradient(circle at 52% 9%, rgba(212, 164, 35, 0.18), transparent 18rem),
+    radial-gradient(circle at 90% 0%, rgba(255, 218, 120, 0.15), transparent 21rem),
+    linear-gradient(180deg, #061321 0%, #071423 48%, #06111f 100%);
+  color: var(--terms-ink);
+}
+
+main #terms.terms-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url("../assets/generated/terms-legal-bg-v2.webp") right top / cover no-repeat;
+  filter: brightness(1.32) contrast(1.12) saturate(1.06);
+  opacity: 0.98;
+  pointer-events: none;
+}
+
+main #terms.terms-stage::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 12, 23, 0.98) 0%, rgba(4, 13, 24, 0.82) 33%, rgba(4, 13, 24, 0.22) 58%, rgba(4, 13, 24, 0.02) 78%, rgba(4, 13, 24, 0.18) 100%),
+    linear-gradient(180deg, rgba(4, 13, 24, 0.04) 0%, rgba(4, 13, 24, 0.12) 34%, rgba(4, 13, 24, 0.9) 48%, rgba(4, 13, 24, 0.98) 100%),
+    radial-gradient(circle at 16% 34%, rgba(255, 255, 255, 0.04) 0 1px, transparent 1.8px) 0 0 / 18px 18px,
+    radial-gradient(circle at 60% 32%, rgba(255, 213, 105, 0.12) 0 1px, transparent 2px) 0 0 / 42px 42px,
+    linear-gradient(180deg, transparent 0%, rgba(2, 8, 16, 0.28) 100%);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+main #terms.terms-stage .wrap {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 7rem), 1460px);
+  max-width: 1460px;
+}
+
+main #terms.terms-stage .index-head {
+  position: relative;
+  display: block;
+  width: min(100%, 31rem);
+  min-height: clamp(20rem, 26vw, 25.5rem);
+  padding: 0;
+  border: 0;
+}
+
+main #terms.terms-stage .index-head::before {
+  content: "TERMS YOU WILL HEAR";
+  display: block;
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0 1.55rem;
+  color: var(--terms-gold-soft);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.82rem, 0.82vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-transform: uppercase;
+  background: none;
+  box-shadow: none;
+}
+
+main #terms.terms-stage .index-head::after {
+  content: "";
+  display: block;
+  position: static;
+  width: clamp(3.85rem, 5vw, 4.75rem);
+  height: 2px;
+  margin: 0 0 clamp(1.65rem, 2.1vw, 2.2rem);
+  background: var(--terms-gold);
+  box-shadow: 0 0 18px rgba(255, 228, 135, 0.7);
+}
+
+main #terms.terms-stage .index-head .h2 {
+  display: block;
+  max-width: 8.75ch;
+  margin: 0;
+  color: var(--terms-ink);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4.4rem, 5.75vw, 6.05rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: none;
+}
+
+main #terms.terms-stage .index-head .h2 span {
+  display: block;
+}
+
+main #terms.terms-stage .index-head .h2 span:nth-child(2) {
+  color: var(--terms-gold);
+}
+
+main #terms.terms-stage .index-head .h2::after {
+  display: none;
+}
+
+main #terms.terms-stage .index-head > .lede {
+  position: relative;
+  max-width: 19.5rem;
+  margin: clamp(1.55rem, 2.1vw, 2.1rem) 0 0;
+  padding: 0 0 0 clamp(1.15rem, 1.4vw, 1.45rem);
+  border-left: 1px solid var(--terms-gold);
+  box-shadow: -1px 0 0 rgba(255, 232, 154, 0.16);
+  color: rgba(255, 255, 255, 0.84);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.08rem, 1.24vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.36;
+}
+
+main #terms.terms-stage .index-head > .lede::before {
+  content: none;
+}
+
+main #terms.terms-stage .cindex {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.15rem, 1.65vw, 1.65rem) clamp(1.5rem, 2vw, 2rem);
+  margin: clamp(-1.4rem, -1.1vw, -0.65rem) 0 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+
+main #terms.terms-stage .terms-card {
+  --terms-accent: var(--terms-gold);
+  --terms-accent-strong: var(--terms-gold-soft);
+  position: relative;
+  display: block;
+  min-height: clamp(15.75rem, 17vw, 18.25rem);
+  padding: clamp(2.15rem, 2.55vw, 2.75rem) clamp(2rem, 2.55vw, 2.75rem) clamp(1.95rem, 2.35vw, 2.45rem) clamp(7rem, 7.7vw, 7.75rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--terms-accent) 54%, transparent);
+  border-radius: 13px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 38%),
+    radial-gradient(circle at 15% 8%, rgba(255, 255, 255, 0.07), transparent 14rem),
+    radial-gradient(circle at 98% 100%, color-mix(in srgb, var(--terms-accent) 28%, transparent), transparent 6.2rem),
+    rgba(5, 14, 26, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 -1px 22px color-mix(in srgb, var(--terms-accent) 28%, transparent),
+    0 24px 55px rgba(0, 0, 0, 0.32);
+}
+
+main #terms.terms-stage .terms-card--blue {
+  --terms-accent: var(--terms-blue);
+  --terms-accent-strong: #a4cfff;
+}
+
+main #terms.terms-stage .terms-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.055) 0 1px, transparent 1.6px) 0 0 / 10px 10px,
+    linear-gradient(180deg, color-mix(in srgb, var(--terms-accent) 15%, transparent), transparent 33%);
+  opacity: 0.42;
+}
+
+main #terms.terms-stage .terms-card::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(2.85rem, 3.65vw, 4.05rem);
+  height: clamp(2.85rem, 3.65vw, 4.05rem);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, var(--terms-accent), var(--terms-accent-strong));
+  opacity: 0.68;
+  box-shadow: 0 0 22px color-mix(in srgb, var(--terms-accent) 42%, transparent);
+}
+
+main #terms.terms-stage .terms-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+main #terms.terms-stage .ci-n {
+  position: absolute;
+  left: 0;
+  top: clamp(1.45rem, 2vw, 2rem);
+  display: flex;
+  align-items: center;
+  width: clamp(5.15rem, 6.6vw, 6.8rem);
+  height: clamp(3.65rem, 4.7vw, 4.85rem);
+  padding-left: clamp(1.4rem, 1.85vw, 1.85rem);
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+  color: #fff;
+  background: linear-gradient(135deg, var(--terms-accent-strong), color-mix(in srgb, var(--terms-accent) 66%, #061321));
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.85rem, 2.35vw, 2.55rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.36);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--terms-accent) 42%, transparent);
+}
+
+main #terms.terms-stage .terms-card__icon {
+  position: absolute;
+  top: clamp(1.65rem, 2.2vw, 2.2rem);
+  right: clamp(1.65rem, 2.25vw, 2.25rem);
+  display: grid;
+  place-items: center;
+  width: clamp(3.5rem, 4.2vw, 4.3rem);
+  height: clamp(3.5rem, 4.2vw, 4.3rem);
+  border: 1px solid var(--terms-accent);
+  border-radius: 999px;
+  color: var(--terms-accent);
+  background: rgba(2, 10, 20, 0.35);
+  box-shadow:
+    inset 0 0 0 7px rgba(255, 255, 255, 0.025),
+    0 0 20px color-mix(in srgb, var(--terms-accent) 20%, transparent);
+}
+
+main #terms.terms-stage .terms-card__icon .ic {
+  width: 1.65rem;
+  height: 1.65rem;
+  stroke-width: 1.85;
+}
+
+main #terms.terms-stage .terms-card > div {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+main #terms.terms-stage .cindex h3 {
+  max-width: 14.5ch;
+  min-height: 2.15em;
+  margin: 0 4.3rem clamp(1.25rem, 1.45vw, 1.55rem) 0;
+  color: var(--terms-ink);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.33rem, 1.55vw, 1.72rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-transform: none;
+}
+
+main #terms.terms-stage .cindex h3::after {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 2px;
+  margin-top: clamp(0.78rem, 1vw, 0.95rem);
+  background: var(--terms-accent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--terms-accent) 52%, transparent);
+}
+
+main #terms.terms-stage .cindex p {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--terms-muted);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.88rem, 0.94vw, 0.98rem);
+  font-weight: 400;
+  line-height: 1.38;
+}
+
+main #terms.terms-stage .terms-card__chev {
+  position: absolute;
+  right: 0.78rem;
+  bottom: 0.55rem;
+  z-index: 2;
+  color: #fff;
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.35rem, 1.7vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: -0.18em;
+  line-height: 1;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--terms-accent) 70%, transparent);
+}
+
+main #terms.terms-stage .index-foot {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.35rem, 2vw, 2.2rem);
+  max-width: none;
+  margin: clamp(1.45rem, 1.9vw, 1.85rem) 0 0;
+  padding: clamp(1.45rem, 1.85vw, 1.85rem) clamp(1.7rem, 3vw, 3rem);
+  border: 1px solid rgba(209, 164, 35, 0.74);
+  border-radius: 11px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055), transparent 54%),
+    rgba(6, 18, 32, 0.78);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.02rem, 1.18vw, 1.16rem);
+  font-weight: 400;
+  line-height: 1.42;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 18px 44px rgba(0, 0, 0, 0.34);
+}
+
+main #terms.terms-stage .index-foot::before {
+  content: "";
+  position: absolute;
+  left: clamp(7.4rem, 9.25vw, 9.7rem);
+  top: 50%;
+  width: 1px;
+  height: calc(100% - 3.1rem);
+  background: rgba(209, 164, 35, 0.78);
+  transform: translateY(-50%);
+}
+
+main #terms.terms-stage .terms-stage__phone {
+  display: grid;
+  place-items: center;
+  width: clamp(3.75rem, 5.2vw, 5rem);
+  height: clamp(3.75rem, 5.2vw, 5rem);
+  border: 1px solid var(--terms-gold);
+  border-radius: 999px;
+  color: var(--terms-gold);
+  background: rgba(3, 12, 23, 0.42);
+  box-shadow: 0 0 20px rgba(209, 164, 35, 0.15);
+}
+
+main #terms.terms-stage .terms-stage__phone .ic {
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+main #terms.terms-stage .index-foot a {
+  color: var(--terms-gold-soft);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+main #terms.terms-stage .terms-stage__foot-copy {
+  max-width: 52rem;
+}
+
+main #terms.terms-stage .terms-stage__foot-call {
+  justify-self: end;
+  min-width: max-content;
+  color: #fff;
+  font-weight: 500;
+}
+
+@media (max-width: 1180px) {
+  main #terms.terms-stage .wrap {
+    width: min(calc(100% - 3rem), 920px);
+  }
+
+  main #terms.terms-stage .index-head {
+    min-height: 22rem;
+  }
+
+  main #terms.terms-stage .cindex {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  main #terms.terms-stage {
+    scroll-margin-top: 86px;
+    padding: 3.4rem 0 3rem;
+  }
+
+  main #terms.terms-stage::before {
+    background: url("../assets/generated/terms-legal-bg-v2.webp") right top / auto 25rem no-repeat;
+  }
+
+  main #terms.terms-stage::after {
+    background:
+      linear-gradient(90deg, rgba(3, 12, 23, 0.98) 0%, rgba(4, 13, 24, 0.86) 54%, rgba(4, 13, 24, 0.32) 100%),
+      linear-gradient(180deg, rgba(4, 13, 24, 0.04) 0%, rgba(4, 13, 24, 0.18) 22rem, rgba(4, 13, 24, 0.94) 31rem, rgba(4, 13, 24, 0.98) 100%),
+      radial-gradient(circle at 16% 34%, rgba(255, 255, 255, 0.04) 0 1px, transparent 1.8px) 0 0 / 18px 18px,
+      radial-gradient(circle at 60% 32%, rgba(255, 213, 105, 0.12) 0 1px, transparent 2px) 0 0 / 42px 42px,
+      linear-gradient(180deg, transparent 0%, rgba(2, 8, 16, 0.28) 100%);
+  }
+
+  main #terms.terms-stage .wrap {
+    width: min(calc(100% - 2rem), 440px);
+  }
+
+  main #terms.terms-stage .index-head {
+    width: 100%;
+    min-height: 26rem;
+    text-align: left;
+  }
+
+  main #terms.terms-stage .index-head .h2 {
+    max-width: 8ch;
+    font-size: clamp(4.1rem, 18vw, 5.5rem);
+    line-height: 0.9;
+  }
+
+  main #terms.terms-stage .index-head > .lede {
+    max-width: 18.5rem;
+    font-size: 1.04rem;
+  }
+
+  main #terms.terms-stage .cindex {
+    grid-template-columns: 1fr;
+    gap: 1.05rem;
+  }
+
+  main #terms.terms-stage .terms-card {
+    min-height: 17rem;
+    padding: 2.1rem 1.4rem 2.2rem 6.4rem;
+  }
+
+  main #terms.terms-stage .ci-n {
+    top: 1.15rem;
+    width: 4.95rem;
+    height: 3.45rem;
+    padding-left: 1.15rem;
+    font-size: 1.9rem;
+  }
+
+  main #terms.terms-stage .terms-card__icon {
+    top: 1.25rem;
+    right: 1.15rem;
+    width: 3.45rem;
+    height: 3.45rem;
+  }
+
+  main #terms.terms-stage .terms-card__icon .ic {
+    width: 1.42rem;
+    height: 1.42rem;
+  }
+
+  main #terms.terms-stage .cindex h3 {
+    margin-right: 3.7rem;
+    font-size: 1.32rem;
+    line-height: 1;
+  }
+
+  main #terms.terms-stage .cindex p {
+    max-width: 27ch;
+    font-size: 0.96rem;
+    line-height: 1.42;
+  }
+
+  main #terms.terms-stage .index-foot {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  main #terms.terms-stage .index-foot::before {
+    content: none;
+  }
+
+  main #terms.terms-stage .terms-stage__phone {
+    margin: 0 auto;
+  }
+
+  main #terms.terms-stage .terms-stage__foot-copy,
+  main #terms.terms-stage .terms-stage__foot-call {
+    justify-self: center;
+    min-width: 0;
+  }
+}
+
+/* EDIT 39B — Terms stage cascade lock
+   The practice stylesheet has older global section divider rules that also use
+   ::before/::after. Keep the reference art layers full-bleed for this section. */
+main #terms.terms-stage::before,
+main #terms.terms-stage::after,
+#terms.terms-stage::before,
+#terms.terms-stage::after {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
 @font-face {
   font-family: "Atlas Display";
   src: url("../assets/fonts/archivo-narrow-latin-600-normal.woff2") format("woff2");
@@ -1465,131 +1969,235 @@ main #faq .acc-body p {
    HTML tag and copy string; upgrade the visual rhythm away from repeated
    document columns and boxed cards. */
 .sec--tight {
-  min-height: clamp(34rem, 56vw, 46rem);
+  min-height: clamp(39rem, 78vh, 53rem);
   display: grid;
-  align-items: end;
-  padding: clamp(9.25rem, 13vw, 13rem) 0 clamp(5.8rem, 9vw, 8rem);
+  align-items: center;
+  padding: clamp(9.5rem, 11vw, 12rem) 0 clamp(5.75rem, 7vw, 7.25rem);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #061120;
   background-image:
-    radial-gradient(circle at 74% 24%, rgba(240, 208, 120, 0.14), rgba(240, 208, 120, 0) 27rem),
-    linear-gradient(90deg, rgba(10, 22, 40, 0.98) 0%, rgba(10, 22, 40, 0.9) 34%, rgba(10, 22, 40, 0.58) 63%, rgba(10, 22, 40, 0.9) 100%),
-    linear-gradient(180deg, rgba(10, 22, 40, 0.82) 0%, rgba(10, 22, 40, 0.18) 45%, rgba(10, 22, 40, 0.92) 100%),
+    radial-gradient(circle at 74% 44%, rgba(129, 187, 213, 0.16), rgba(129, 187, 213, 0) 31rem),
+    linear-gradient(90deg, rgba(4, 12, 24, 0.96) 0%, rgba(6, 17, 32, 0.84) 25%, rgba(6, 17, 32, 0.46) 50%, rgba(6, 17, 32, 0.06) 80%, rgba(6, 17, 32, 0.18) 100%),
+    linear-gradient(180deg, rgba(4, 12, 24, 0.3) 0%, rgba(4, 12, 24, 0) 43%, rgba(4, 12, 24, 0.6) 100%),
     var(--pa-hero-img);
-  background-position: center;
+  background-position: center, center, center, center right;
   background-size: cover;
   box-shadow:
-    inset 0 -1px 0 rgba(201, 162, 39, 0.35),
-    inset 0 -14rem 11rem rgba(10, 22, 40, 0.42);
+    inset 0 -1px 0 rgba(201, 162, 39, 0.4),
+    inset 0 -9rem 7rem rgba(4, 12, 24, 0.58);
 }
 
 .sec--tight::after {
   content: "";
   position: absolute;
-  right: max(var(--pa-gutter), calc((100vw - var(--pa-width)) / 2));
-  bottom: clamp(2rem, 4vw, 3.5rem);
-  width: min(34vw, 25rem);
+  left: max(var(--pa-gutter), calc((100vw - var(--pa-width)) / 2));
+  bottom: clamp(4.1rem, 7vw, 6.4rem);
+  width: min(68vw, 50rem);
   height: 1px;
-  background: rgba(201, 162, 39, 0.58);
+  background:
+    linear-gradient(90deg, rgba(201, 162, 39, 0.92), rgba(201, 162, 39, 0.92) 5.5rem, transparent 5.5rem 7.25rem, rgba(201, 162, 39, 0.8) 7.25rem, rgba(201, 162, 39, 0.34) 100%);
   pointer-events: none;
 }
 
 .page-head {
+  position: relative;
   display: block;
-  max-width: min(100%, 860px);
+  max-width: min(100%, 680px);
+  margin: 0;
+  padding-top: clamp(2.45rem, 4.2vw, 3.55rem);
+  text-align: left;
+}
+
+.page-head::before {
+  content: "Personal Injury Law";
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: clamp(1.05rem, 1.45vw, 1.25rem);
+  border-top: 2px solid var(--pa-gold);
+  color: #e0bd54;
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.78rem, 1.08vw, 0.94rem);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .page-title {
-  max-width: 10ch;
-  font-size: clamp(4.1rem, 7.4vw, 6rem);
-  line-height: 0.9;
+  max-width: 9.25ch;
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4.6rem, 8.3vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
 }
 
 .page-sub {
-  max-width: 47ch;
-  margin-top: clamp(1.4rem, 2.7vw, 2.3rem);
+  max-width: 43ch;
+  margin-top: clamp(1.55rem, 2.3vw, 2rem);
   margin-bottom: 0;
-  padding: 1.05rem 0 1.05rem clamp(1.1rem, 2vw, 1.45rem);
-  border-left-color: rgba(201, 162, 39, 0.72);
-  color: rgba(255, 255, 255, 0.86);
-  font-size: clamp(1.08rem, 1.35vw, 1.24rem);
-}
-
-#overview {
-  padding-top: clamp(5.75rem, 8vw, 8rem);
-  background:
-    linear-gradient(116deg, rgba(220, 231, 231, 0.35) 0 34%, transparent 34% 100%),
-    var(--pa-paper);
-}
-
-#overview .wrap--read {
-  grid-template-columns: minmax(260px, 0.38fr) minmax(0, 0.9fr);
-  align-items: start;
-}
-
-#overview .h2 {
-  max-width: 13.5ch;
-  font-size: clamp(2.15rem, 3.35vw, 3.55rem);
-  line-height: 0.98;
-}
-
-#overview .rte {
-  position: relative;
-  max-width: 76ch;
-  padding-left: clamp(1.4rem, 3vw, 2.4rem);
-  border-left: 1px solid rgba(201, 162, 39, 0.62);
-}
-
-#overview .rte p:first-child {
-  color: var(--pa-atlantic);
-  font-size: clamp(1.18rem, 1.55vw, 1.42rem);
-  font-weight: 600;
-  line-height: 1.55;
-}
-
-#overview .rte-strong {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  padding: clamp(1.15rem, 2vw, 1.45rem) 0 0;
-  border-top: 1px solid rgba(201, 162, 39, 0.62);
+  padding: 0;
   border-left: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.16rem, 1.55vw, 1.38rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.42;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.38);
+}
+
+#fault {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(6.2rem, 9vw, 9.25rem);
+  border-top: 0;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(201, 162, 39, 0.12), transparent 24rem),
+    linear-gradient(128deg, rgba(10, 22, 40, 1) 0 56%, rgba(14, 31, 51, 0.96) 56% 100%),
+    var(--pa-atlantic);
+  color: var(--pa-white);
+}
+
+#fault::before {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 0;
+  z-index: 0;
+  width: min(43vw, 42rem);
+  height: min(74%, 44rem);
+  background:
+    linear-gradient(180deg, rgba(10, 22, 40, 0.1) 0%, rgba(10, 22, 40, 0.5) 100%),
+    linear-gradient(90deg, rgba(10, 22, 40, 0.1) 0%, rgba(10, 22, 40, 0.62) 100%),
+    url("../assets/rear-end-collisions.webp") center / cover no-repeat;
+  opacity: 0.82;
+}
+
+#fault::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(201, 162, 39, 0.7), rgba(201, 162, 39, 0)) top left / 100% 1px no-repeat,
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.035)) 0 0 / 100% 100%;
+  opacity: 0.9;
 }
 
 #fault .wrap--read {
-  grid-template-columns: minmax(250px, 0.34fr) minmax(0, 0.98fr);
+  position: relative;
+  z-index: 1;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1280px);
+  grid-template-columns: minmax(250px, 0.42fr) minmax(0, 0.92fr);
+  gap: clamp(2.4rem, 4.8vw, 4.2rem);
   align-items: start;
 }
 
 #fault .h2 {
-  max-width: 14.5ch;
-  font-size: clamp(2.15rem, 3.35vw, 3.55rem);
-  line-height: 0.98;
+  position: sticky;
+  top: clamp(7rem, 10vw, 9rem);
+  max-width: 12.5ch;
+  padding-top: clamp(1.1rem, 2vw, 1.8rem);
+  color: var(--pa-white);
+  font-size: clamp(2.55rem, 4.8vw, 4.75rem);
+  letter-spacing: -0.034em;
+  line-height: 0.96;
+}
+
+#fault .h2::before {
+  display: block;
+  width: clamp(2.2rem, 4vw, 3.4rem);
+  height: 2px;
+  margin: 0 0 clamp(1.35rem, 2.2vw, 1.85rem);
+  background: var(--pa-gold);
+}
+
+#fault .h2::after {
+  content: "";
+  display: block;
+  width: 3.4rem;
+  height: 3.4rem;
+  margin-top: clamp(2.4rem, 4vw, 3.3rem);
+  border: 1px solid rgba(201, 162, 39, 0.85);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(201, 162, 39, 0.95) 0 0.23rem, transparent 0.25rem),
+    rgba(201, 162, 39, 0.08);
 }
 
 #fault .agrid,
 main #fault .wrap--read > .agrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1vw, 0.9rem);
   overflow: visible;
-  border: 1px solid rgba(18, 61, 86, 0.22);
-  background: rgba(18, 61, 86, 0.18);
+  border: 0;
+  background: transparent;
 }
 
 #fault .acard,
 main #fault .wrap--read > .agrid > .acard {
-  min-height: clamp(13.5rem, 16vw, 16.5rem);
-  padding: clamp(1.45rem, 2.8vw, 2.45rem);
-  border: 0;
-  background: rgba(255, 255, 255, 0.56);
+  position: relative;
+  min-height: clamp(18rem, 22vw, 22rem);
+  padding: clamp(1.65rem, 2.8vw, 2.35rem);
+  border: 1px solid rgba(10, 22, 40, 0.12);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(242, 240, 234, 0.92));
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.18);
+}
+
+#fault .acard::before,
+main #fault .wrap--read > .agrid > .acard::before {
+  content: "";
+  display: block;
+  width: 3.35rem;
+  height: 3.35rem;
+  margin-bottom: clamp(1.25rem, 2vw, 1.65rem);
+  border: 1px solid rgba(201, 162, 39, 0.92);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(201, 162, 39, 0.96) 0 0.2rem, transparent 0.22rem),
+    rgba(201, 162, 39, 0.06);
 }
 
 main #fault .wrap--read > .agrid > .acard:first-child {
-  grid-row: span 2;
-  display: flex;
-  min-height: clamp(24rem, 30vw, 30rem);
-  flex-direction: column;
-  justify-content: flex-end;
+  display: block;
+  min-height: clamp(21rem, 25vw, 25rem);
   background:
-    linear-gradient(145deg, transparent 0 66%, rgba(201, 162, 39, 0.12) 66% 100%),
-    var(--pa-atlantic);
+    linear-gradient(145deg, transparent 0 68%, rgba(201, 162, 39, 0.13) 68% 100%),
+    rgba(10, 22, 40, 0.98);
+  border-color: rgba(201, 162, 39, 0.86);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
+}
+
+#fault .acard h3,
+main #fault .wrap--read > .agrid > .acard h3 {
+  color: var(--pa-atlantic);
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+#fault .acard h3::after,
+main #fault .wrap--read > .agrid > .acard h3::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin: 1rem 0 0;
+  background: var(--pa-gold);
+}
+
+#fault .acard p,
+main #fault .wrap--read > .agrid > .acard p {
+  color: rgba(10, 22, 40, 0.76);
+  font-size: clamp(1rem, 1.08vw, 1.08rem);
+  line-height: 1.72;
 }
 
 main #fault .wrap--read > .agrid > .acard:first-child h3,
@@ -1601,18 +2209,16 @@ main #fault .wrap--read > .agrid > .acard:first-child p {
   color: rgba(255, 255, 255, 0.78);
 }
 
-#fault .acard:nth-child(odd) {
-  border-right: 0;
-}
-
 #fault .acard:hover {
-  background: rgba(220, 231, 231, 0.56);
+  transform: translateY(-2px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(242, 240, 234, 0.96));
 }
 
 main #fault .wrap--read > .agrid > .acard:first-child:hover {
   background:
-    linear-gradient(145deg, transparent 0 66%, rgba(201, 162, 39, 0.16) 66% 100%),
-    var(--pa-atlantic);
+    linear-gradient(145deg, transparent 0 68%, rgba(201, 162, 39, 0.16) 68% 100%),
+    rgba(10, 22, 40, 1);
 }
 
 .index-dark {
@@ -1715,34 +2321,32 @@ main #fault .wrap--read > .agrid > .acard:first-child:hover {
 
 @media (max-width: 900px) {
   .sec--tight {
-    min-height: clamp(30rem, 98vw, 40rem);
-    padding-block: clamp(8rem, 22vw, 10rem) clamp(4.5rem, 14vw, 6rem);
+    min-height: clamp(34rem, 112vw, 43rem);
+    align-items: end;
+    padding-block: clamp(8.5rem, 24vw, 10rem) clamp(5.8rem, 17vw, 7rem);
+    background-image:
+      linear-gradient(90deg, rgba(4, 12, 24, 0.92) 0%, rgba(6, 17, 32, 0.72) 48%, rgba(6, 17, 32, 0.22) 100%),
+      linear-gradient(180deg, rgba(4, 12, 24, 0.14) 0%, rgba(4, 12, 24, 0.08) 44%, rgba(4, 12, 24, 0.76) 100%),
+      var(--pa-hero-img-sm, var(--pa-hero-img));
+    background-position: center, center, 62% center;
   }
 
   .sec--tight::after {
     left: var(--pa-gutter);
     right: auto;
-    width: min(14rem, 56vw);
+    bottom: clamp(3.2rem, 11vw, 4.4rem);
+    width: min(18rem, calc(100vw - var(--pa-gutter) * 2));
   }
 
-  #overview .wrap--read,
   #fault .wrap--read,
   #protect .wrap--read {
     grid-template-columns: 1fr;
   }
 
-  #overview .rte {
-    padding-left: 0;
-    padding-top: 1.35rem;
-    border-left: 0;
-    border-top: 1px solid rgba(201, 162, 39, 0.6);
-  }
-
-  #overview .h2,
   #fault .h2 {
-    max-width: 14ch;
-    font-size: clamp(2rem, 7.1vw, 2.75rem);
-    line-height: 1;
+    max-width: 16ch;
+    font-size: clamp(2.3rem, 8vw, 3.35rem);
+    line-height: 0.96;
   }
 
   #fault .agrid,
@@ -1754,7 +2358,7 @@ main #fault .wrap--read > .agrid > .acard:first-child:hover {
 
   main #fault .wrap--read > .agrid > .acard:first-child {
     grid-row: auto;
-    min-height: 18rem;
+    min-height: 0;
   }
 
   #protect .fsteps {
@@ -1768,17 +2372,33 @@ main #fault .wrap--read > .agrid > .acard:first-child:hover {
 }
 
 @media (max-width: 600px) {
+  .page-head {
+    max-width: min(100%, 20.5rem);
+    margin: 0;
+    padding-top: 2.65rem;
+  }
+
+  .page-head::before {
+    width: 100%;
+    padding-top: 0.95rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.27em;
+  }
+
   .page-title {
-    max-width: 11ch;
-    font-size: clamp(2.6rem, 13vw, 3.45rem);
+    max-width: 8.8ch;
+    font-size: clamp(3.55rem, 15.2vw, 4.55rem);
+    line-height: 0.9;
   }
 
   .page-sub {
-    max-width: 29ch;
-    padding-left: 0.95rem;
+    max-width: 24ch;
+    margin-top: 1.05rem;
+    padding-left: 0;
+    font-size: clamp(1.05rem, 4.8vw, 1.2rem);
+    line-height: 1.45;
   }
 
-  #overview,
   #fault,
   #protect,
   #related,
@@ -1787,34 +2407,67 @@ main #fault .wrap--read > .agrid > .acard:first-child:hover {
     padding-block: clamp(4rem, 14vw, 5.25rem);
   }
 
+  #fault {
+    padding-block: clamp(4.75rem, 16vw, 6rem);
+  }
+
+  #fault::before {
+    display: none;
+  }
+
+  #fault .wrap--read {
+    gap: clamp(2rem, 7vw, 2.8rem);
+  }
+
+  #fault .h2 {
+    position: relative;
+    top: auto;
+    width: calc(100% + var(--pa-gutter) + var(--pa-gutter));
+    max-width: none;
+    min-height: clamp(20rem, 78vw, 25rem);
+    margin-inline: calc(var(--pa-gutter) * -1);
+    padding: clamp(4.2rem, 15vw, 5.5rem) var(--pa-gutter) clamp(3.8rem, 15vw, 5.5rem);
+    background:
+      linear-gradient(90deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.68) 56%, rgba(10, 22, 40, 0.9) 100%),
+      linear-gradient(180deg, rgba(10, 22, 40, 0.06) 0%, rgba(10, 22, 40, 0.96) 100%),
+      url("../assets/rear-end-collisions.webp") 52% center / cover no-repeat;
+    font-size: clamp(2.35rem, 10.8vw, 3.15rem);
+  }
+
+  #fault .h2::after {
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-top: 1.6rem;
+  }
+
   #fault .agrid,
   main #fault .wrap--read > .agrid {
     border-left: 0;
     border-right: 0;
-    gap: 0.85rem;
+    gap: 0.9rem;
     background: transparent;
   }
 
   #fault .acard,
   main #fault .wrap--read > .agrid > .acard {
     min-height: 0;
-    padding: clamp(1.35rem, 5.4vw, 1.65rem);
-    background: transparent;
+    padding: clamp(1.45rem, 6vw, 1.85rem);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(242, 240, 234, 0.92));
   }
 
   main #fault .wrap--read > .agrid > .acard:not(:first-child) {
     background:
-      linear-gradient(132deg, transparent 0 74%, rgba(201, 162, 39, 0.08) 74% 100%),
-      rgba(220, 231, 231, 0.6);
-    border-top: 1px solid rgba(18, 61, 86, 0.16);
+      linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(242, 240, 234, 0.92));
+    border: 1px solid rgba(10, 22, 40, 0.14);
   }
 
   main #fault .wrap--read > .agrid > .acard:first-child {
-    margin-inline: calc(var(--pa-gutter) * -1);
-    padding: 2rem var(--pa-gutter);
+    margin-inline: 0;
+    padding: clamp(1.45rem, 6vw, 1.85rem);
     background:
-      linear-gradient(145deg, transparent 0 66%, rgba(201, 162, 39, 0.12) 66% 100%),
-      var(--pa-atlantic);
+      linear-gradient(145deg, transparent 0 68%, rgba(201, 162, 39, 0.13) 68% 100%),
+      rgba(10, 22, 40, 0.98);
   }
 
   main #fault .wrap--read > .agrid > .acard:first-child h3,
@@ -2142,4 +2795,2155 @@ main #faq .acc summary,
 main #faq .acc summary span,
 main #faq .acc summary::before {
   font-family: "Atlas Display", sans-serif;
+}
+
+/* EDIT 32 — premium terms index
+   Rebuilds the "Terms You Will Hear" section from the approved dark reference:
+   dramatic navy field, blended Lady Justice art, six-item legal index, and a
+   quiet bordered closing note. Copy and ordered-list semantics stay intact. */
+#terms.index-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: 120px;
+  padding-block: clamp(4.75rem, 6.6vw, 6.6rem) clamp(5.5rem, 7.5vw, 7.5rem);
+  background:
+    linear-gradient(90deg, rgba(6, 16, 30, 0.99) 0%, rgba(6, 16, 30, 0.94) 33%, rgba(6, 16, 30, 0.56) 67%, rgba(6, 16, 30, 0.88) 100%),
+    linear-gradient(180deg, rgba(6, 16, 30, 0.04) 0%, rgba(6, 16, 30, 0.24) 31%, var(--pa-atlantic) 47%, #06101f 100%),
+    radial-gradient(circle at 78% 16%, rgba(201, 162, 39, 0.16), rgba(201, 162, 39, 0) 32rem),
+    url("../assets/generated/terms-legal-bg-v2.webp") right top / 100% auto no-repeat,
+    var(--pa-atlantic);
+  color: var(--pa-white);
+}
+
+#terms.index-dark::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1.5px) 0 0 / 1.35rem 1.35rem,
+    linear-gradient(180deg, rgba(10, 22, 40, 0) 0%, rgba(10, 22, 40, 0.1) 30%, rgba(3, 10, 21, 0.48) 100%);
+  pointer-events: none;
+}
+
+#terms.index-dark::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  height: clamp(24rem, 31vw, 34rem);
+  background:
+    linear-gradient(180deg, rgba(6, 16, 30, 0) 0%, rgba(6, 16, 30, 0.08) 45%, var(--pa-atlantic) 100%),
+    linear-gradient(90deg, var(--pa-atlantic) 0%, rgba(6, 16, 30, 0.62) 42%, rgba(6, 16, 30, 0.08) 78%, rgba(6, 16, 30, 0.78) 100%);
+  pointer-events: none;
+}
+
+#terms.index-dark .wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1740px);
+  max-width: 1740px;
+}
+
+#terms .index-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(32rem, 0.34fr) minmax(21rem, 0.25fr) minmax(24rem, 0.41fr);
+  gap: clamp(2rem, 3.2vw, 4.25rem);
+  align-items: end;
+  min-height: clamp(18rem, 22vw, 24rem);
+  padding: 0 0 clamp(3.35rem, 4.75vw, 4.65rem);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.76);
+}
+
+#terms .index-head::before {
+  content: "Terms You Will Hear";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--pa-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.82rem, 0.9vw, 0.98rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#terms .index-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: clamp(1.9rem, 2.4vw, 2.45rem);
+  width: clamp(3.4rem, 6vw, 5rem);
+  height: 2px;
+  background: var(--pa-gold);
+  box-shadow: 0 0 20px rgba(255, 223, 136, 0.46);
+}
+
+#terms .index-head .h2 {
+  max-width: 10.6ch;
+  margin: 0;
+  color: var(--pa-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4.35rem, 6.2vw, 6.1rem);
+  font-weight: 700;
+  letter-spacing: -0.052em;
+  line-height: 0.88;
+  text-transform: none;
+}
+
+#terms .index-head .h2::after {
+  display: none;
+}
+
+#terms .index-head > .lede {
+  grid-column: 2;
+  max-width: 25ch;
+  margin: 0 0 0.05rem;
+  padding-left: clamp(1.9rem, 2.4vw, 2.6rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.68);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.15rem, 1.42vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.62;
+}
+
+#terms .index-head > .lede::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.58rem;
+  width: 1rem;
+  height: 1rem;
+  border-right: 1px solid rgba(201, 162, 39, 0.88);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.88);
+  background: var(--pa-atlantic);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+#terms .cindex {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border: 0;
+  list-style: none;
+}
+
+#terms .cindex li {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(4.2rem, 6vw, 6rem) minmax(0, 1fr);
+  gap: clamp(1.35rem, 2.2vw, 1.9rem);
+  min-height: clamp(18rem, 21vw, 21.5rem);
+  padding: clamp(2.55rem, 4vw, 3.65rem) clamp(2rem, 3.3vw, 3.2rem);
+  border: 0;
+  border-bottom: 1px solid rgba(220, 231, 231, 0.18);
+  background: rgba(4, 13, 27, 0.08);
+}
+
+#terms .cindex li:nth-child(3n + 1),
+#terms .cindex li:nth-child(3n + 2) {
+  border-right: 1px solid rgba(220, 231, 231, 0.18);
+}
+
+#terms .cindex li:nth-last-child(-n + 3) {
+  border-bottom: 0;
+}
+
+#terms .cindex li::after {
+  content: "";
+  position: absolute;
+  left: clamp(8.6rem, 10.8vw, 11.4rem);
+  bottom: clamp(1.35rem, 2vw, 1.75rem);
+  width: clamp(4rem, 7vw, 6rem);
+  height: 1px;
+  background: var(--pa-gold);
+  box-shadow: 0 0 16px rgba(255, 223, 136, 0.2);
+}
+
+#terms .ci-n {
+  color: var(--pa-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.4rem, 5.3vw, 5.35rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
+}
+
+#terms .cindex li > div {
+  min-width: 0;
+  padding-left: clamp(1.25rem, 2vw, 1.7rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.72);
+}
+
+#terms .cindex h3 {
+  max-width: 16ch;
+  margin: 0 0 1rem;
+  color: var(--pa-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-transform: none;
+}
+
+#terms .cindex p {
+  max-width: 33ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1rem, 1.08vw, 1.08rem);
+  line-height: 1.72;
+}
+
+#terms .index-foot {
+  position: relative;
+  max-width: none;
+  margin: clamp(1.4rem, 3vw, 2.35rem) 0 0;
+  padding: clamp(1.45rem, 2.4vw, 2rem) clamp(2rem, 4vw, 4.5rem) clamp(1.45rem, 2.4vw, 2rem) clamp(5rem, 8vw, 7.2rem);
+  border: 1px solid rgba(201, 162, 39, 0.7);
+  background: linear-gradient(90deg, rgba(10, 22, 40, 0.52), rgba(10, 22, 40, 0.18));
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  line-height: 1.65;
+}
+
+#terms .index-foot::before {
+  content: "";
+  position: absolute;
+  left: clamp(2.6rem, 4.5vw, 4.4rem);
+  top: 50%;
+  width: 1px;
+  height: calc(100% - clamp(2rem, 3.8vw, 3.2rem));
+  background: var(--pa-gold);
+  transform: translateY(-50%);
+}
+
+#terms .index-foot a {
+  color: var(--pa-gold);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 980px) {
+  #terms.index-dark {
+    scroll-margin-top: 92px;
+    padding-block: clamp(4.9rem, 12vw, 6.2rem);
+    background:
+      linear-gradient(90deg, rgba(6, 16, 30, 0.98) 0%, rgba(6, 16, 30, 0.84) 48%, rgba(6, 16, 30, 0.58) 100%),
+      linear-gradient(180deg, rgba(6, 16, 30, 0.14) 0%, rgba(6, 16, 30, 0.54) 24rem, var(--pa-atlantic) 31rem, #06101f 100%),
+      radial-gradient(circle at 78% 8%, rgba(201, 162, 39, 0.13), rgba(201, 162, 39, 0) 17rem),
+      url("../assets/generated/terms-legal-bg-v2.webp") right top / auto 30rem no-repeat,
+      var(--pa-atlantic);
+  }
+
+  #terms.index-dark::after {
+    inset: 0;
+    width: auto;
+    height: 30rem;
+    background:
+      linear-gradient(180deg, rgba(6, 16, 30, 0) 0%, rgba(6, 16, 30, 0.18) 47%, var(--pa-atlantic) 100%),
+      linear-gradient(90deg, rgba(6, 16, 30, 0.98) 0%, rgba(6, 16, 30, 0.76) 52%, rgba(6, 16, 30, 0.18) 100%);
+  }
+
+  #terms .index-head {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    min-height: 0;
+    padding-bottom: 2.75rem;
+  }
+
+  #terms .index-head .h2 {
+    max-width: 9ch;
+    padding-top: 3.4rem;
+    font-size: clamp(3.2rem, 12vw, 5rem);
+  }
+
+  #terms .index-head > .lede {
+    grid-column: 1;
+    max-width: 34ch;
+    margin: 0;
+  }
+
+  #terms .cindex {
+    grid-template-columns: 1fr;
+  }
+
+  #terms .cindex li,
+  #terms .cindex li:nth-child(3n + 1),
+  #terms .cindex li:nth-child(3n + 2),
+  #terms .cindex li:nth-last-child(-n + 3) {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(220, 231, 231, 0.18);
+  }
+
+  #terms .cindex li:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  #terms.index-dark {
+    padding-block: 4.5rem;
+  }
+
+  #terms .index-head {
+    padding-bottom: 2.2rem;
+  }
+
+  #terms .index-head::before {
+    font-size: 0.74rem;
+    letter-spacing: 0.2em;
+  }
+
+  #terms .index-head .h2 {
+    max-width: 8.2ch;
+    font-size: clamp(3.05rem, 15vw, 4.1rem);
+  }
+
+  #terms .index-head > .lede {
+    padding-left: 1.25rem;
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
+
+  #terms .cindex li {
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.75rem 0;
+  }
+
+  #terms .ci-n {
+    font-size: 3.15rem;
+  }
+
+  #terms .cindex li > div {
+    padding-left: 1rem;
+  }
+
+  #terms .cindex h3 {
+    max-width: 13.5ch;
+    font-size: 1.35rem;
+  }
+
+  #terms .cindex p {
+    max-width: 27ch;
+    font-size: 0.98rem;
+    line-height: 1.64;
+  }
+
+  #terms .cindex li::after {
+    left: 5rem;
+    bottom: 1.05rem;
+    width: 4rem;
+  }
+
+  #terms .index-foot {
+    padding: 1.25rem 1.15rem 1.25rem 2.35rem;
+    font-size: 1rem;
+  }
+
+  #terms .index-foot::before {
+    left: 1.2rem;
+  }
+}
+
+/* EDIT 39C — Terms stage micro-fix lock
+   Prevent older generic #terms footer/card styling from reintroducing the
+   vertical phone divider and the heavy corner fold on the new reference layout. */
+#terms.terms-stage .terms-card::after {
+  right: 0;
+  bottom: 0;
+  width: clamp(3.35rem, 4.35vw, 4.8rem);
+  height: clamp(3.35rem, 4.35vw, 4.8rem);
+  clip-path: polygon(100% 18%, 100% 100%, 18% 100%);
+  opacity: 0.86;
+}
+
+#terms.terms-stage .cindex li::after {
+  content: none;
+}
+
+#terms.terms-stage .cindex li.terms-card::after {
+  content: "";
+  right: 0;
+  bottom: 0;
+  width: clamp(2.85rem, 3.65vw, 4.05rem);
+  height: clamp(2.85rem, 3.65vw, 4.05rem);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, var(--terms-accent), var(--terms-accent-strong));
+  opacity: 0.68;
+}
+
+#terms.terms-stage .index-foot::before {
+  left: clamp(7.4rem, 9.25vw, 9.7rem);
+  height: calc(100% - 3.1rem);
+}
+
+@media (max-width: 760px) {
+  #terms.terms-stage .index-foot::before {
+    content: none;
+  }
+}
+
+/* EDIT 39D — Terms stage minimal interaction motion
+   A single section-specific reveal plus restrained card feedback. Content
+   remains visible unless JS marks the section motion-ready, and reduced-motion
+   users receive the static composition immediately. */
+#terms.terms-stage.terms-motion-ready .index-head::before,
+#terms.terms-stage.terms-motion-ready .index-head::after,
+#terms.terms-stage.terms-motion-ready .index-head .h2,
+#terms.terms-stage.terms-motion-ready .index-head > .lede,
+#terms.terms-stage.terms-motion-ready .index-foot {
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#terms.terms-stage.terms-motion-ready .terms-card {
+  --terms-rise: 0px;
+  --terms-hover-y: 0px;
+  transform: translate3d(0, calc(var(--terms-rise) + var(--terms-hover-y)), 0);
+  transition:
+    opacity 660ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+#terms.terms-stage.terms-motion-ready .terms-card::before,
+#terms.terms-stage.terms-motion-ready .terms-card::after,
+#terms.terms-stage.terms-motion-ready .terms-card__chev {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    box-shadow 260ms ease;
+}
+
+#terms.terms-stage.terms-motion-ready:not(.is-in) .index-head::before,
+#terms.terms-stage.terms-motion-ready:not(.is-in) .index-head::after,
+#terms.terms-stage.terms-motion-ready:not(.is-in) .index-head .h2,
+#terms.terms-stage.terms-motion-ready:not(.is-in) .index-head > .lede,
+#terms.terms-stage.terms-motion-ready:not(.is-in) .index-foot {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  filter: blur(5px);
+}
+
+#terms.terms-stage.terms-motion-ready:not(.is-in) .terms-card {
+  --terms-rise: 30px;
+  opacity: 0;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .index-head::before {
+  transition-delay: 20ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .index-head::after {
+  transition-delay: 90ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .index-head .h2 {
+  transition-delay: 150ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .index-head > .lede {
+  transition-delay: 235ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(1) {
+  transition-delay: 270ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(2) {
+  transition-delay: 335ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(3) {
+  transition-delay: 400ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(4) {
+  transition-delay: 465ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(5) {
+  transition-delay: 530ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .terms-card:nth-child(6) {
+  transition-delay: 595ms;
+}
+
+#terms.terms-stage.terms-motion-ready.is-in .index-foot {
+  transition-delay: 640ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #terms.terms-stage .terms-card:hover {
+    --terms-hover-y: -5px;
+    border-color: color-mix(in srgb, var(--terms-accent) 82%, rgba(255, 255, 255, 0.28));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 -1px 28px color-mix(in srgb, var(--terms-accent) 34%, transparent),
+      0 30px 62px rgba(0, 0, 0, 0.4);
+  }
+
+  #terms.terms-stage .terms-card:hover::before {
+    opacity: 0.58;
+  }
+
+  #terms.terms-stage .terms-card:hover::after {
+    opacity: 0.9;
+    box-shadow: 0 0 28px color-mix(in srgb, var(--terms-accent) 58%, transparent);
+  }
+
+  #terms.terms-stage .terms-card:hover .terms-card__chev {
+    transform: translate3d(2px, -2px, 0);
+  }
+
+  #terms.terms-stage .index-foot a:hover {
+    color: #fff;
+  }
+}
+
+/* EDIT 39E — Terms card decoration removal
+   Client requested the folded corner shape and the double-arrow removed from
+   every one of the six terms items. Keep the premium card surface, but remove
+   these two decorative affordances at the component level. */
+main #terms.terms-stage .terms-card::after,
+#terms.terms-stage .terms-card::after,
+#terms.terms-stage .cindex li.terms-card::after {
+  content: none;
+  display: none;
+}
+
+main #terms.terms-stage .terms-card__chev,
+#terms.terms-stage .terms-card__chev {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #terms.terms-stage.terms-motion-ready .index-head::before,
+  #terms.terms-stage.terms-motion-ready .index-head::after,
+  #terms.terms-stage.terms-motion-ready .index-head .h2,
+  #terms.terms-stage.terms-motion-ready .index-head > .lede,
+  #terms.terms-stage.terms-motion-ready .terms-card,
+  #terms.terms-stage.terms-motion-ready .terms-card::before,
+  #terms.terms-stage.terms-motion-ready .terms-card::after,
+  #terms.terms-stage.terms-motion-ready .terms-card__chev,
+  #terms.terms-stage.terms-motion-ready .index-foot {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .index-head::before,
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .index-head::after,
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .index-head .h2,
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .index-head > .lede,
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .terms-card,
+  #terms.terms-stage.terms-motion-ready:not(.is-in) .index-foot {
+    opacity: 1;
+  }
+}
+
+/* EDIT 31 — Protecting the Claim premium split-card section
+   Shared practice-area treatment based on the approved visual reference:
+   light courthouse field, angled navy number panels, restrained gold lines,
+   editable HTML text only, and existing Atlas type. */
+main #protect.sec--paper {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: 112px;
+  padding-block: clamp(5.6rem, 8vw, 8.4rem) clamp(5.4rem, 7.5vw, 7.8rem);
+  background:
+    linear-gradient(90deg, rgba(242, 240, 234, 0.98) 0%, rgba(242, 240, 234, 0.92) 46%, rgba(242, 240, 234, 0.5) 74%, rgba(242, 240, 234, 0.28) 100%),
+    url("../assets/generated/protect-columns-bg-v1.webp") right top / min(72rem, 72vw) auto no-repeat,
+    radial-gradient(circle at 16% 20%, rgba(201, 162, 39, 0.1), transparent 24rem),
+    var(--pa-paper);
+}
+
+main #protect::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(116deg, rgba(255, 255, 255, 0.42) 0 27%, transparent 27% 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0) 35%);
+  pointer-events: none;
+}
+
+main #protect::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: -1;
+  width: min(calc(100% - var(--pa-gutter) * 2), var(--pa-width));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.72), transparent);
+}
+
+main #protect .wrap--read {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 4.8vw, 4.7rem);
+  align-items: start;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), var(--pa-width));
+  max-width: var(--pa-width);
+}
+
+main #protect .wrap--read > .h2 {
+  grid-column: 1 / -1;
+  max-width: 13ch;
+  margin: 0;
+  color: var(--pa-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4.1rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+main #protect .wrap--read > .h2::before {
+  display: none;
+}
+
+main #protect .wrap--read > .h2::after {
+  display: none;
+}
+
+main #protect .h2--protect {
+  display: grid;
+  gap: clamp(0.85rem, 1.55vw, 1.1rem);
+}
+
+main #protect .h2--protect > span:last-child {
+  display: block;
+}
+
+main #protect .h2-kicker {
+  display: block;
+  width: fit-content;
+  padding-top: 1.05rem;
+  border-top: 2px solid var(--pa-gold);
+  color: var(--pa-gold);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+main #protect .wrap--read > .rte {
+  display: block;
+  grid-column: 1 / -1;
+  width: min(100%, 66ch);
+  max-width: 66ch;
+  margin-top: -0.75rem;
+  color: #1f3347;
+}
+
+main #protect .wrap--read > .rte::after {
+  content: "";
+  display: block;
+  width: min(100%, 46rem);
+  height: 1px;
+  margin-top: clamp(1.9rem, 3vw, 2.35rem);
+  background: rgba(18, 61, 86, 0.14);
+}
+
+main #protect .wrap--read > .fsteps {
+  grid-column: 1 / -1;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.95rem, 1.5vw, 1.15rem) clamp(1rem, 2vw, 1.35rem);
+  margin-top: clamp(0.35rem, 1vw, 0.7rem);
+  border: 0;
+  list-style: none;
+}
+
+main #protect .fsteps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(7.1rem, 9vw, 8.5rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 2.4vw, 1.95rem);
+  min-height: clamp(9.5rem, 11.5vw, 11rem);
+  padding: clamp(1.55rem, 2.3vw, 2.1rem) clamp(1.45rem, 2.35vw, 2.2rem) clamp(1.45rem, 2vw, 1.9rem) 0;
+  overflow: hidden;
+  border: 1px solid rgba(18, 61, 86, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 42px rgba(10, 22, 40, 0.08);
+}
+
+main #protect .fsteps li::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(7.1rem, 9vw, 8.5rem);
+  background:
+    linear-gradient(110deg, rgba(10, 22, 40, 0.99) 0 72%, rgba(201, 162, 39, 0.9) 72% 75%, transparent 75% 100%);
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+}
+
+main #protect .fsteps .fs-n {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  justify-self: center;
+  padding-top: 0.2rem;
+  color: var(--pa-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(2.8rem, 4.1vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+main #protect .fsteps li > div {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding-left: clamp(1.05rem, 1.7vw, 1.4rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.62);
+}
+
+main #protect .fsteps h3 {
+  max-width: 24ch;
+  margin: 0 0 0.55rem;
+  color: var(--pa-atlantic);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.45rem, 2.05vw, 1.95rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+}
+
+main #protect .fsteps p {
+  max-width: 43ch;
+  color: rgba(31, 51, 71, 0.88);
+  font-size: clamp(0.98rem, 1.03vw, 1.05rem);
+  line-height: 1.52;
+}
+
+main #protect .wrap--read > .rte-strong {
+  position: relative;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1.2rem, 2vw, 1.8rem);
+  align-items: center;
+  max-width: none;
+  margin: clamp(0.9rem, 2vw, 1.3rem) 0 0;
+  padding: clamp(1.35rem, 2.1vw, 1.8rem) clamp(1.45rem, 3vw, 2.4rem);
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 39, 0.72);
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, rgba(10, 22, 40, 0.98) 0%, rgba(10, 22, 40, 0.94) 47%, rgba(10, 22, 40, 0.58) 73%, rgba(10, 22, 40, 0.88) 100%),
+    url("../assets/generated/protect-gavel-cta-v1.webp") right center / cover no-repeat,
+    var(--pa-atlantic);
+  color: rgba(255, 255, 255, 0.93);
+  font-family: "Atlas Text", sans-serif;
+  font-size: clamp(1.1rem, 1.65vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.35;
+  box-shadow: 0 20px 48px rgba(10, 22, 40, 0.14);
+}
+
+main #protect .wrap--read > .rte-strong::before {
+  content: "GB";
+  display: inline-grid;
+  place-items: center;
+  width: clamp(3.2rem, 4.2vw, 4.1rem);
+  height: clamp(3.2rem, 4.2vw, 4.1rem);
+  border-right: 1px solid rgba(201, 162, 39, 0.58);
+  padding-right: clamp(1rem, 1.5vw, 1.35rem);
+  color: var(--pa-gold);
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(1.55rem, 2.3vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+main #protect .wrap--read > .rte-strong .tel,
+main #protect .wrap--read > .rte-strong a {
+  color: #f0d77c;
+}
+
+@media (max-width: 900px) {
+  main #protect.sec--paper {
+    padding-block: clamp(4.6rem, 12vw, 6rem);
+    background:
+      linear-gradient(180deg, rgba(242, 240, 234, 0.98) 0%, rgba(242, 240, 234, 0.92) 44%, rgba(242, 240, 234, 0.82) 100%),
+      url("../assets/generated/protect-columns-bg-v1.webp") right top / min(58rem, 150vw) auto no-repeat,
+      var(--pa-paper);
+  }
+
+  main #protect .wrap--read {
+    grid-template-columns: 1fr;
+    gap: clamp(1.4rem, 5vw, 2.2rem);
+  }
+
+  main #protect .wrap--read > .h2 {
+    max-width: 10.5ch;
+  }
+
+  main #protect .wrap--read > .h2 {
+    font-size: clamp(3.45rem, 14vw, 4.85rem);
+  }
+
+  main #protect .wrap--read > .rte {
+    max-width: 35rem;
+    margin-top: -0.2rem;
+  }
+
+  main #protect .wrap--read > .fsteps {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  main #protect .fsteps li {
+    grid-template-columns: clamp(5.6rem, 22vw, 7rem) minmax(0, 1fr);
+    min-height: 0;
+    padding: clamp(1.25rem, 5vw, 1.6rem) clamp(1rem, 4vw, 1.35rem) clamp(1.2rem, 4.5vw, 1.5rem) 0;
+  }
+
+  main #protect .fsteps li::before {
+    width: clamp(5.6rem, 22vw, 7rem);
+  }
+
+  main #protect .fsteps .fs-n {
+    font-size: clamp(2.25rem, 10.5vw, 3.15rem);
+  }
+
+  main #protect .fsteps h3 {
+    max-width: 17ch;
+    font-size: clamp(1.25rem, 5.8vw, 1.55rem);
+  }
+
+  main #protect .fsteps p {
+    max-width: 28ch;
+    font-size: 0.98rem;
+    line-height: 1.48;
+  }
+
+  main #protect .wrap--read > .rte-strong {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+    padding: 1.35rem;
+    background:
+      linear-gradient(90deg, rgba(10, 22, 40, 0.98), rgba(10, 22, 40, 0.88)),
+      url("../assets/generated/protect-gavel-cta-v1.webp") right center / cover no-repeat,
+      var(--pa-atlantic);
+    font-size: 1.08rem;
+  }
+
+  main #protect .wrap--read > .rte-strong::before {
+    justify-content: start;
+    width: 100%;
+    height: auto;
+    padding: 0 0 0.85rem;
+    border-right: 0;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.58);
+  }
+}
+
+@media (max-width: 480px) {
+  main #protect .h2-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+  }
+
+  main #protect .wrap--read > .h2 {
+    font-size: clamp(3.05rem, 15vw, 3.9rem);
+  }
+
+  main #protect .fsteps li {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+  }
+
+  main #protect .fsteps li::before {
+    width: 4.75rem;
+  }
+
+  main #protect .fsteps .fs-n {
+    font-size: 2.35rem;
+  }
+
+  main #protect .fsteps li > div {
+    padding-left: 0.95rem;
+  }
+}
+
+/* EDIT 32 — Related practice areas premium image cards
+   Match the approved "Other Practice Areas" reference using the current GB
+   typography, existing practice-area images, and existing card copy/links. */
+main #related.sec {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(6rem, 8.5vw, 8.6rem) 0 clamp(6rem, 8vw, 8rem);
+  border-top: 1px solid rgba(201, 162, 39, 0.28);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.26);
+  background:
+    linear-gradient(90deg, rgba(242, 240, 234, 0.98) 0%, rgba(242, 240, 234, 0.94) 47%, rgba(242, 240, 234, 0.52) 100%),
+    url("../assets/generated/protect-columns-bg-v1.webp") right top / min(72rem, 68vw) auto no-repeat,
+    var(--pa-paper);
+}
+
+main #related.sec::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: -1;
+  width: min(42vw, 38rem);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(201, 162, 39, 0.1), transparent 24rem),
+    linear-gradient(100deg, rgba(255, 255, 255, 0.48), transparent 72%);
+  pointer-events: none;
+}
+
+main #related.sec::after {
+  content: "";
+  position: absolute;
+  right: clamp(2rem, 7vw, 8rem);
+  top: clamp(3rem, 6vw, 5.8rem);
+  z-index: -1;
+  width: min(38vw, 34rem);
+  height: min(38vw, 34rem);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+main #related .wrap--read {
+  display: block;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1260px);
+  max-width: 1260px;
+}
+
+main #related .h2 {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding-top: clamp(2rem, 3vw, 2.65rem);
+  color: var(--pa-atlantic);
+  font-size: clamp(3.15rem, 5.25vw, 5.65rem);
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+@media (min-width: 901px) {
+  main #related .h2 {
+    white-space: nowrap;
+  }
+}
+
+main #related .h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(3.1rem, 5vw, 5.1rem);
+  height: 2px;
+  background: var(--pa-gold);
+}
+
+main #related .h2::after {
+  content: "";
+  display: block;
+  width: clamp(4.2rem, 7vw, 6.25rem);
+  height: 4px;
+  margin-top: clamp(1.45rem, 2vw, 1.95rem);
+  background: var(--pa-gold);
+}
+
+main #related .tiles {
+  counter-reset: related-card;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1260px);
+  max-width: 1260px;
+  margin: clamp(3.5rem, 5.6vw, 5.2rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.45vw, 1.35rem);
+  background: transparent;
+}
+
+main #related .tile {
+  counter-increment: related-card;
+  min-height: clamp(28rem, 36vw, 33rem);
+  padding: clamp(2rem, 3vw, 3rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background-color: var(--pa-atlantic);
+  background-image: var(--img);
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    inset 0 -2px 0 rgba(240, 208, 120, 0.86),
+    0 22px 48px rgba(10, 22, 40, 0.18);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+main #related .tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(180deg, rgba(6, 17, 32, 0.16) 0%, rgba(6, 17, 32, 0.34) 42%, rgba(6, 17, 32, 0.86) 100%),
+    linear-gradient(135deg, transparent 0 58%, rgba(18, 61, 86, 0.3) 58% 100%),
+    var(--img);
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.92) contrast(1.08);
+  pointer-events: none;
+}
+
+main #related .tile::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 0;
+  height: 52%;
+  background: linear-gradient(0deg, rgba(6, 17, 32, 0.62), rgba(6, 17, 32, 0.2) 68%, transparent);
+  pointer-events: none;
+}
+
+main #related .tile:hover,
+main #related .tile:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 234, 165, 0.5);
+  box-shadow:
+    inset 0 -2px 0 #f0d078,
+    0 30px 64px rgba(10, 22, 40, 0.25);
+}
+
+main #related .tile-in {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.42);
+}
+
+main #related .tile-in::before {
+  content: counter(related-card, decimal-leading-zero);
+  display: block;
+  margin-bottom: clamp(1.4rem, 2.2vw, 2rem);
+  color: #d7af2d;
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(4.4rem, 7vw, 5.9rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+
+main #related .tile-rule {
+  width: clamp(2.8rem, 4vw, 3.9rem);
+  height: 3px;
+  margin: 0 0 clamp(1.55rem, 2.4vw, 2.25rem);
+  background: var(--pa-gold);
+}
+
+main #related .tile-t {
+  max-width: 12ch;
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 2.85rem);
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+}
+
+main #related .tile-p {
+  max-width: 31ch;
+  margin-top: clamp(1.45rem, 2vw, 1.8rem);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(1.04rem, 1.25vw, 1.18rem);
+  line-height: 1.56;
+}
+
+main #related .tile-p::before {
+  content: "";
+  display: block;
+  width: 3.75rem;
+  height: 1px;
+  margin: 0 0 clamp(1.15rem, 1.8vw, 1.45rem);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+main #related .tile-more {
+  margin-top: clamp(1rem, 1.7vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+@media (max-width: 900px) {
+  main #related.sec {
+    padding: clamp(4.5rem, 14vw, 5.6rem) 0 clamp(4.8rem, 14vw, 6rem);
+    background:
+      linear-gradient(180deg, rgba(242, 240, 234, 0.98) 0%, rgba(242, 240, 234, 0.95) 100%),
+      url("../assets/generated/protect-columns-bg-v1.webp") right top / 50rem auto no-repeat,
+      var(--pa-paper);
+  }
+
+  main #related .h2 {
+    max-width: 10.5ch;
+    font-size: clamp(2.6rem, 14vw, 4.15rem);
+    line-height: 0.94;
+  }
+
+  main #related .tiles {
+    grid-template-columns: 1fr;
+    width: min(100% - 2rem, 28rem);
+    gap: 1rem;
+    margin-top: clamp(2.2rem, 8vw, 3rem);
+  }
+
+  main #related .tile,
+  main #related .tile:first-child {
+    min-height: 25rem;
+    padding: 1.65rem;
+  }
+
+  main #related .tile-in::before {
+    font-size: clamp(3.65rem, 17vw, 4.75rem);
+    margin-bottom: 1.2rem;
+  }
+
+  main #related .tile-t {
+    max-width: 12.5ch;
+    font-size: clamp(1.9rem, 8.2vw, 2.4rem);
+  }
+
+  main #related .tile-p {
+    max-width: 28ch;
+    font-size: 1rem;
+    line-height: 1.52;
+  }
+}
+
+@media (max-width: 460px) {
+  main #related.sec {
+    padding-top: 4.1rem;
+  }
+
+  main #related .wrap--read {
+    width: min(100% - 2rem, 28rem);
+  }
+
+  main #related .h2 {
+    font-size: clamp(2.5rem, 13vw, 3.45rem);
+  }
+
+  main #related .tile,
+  main #related .tile:first-child {
+    min-height: 24rem;
+    padding: 1.45rem;
+  }
+}
+
+/* EDIT 34 — Practice-page "Why This Firm" matched to homepage premium section language */
+main #why.dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5.25rem, 7.8vw, 7.8rem) var(--pa-gutter);
+  color: var(--pa-atlantic);
+  background:
+    linear-gradient(90deg, rgba(244, 241, 234, 1) 0%, rgba(255, 255, 255, 0.97) 58%, rgba(244, 241, 234, 0.76) 100%),
+    url("../assets/towers.jpg") right center / auto 112% no-repeat,
+    var(--pa-paper);
+}
+
+main #why.dark::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: clamp(1.5rem, 3vw, 3.75rem) auto clamp(1.5rem, 3vw, 3.75rem) var(--pa-gutter);
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201, 162, 39, 0.78) 16%, rgba(201, 162, 39, 0.34) 84%, transparent);
+  pointer-events: none;
+}
+
+main #why.dark::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(201, 162, 39, 0.08), rgba(201, 162, 39, 0) 27rem),
+    linear-gradient(116deg, transparent 0 70%, rgba(10, 22, 40, 0.035) 70% 100%);
+  pointer-events: none;
+}
+
+main #why.dark .wrap--read {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.78fr) minmax(28rem, 1.22fr);
+  gap: clamp(2.35rem, 5.1vw, 5.65rem);
+  align-items: start;
+  width: min(100%, 1320px);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+main #why.dark .h2,
+main #why.dark .h2.h2--light {
+  position: static;
+  top: auto;
+  max-width: 10.75ch;
+  color: var(--pa-atlantic);
+  font-size: clamp(3.55rem, 6.1vw, 5.55rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+main #why.dark .h2::after {
+  content: "";
+  display: block;
+  width: clamp(4rem, 6vw, 5.25rem);
+  height: 2px;
+  margin-top: clamp(1.2rem, 1.9vw, 1.7rem);
+  background: linear-gradient(90deg, var(--pa-gold), rgba(201, 162, 39, 0.16));
+}
+
+main #why.dark .rte,
+main #why.dark .rte.rte--light {
+  position: relative;
+  display: grid;
+  gap: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  color: #243449;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 234, 0.9));
+  border: 1px solid rgba(10, 22, 40, 0.13);
+  border-radius: 10px;
+  box-shadow:
+    0 26px 64px rgba(10, 22, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+main #why.dark .rte p,
+main #why.dark .rte.rte--light p {
+  margin: 0;
+  padding: clamp(1.45rem, 2.35vw, 2.05rem) clamp(1.55rem, 2.75vw, 2.45rem);
+  color: #243449;
+  font-size: clamp(1rem, 1.06vw, 1.12rem);
+  line-height: 1.66;
+}
+
+main #why.dark .rte p + p {
+  margin-top: 0;
+  border-top: 1px solid rgba(10, 22, 40, 0.1);
+}
+
+main #why.dark .rte-strong,
+main #why.dark .rte-strong.rte-strong--light {
+  max-width: none;
+  margin: 0;
+  padding: clamp(1.3rem, 2vw, 1.75rem) clamp(1.55rem, 2.75vw, 2.45rem);
+  border-left: 0;
+  border-top: 1px solid rgba(201, 162, 39, 0.42);
+  box-shadow: inset 1px 0 0 rgba(201, 162, 39, 0.7);
+  color: var(--pa-atlantic);
+  background: rgba(255, 255, 255, 0.58);
+  font-weight: 800;
+}
+
+main #why.dark .tel,
+main #why.dark .tel.tel--light {
+  color: var(--pa-gold);
+  text-decoration-color: rgba(201, 162, 39, 0.45);
+  text-underline-offset: 0.18em;
+}
+
+@media (max-width: 900px) {
+  main #why.dark {
+    padding: clamp(4.35rem, 13vw, 5.6rem) 1.15rem;
+    background:
+      linear-gradient(180deg, rgba(244, 241, 234, 0.99) 0%, rgba(255, 255, 255, 0.96) 100%),
+      url("../assets/towers.jpg") right top / auto 72% no-repeat,
+      var(--pa-paper);
+  }
+
+  main #why.dark::before {
+    inset: 1.35rem auto 1.35rem 1.15rem;
+  }
+
+  main #why.dark::after {
+    background:
+      radial-gradient(circle at 78% 0%, rgba(201, 162, 39, 0.06), rgba(201, 162, 39, 0) 18rem),
+      linear-gradient(112deg, transparent 0 76%, rgba(10, 22, 40, 0.03) 76% 100%);
+  }
+
+  main #why.dark .wrap--read {
+    width: min(100%, 28rem);
+    grid-template-columns: 1fr;
+    gap: 1.65rem;
+    padding-left: 0.7rem;
+  }
+
+  main #why.dark .wrap--read > .h2,
+  main #why.dark .wrap--read > :not(.h2) {
+    grid-column: 1;
+  }
+
+  main #why.dark .h2,
+  main #why.dark .h2.h2--light {
+    max-width: 11ch;
+    font-size: clamp(2.7rem, 12.5vw, 3.7rem);
+    line-height: 0.96;
+  }
+
+  main #why.dark .rte,
+  main #why.dark .rte.rte--light {
+    border-radius: 8px;
+  }
+
+  main #why.dark .rte p,
+  main #why.dark .rte.rte--light p,
+  main #why.dark .rte-strong,
+  main #why.dark .rte-strong.rte-strong--light {
+    padding: 1.2rem 1.15rem;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 460px) {
+  main #why.dark .wrap--read {
+    width: min(100%, 24.5rem);
+  }
+
+  main #why.dark .h2,
+  main #why.dark .h2.h2--light {
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
+  }
+}
+
+/* EDIT 35 — Practice hero image reliability.
+   Keep the photo on a dedicated visual layer instead of relying on it as the
+   last item in a stacked background-image list. This prevents the hero from
+   painting as a flat navy field when browser decode/cache timing is fussy. */
+main .sec--tight {
+  background-color: #061120;
+  background-image: none;
+}
+
+main .sec--tight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  transform: none;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #061120;
+  background-image:
+    radial-gradient(circle at 74% 44%, rgba(129, 187, 213, 0.13), rgba(129, 187, 213, 0) 31rem),
+    linear-gradient(90deg, rgba(4, 12, 24, 0.9) 0%, rgba(6, 17, 32, 0.68) 27%, rgba(6, 17, 32, 0.32) 53%, rgba(6, 17, 32, 0.08) 79%, rgba(6, 17, 32, 0.18) 100%),
+    linear-gradient(180deg, rgba(4, 12, 24, 0.18) 0%, rgba(4, 12, 24, 0) 42%, rgba(4, 12, 24, 0.52) 100%),
+    var(--pa-hero-img);
+  background-position: center, center, center, center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(0.94) contrast(1.08);
+}
+
+main .sec--tight::after {
+  z-index: 2;
+}
+
+main .sec--tight .wrap,
+main .sec--tight .page-head {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  main .sec--tight::before {
+    background-image:
+      linear-gradient(90deg, rgba(4, 12, 24, 0.9) 0%, rgba(6, 17, 32, 0.7) 48%, rgba(6, 17, 32, 0.2) 100%),
+      linear-gradient(180deg, rgba(4, 12, 24, 0.12) 0%, rgba(4, 12, 24, 0.08) 44%, rgba(4, 12, 24, 0.72) 100%),
+      var(--pa-hero-img-sm, var(--pa-hero-img));
+    background-position: center, center, 62% center;
+  }
+}
+
+/* EDIT 36 — Related practice areas: approved dark image-led redesign.
+   Replaces the rejected plain related-practice block with the supplied
+   courthouse/dark-card composition while keeping the existing links and copy. */
+main #related.sec {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5.75rem, 8vw, 8rem) 0 clamp(5.35rem, 7vw, 7.4rem);
+  border-top: 1px solid rgba(201, 162, 39, 0.44);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.46);
+  color: #fff;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(33, 107, 136, 0.23), rgba(33, 107, 136, 0) 31rem),
+    linear-gradient(90deg, rgba(5, 14, 27, 0.99) 0%, rgba(6, 17, 32, 0.94) 40%, rgba(6, 17, 32, 0.72) 66%, rgba(6, 17, 32, 0.22) 100%),
+    linear-gradient(180deg, rgba(6, 17, 32, 0.22) 0%, rgba(6, 17, 32, 0.8) 92%),
+    url("../assets/generated/protect-columns-bg-v1.webp") right top / min(62rem, 58vw) auto no-repeat,
+    #061120;
+}
+
+main #related.sec::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: auto;
+  height: auto;
+  transform: none;
+  background:
+    linear-gradient(108deg, rgba(4, 12, 24, 0) 0 68%, rgba(201, 162, 39, 0.1) 68.12%, rgba(201, 162, 39, 0) 68.5%),
+    radial-gradient(circle at 22% 60%, rgba(10, 22, 40, 0.78), rgba(10, 22, 40, 0) 38rem);
+  pointer-events: none;
+}
+
+main #related.sec::after {
+  content: "";
+  position: absolute;
+  right: -7rem;
+  top: -4rem;
+  z-index: -1;
+  width: min(54vw, 55rem);
+  height: min(54vw, 50rem);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 68%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+main #related .wrap--read {
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1330px);
+  max-width: 1330px;
+  margin: 0 auto;
+}
+
+main #related .related-kicker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.45rem;
+  margin: 0 0 0.75rem;
+  color: #f0d078;
+  font-size: clamp(0.84rem, 1vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: 0.27em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+main #related .related-kicker::after {
+  content: "";
+  width: clamp(3rem, 5vw, 4.4rem);
+  height: 1px;
+  background: rgba(240, 208, 120, 0.82);
+}
+
+main #related .h2 {
+  position: relative;
+  top: auto;
+  bottom: auto;
+  max-width: 12.4ch;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.8rem, 6vw, 5.95rem);
+  font-weight: 700;
+  letter-spacing: -0.037em;
+  line-height: 0.9;
+  text-transform: none;
+  white-space: normal;
+  text-shadow: 0 12px 44px rgba(0, 0, 0, 0.35);
+}
+
+main #related .h2 span {
+  display: block;
+  color: #d6a82a;
+}
+
+main #related .h2::before,
+main #related .h2::after {
+  content: "";
+  display: block;
+  position: static;
+  width: clamp(2.7rem, 4vw, 3.6rem);
+  height: 2px;
+  margin: clamp(0.9rem, 1.3vw, 1.15rem) 0 0;
+  background: #d6a82a;
+}
+
+main #related .h2::before {
+  display: none;
+}
+
+main #related .related-intro {
+  max-width: 52ch;
+  margin: clamp(1.25rem, 1.85vw, 1.65rem) 0 0;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: clamp(1.08rem, 1.35vw, 1.28rem);
+  line-height: 1.48;
+}
+
+main #related .tiles {
+  counter-reset: related-card;
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1330px);
+  max-width: 1330px;
+  margin: clamp(2.35rem, 3.6vw, 3.35rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.45vw, 1.3rem);
+  background: transparent;
+}
+
+main #related .tile,
+main #related .tile:first-child {
+  counter-increment: related-card;
+  position: relative;
+  min-height: clamp(23.5rem, 28vw, 27rem);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(240, 208, 120, 0.58);
+  border-radius: 11px;
+  background:
+    linear-gradient(180deg, rgba(9, 22, 38, 0.96), rgba(2, 9, 18, 0.98)),
+    #071321;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -2px 0 rgba(201, 162, 39, 0.9),
+    0 0 0 1px rgba(3, 10, 20, 0.8),
+    0 20px 48px rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+main #related .tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: 52%;
+  background-image:
+    linear-gradient(180deg, rgba(4, 12, 24, 0.08) 0%, rgba(4, 12, 24, 0.28) 52%, rgba(4, 12, 24, 0.82) 100%),
+    linear-gradient(90deg, rgba(5, 14, 27, 0.72) 0%, rgba(5, 14, 27, 0.34) 54%, rgba(5, 14, 27, 0.18) 100%),
+    var(--img);
+  background-position: center 42%;
+  background-size: cover;
+  filter: saturate(0.9) contrast(1.08);
+  pointer-events: none;
+}
+
+main #related .tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(157deg, rgba(240, 208, 120, 0) 0 56%, rgba(240, 208, 120, 0.72) 56.15%, rgba(240, 208, 120, 0) 56.45%),
+    linear-gradient(158deg, rgba(6, 17, 32, 0) 0 47%, rgba(5, 14, 27, 0.82) 47.2% 100%),
+    linear-gradient(180deg, rgba(5, 14, 27, 0) 0 34%, rgba(5, 14, 27, 0.7) 58%, rgba(2, 8, 16, 0.96) 100%),
+    radial-gradient(circle at 82% 0%, rgba(240, 208, 120, 0.22), transparent 5.5rem);
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+main #related .tile:hover,
+main #related .tile:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(255, 229, 150, 0.82);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 0 #f0d078,
+    0 36px 78px rgba(0, 0, 0, 0.36);
+}
+
+main #related .tile-in {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: clamp(1.7rem, 2.35vw, 2.15rem);
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.62);
+}
+
+main #related .tile-in::before {
+  content: counter(related-card, decimal-leading-zero);
+  display: block;
+  margin: 0 0 clamp(0.65rem, 1vw, 0.85rem);
+  color: #d6a82a;
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(3.2rem, 4.55vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+main #related .tile-rule {
+  width: clamp(2.35rem, 3vw, 2.95rem);
+  height: 2px;
+  margin: 0 0 clamp(1.2rem, 1.7vw, 1.55rem);
+  background: #d6a82a;
+}
+
+main #related .tile-t {
+  max-width: 10.6ch;
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.55rem, 2.35vw, 2.05rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+main #related .tile-p {
+  max-width: 29ch;
+  margin-top: clamp(1.25rem, 1.85vw, 1.6rem);
+  color: rgba(255, 255, 255, 0.91);
+  font-size: clamp(0.9rem, 1.03vw, 0.98rem);
+  line-height: 1.46;
+}
+
+main #related .tile-p::before {
+  content: "";
+  display: block;
+  width: 3.15rem;
+  height: 1px;
+  margin: 0 0 clamp(0.9rem, 1.25vw, 1.05rem);
+  background: rgba(240, 208, 120, 0.85);
+}
+
+main #related .tile-more {
+  display: block;
+  margin-top: clamp(0.75rem, 1.05vw, 0.95rem);
+  padding-top: clamp(0.78rem, 1.1vw, 0.95rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+main #related .related-cta {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.3rem, 2.5vw, 2.2rem);
+  width: min(100% - var(--pa-gutter) - var(--pa-gutter), 1330px);
+  max-width: 1330px;
+  margin: clamp(1.2rem, 2vw, 1.55rem) auto 0;
+  padding: clamp(1.4rem, 2.3vw, 2rem) clamp(1.5rem, 2.8vw, 2.35rem);
+  overflow: hidden;
+  border: 1px solid rgba(240, 208, 120, 0.68);
+  border-radius: 12px;
+  background:
+    linear-gradient(110deg, rgba(8, 19, 34, 0.96) 0%, rgba(8, 19, 34, 0.9) 72%, rgba(201, 162, 39, 0.18) 100%),
+    #071321;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22);
+}
+
+main #related .related-cta::after {
+  content: "";
+  position: absolute;
+  right: -4.5rem;
+  bottom: -5.8rem;
+  width: 18rem;
+  height: 18rem;
+  transform: rotate(45deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(240, 208, 120, 0.34) 0 1px, transparent 1px 10px);
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+main #related .related-cta-mark {
+  display: grid;
+  width: clamp(4rem, 6vw, 5.3rem);
+  height: clamp(4rem, 6vw, 5.3rem);
+  place-items: center;
+  border-right: 1px solid rgba(240, 208, 120, 0.7);
+  padding-right: clamp(1.1rem, 2vw, 1.65rem);
+  color: #d6a82a;
+  font-family: "GB Hero Serif", serif;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1;
+}
+
+main #related .related-cta-mark span {
+  display: grid;
+  width: clamp(3.05rem, 4.7vw, 4rem);
+  height: clamp(3.05rem, 4.7vw, 4rem);
+  place-items: center;
+  border: 1px solid rgba(240, 208, 120, 0.72);
+  border-radius: 50%;
+}
+
+main #related .related-cta-copy {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+main #related .related-cta-copy small {
+  display: block;
+  margin-top: 0.28rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.2vw, 1.13rem);
+  font-weight: 400;
+}
+
+main #related .related-cta .tel {
+  color: #d6a82a;
+}
+
+@media (max-width: 900px) {
+  main #related.sec {
+    padding: clamp(4.4rem, 13vw, 5.8rem) 0 calc(clamp(4.8rem, 13vw, 6rem) + 3.5rem);
+    background:
+      radial-gradient(circle at 22% 12%, rgba(33, 107, 136, 0.2), rgba(33, 107, 136, 0) 20rem),
+      linear-gradient(180deg, rgba(5, 14, 27, 0.98) 0%, rgba(6, 17, 32, 0.95) 54%, rgba(6, 17, 32, 0.98) 100%),
+      url("../assets/generated/protect-columns-bg-v1.webp") right top / 42rem auto no-repeat,
+      #061120;
+  }
+
+  main #related .wrap--read,
+  main #related .tiles,
+  main #related .related-cta {
+    width: min(100% - 2rem, 31rem);
+  }
+
+  main #related .related-kicker {
+    letter-spacing: 0.22em;
+  }
+
+  main #related .h2 {
+    max-width: 8.2ch;
+    font-size: clamp(3.3rem, 15vw, 4.8rem);
+  }
+
+  main #related .related-intro {
+    max-width: 32ch;
+    margin-top: 1.35rem;
+    font-size: 1.05rem;
+  }
+
+  main #related .tiles {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  main #related .tile,
+  main #related .tile:first-child {
+    min-height: 24.25rem;
+  }
+
+  main #related .tile-in {
+    padding: 1.35rem;
+  }
+
+  main #related .tile-in::before {
+    font-size: clamp(3.05rem, 15vw, 3.95rem);
+  }
+
+  main #related .tile-t {
+    max-width: 10.8ch;
+    font-size: clamp(1.8rem, 8vw, 2.22rem);
+  }
+
+  main #related .tile-p {
+    font-size: 0.96rem;
+  }
+
+  main #related .related-cta {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.35rem;
+  }
+
+  main #related .related-cta-mark {
+    width: auto;
+    height: auto;
+    place-items: start;
+    border-right: 0;
+    border-bottom: 1px solid rgba(240, 208, 120, 0.58);
+    padding: 0 0 1rem;
+  }
+
+  main #related .related-cta-copy {
+    font-size: clamp(1.12rem, 5vw, 1.42rem);
+  }
+}
+
+@media (max-width: 460px) {
+  main #related .h2 {
+    font-size: clamp(3.05rem, 15vw, 4rem);
+  }
+
+  main #related .tile,
+  main #related .tile:first-child {
+    min-height: 23.6rem;
+  }
+
+  main #related .tile-more {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+  }
+}
+
+/* EDIT 38 — Fault section uses the homepage ds-choice component
+   User direction: reuse the real homepage "Why People Choose" structure/classes
+   and only map the practice-page copy into it. */
+main #fault.ds-choice {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5.25rem, 7.8vw, 7.8rem) var(--pa-gutter);
+  color: var(--pa-atlantic);
+  border: 0;
+  background:
+    linear-gradient(90deg, rgba(244, 241, 234, 1) 0%, rgba(255, 255, 255, 0.97) 58%, rgba(244, 241, 234, 0.76) 100%),
+    url("../assets/towers.jpg") right center / auto 112% no-repeat,
+    var(--pa-paper);
+}
+
+main #fault.ds-choice::before {
+  content: "";
+  position: absolute;
+  inset: clamp(1.35rem, 3vw, 3.9rem) auto clamp(1.35rem, 3vw, 3.9rem) var(--pa-gutter);
+  width: 1px;
+  background: linear-gradient(180deg, rgba(209, 171, 45, 0), rgba(209, 171, 45, 0.68) 20%, rgba(209, 171, 45, 0.68) 75%, rgba(209, 171, 45, 0));
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+main #fault.ds-choice::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.92), transparent 29rem),
+    linear-gradient(116deg, transparent 0 72%, rgba(10, 22, 40, 0.032) 72% 100%);
+  pointer-events: none;
+}
+
+main #fault.ds-choice .ds-choice__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1320px);
+  margin: 0 auto;
+}
+
+main #fault.ds-choice .ds-choice__intro {
+  display: block;
+  margin: 0 auto clamp(2.35rem, 4vw, 3.65rem);
+  text-align: center;
+}
+
+main #fault.ds-choice .ds-choice__heading {
+  position: relative;
+  top: auto;
+  width: auto;
+  min-height: 0;
+  max-width: 12.8ch;
+  margin: 0 auto;
+  padding: 0;
+  color: var(--pa-atlantic);
+  font-family: var(--pa-display, "Atlas Display", sans-serif);
+  font-size: clamp(4.1rem, 7.1vw, 6rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  text-align: center;
+  text-wrap: balance;
+  background: none;
+}
+
+main #fault.ds-choice .ds-choice__heading::before {
+  content: none;
+}
+
+main #fault.ds-choice .ds-choice__heading::after {
+  content: "";
+  display: block;
+  width: 76px;
+  height: 2px;
+  margin: clamp(1.2rem, 1.8vw, 1.7rem) auto 0;
+  background: linear-gradient(90deg, rgba(209, 171, 45, 0.16), var(--pa-gold), rgba(209, 171, 45, 0.16));
+}
+
+main #fault.ds-choice .ds-choice__heading span {
+  display: block;
+}
+
+main #fault.ds-choice .ds-choice__copy {
+  display: none;
+}
+
+main #fault.ds-choice .ds-choice__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  margin: 0;
+  padding: 0 clamp(0rem, 2vw, 2.25rem);
+  list-style: none;
+}
+
+main #fault.ds-choice .ds-choice-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(76px, 8vw, 112px) minmax(0, 1fr);
+  gap: clamp(1.25rem, 2vw, 2rem);
+  min-height: clamp(230px, 19vw, 286px);
+  padding: clamp(2rem, 3vw, 2.9rem);
+  overflow: hidden;
+  color: var(--pa-atlantic);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(244, 241, 234, 0.88)),
+    rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(10, 22, 40, 0.12);
+  border-radius: 10px;
+  box-shadow:
+    0 26px 60px rgba(10, 22, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+main #fault.ds-choice .ds-choice-card::before {
+  content: "";
+  position: absolute;
+  top: clamp(2.15rem, 3.2vw, 3rem);
+  bottom: clamp(2.15rem, 3.2vw, 3rem);
+  left: calc(clamp(2rem, 3vw, 2.9rem) + clamp(76px, 8vw, 112px) + clamp(0.55rem, 0.8vw, 0.75rem));
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(209, 171, 45, 0.58) 16%, rgba(209, 171, 45, 0.58) 84%, transparent);
+}
+
+main #fault.ds-choice .ds-choice-card__icon {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: clamp(62px, 6vw, 82px);
+  height: clamp(62px, 6vw, 82px);
+  margin-top: 0.15rem;
+  color: var(--pa-gold);
+  border: 1px solid rgba(10, 22, 40, 0.13);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.62)),
+    rgba(255, 255, 255, 0.76);
+  box-shadow:
+    0 16px 36px rgba(10, 22, 40, 0.07),
+    inset 0 0 0 8px rgba(255, 255, 255, 0.45);
+}
+
+main #fault.ds-choice .ds-choice-card__icon .ic {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.65;
+}
+
+main #fault.ds-choice .ds-choice-card__body {
+  position: relative;
+  min-width: 0;
+  padding-left: clamp(0.55rem, 1vw, 1.1rem);
+}
+
+main #fault.ds-choice .ds-choice-card h3 {
+  max-width: 18ch;
+  margin: 0;
+  color: inherit;
+  font-family: var(--pa-display, "Atlas Display", sans-serif);
+  font-size: clamp(2rem, 2.7vw, 3rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+main #fault.ds-choice .ds-choice-card h3::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin: clamp(0.95rem, 1.3vw, 1.25rem) 0 clamp(1rem, 1.35vw, 1.28rem);
+  background: var(--pa-gold);
+}
+
+main #fault.ds-choice .ds-choice-card p {
+  max-width: 54ch;
+  margin: 0;
+  color: #243449;
+  font-family: var(--pa-text, "Atlas Text", sans-serif);
+  font-size: clamp(0.95rem, 0.98vw, 1.02rem);
+  line-height: 1.6;
+}
+
+main #fault.ds-choice .ds-choice-card--dark {
+  color: var(--pa-white);
+  background:
+    radial-gradient(circle at 16% 16%, rgba(243, 223, 148, 0.12), transparent 13rem),
+    linear-gradient(135deg, rgba(10, 22, 40, 0.98), rgba(16, 36, 58, 0.96)),
+    var(--pa-atlantic);
+  border-color: rgba(209, 171, 45, 0.42);
+  box-shadow:
+    0 32px 70px rgba(10, 22, 40, 0.22),
+    inset 0 1px 0 rgba(243, 223, 148, 0.16);
+}
+
+main #fault.ds-choice .ds-choice-card--dark::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: 48%;
+  height: 72%;
+  background: linear-gradient(135deg, transparent 0 45%, rgba(255, 255, 255, 0.045) 45% 100%);
+  pointer-events: none;
+}
+
+main #fault.ds-choice .ds-choice-card--dark .ds-choice-card__icon {
+  color: #f3df94;
+  border-color: rgba(243, 223, 148, 0.38);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 8px rgba(255, 255, 255, 0.035);
+}
+
+main #fault.ds-choice .ds-choice-card--dark p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+@media (max-width: 980px) {
+  main #fault.ds-choice {
+    padding-block: clamp(4.5rem, 9vw, 6rem);
+  }
+
+  main #fault.ds-choice .ds-choice__grid {
+    grid-template-columns: 1fr;
+    padding-inline: 0;
+  }
+
+  main #fault.ds-choice .ds-choice__heading {
+    max-width: 13.5ch;
+    font-size: clamp(3.35rem, 8vw, 4.8rem);
+  }
+
+  main #fault.ds-choice .ds-choice-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  main #fault.ds-choice {
+    padding: 4rem 1.15rem 4.4rem;
+    background:
+      linear-gradient(180deg, rgba(244, 241, 234, 0.99), rgba(255, 255, 255, 0.94)),
+      var(--pa-paper);
+  }
+
+  main #fault.ds-choice::before {
+    left: 1.15rem;
+    inset-block: 1.5rem;
+  }
+
+  main #fault.ds-choice::after {
+    background:
+      radial-gradient(circle at 50% 3%, rgba(255, 255, 255, 0.9), transparent 15rem),
+      linear-gradient(118deg, transparent 0 68%, rgba(10, 22, 40, 0.04) 68% 100%);
+  }
+
+  main #fault.ds-choice .ds-choice__inner {
+    width: 100%;
+  }
+
+  main #fault.ds-choice .ds-choice__intro {
+    margin-bottom: 2rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  main #fault.ds-choice .ds-choice__heading {
+    max-width: 11.5ch;
+    font-size: clamp(3rem, 13.25vw, 3.85rem);
+    line-height: 0.96;
+  }
+
+  main #fault.ds-choice .ds-choice__grid {
+    gap: 1rem;
+  }
+
+  main #fault.ds-choice .ds-choice-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.45rem;
+    border-radius: 9px;
+  }
+
+  main #fault.ds-choice .ds-choice-card::before {
+    content: none;
+  }
+
+  main #fault.ds-choice .ds-choice-card__icon {
+    width: 62px;
+    height: 62px;
+  }
+
+  main #fault.ds-choice .ds-choice-card__icon .ic {
+    width: 30px;
+    height: 30px;
+  }
+
+  main #fault.ds-choice .ds-choice-card__body {
+    padding-left: 0;
+  }
+
+  main #fault.ds-choice .ds-choice-card h3 {
+    max-width: 15ch;
+    font-size: clamp(2rem, 10vw, 2.55rem);
+    line-height: 1;
+  }
+
+  main #fault.ds-choice .ds-choice-card p {
+    font-size: 0.96rem;
+    line-height: 1.58;
+  }
 }

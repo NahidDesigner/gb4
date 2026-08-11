@@ -438,6 +438,35 @@
     }
   }
 
+  /* ---------- Practice-page Terms stage motion -----------------------------
+     Progressive enhancement only: the section is fully visible without JS.
+     The observer adds one quiet legal-exhibit entrance and then stops. */
+
+  var termsStages = $$('.terms-stage');
+  if (termsStages.length) {
+    termsStages.forEach(function (stage) {
+      stage.classList.add('terms-motion-ready');
+    });
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      termsStages.forEach(function (stage) {
+        stage.classList.add('is-in');
+      });
+    } else {
+      var termsObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -14% 0px' });
+
+      termsStages.forEach(function (stage) {
+        termsObserver.observe(stage);
+      });
+    }
+  }
+
   /* ---------- Year ----------------------------------------------------------- */
 
   var yr = $('#yr');
