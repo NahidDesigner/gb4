@@ -107,6 +107,46 @@ for (const factHeading of [
   assert.ok(html.includes(factHeading), `missing approved car-accident fact: ${factHeading}`);
 }
 
+const suppliedHomepageFaqs = [
+  [
+    'How soon should I call an attorney after a crash?',
+    'Sooner is better. Evidence disappears in days. Adjusters call within 24 to 72 hours hoping to get a recorded statement before you have advice. Calling early protects all of that.',
+  ],
+  [
+    'What does it cost to hire GB Law Firm?',
+    'Nothing upfront, nothing during the case. Cases are handled on contingency, which means the firm only gets paid if it recovers compensation for you. The fee is a percentage of the recovery and is in writing before you sign anything.',
+  ],
+  [
+    'What happens if the at-fault driver is uninsured?',
+    'You may still have a path through your own uninsured or underinsured motorist coverage. New York requires it on every auto policy. We will read your policy at no cost and tell you what is available.',
+  ],
+  [
+    'How long do I have to file a car accident lawsuit in New York?',
+    'Most car accident cases must be filed within three years of the date of the crash. Some cases involving government vehicles or municipal defendants have much shorter deadlines, sometimes as short as 90 days. Calling early protects the timeline.',
+  ],
+  [
+    'Will my case actually go to trial?',
+    'Most do not. Most settle. The reason GB Law Firm prepares every case for trial is that the preparation is what produces the settlement. Carriers offer more when the file is trial-ready.',
+  ],
+  [
+    'Can I still recover compensation if I am partly at fault for the accident?',
+    'New York follows comparative negligence, which means you can still recover even if you share some of the blame. Your recovery is reduced by your percentage of fault. Sharing some fault is not a reason to skip the call.',
+  ],
+];
+
+for (const [question, answer] of suppliedHomepageFaqs) {
+  assert.equal(
+    html.split(question).length - 1,
+    2,
+    `FAQ question must appear once visibly and once in structured data: ${question}`,
+  );
+  assert.equal(
+    html.split(answer).length - 1,
+    2,
+    `FAQ answer must appear once visibly and once in structured data: ${question}`,
+  );
+}
+
 for (const forbidden of [
   'Reviewed where it matters',
   'Case Assembly System',

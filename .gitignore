@@ -16,6 +16,11 @@ restore-points/
 # Glob so new capture directories (qa-screenshots/, …) are covered on sight.
 screenshots/
 *screenshots/
+artifacts/
+
+# Python bytecode from the tests/ suite
+__pycache__/
+*.pyc
 
 # Reference material, intentionally not published
 original-untouched/

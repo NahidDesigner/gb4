@@ -2458,6 +2458,388 @@ main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agri
   color: var(--inner-gold);
 }
 
+/* ==========================================================================
+   Team index hero — supplied 2026-08-12 reference
+   ========================================================================== */
+
+main:has(.team-roster) {
+  padding-top: 100px;
+}
+
+main:has(.team-roster) > .team-hero {
+  --team-seam-top: 55.25%;
+  --team-seam-bottom: 48.75%;
+  --team-photo-shift: 22vw;
+  --team-photo-scale: 1.44;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  min-height: 600px;
+  max-height: 600px;
+  height: 600px;
+  aspect-ratio: auto;
+  color: #fff;
+  background: #071a31;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.72);
+}
+
+main:has(.team-roster) > .team-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(77, 105, 135, 0.2), transparent 20rem),
+    linear-gradient(105deg, rgba(3, 17, 32, 0.91) 0%, rgba(5, 24, 44, 0.84) 56%, rgba(10, 34, 58, 0.68) 100%);
+  -webkit-backdrop-filter: saturate(0.72) contrast(1.05);
+  backdrop-filter: saturate(0.72) contrast(1.05);
+  clip-path: polygon(0 0, var(--team-seam-top) 0, var(--team-seam-bottom) 100%, 0 100%);
+  pointer-events: none;
+}
+
+main:has(.team-roster) > .team-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(201, 162, 39, 0.78);
+  clip-path: polygon(
+    calc(var(--team-seam-top) - 0.055%) 0,
+    calc(var(--team-seam-top) + 0.055%) 0,
+    calc(var(--team-seam-bottom) + 0.055%) 100%,
+    calc(var(--team-seam-bottom) - 0.055%) 100%
+  );
+  pointer-events: none;
+}
+
+main:has(.team-roster) .team-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  clip-path: none;
+  background: #c8c3ba;
+}
+
+main:has(.team-roster) .team-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 26, 49, 0.2) 0%, transparent 58%),
+    linear-gradient(0deg, rgba(7, 26, 49, 0.14), transparent 28%);
+  pointer-events: none;
+}
+
+main:has(.team-roster) .team-hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% center;
+  transform: translateX(var(--team-photo-shift)) scale(var(--team-photo-scale));
+  transform-origin: center top;
+}
+
+main:has(.team-roster) .team-hero__content {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.9fr) minmax(19rem, 1.1fr);
+  column-gap: clamp(2.25rem, 3vw, 3.75rem);
+  align-items: end;
+  width: min(46vw, 820px);
+  margin-left: clamp(3rem, 6.25vw, 7.5rem);
+  padding-block: 0;
+  font-family: "Atlas Text", sans-serif;
+}
+
+main:has(.team-roster) .team-hero__eyebrow {
+  position: relative;
+  grid-column: 1 / -1;
+  width: fit-content;
+  margin: 0 0 clamp(1.2rem, 1.8vw, 1.75rem);
+  color: #e2ae25;
+  font-size: clamp(0.78rem, 1.05vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+main:has(.team-roster) .team-hero__eyebrow::before,
+main:has(.team-roster) .team-hero__eyebrow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #d6a21d, rgba(214, 162, 29, 0));
+}
+
+main:has(.team-roster) .team-hero__eyebrow::before {
+  bottom: calc(100% + 0.65rem);
+  width: 4.15rem;
+}
+
+main:has(.team-roster) .team-hero__eyebrow::after {
+  top: calc(100% + 0.65rem);
+  width: 7rem;
+}
+
+main:has(.team-roster) .team-hero__title {
+  display: grid;
+  grid-column: 1 / -1;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  color: #fff;
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(3.65rem, 4.4vw, 5.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.88;
+  text-wrap: balance;
+  text-shadow: 0 16px 38px rgba(0, 0, 0, 0.25);
+}
+
+main:has(.team-roster) .team-hero__title span:last-child {
+  color: #d8a41c;
+}
+
+main:has(.team-roster) .team-hero__intro {
+  position: relative;
+  grid-column: 1;
+  grid-row: 3;
+  max-width: none;
+  margin: clamp(1.8rem, 2.4vw, 2.35rem) 0 0;
+  padding-top: clamp(0.9rem, 1.2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(0.95rem, 0.94vw, 1.08rem);
+  line-height: 1.46;
+}
+
+main:has(.team-roster) .team-hero__intro::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7rem;
+  height: 1px;
+  background: linear-gradient(90deg, #d6a21d, rgba(214, 162, 29, 0));
+}
+
+main:has(.team-roster) .team-hero__intro strong {
+  display: block;
+  color: #fff;
+  font-weight: 400;
+}
+
+main:has(.team-roster) .team-hero__promise {
+  display: grid;
+  grid-column: 2;
+  grid-row: 3;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.35rem, 2vw, 2rem);
+  align-items: center;
+  max-width: none;
+  margin-top: clamp(1.8rem, 2.4vw, 2.35rem);
+}
+
+main:has(.team-roster) .team-hero__promise-mark {
+  display: grid;
+  place-items: center;
+  width: clamp(3.65rem, 4vw, 4.5rem);
+  height: clamp(3.95rem, 4.35vw, 4.85rem);
+  color: #dba91f;
+}
+
+main:has(.team-roster) .team-hero__promise-mark .ic {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+main:has(.team-roster) .team-hero__shield-line {
+  stroke-width: 2;
+}
+
+main:has(.team-roster) .team-hero__promise > div {
+  padding-left: clamp(1.2rem, 1.7vw, 1.65rem);
+  border-left: 1px solid rgba(219, 169, 31, 0.9);
+}
+
+main:has(.team-roster) .team-hero__promise-title {
+  margin: 0 0 0.65rem;
+  color: #e1ad22;
+  font-size: clamp(0.74rem, 0.95vw, 0.88rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+main:has(.team-roster) .team-hero__promise-list {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(0.92rem, 1.08vw, 1.05rem);
+  line-height: 1.42;
+  list-style: none;
+}
+
+@media (min-width: 1600px) {
+  main:has(.team-roster) {
+    padding-top: 116px;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  main:has(.team-roster) .team-hero__content {
+    display: block;
+    width: min(47vw, 31rem);
+    margin-left: clamp(2rem, 5vw, 4rem);
+  }
+
+  main:has(.team-roster) .team-hero__title {
+    font-size: clamp(3.25rem, 6.4vw, 4.4rem);
+  }
+
+  main:has(.team-roster) .team-hero__intro,
+  main:has(.team-roster) .team-hero__promise {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  main:has(.team-roster) {
+    padding-top: 80px;
+  }
+
+  main:has(.team-roster) > .team-hero {
+    display: grid;
+    align-items: end;
+    min-height: 660px;
+    max-height: none;
+    height: auto;
+    aspect-ratio: auto;
+    background: #071a31;
+  }
+
+  main:has(.team-roster) > .team-hero::before {
+    display: none;
+  }
+
+  main:has(.team-roster) > .team-hero::after {
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(201, 162, 39, 0.76);
+    clip-path: none;
+    box-shadow: none;
+    transform: none;
+  }
+
+  main:has(.team-roster) .team-hero__content {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 13.5rem max(1.35rem, env(safe-area-inset-left)) 2.5rem max(1.35rem, env(safe-area-inset-right));
+  }
+
+  main:has(.team-roster) .team-hero__eyebrow {
+    margin-bottom: 1.65rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+  }
+
+  main:has(.team-roster) .team-hero__eyebrow::before {
+    bottom: calc(100% + 0.65rem);
+  }
+
+  main:has(.team-roster) .team-hero__eyebrow::after {
+    top: calc(100% + 0.65rem);
+    width: 5.6rem;
+  }
+
+  main:has(.team-roster) .team-hero__title {
+    max-width: none;
+    font-size: clamp(3.2rem, 14vw, 3.85rem);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+  }
+
+  main:has(.team-roster) .team-hero__intro {
+    max-width: 32rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  main:has(.team-roster) .team-hero__promise {
+    gap: 1.1rem;
+    margin-top: 1.35rem;
+  }
+
+  main:has(.team-roster) .team-hero__promise-mark {
+    width: 4rem;
+    height: 4.45rem;
+  }
+
+  main:has(.team-roster) .team-hero__promise-mark .ic {
+    width: 100%;
+    height: 100%;
+  }
+
+  main:has(.team-roster) .team-hero__promise > div {
+    padding-left: 1rem;
+  }
+
+  main:has(.team-roster) .team-hero__promise-list {
+    font-size: 0.95rem;
+  }
+
+  main:has(.team-roster) .team-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: none;
+    border: 0;
+    background: #071a31;
+  }
+
+  main:has(.team-roster) .team-hero__media::after {
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(7, 26, 49, 0.18) 0%, rgba(7, 26, 49, 0.42) 33%, rgba(7, 26, 49, 0.92) 58%, #071a31 76%),
+      linear-gradient(90deg, rgba(7, 26, 49, 0.5), rgba(7, 26, 49, 0.08));
+  }
+
+  main:has(.team-roster) .team-hero__media img {
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: clamp(22rem, 110vw, 26rem);
+    object-position: 50% center;
+    transform: none;
+  }
+}
+
 main > .sec--tight:has(> .wrap > .bio):has(> .wrap > .agrid) > .wrap:has(> .agrid) .acard h3 {
   color: var(--inner-atlantic);
   text-shadow: none;

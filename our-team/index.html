@@ -148,16 +148,16 @@
 </head>
 <body>
 <!--
-THESIS: The Bronze Directory. Type cut into stone rather than printed on it — the county
-courthouse the case actually ends up in. Restraint with a real budget: the firm is a building,
-not a guy with a phone.
-OWN-WORLD: cool bluestone grounds (#E3E6E4 pale, #0A1628 deep), cast bronze #C9A227 as the
-single polished signal, verdigris #3C625C as the patina third. Archivo Narrow is the single heading voice; Archivo for reading. Bevels, not borders. Zero radius.
-STORY: an injured visitor reads the record cut into the plate, learns what to do in order, hears
-from clients, and is never more than one section from a bronze call button.
-FIRST VIEWPORT: locked skyline, centred lockup at firm scale, the $100M figure, scroll cue;
-persistent call bar pinned bottom on phones.
-FORM: seed key f63e202e, candidate 3 of the grounded list, chosen over cape / nixie / datamatics.
+THESIS: The two partners appear first as one legal team, in a decisive split composition rather
+than as two interchangeable attorney cards.
+OWN-WORLD: deep institutional navy, a restrained gold seam, the supplied courthouse portrait,
+Atlas Display type, and Atlas Text for the supporting record.
+STORY: a visitor meets both partners together, reads their shared promise, and continues into
+the unchanged individual biographies and profile links below.
+FIRST VIEWPORT: the existing masthead sits above a full-bleed attorney photograph under a
+translucent diagonal navy overlay with a two-column content field; mobile layers the content
+over the top-anchored photograph.
+FORM: direct implementation of the user-supplied 2026-08-12 reference, scoped to /our-team/.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->
 
@@ -272,18 +272,47 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 <main id="top">
 
-  <!-- ================= PAGE HEAD =================
-       No hero photograph on this page. The homepage owns the skyline; a second
-       full-bleed image here would make the site feel like it opens twice. This
-       band is the plate edge, the title and one sentence, and then the record
-       starts. -->
-  <!-- The page title, and nothing else. An earlier pass added an invented
-       headline and a summary paragraph here; neither was asked for and the copy
-       on this page is the client's, not ours. -->
-  <section class="sec sec--tight">
-    <div class="wrap">
-      <div class="page-head">
-        <h1 class="page-title">Our Legal Team</h1>
+  <!-- ================= TEAM HERO =================
+       The supplied reference owns this section's composition: institutional
+       navy, a restrained gold seam, and the partners photographed together.
+       It is deliberately isolated from the roster below so the existing team
+       biographies and profile links keep their established semantics. -->
+  <section class="team-hero" aria-labelledby="team-hero-title">
+    <div class="team-hero__media">
+      <img
+        src="../assets/imgi_40_GW-Law_about_main_img.webp"
+        width="2500"
+        height="756"
+        alt="GB Law Firm partners Philip Gurevich and Albert Buznik outside a courthouse"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="team-hero__content">
+      <p class="team-hero__eyebrow">Personal Injury Law</p>
+      <h1 class="team-hero__title" id="team-hero-title">
+        <span>Our Legal</span> <span>Team</span>
+      </h1>
+      <p class="team-hero__intro">
+        <strong>Dedicated advocates. Proven results.</strong>
+        We work together to protect your rights and get you the compensation you deserve.
+      </p>
+
+      <div class="team-hero__promise">
+        <span class="team-hero__promise-mark" aria-hidden="true">
+          <svg class="ic" viewBox="0 0 80 92">
+            <path class="team-hero__shield-line" d="M40 3 71 15v30c0 19-12 34-31 44C21 79 9 64 9 45V15Z"/>
+            <path d="M40 20v47M25 68h30M17 37h46M17 37 9 55a10 10 0 0 0 16 0Zm46 0-8 18a10 10 0 0 0 16 0Z"/>
+          </svg>
+        </span>
+        <div>
+          <p class="team-hero__promise-title">Our Promise</p>
+          <ul class="team-hero__promise-list">
+            <li>Personal attention.</li>
+            <li>Powerful representation.</li>
+            <li>Results that matter.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
