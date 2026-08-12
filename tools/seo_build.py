@@ -221,8 +221,8 @@ PAGES = {
 
 # ---- practice areas -------------------------------------------------------
 # One page per tile in the homepage's Practice Areas section. Generated in a
-# loop rather than written out four times, for the reason at the top of this
-# file: four hand-copied entries is four things to forget to update.
+# loop rather than written out five times, for the reason at the top of this
+# file: five hand-copied entries is five things to forget to update.
 #
 # Each page's FAQ is marked up from that page's OWN visible text, by the same
 # reader the homepage uses, so the schema and the page cannot drift apart.
@@ -248,6 +248,11 @@ PRACTICE_AREAS = {
         "Distracted Driving Accident Lawyers | GB Law Firm",
         "Distracted driving accident lawyers on Long Island. Phone records, "
         "telematics and preservation notices before the data is gone. Call (516) 444-1000."),
+    "drunk-and-impaired-driving-crashes": (
+        "Drunk and Impaired Driving Crashes",
+        "Drunk and Impaired Driving Crash Lawyers | GB Law Firm",
+        "Long Island lawyers for crashes caused by alcohol- or drug-impaired drivers. "
+        "Civil claims, evidence and no-fault deadlines. Call (516) 444-1000."),
 }
 
 for _slug, (_name, _title, _desc) in PRACTICE_AREAS.items():
@@ -256,7 +261,7 @@ for _slug, (_name, _title, _desc) in PRACTICE_AREAS.items():
         url=f"{SITE}/practice-areas/{_slug}/", type="WebPage",
         title=_title, desc=_desc,
         # default arg binds the slug at definition time; a bare closure over the
-        # loop variable would give all four the last slug's FAQ.
+        # loop variable would give all five the last slug's FAQ.
         extra=(lambda rel=_rel, slug=_slug: [
             {"@type": "FAQPage", "@id": f"{SITE}/practice-areas/{slug}/#faq",
              "mainEntity": faq_from(rel, "faq")}]),

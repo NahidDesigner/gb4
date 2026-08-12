@@ -7,8 +7,8 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name.startsWith('._')) return [];
-    if (entry.name === 'docs' || entry.name === '.superpowers') return [];
+    if (entry.name.startsWith('.')) return [];
+    if (entry.name === 'docs' || entry.name === '.superpowers' || entry.name === 'restore-points') return [];
 
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return walk(full);

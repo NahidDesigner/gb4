@@ -4149,8 +4149,28 @@ main #why.dark .tel.tel--light {
    last item in a stacked background-image list. This prevents the hero from
    painting as a flat navy field when browser decode/cache timing is fussy. */
 main .sec--tight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background-color: #061120;
   background-image: none;
+}
+
+main .sec--tight > .pa-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+main .sec--tight > .pa-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  filter: saturate(0.94) contrast(1.08);
 }
 
 main .sec--tight::before {
@@ -4162,37 +4182,37 @@ main .sec--tight::before {
   width: auto;
   height: auto;
   transform: none;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
-  background-color: #061120;
   background-image:
     radial-gradient(circle at 74% 44%, rgba(129, 187, 213, 0.13), rgba(129, 187, 213, 0) 31rem),
     linear-gradient(90deg, rgba(4, 12, 24, 0.9) 0%, rgba(6, 17, 32, 0.68) 27%, rgba(6, 17, 32, 0.32) 53%, rgba(6, 17, 32, 0.08) 79%, rgba(6, 17, 32, 0.18) 100%),
-    linear-gradient(180deg, rgba(4, 12, 24, 0.18) 0%, rgba(4, 12, 24, 0) 42%, rgba(4, 12, 24, 0.52) 100%),
-    var(--pa-hero-img);
-  background-position: center, center, center, center right;
+    linear-gradient(180deg, rgba(4, 12, 24, 0.18) 0%, rgba(4, 12, 24, 0) 42%, rgba(4, 12, 24, 0.52) 100%);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: saturate(0.94) contrast(1.08);
 }
 
 main .sec--tight::after {
-  z-index: 2;
+  z-index: 3;
 }
 
 main .sec--tight .wrap,
 main .sec--tight .page-head {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 @media (max-width: 900px) {
+  main .sec--tight > .pa-hero-media img {
+    object-position: 62% center;
+  }
+
   main .sec--tight::before {
     background-image:
       linear-gradient(90deg, rgba(4, 12, 24, 0.9) 0%, rgba(6, 17, 32, 0.7) 48%, rgba(6, 17, 32, 0.2) 100%),
-      linear-gradient(180deg, rgba(4, 12, 24, 0.12) 0%, rgba(4, 12, 24, 0.08) 44%, rgba(4, 12, 24, 0.72) 100%),
-      var(--pa-hero-img-sm, var(--pa-hero-img));
-    background-position: center, center, 62% center;
+      linear-gradient(180deg, rgba(4, 12, 24, 0.12) 0%, rgba(4, 12, 24, 0.08) 44%, rgba(4, 12, 24, 0.72) 100%);
+    background-position: center;
   }
 }
 
@@ -4322,7 +4342,7 @@ main #related .tiles {
   max-width: 1330px;
   margin: clamp(2.35rem, 3.6vw, 3.35rem) auto 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 1.45vw, 1.3rem);
   background: transparent;
 }
@@ -4351,19 +4371,39 @@ main #related .tile:first-child {
     box-shadow 220ms ease;
 }
 
+main #related .tile-media {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  display: block;
+  height: 52%;
+  overflow: hidden;
+  background-image: var(--img);
+  background-position: center 42%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+main #related .tile-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(0.9) contrast(1.08);
+}
+
 main #related .tile::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
-  z-index: 0;
+  z-index: 1;
   height: 52%;
   background-image:
     linear-gradient(180deg, rgba(4, 12, 24, 0.08) 0%, rgba(4, 12, 24, 0.28) 52%, rgba(4, 12, 24, 0.82) 100%),
-    linear-gradient(90deg, rgba(5, 14, 27, 0.72) 0%, rgba(5, 14, 27, 0.34) 54%, rgba(5, 14, 27, 0.18) 100%),
-    var(--img);
-  background-position: center 42%;
+    linear-gradient(90deg, rgba(5, 14, 27, 0.72) 0%, rgba(5, 14, 27, 0.34) 54%, rgba(5, 14, 27, 0.18) 100%);
+  background-position: center;
   background-size: cover;
-  filter: saturate(0.9) contrast(1.08);
   pointer-events: none;
 }
 
@@ -4371,7 +4411,7 @@ main #related .tile::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background:
     linear-gradient(157deg, rgba(240, 208, 120, 0) 0 56%, rgba(240, 208, 120, 0.72) 56.15%, rgba(240, 208, 120, 0) 56.45%),
     linear-gradient(158deg, rgba(6, 17, 32, 0) 0 47%, rgba(5, 14, 27, 0.82) 47.2% 100%),
@@ -4394,7 +4434,7 @@ main #related .tile:focus-visible {
 
 main #related .tile-in {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   min-height: inherit;
   flex-direction: column;
@@ -4534,6 +4574,12 @@ main #related .related-cta .tel {
   color: #d6a82a;
 }
 
+@media (max-width: 1180px) {
+  main #related .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   main #related.sec {
     padding: clamp(4.4rem, 13vw, 5.8rem) 0 calc(clamp(4.8rem, 13vw, 6rem) + 3.5rem);
@@ -4548,6 +4594,10 @@ main #related .related-cta .tel {
   main #related .tiles,
   main #related .related-cta {
     width: min(100% - 2rem, 31rem);
+  }
+
+  main #related .tile-media {
+    background-image: var(--img-sm, var(--img));
   }
 
   main #related .related-kicker {
@@ -4566,7 +4616,7 @@ main #related .related-cta .tel {
   }
 
   main #related .tiles {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -4610,6 +4660,12 @@ main #related .related-cta .tel {
 
   main #related .related-cta-copy {
     font-size: clamp(1.12rem, 5vw, 1.42rem);
+  }
+}
+
+@media (max-width: 700px) {
+  main #related .tiles {
+    grid-template-columns: 1fr;
   }
 }
 

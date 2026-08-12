@@ -646,7 +646,7 @@
 .atlas-home #practice .ds-pa__panel:first-of-type {
   position: relative;
   display: block;
-  flex: 0 1 16%;
+  flex: 0 1 12%;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
@@ -664,7 +664,8 @@
 .atlas-home #practice .ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1),
 .atlas-home #practice .ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2),
 .atlas-home #practice .ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3),
-.atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) {
+.atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4),
+.atlas-home #practice .ds-pa__radio:nth-of-type(5):checked ~ .ds-pa__panel:nth-of-type(5) {
   flex: 0 0 52%;
 }
 
@@ -1698,7 +1699,8 @@
   .atlas-home #practice .ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1),
   .atlas-home #practice .ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2),
   .atlas-home #practice .ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3),
-  .atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) {
+  .atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4),
+  .atlas-home #practice .ds-pa__radio:nth-of-type(5):checked ~ .ds-pa__panel:nth-of-type(5) {
     min-height: 430px;
     border-left: 1px solid var(--atlas-line-dark);
     border-bottom: 1px solid var(--atlas-line-dark);
@@ -1877,7 +1879,8 @@
   .atlas-home #practice .ds-pa__radio:nth-of-type(1):checked ~ .ds-pa__panel:nth-of-type(1),
   .atlas-home #practice .ds-pa__radio:nth-of-type(2):checked ~ .ds-pa__panel:nth-of-type(2),
   .atlas-home #practice .ds-pa__radio:nth-of-type(3):checked ~ .ds-pa__panel:nth-of-type(3),
-  .atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4) {
+  .atlas-home #practice .ds-pa__radio:nth-of-type(4):checked ~ .ds-pa__panel:nth-of-type(4),
+  .atlas-home #practice .ds-pa__radio:nth-of-type(5):checked ~ .ds-pa__panel:nth-of-type(5) {
     display: block;
     min-height: 330px;
     border-left: 0;
@@ -11106,4 +11109,537 @@
 .atlas-home #questions summary span,
 .atlas-home #questions summary::before {
   font-family: var(--atlas-display, "Atlas Display", sans-serif);
+}
+
+/* EDIT 49 — Mirrored car-accident facts index
+   Reuses the numbered reading-panel language of the case-type index. The lead
+   composition is intentionally mirrored: documentary crash image first on the
+   left, approved title and subtitle on the right. */
+.atlas-home #accident-facts.ds-caseindex {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.5rem, 7.5vw, 7.5rem) var(--atlas-gutter);
+  color: var(--atlas-navy);
+  background:
+    radial-gradient(circle at 84% 12%, rgba(255, 255, 255, 0.92), transparent 28rem),
+    linear-gradient(180deg, #f2f0ea, #e9eeeb);
+  isolation: isolate;
+}
+
+.atlas-home #accident-facts.ds-caseindex::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, transparent 0 49.9%, rgba(18, 61, 86, 0.08) 50%, transparent 50.1%),
+    radial-gradient(circle at 14% 88%, rgba(33, 107, 136, 0.1), transparent 22rem);
+  pointer-events: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__inner {
+  width: min(100%, 1440px);
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.atlas-home #accident-facts .ds-caseindex__lead {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  align-items: stretch;
+  gap: clamp(3.5rem, 6vw, 6.75rem);
+  margin-bottom: clamp(3.75rem, 6vw, 5.75rem);
+}
+
+.atlas-home #accident-facts .ds-caseindex__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1.4rem, 2.5vw, 2.4rem);
+}
+
+.atlas-home #accident-facts .ds-caseindex__media::before,
+.atlas-home #accident-facts .ds-caseindex__media::after {
+  content: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__route-frame {
+  position: absolute;
+  inset: -1.5% -1% -2%;
+  z-index: 1;
+  width: 102%;
+  height: 103.5%;
+  overflow: visible;
+  fill: none;
+  pointer-events: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__route-line {
+  stroke: var(--atlas-gold);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.atlas-home #accident-facts .ds-caseindex__route-ring {
+  stroke: rgba(201, 162, 39, 0.2);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.atlas-home #accident-facts .ds-caseindex__route-ring--inner {
+  stroke: rgba(201, 162, 39, 0.1);
+}
+
+.atlas-home #accident-facts .ds-caseindex__image-dots {
+  position: absolute;
+  top: clamp(2.25rem, 4.5vw, 4.25rem);
+  right: clamp(-1.25rem, -1.5vw, -0.35rem);
+  z-index: 0;
+  width: clamp(8rem, 13vw, 11.5rem);
+  height: clamp(5.5rem, 9vw, 8rem);
+  background: radial-gradient(circle, rgba(18, 61, 86, 0.13) 0 2px, transparent 2.4px) 0 0 / 16px 16px;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__image-frame {
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  width: min(100%, 37rem);
+  aspect-ratio: 1 / 1.08;
+  border-radius: 14px;
+  box-shadow: 0 32px 72px rgba(18, 61, 86, 0.18);
+}
+
+.atlas-home #accident-facts .ds-caseindex__image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(18, 61, 86, 0.08), transparent 48%);
+  pointer-events: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% center;
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection {
+  position: absolute;
+  left: clamp(-0.4rem, -0.5vw, 0rem);
+  bottom: clamp(2.25rem, 4.2vw, 4rem);
+  z-index: 4;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.95rem;
+  width: min(21rem, 64%);
+  margin: 0;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(18, 61, 86, 0.11);
+  border-radius: 14px;
+  color: var(--atlas-navy);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 40px rgba(18, 61, 86, 0.18);
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection-icon {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(201, 162, 39, 0.36);
+  border-radius: 50%;
+  color: var(--atlas-gold);
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(18, 61, 86, 0.12);
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection-icon svg {
+  width: 1.75rem;
+  height: 2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection-copy {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection-copy strong {
+  font-family: var(--atlas-display, "Atlas Display", sans-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.atlas-home #accident-facts .ds-caseindex__protection-copy > span {
+  font-family: var(--atlas-body, "Atlas Text", sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.38;
+  color: #3b5362;
+}
+
+.atlas-home #accident-facts .ds-caseindex__intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: clamp(34rem, 43vw, 42rem);
+  padding: clamp(2.5rem, 4.5vw, 4.75rem) clamp(0rem, 1.5vw, 1.5rem) clamp(2.5rem, 4.5vw, 4.75rem) clamp(2rem, 4vw, 4.25rem);
+  border-top: 1px solid rgba(201, 162, 39, 0.34);
+  border-left: 1px solid rgba(201, 162, 39, 0.22);
+}
+
+.atlas-home #accident-facts .ds-caseindex__intro::after {
+  content: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__legal-emblem {
+  position: absolute;
+  top: clamp(1.35rem, 2.6vw, 2.5rem);
+  right: clamp(0.25rem, 2vw, 1.75rem);
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(5rem, 7vw, 6.5rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  border-radius: 50%;
+  color: var(--atlas-gold);
+  box-shadow:
+    0 0 0 1.25rem rgba(201, 162, 39, 0.055),
+    0 0 0 2.5rem rgba(201, 162, 39, 0.03),
+    0 0 0 3.75rem rgba(201, 162, 39, 0.018);
+  pointer-events: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__legal-emblem-icon {
+  width: 2.45rem;
+  height: 2.8rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #accident-facts .ds-caseindex__heading {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+  margin: 0 0 clamp(2rem, 3vw, 2.8rem);
+  padding: 0;
+  color: var(--atlas-navy);
+  font-family: var(--atlas-display, "Atlas Display", sans-serif);
+  font-size: clamp(3.2rem, 4.35vw, 4.9rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+
+.atlas-home #accident-facts .ds-caseindex__title-line {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.atlas-home #accident-facts .ds-caseindex__title-line--accent {
+  color: var(--atlas-gold);
+}
+
+.atlas-home #accident-facts .ds-caseindex__heading::before {
+  content: none;
+}
+
+.atlas-home #accident-facts .ds-caseindex__lede {
+  position: relative;
+  z-index: 1;
+  max-width: 48ch;
+  margin: 0;
+  padding: clamp(1.5rem, 2.2vw, 2rem) 0 0;
+  color: #263f50;
+  font-family: var(--atlas-body, "Atlas Text", sans-serif);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem);
+  line-height: 1.65;
+}
+
+.atlas-home #accident-facts .ds-caseindex__lede::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(3.5rem, 5vw, 5rem);
+  height: 2px;
+  background: var(--atlas-gold);
+}
+
+.atlas-home #accident-facts .ds-caseindex__grid {
+  counter-reset: accident-fact;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(18, 61, 86, 0.14);
+  border-radius: 12px;
+  list-style: none;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 28px 72px rgba(18, 61, 86, 0.08);
+}
+
+.atlas-home #accident-facts .ds-caseindex__cell,
+.atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n + 1),
+.atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n) {
+  counter-increment: accident-fact;
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(3.7rem, 5vw, 5.25rem) 1px minmax(0, 1fr);
+  align-content: start;
+  column-gap: clamp(1.1rem, 2vw, 1.8rem);
+  min-width: 0;
+  padding: clamp(1.8rem, 2.8vw, 2.7rem);
+  border: 0;
+  border-right: 1px solid rgba(18, 61, 86, 0.11);
+  border-bottom: 1px solid rgba(18, 61, 86, 0.11);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.38));
+}
+
+.atlas-home #accident-facts .ds-caseindex__cell:nth-child(even) {
+  border-right: 0;
+}
+
+.atlas-home #accident-facts .ds-caseindex__cell:nth-child(5) {
+  grid-column: 1 / -1;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.atlas-home #accident-facts .ds-caseindex__cell::before {
+  content: counter(accident-fact, decimal-leading-zero);
+  position: static;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: block;
+  width: auto;
+  height: auto;
+  margin: -0.06em 0 0;
+  color: var(--atlas-gold);
+  background: none;
+  font-family: var(--atlas-display, "Atlas Display", sans-serif);
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.atlas-home #accident-facts .ds-caseindex__cell::after {
+  content: "";
+  position: static;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: block;
+  width: 1px;
+  height: clamp(5rem, 7vw, 7.5rem);
+  background: linear-gradient(180deg, var(--atlas-gold), rgba(201, 162, 39, 0.25));
+}
+
+.atlas-home #accident-facts .ds-caseindex__name,
+.atlas-home #accident-facts .ds-caseindex__desc {
+  grid-column: 3;
+  min-width: 0;
+}
+
+.atlas-home #accident-facts .ds-caseindex__name {
+  max-width: 28ch;
+  margin: 0 0 0.85rem;
+  color: var(--atlas-navy);
+  font-family: var(--atlas-display, "Atlas Display", sans-serif);
+  font-size: clamp(1.55rem, 1.9vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.atlas-home #accident-facts .ds-caseindex__desc {
+  max-width: 70ch;
+  margin: 0;
+  color: #243449;
+  font-family: var(--atlas-body, "Atlas Text", sans-serif);
+  font-size: clamp(1rem, 1.05vw, 1.08rem);
+  line-height: 1.64;
+}
+
+@media (max-width: 900px) {
+  .atlas-home #accident-facts .ds-caseindex__lead {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__media {
+    width: min(100%, 42rem);
+    margin-inline: auto;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__image-frame {
+    width: min(100%, 40rem);
+    aspect-ratio: 1.25 / 1;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__intro {
+    min-height: 0;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__cell,
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n + 1),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(even),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(5) {
+    grid-column: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(18, 61, 86, 0.11);
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__cell:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .atlas-home #accident-facts.ds-caseindex {
+    padding: 4.25rem 1.1rem 4.75rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__lead {
+    gap: 2.5rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__media {
+    padding: 0.85rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__media::before,
+  .atlas-home #accident-facts .ds-caseindex__media::after {
+    content: none;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__image-frame {
+    aspect-ratio: 1.15 / 1;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__intro {
+    padding: 2.35rem 0 0 1.1rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__image-dots {
+    top: 1.25rem;
+    right: -0.25rem;
+    width: 7rem;
+    height: 4.5rem;
+    background-size: 12px 12px;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__protection {
+    left: -0.25rem;
+    bottom: 1.5rem;
+    gap: 0.7rem;
+    width: min(17rem, 82%);
+    padding: 0.72rem 0.78rem;
+    border-radius: 12px;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__protection-icon {
+    width: 2.75rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__protection-icon svg {
+    width: 1.4rem;
+    height: 1.65rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__protection-copy strong {
+    font-size: 0.93rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__protection-copy > span {
+    font-size: 0.76rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__legal-emblem {
+    top: 1rem;
+    right: 0.75rem;
+    width: 3.75rem;
+    opacity: 0.8;
+    box-shadow:
+      0 0 0 0.85rem rgba(201, 162, 39, 0.05),
+      0 0 0 1.7rem rgba(201, 162, 39, 0.025);
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__legal-emblem-icon {
+    width: 1.8rem;
+    height: 2.1rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__heading {
+    margin-bottom: 1.65rem;
+    font-size: clamp(1.8rem, 8.6vw, 2.12rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__lede {
+    padding: 1.45rem 0 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__cell,
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n + 1),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(3n),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(even),
+  .atlas-home #accident-facts .ds-caseindex__cell:nth-child(5) {
+    grid-template-columns: 3.25rem 1px minmax(0, 1fr);
+    column-gap: 0.9rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__cell::before {
+    font-size: clamp(2.55rem, 11vw, 3.15rem);
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__cell::after {
+    height: 4.75rem;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__name {
+    max-width: 20ch;
+    font-size: clamp(1.35rem, 6.2vw, 1.65rem);
+    line-height: 1.08;
+  }
+
+  .atlas-home #accident-facts .ds-caseindex__desc {
+    font-size: 1rem;
+    line-height: 1.58;
+  }
 }

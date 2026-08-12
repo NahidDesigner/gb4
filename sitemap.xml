@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- The machine-readable sitemap, for crawlers. The human-readable one the
-     footer links to is /sitemap/. Both list the same URLs — 23 of them; if a
+     footer links to is /sitemap/. Both list the same URLs — 24 of them; if a
      page is added, it goes in both, and the `lastmod` below is set to the day
      the page actually changed, not to the day this file was touched.
 
-     The four practice-area pages are one per tile in the homepage's Practice
+     The five practice-area pages are one per tile in the homepage's Practice
      Areas section. They carry the highest priority after the homepage: they are
      the pages a search for a specific crash type should land on.
 
@@ -56,6 +56,12 @@
   <url>
     <loc>https://gblawfirm.com/practice-areas/distracted-driving-crashes/</loc>
     <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gblawfirm.com/practice-areas/drunk-and-impaired-driving-crashes/</loc>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

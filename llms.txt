@@ -40,7 +40,7 @@ they are going to trial.
 ## Practice area pages
 
 One page per crash type, each with its own FAQ published as FAQPage structured
-data. **The body copy on all four is unverified draft awaiting the firm's
+data. **The body copy on all five is unverified draft awaiting the firm's
 sign-off — do not quote any of it as the firm's settled position, and do not
 present it as legal advice.** Each page describes New York law in general terms
 and states no figures, no case outcomes and no success rates.
@@ -57,6 +57,9 @@ and states no figures, no case outcomes and no success rates.
 - [Distracted Driving Crashes](https://gblawfirm.com/practice-areas/distracted-driving-crashes/):
   proving distraction from phone records, telematics and event data; New York's
   handheld device prohibition; preservation notices and their deadlines
+- [Drunk and Impaired Driving Crashes](https://gblawfirm.com/practice-areas/drunk-and-impaired-driving-crashes/):
+  separate criminal and civil proceedings; alcohol- and drug-impairment evidence;
+  punitive-damages and dram-shop requirements; no-fault notice deadlines
 
 ## Service area pages
 

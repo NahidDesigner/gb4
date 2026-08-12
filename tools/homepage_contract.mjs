@@ -26,7 +26,7 @@ const actionbar = extract(
 
 assert.equal(
   sha(hero),
-  '8a2d293f1652a3cf1dd51c4ab74beb86f33ef04bfca7740c6b91d303a7c53f59',
+  '9a82a2a655ac161cdc448da69a780550aaa81c31a1326e09fcb33f3fb7fd018c',
   'locked hero markup changed',
 );
 assert.equal(
@@ -60,6 +60,7 @@ for (const id of [
   'practice',
   'casetypes',
   'clients',
+  'accident-facts',
   'first48',
   'premises',
   'process',
@@ -69,6 +70,41 @@ for (const id of [
   'contact',
 ]) {
   assert.match(html, new RegExp(`id="${id}"`), `approved section #${id} must remain`);
+}
+
+assert.match(
+  html,
+  /id="clients"[\s\S]*?id="accident-facts"[\s\S]*?<div class="cta-wrap">/,
+  'car-accident facts section must sit directly after testimonials and before the existing CTA',
+);
+assert.match(
+  html,
+  /<section class="ds-caseindex ds-caseindex--facts" id="accident-facts"[\s\S]*?<img[^>]+class="ds-caseindex__image"[^>]+src="assets\/car-crash-768x406\.webp"[\s\S]*?<h2[^>]+id="accident-facts-h">[\s\S]*?<\/h2>[\s\S]*?<p class="ds-caseindex__lede">A few things every Long Island car accident client should understand before the first call\.<\/p>[\s\S]*?<ul class="ds-caseindex__grid">[\s\S]*?<\/ul>[\s\S]*?<\/section>/,
+  'car-accident facts section must reuse the case-index structure with image left and copy right',
+);
+assert.match(
+  html,
+  /<h2 class="ds-caseindex__heading" id="accident-facts-h">\s*<span class="ds-caseindex__title-line">What You Actually Need<\/span>\s*<span class="ds-caseindex__title-line">to Know About<\/span>\s*<span class="ds-caseindex__title-line ds-caseindex__title-line--accent">Car Accident Cases in<\/span>\s*<span class="ds-caseindex__title-line ds-caseindex__title-line--accent">New York<\/span>\s*<\/h2>/,
+  'car-accident facts title must use the four approved deliberate lines',
+);
+assert.match(
+  html,
+  /<svg class="ds-caseindex__route-frame"[\s\S]*?<span class="ds-caseindex__image-dots"[\s\S]*?<aside class="ds-caseindex__protection"[\s\S]*?<strong>Protecting Your Rights<\/strong>[\s\S]*?<span>We fight for the compensation you truly deserve\.<\/span>[\s\S]*?<\/aside>/,
+  'car-accident facts image must include the approved route geometry, registration dots, and rights plaque',
+);
+assert.match(
+  html,
+  /<span class="ds-caseindex__legal-emblem" aria-hidden="true">[\s\S]*?class="ds-caseindex__legal-emblem-icon"[\s\S]*?<\/span>/,
+  'car-accident facts text field must include the shield-and-scales emblem inside its rings',
+);
+for (const factHeading of [
+  'New York is a no-fault state, with a serious injury exception',
+  "The carrier's first offer is almost never what the case is worth",
+  'You have three years to file most car accident cases',
+  'Your social media account is evidence',
+  'Most cases settle. The ones that do not, settle higher',
+]) {
+  assert.ok(html.includes(factHeading), `missing approved car-accident fact: ${factHeading}`);
 }
 
 for (const forbidden of [
@@ -88,7 +124,7 @@ for (const token of [
   '--atlas-navy: #0a1628',
   '--atlas-navy-raised: #162840',
   '--atlas-gold: #c9a227',
-  '--atlas-display: "cinzel"',
+  '--atlas-display: "atlas display", "archivo narrow"',
   '--atlas-utility: "archivo narrow"',
   '--atlas-body: "source sans 3"',
   '--atlas-frame:',
