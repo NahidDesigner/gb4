@@ -3903,8 +3903,14 @@
 
 .atlas-home #creds .creds-run img,
 .atlas-home #creds .creds-run img.cr-emblem {
+  width: auto;
+  height: 42px;
   opacity: 0.86;
   filter: grayscale(1) brightness(2.15) contrast(0.82) !important;
+}
+
+.atlas-home #creds .creds-run img.cr-emblem {
+  height: 64px;
 }
 
 .atlas-home #firm {
@@ -4028,6 +4034,14 @@
 
   .atlas-home #creds .creds-track {
     min-height: 78px;
+  }
+
+  .atlas-home #creds .creds-run img,
+  .atlas-home #creds .creds-run img.cr-emblem {
+    width: auto;
+    height: auto;
+    max-width: 78px;
+    max-height: 50px;
   }
 
   .atlas-home #firm {
@@ -9991,7 +10005,7 @@
   display: flex;
   flex: 0 0 clamp(258px, 18.75vw, 286px);
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-width: 0;
   min-height: clamp(15.4rem, 17.4vw, 17rem);
   padding: clamp(1.55rem, 2vw, 1.95rem);
@@ -10037,7 +10051,7 @@
 .atlas-home #settlements.settlements-premium .ds-figure-cell__case {
   display: block;
   max-width: none;
-  margin: auto 0 0;
+  margin: clamp(1.5rem, 2vw, 1.85rem) 0 0;
   color: var(--atlas-white);
   font-family: "Atlas Text", sans-serif;
   font-size: clamp(0.86rem, 0.95vw, 1rem);

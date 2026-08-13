@@ -1194,6 +1194,10 @@ main:has(#results) .sec--tight::before {
   background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.78), transparent);
 }
 
+main:has(#results) .sec--tight::after {
+  bottom: clamp(1.75rem, 2.6vw, 2.4rem);
+}
+
 main:has(#results) .page-head {
   max-width: min(1180px, 100%);
   text-align: left;
@@ -1255,7 +1259,7 @@ main:has(#results) .rcard:nth-child(3n+1) {
   min-height: clamp(13rem, 16vw, 17.5rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: clamp(1.35rem, 2.2vw, 2rem);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background:
@@ -1285,7 +1289,7 @@ main:has(#results) .rcard-amt {
 
 main:has(#results) .rcard-t {
   max-width: none;
-  margin-top: auto;
+  margin-top: clamp(1.5rem, 2vw, 1.85rem);
   color: #fff;
   font-family: "Atlas Text", sans-serif;
   font-size: clamp(0.88rem, 1vw, 1rem);
