@@ -9,6 +9,40 @@
   const practicePanels = Array.from(document.querySelectorAll('#practice .ds-pa__panel[for]'));
   const settlementScroller = document.querySelector('#settlements .ds-settlements__list');
   const settlementScrollButtons = Array.from(document.querySelectorAll('[data-settlement-scroll]'));
+  const dmvReport = document.getElementById('dmv-report');
+  const dmvPhone = dmvReport?.querySelector('.dmv-report__phone');
+  const dmvPhoneLayout = window.matchMedia('(max-width: 760px)');
+
+  const animateDmvPhone = () => {
+    if (!dmvPhone || typeof dmvPhone.animate !== 'function') return;
+
+    const phoneKeyframes = dmvPhoneLayout.matches
+      ? [
+          {
+            opacity: 0,
+            transform: 'translate3d(-50%, -36px, 0) scale(0.92) rotate(1deg)',
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(-50%, 0, 0) scale(1) rotate(0deg)',
+          },
+        ]
+      : [
+          {
+            opacity: 0,
+            transform: 'translate3d(72px, 24px, 0) scale(0.92) rotate(2deg)',
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(0, 0, 0) scale(1) rotate(0deg)',
+          },
+        ];
+
+    dmvPhone.animate(phoneKeyframes, {
+      duration: 700,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    });
+  };
 
   const renderSettlementCounter = (counter, value) => {
     const prefix = counter.dataset.dsCountPrefix || '';
@@ -155,6 +189,7 @@
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('atlas-visible');
+      if (entry.target === dmvReport) animateDmvPhone();
       observer.unobserve(entry.target);
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });

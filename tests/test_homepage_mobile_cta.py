@@ -33,14 +33,16 @@ class HomepageMobileCtaTests(unittest.TestCase):
         )
 
     def test_long_mobile_section_titles_use_full_width_without_extra_wraps(self):
-        final_mobile = CSS.rsplit("@media (max-width: 760px)", 1)[1]
-        first48 = final_mobile.split(
+        mobile_heading_guard = CSS.split(
+            "EDIT 47 — Mobile section heading scale guard", 1
+        )[1].split("EDIT 48 — FAQ typography family lock", 1)[0]
+        first48 = mobile_heading_guard.split(
             ".atlas-home #first48.ds-sequence-section .ds-sequence-section__heading {",
             1,
         )[1].split("}", 1)[0]
-        process = final_mobile.split(".atlas-home #process.sec .h2 {", 1)[1].split(
-            "}", 1
-        )[0]
+        process = mobile_heading_guard.split(
+            ".atlas-home #process.sec .h2 {", 1
+        )[1].split("}", 1)[0]
         self.assertIn("max-width: none", first48)
         self.assertIn("white-space: nowrap", first48)
         self.assertIn("max-width: none", process)

@@ -31,7 +31,7 @@ assert.equal(
 );
 assert.equal(
   sha(footer),
-  '682b4e9ce8da99a6743b92fea6db0e6fe16e259b363e31c72020791ade84b5d4',
+  '816e8f23f62ff15c6c1d0913933d1a0f86dbe0af0292c6db487fec2f7b128f78',
   'footer markup changed',
 );
 assert.equal(
@@ -62,6 +62,7 @@ for (const id of [
   'clients',
   'accident-facts',
   'first48',
+  'dmv-report',
   'premises',
   'process',
   'areas',
@@ -455,14 +456,14 @@ assert.match(
   'mobile actionbar reserve must match the actual 44px bar height and inherit the footer-dark surface',
 );
 assert.match(
-  css,
-  /EDIT 6 — First48 closing action panel[\s\S]*?\.atlas-home #first48 \.ds-sequence-section__foot\s*\{[\s\S]*?display:\s*grid[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)\s+minmax\(300px,\s*0\.78fr\)[\s\S]*?background:\s*var\(--atlas-navy\)/s,
-  'first48 closing action must be a composed action panel instead of loose horizontal rules',
+  html,
+  /id="first48"[\s\S]*?<\/section>\s*(?:<!--[\s\S]*?-->\s*)?<section[^>]+id="dmv-report"[\s\S]*?<\/section>\s*(?:<!--[\s\S]*?-->\s*)?<section[^>]+id="premises"/s,
+  'the standalone accident-report resource must follow first48 before the page changes to premises liability',
 );
 assert.match(
   css,
-  /EDIT 6 — First48 closing action panel[\s\S]*?\.atlas-home #first48 \.ds-resource-row\s*\{[\s\S]*?min-height:\s*92px[\s\S]*?background:\s*var\(--atlas-paper\)[\s\S]*?border:\s*1px solid rgba\(201,\s*162,\s*39,\s*0\.45\)/s,
-  'first48 accident-report link must read as the secondary action inside the panel',
+  /EDIT 25 — MyNYAccident report resource section[\s\S]*?\.atlas-home #dmv-report\s*\{[\s\S]*?font-family:\s*"Atlas Text",\s*sans-serif[\s\S]*?\.atlas-home #dmv-report \.dmv-report__heading\s*\{[\s\S]*?font-family:\s*"Atlas Display",\s*sans-serif/s,
+  'the MyNYAccident resource must own the approved Atlas type system',
 );
 assert.match(
   css,

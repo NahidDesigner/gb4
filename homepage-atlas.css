@@ -11701,3 +11701,636 @@
     line-height: 1.58;
   }
 }
+
+/* EDIT 25 — MyNYAccident report resource section
+   The approved reference is rebuilt as semantic UI over separate background and
+   transparent phone layers. The phone remains fully contained at every viewport;
+   section content uses the homepage's Atlas font aliases. */
+.atlas-home #dmv-report {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(850px, 53.35vw, 916px);
+  min-height: 850px;
+  overflow: hidden;
+  color: var(--atlas-white);
+  background: #06101f;
+  font-family: "Atlas Text", sans-serif;
+  isolation: isolate;
+}
+
+.atlas-home #dmv-report::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(2, 15, 31, 0.1) 0 48%, rgba(2, 15, 31, 0) 68%),
+    linear-gradient(180deg, rgba(2, 15, 31, 0.04), rgba(2, 15, 31, 0.18));
+  pointer-events: none;
+}
+
+.atlas-home #dmv-report::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-top: 1px solid rgba(201, 162, 39, 0.45);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.45);
+  pointer-events: none;
+}
+
+.atlas-home #dmv-report .dmv-report__visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.atlas-home #dmv-report .dmv-report__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.atlas-home #dmv-report .dmv-report__phone {
+  position: absolute;
+  top: 1.8%;
+  right: clamp(6.5rem, 9.5vw, 10rem);
+  z-index: 2;
+  width: clamp(22.5rem, 33vw, 33.5rem);
+  height: auto;
+  max-width: none;
+  max-height: calc(100% - 96px);
+  object-fit: contain;
+  object-position: center top;
+  filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.38));
+  transform-origin: 62% 70%;
+  pointer-events: none;
+}
+
+.atlas-home #dmv-report .dmv-report__inner {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+  width: min(100%, 1717px);
+  height: calc(100% - 92px);
+  margin: 0 auto;
+  padding: clamp(4rem, 5.7vw, 6.2rem) clamp(2rem, 7.1vw, 7.6rem) clamp(1.5rem, 2.2vw, 2.35rem);
+}
+
+.atlas-home #dmv-report .dmv-report__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 780px;
+}
+
+.atlas-home #dmv-report .dmv-report__label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: min(100%, 520px);
+  margin: 0 0 clamp(1.4rem, 2vw, 2.1rem);
+  color: var(--atlas-gold);
+  font-size: clamp(0.67rem, 0.72vw, 0.79rem);
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.atlas-home #dmv-report .dmv-report__label::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, var(--atlas-gold), rgba(201, 162, 39, 0.12));
+}
+
+.atlas-home #dmv-report .dmv-report__heading {
+  max-width: 100%;
+  margin: 0;
+  color: var(--atlas-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(4.1rem, 5.25vw, 5.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.91;
+  text-wrap: balance;
+  white-space: nowrap;
+}
+
+.atlas-home #dmv-report .dmv-report__heading span {
+  display: block;
+  white-space: nowrap;
+}
+
+.atlas-home #dmv-report .dmv-report__heading em {
+  color: var(--atlas-gold);
+  font-style: normal;
+}
+
+.atlas-home #dmv-report .dmv-report__intro {
+  max-width: 55ch;
+  margin: clamp(1.25rem, 1.7vw, 1.8rem) 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.08vw, 1.16rem);
+  line-height: 1.62;
+}
+
+.atlas-home #dmv-report .dmv-report__benefits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(1.5rem, 2.3vw, 2.45rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.atlas-home #dmv-report .dmv-report__benefit {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  justify-items: center;
+  min-width: 0;
+  padding: 0 clamp(0.65rem, 1.25vw, 1.3rem);
+  border-left: 1px solid rgba(201, 162, 39, 0.27);
+  text-align: center;
+}
+
+.atlas-home #dmv-report .dmv-report__benefit:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.atlas-home #dmv-report .dmv-report__benefit:last-child {
+  padding-right: 0;
+}
+
+.atlas-home #dmv-report .dmv-report__icon {
+  display: grid;
+  place-items: center;
+  width: clamp(3rem, 3.9vw, 4.2rem);
+  aspect-ratio: 1;
+  margin: 0 0 0.8rem;
+  border: 1px solid var(--atlas-gold);
+  border-radius: 50%;
+  color: var(--atlas-gold);
+}
+
+.atlas-home #dmv-report .dmv-report__icon svg {
+  width: 68%;
+  height: 68%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #dmv-report .dmv-report__benefit strong {
+  margin: 0;
+  color: var(--atlas-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(0.95rem, 1.03vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.atlas-home #dmv-report .dmv-report__benefit > span:last-child {
+  margin-top: 0.48rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.76rem, 0.81vw, 0.87rem);
+  line-height: 1.45;
+}
+
+.atlas-home #dmv-report .dmv-report__action {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.9rem, 1.5vw, 1.35rem);
+  min-height: 112px;
+  margin-top: auto;
+  padding: 1.15rem clamp(1.15rem, 2.1vw, 2rem);
+  border: 1px solid rgba(201, 162, 39, 0.8);
+  border-radius: 14px;
+  color: var(--atlas-white);
+  background: linear-gradient(100deg, rgba(10, 22, 40, 0.78), rgba(201, 162, 39, 0.12));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+  text-decoration: none;
+}
+
+.atlas-home #dmv-report .dmv-report__action:hover,
+.atlas-home #dmv-report .dmv-report__action:focus-visible {
+  color: var(--atlas-white);
+  border-color: var(--atlas-gold-soft);
+  background: linear-gradient(100deg, rgba(22, 40, 64, 0.96), rgba(201, 162, 39, 0.2));
+}
+
+.atlas-home #dmv-report .dmv-report__action-icon {
+  display: grid;
+  place-items: center;
+  width: clamp(3rem, 4vw, 4rem);
+  color: var(--atlas-gold);
+}
+
+.atlas-home #dmv-report .dmv-report__action-icon svg,
+.atlas-home #dmv-report .dmv-report__action-arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #dmv-report .dmv-report__action-icon svg {
+  width: 100%;
+}
+
+.atlas-home #dmv-report .dmv-report__action small,
+.atlas-home #dmv-report .dmv-report__action strong {
+  display: block;
+}
+
+.atlas-home #dmv-report .dmv-report__action small {
+  margin-bottom: 0.22rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(0.78rem, 0.87vw, 0.94rem);
+}
+
+.atlas-home #dmv-report .dmv-report__action strong {
+  color: var(--atlas-gold);
+  font-family: "Atlas Display", sans-serif;
+  font-size: clamp(1.7rem, 2.2vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.atlas-home #dmv-report .dmv-report__action-arrow {
+  width: clamp(1.8rem, 2.2vw, 2.4rem);
+  color: var(--atlas-gold);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atlas-home #dmv-report .dmv-report__action:hover .dmv-report__action-arrow,
+.atlas-home #dmv-report .dmv-report__action:focus-visible .dmv-report__action-arrow {
+  transform: translateX(0.35rem);
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure {
+  position: absolute;
+  right: clamp(2rem, 7.2vw, 7.6rem);
+  bottom: clamp(2.3rem, 4.8vw, 5rem);
+  z-index: 4;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  width: min(292px, 22vw);
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  color: var(--atlas-navy);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure-icon {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--atlas-gold);
+  background: var(--atlas-white);
+  box-shadow: 0 7px 18px rgba(10, 22, 40, 0.14);
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure-icon svg {
+  width: 1.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure strong {
+  display: block;
+  margin-bottom: 0.34rem;
+  font-family: "Atlas Display", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure p {
+  margin: 0;
+  color: #26384a;
+  font-size: 0.78rem;
+  line-height: 1.42;
+}
+
+.atlas-home #dmv-report .dmv-report__disclosure a {
+  display: inline-block;
+  min-height: 44px;
+  margin-top: 0.55rem;
+  padding-top: 0.35rem;
+  color: #5e4a0e;
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.atlas-home #dmv-report .dmv-report__close {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 1.7rem);
+  height: 92px;
+  padding-inline: var(--atlas-gutter);
+  border-top: 1px solid rgba(201, 162, 39, 0.4);
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(2, 15, 31, 0.94);
+}
+
+.atlas-home #dmv-report .dmv-report__close::before,
+.atlas-home #dmv-report .dmv-report__close::after {
+  content: "";
+  flex: 1 1 12rem;
+  max-width: 26rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.72));
+}
+
+.atlas-home #dmv-report .dmv-report__close::after {
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.72), transparent);
+}
+
+.atlas-home #dmv-report .dmv-report__close svg {
+  flex: none;
+  width: 2.8rem;
+  color: var(--atlas-gold);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.atlas-home #dmv-report .dmv-report__close p {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.atlas-home #dmv-report .dmv-report__close strong {
+  color: var(--atlas-white);
+  font-family: "Atlas Display", sans-serif;
+  font-size: 1.15em;
+}
+
+@media (max-width: 1180px) {
+  .atlas-home #dmv-report {
+    height: auto;
+    min-height: 900px;
+  }
+
+  .atlas-home #dmv-report .dmv-report__inner {
+    height: calc(100% - 92px);
+    padding-inline: clamp(2rem, 5vw, 4rem);
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 34rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    justify-items: start;
+    gap: 0 0.75rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(201, 162, 39, 0.24);
+    text-align: left;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .atlas-home #dmv-report .dmv-report__icon {
+    grid-row: 1 / span 2;
+    width: 3.35rem;
+    margin: 0;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit > span:last-child {
+    margin-top: 0.2rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__disclosure {
+    right: 2rem;
+    width: min(260px, 25vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .atlas-home #dmv-report {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .atlas-home #dmv-report::before {
+    content: none;
+  }
+
+  .atlas-home #dmv-report .dmv-report__visual {
+    position: relative;
+    order: 1;
+    inset: auto;
+    width: 100%;
+    height: clamp(30rem, 132vw, 36rem);
+    border-block: 1px solid rgba(201, 162, 39, 0.4);
+  }
+
+  .atlas-home #dmv-report .dmv-report__scene {
+    display: block;
+    object-position: 70% center;
+  }
+
+  .atlas-home #dmv-report .dmv-report__phone {
+    top: clamp(1rem, 5vw, 2rem);
+    right: auto;
+    left: 50%;
+    width: min(78vw, 19.5rem);
+    max-height: calc(100% - 1.5rem);
+    transform: translateX(-50%);
+  }
+
+  .atlas-home #dmv-report .dmv-report__inner {
+    order: 2;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 4.5rem 1.25rem 2rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-home #dmv-report .dmv-report__content {
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+  }
+
+  .atlas-home #dmv-report .dmv-report__label {
+    order: 1;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.19em;
+  }
+
+  .atlas-home #dmv-report .dmv-report__heading {
+    order: 2;
+    max-width: 9.5ch;
+    font-size: clamp(3.25rem, 15.6vw, 4.3rem);
+    line-height: 0.91;
+    white-space: normal;
+  }
+
+  .atlas-home #dmv-report .dmv-report__intro {
+    order: 3;
+    margin-top: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefits {
+    order: 5;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    margin: 0;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit,
+  .atlas-home #dmv-report .dmv-report__benefit:first-child,
+  .atlas-home #dmv-report .dmv-report__benefit:last-child {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    gap: 0;
+    min-height: 13.5rem;
+    padding: 1.7rem 0.8rem;
+    border-top: 1px solid rgba(201, 162, 39, 0.24);
+    border-left: 1px solid rgba(201, 162, 39, 0.24);
+    text-align: center;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .atlas-home #dmv-report .dmv-report__icon {
+    grid-row: auto;
+    width: 3.8rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit strong {
+    font-size: 1.08rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__benefit > span:last-child {
+    margin-top: 0.48rem;
+    font-size: 0.82rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__action {
+    order: 6;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-height: 44px;
+    margin-top: 1.25rem;
+    padding: 1rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__action strong {
+    font-size: clamp(1.45rem, 7.5vw, 1.85rem);
+  }
+
+  .atlas-home #dmv-report .dmv-report__disclosure {
+    position: static;
+    width: 100%;
+    margin: 1.4rem 0 0;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .atlas-home #dmv-report .dmv-report__disclosure p {
+    font-size: 0.82rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__close {
+    order: 3;
+    position: static;
+    min-height: 88px;
+    height: auto;
+    padding: 1.4rem 1.25rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__close::before,
+  .atlas-home #dmv-report .dmv-report__close::after {
+    display: none;
+  }
+
+  .atlas-home #dmv-report .dmv-report__close svg {
+    width: 2.3rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__close p {
+    font-size: 0.96rem;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 380px) {
+  .atlas-home #dmv-report .dmv-report__inner {
+    padding-inline: 1rem;
+  }
+
+  .atlas-home #dmv-report .dmv-report__heading {
+    font-size: clamp(3rem, 15.1vw, 3.55rem);
+  }
+
+  .atlas-home #dmv-report .dmv-report__action {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .atlas-home #dmv-report .dmv-report__action-arrow {
+    display: none;
+  }
+}
