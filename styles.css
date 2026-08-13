@@ -3696,6 +3696,31 @@ main:not(:has(.hero)) { padding-top: 56px; }
 }
 .foot-copy a:hover { color: var(--bronze-lit); border-bottom-color: var(--bronze); }
 
+/* SITEWIDE FIX — Mobile footer colophon */
+@media (max-width: 760px) {
+  .foot-copy {
+    text-align: center;
+  }
+
+  .foot-copy-main,
+  .foot-copy-credit {
+    display: block;
+  }
+
+  .foot-copy-main {
+    white-space: nowrap;
+  }
+
+  .foot-copy-credit {
+    margin-top: 0.45rem;
+    text-align: center;
+  }
+
+  .foot-sep--credit {
+    display: none;
+  }
+}
+
 /* ---- A page title that is one long word ---------------------------------
    The `display` step assumes a title has a space in it. `text-wrap: balance`
    needs a wrap opportunity, and "TESTIMONIALS" has none — twelve characters of
