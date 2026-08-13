@@ -76,6 +76,7 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         mobile_search = css_rule(mobile, ".railhead .rh-search")
         mobile_number = css_rule(mobile, ".railhead .rh-call-number")
         mobile_label = css_rule(mobile, ".railhead .rh-call-mobile")
+        mobile_icon = css_rule(mobile, ".railhead .rh-call .ic")
 
         self.assertIn("height: 96px", mobile)
         self.assertIn("min-height: 96px", mobile)
@@ -87,6 +88,10 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         self.assertIn("display: none", mobile_search)
         self.assertIn("display: none", mobile_number)
         self.assertIn("display: inline", mobile_label)
+        self.assertIn("display: block", mobile_icon)
+        self.assertIn("width: 12px", mobile_icon)
+        self.assertIn("height: 12px", mobile_icon)
+        self.assertIn("margin-right: 0.3rem", mobile_icon)
 
         non_sticky = SHARED_CSS.split(
             "SITEWIDE FIX — Non-sticky mobile header", 1
@@ -117,9 +122,15 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         )[0]
         header = css_rule(narrow, ".railhead,\n  .railhead.is-up")
         call = css_rule(narrow, ".railhead .rh-call")
+        icon = css_rule(narrow, ".railhead .rh-call .ic")
 
         self.assertIn("padding-inline: 0.75rem", header)
-        self.assertIn("padding-inline: 0.55rem", call)
+        self.assertIn("padding-inline: 0.2rem", call)
+        self.assertIn("font-size: 10px", call)
+        self.assertIn("letter-spacing: 0.04em", call)
+        self.assertIn("width: 10px", icon)
+        self.assertIn("height: 10px", icon)
+        self.assertIn("margin-right: 0.2rem", icon)
 
     def test_every_inner_page_loads_the_current_shared_header_layer(self):
         pages = inner_pages()
@@ -127,7 +138,7 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
 
         for page in pages:
             relative_css = Path(os.path.relpath(HEADER_CSS, page.parent)).as_posix()
-            expected = f'href="{relative_css}?v=inner-header-premium-4"'
+            expected = f'href="{relative_css}?v=inner-header-premium-5"'
             with self.subTest(page=page.relative_to(ROOT)):
                 html = page.read_text(encoding="utf-8")
                 self.assertIn(expected, html)
