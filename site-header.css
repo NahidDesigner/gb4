@@ -149,6 +149,10 @@ body > .railhead ~ main {
   white-space: nowrap;
 }
 
+.railhead .rh-call-mobile {
+  display: none;
+}
+
 .railhead .rh-menu .ico-menu {
   display: block;
   width: 20px;
@@ -182,11 +186,26 @@ body > .railhead ~ main {
     height: 86px;
   }
 
-  .railhead .rh-call {
+  .railhead .rh-search {
     display: none;
   }
 
-  .railhead .rh-search,
+  .railhead .rh-call {
+    display: inline-flex;
+    min-height: 44px;
+    margin-left: auto;
+    padding-inline: 0.9rem;
+    font-size: 11px;
+  }
+
+  .railhead .rh-call-number {
+    display: none;
+  }
+
+  .railhead .rh-call-mobile {
+    display: inline;
+  }
+
   .railhead .rh-menu {
     min-height: 44px;
     font-size: 11px;
@@ -194,6 +213,17 @@ body > .railhead ~ main {
 
   body > .railhead ~ main {
     margin-top: 96px;
+  }
+}
+
+@media (max-width: 340px) {
+  .railhead,
+  .railhead.is-up {
+    padding-inline: 0.75rem;
+  }
+
+  .railhead .rh-call {
+    padding-inline: 0.55rem;
   }
 }
 

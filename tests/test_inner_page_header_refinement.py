@@ -69,13 +69,23 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         self.assertIn("background: #216b88", hover)
 
     def test_mobile_header_is_larger_touch_safe_and_non_sticky(self):
-        mobile = self.css.split("@media (max-width: 768px)", 1)[1]
+        mobile = self.css.split("@media (max-width: 768px)", 1)[1].split(
+            "@media (min-width: 1600px)", 1
+        )[0]
+        mobile_call = css_rule(mobile, ".railhead .rh-call")
+        mobile_search = css_rule(mobile, ".railhead .rh-search")
+        mobile_number = css_rule(mobile, ".railhead .rh-call-number")
+        mobile_label = css_rule(mobile, ".railhead .rh-call-mobile")
+
         self.assertIn("height: 96px", mobile)
         self.assertIn("min-height: 96px", mobile)
         self.assertIn("height: 86px", mobile)
         self.assertIn("min-height: 44px", mobile)
-        self.assertIn(".railhead .rh-call", mobile)
-        self.assertIn("display: none", mobile)
+        self.assertIn("display: inline-flex", mobile_call)
+        self.assertIn("margin-left: auto", mobile_call)
+        self.assertIn("display: none", mobile_search)
+        self.assertIn("display: none", mobile_number)
+        self.assertIn("display: inline", mobile_label)
 
         non_sticky = SHARED_CSS.split(
             "SITEWIDE FIX — Non-sticky mobile header", 1
@@ -99,15 +109,33 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         self.assertIn("margin-top: 144px", wide)
         self.assertIn("margin-top: 152px", wide)
 
+    def test_narrow_mobile_header_keeps_call_now_clear_of_the_logo(self):
+        self.assertIn("@media (max-width: 340px)", self.css)
+        narrow = self.css.split("@media (max-width: 340px)", 1)[1].split(
+            "@media (min-width: 1600px)", 1
+        )[0]
+        header = css_rule(narrow, ".railhead,\n  .railhead.is-up")
+        call = css_rule(narrow, ".railhead .rh-call")
+
+        self.assertIn("padding-inline: 0.75rem", header)
+        self.assertIn("padding-inline: 0.55rem", call)
+
     def test_every_inner_page_loads_the_current_shared_header_layer(self):
         pages = inner_pages()
         self.assertEqual(24, len(pages))
 
         for page in pages:
             relative_css = Path(os.path.relpath(HEADER_CSS, page.parent)).as_posix()
-            expected = f'href="{relative_css}?v=inner-header-premium-2"'
+            expected = f'href="{relative_css}?v=inner-header-premium-3"'
             with self.subTest(page=page.relative_to(ROOT)):
-                self.assertIn(expected, page.read_text(encoding="utf-8"))
+                html = page.read_text(encoding="utf-8")
+                self.assertIn(expected, html)
+                self.assertIn(
+                    '<span class="rh-call-number">(516) 444-1000</span>', html
+                )
+                self.assertIn(
+                    '<span class="rh-call-mobile">Call Now</span>', html
+                )
 
         self.assertNotIn(
             "site-header.css",
