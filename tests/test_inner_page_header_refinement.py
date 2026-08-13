@@ -83,13 +83,29 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         self.assertIn("position: absolute !important", non_sticky)
         self.assertIn("transform: none !important", non_sticky)
 
+    def test_inner_page_main_reserves_the_full_header_height(self):
+        main_spacing = css_rule(self.css, "body > .railhead ~ main")
+        self.assertIn("margin-top: 136px", main_spacing)
+        self.assertIn("padding-top: 0", main_spacing)
+
+        mobile = self.css.split("@media (max-width: 768px)", 1)[1].split(
+            "@media (min-width: 1600px)", 1
+        )[0]
+        self.assertIn("body > .railhead ~ main", mobile)
+        self.assertIn("margin-top: 96px", mobile)
+
+        wide = self.css.split("@media (min-width: 1600px)", 1)[1]
+        self.assertIn("body > .railhead ~ main", wide)
+        self.assertIn("margin-top: 144px", wide)
+        self.assertIn("margin-top: 152px", wide)
+
     def test_every_inner_page_loads_the_current_shared_header_layer(self):
         pages = inner_pages()
         self.assertEqual(24, len(pages))
 
         for page in pages:
             relative_css = Path(os.path.relpath(HEADER_CSS, page.parent)).as_posix()
-            expected = f'href="{relative_css}?v=inner-header-premium-1"'
+            expected = f'href="{relative_css}?v=inner-header-premium-2"'
             with self.subTest(page=page.relative_to(ROOT)):
                 self.assertIn(expected, page.read_text(encoding="utf-8"))
 

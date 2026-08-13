@@ -29,6 +29,14 @@
   transform: none;
 }
 
+/* The header is fixed on desktop and absolute on mobile, so it does not reserve
+   document flow by itself. Keep every inner-page hero below the chrome rather
+   than allowing imagery or headings to render beneath the translucent surface. */
+body > .railhead ~ main {
+  margin-top: 136px;
+  padding-top: 0;
+}
+
 .railhead .rh-mark {
   position: absolute;
   left: 50%;
@@ -183,6 +191,10 @@
     min-height: 44px;
     font-size: 11px;
   }
+
+  body > .railhead ~ main {
+    margin-top: 96px;
+  }
 }
 
 @media (min-width: 1600px) {
@@ -195,6 +207,10 @@
   .railhead .rh-mark img {
     height: 136px;
   }
+
+  body > .railhead ~ main {
+    margin-top: 144px;
+  }
 }
 
 @media (min-width: 2100px) {
@@ -206,5 +222,9 @@
 
   .railhead .rh-mark img {
     height: 144px;
+  }
+
+  body > .railhead ~ main {
+    margin-top: 152px;
   }
 }
