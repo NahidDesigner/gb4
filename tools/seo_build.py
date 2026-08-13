@@ -23,7 +23,9 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://gblawfirm.com"
 ORG  = f"{SITE}/#organization"
 WEB  = f"{SITE}/#website"
-SHARE_IMAGE = f"{SITE}/assets/GBlogo.png"
+# Social crawlers must be able to fetch this asset over a valid public TLS
+# endpoint. The site currently deploys through this Vercel-backed hostname.
+SHARE_IMAGE = "https://gb.bosseo.dev/assets/GBlogo.png"
 
 # ---- entities shared by every page ---------------------------------------
 ORGANIZATION = {

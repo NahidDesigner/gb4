@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LOGO_URL = "https://gblawfirm.com/assets/GBlogo.png"
+LOGO_URL = "https://gb.bosseo.dev/assets/GBlogo.png"
 
 
 class SocialShareLogoTests(unittest.TestCase):
