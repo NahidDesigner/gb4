@@ -3721,6 +3721,26 @@ main:not(:has(.hero)) { padding-top: 56px; }
   }
 }
 
+/* SITEWIDE FIX — Non-sticky mobile header */
+@media (max-width: 768px) {
+  .railhead,
+  .railhead.is-up {
+    position: absolute !important;
+    transform: none !important;
+  }
+
+  /* The homepage already carries its menu/search controls inside the locked
+     hero. Place its full header immediately after that 100svh hero so it is
+     available once, in normal document scroll, without pinning to the screen. */
+  .atlas-home .ds-site-header,
+  .atlas-home .ds-site-header.is-solid {
+    position: absolute !important;
+    top: 100svh !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+}
+
 /* ---- A page title that is one long word ---------------------------------
    The `display` step assumes a title has a space in it. `text-wrap: balance`
    needs a wrap opportunity, and "TESTIMONIALS" has none — twelve characters of

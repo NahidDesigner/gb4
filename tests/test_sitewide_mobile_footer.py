@@ -34,7 +34,7 @@ class SitewideMobileFooterTests(unittest.TestCase):
                 self.assertIn('class="foot-copy-main"', html)
                 self.assertIn('class="foot-copy-credit"', html)
                 self.assertIn('class="foot-sep foot-sep--credit"', html)
-                self.assertIn("styles.css?v=footer-colophon-2", html)
+                self.assertIn("styles.css?v=mobile-header-static-3", html)
 
         self.assertGreaterEqual(len(pages_with_footer), 25)
 
