@@ -6714,17 +6714,22 @@
 }
 
 /* EDIT 50 — Homepage-only translucent paper header
-   The hero still owns the immersive introduction. The post-hero header uses a
-   restrained mineral-paper translucency without blur or glass effects, giving
-   the native logo visual priority while keeping the atlas palette intact. */
+   Desktop carries the full institutional header; mobile already has navigation
+   inside the locked hero and its bottom action bar, so the duplicate header is
+   removed there. The surface layers mineral paper and coastal mist without
+   blur or glass effects, keeping the native logo as its focal point. */
 .atlas-home .ds-site-header,
 .atlas-home .ds-site-header.is-solid {
-  height: 110px;
-  min-height: 110px;
+  height: 136px;
+  min-height: 136px;
   color: #123d56;
-  background: rgba(242, 240, 234, 0.94);
-  border-bottom: 1px solid rgba(18, 61, 86, 0.24);
-  box-shadow: 0 18px 44px rgba(23, 35, 41, 0.13);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(220, 231, 231, 0.08)),
+    rgba(242, 240, 234, 0.92);
+  border-bottom: 1px solid rgba(18, 61, 86, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 22px 52px rgba(23, 35, 41, 0.14);
 }
 
 .atlas-home .ds-site-header__mark {
@@ -6732,7 +6737,7 @@
 }
 
 .atlas-home .ds-site-header__mark img {
-  height: 104px;
+  height: 128px;
   width: auto;
 }
 
@@ -6767,60 +6772,31 @@
 @media (min-width: 1600px) {
   .atlas-home .ds-site-header,
   .atlas-home .ds-site-header.is-solid {
-    height: 116px;
-    min-height: 116px;
+    height: 144px;
+    min-height: 144px;
   }
 
   .atlas-home .ds-site-header__mark img {
-    height: 108px;
+    height: 136px;
   }
 }
 
 @media (min-width: 2100px) {
   .atlas-home .ds-site-header,
   .atlas-home .ds-site-header.is-solid {
-    height: 124px;
-    min-height: 124px;
+    height: 152px;
+    min-height: 152px;
   }
 
   .atlas-home .ds-site-header__mark img {
-    height: 116px;
+    height: 144px;
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .atlas-home .ds-site-header,
   .atlas-home .ds-site-header.is-solid {
-    height: 88px;
-    min-height: 88px;
-    gap: 0.5rem;
-    padding-inline: 0.75rem;
-  }
-
-  .atlas-home .ds-site-header__mark img {
-    height: 78px;
-  }
-
-  .atlas-home #searchOpen2 {
-    display: none;
-  }
-
-  .atlas-home .ds-site-header .ds-button-call {
-    display: inline-flex;
-    min-width: 78px;
-    min-height: 44px;
-    height: 44px;
-    padding-inline: 0.875rem;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-  }
-
-  .atlas-home .ds-button-call__desktop {
-    display: none;
-  }
-
-  .atlas-home .ds-button-call__mobile {
-    display: inline;
+    display: none !important;
   }
 }
 
