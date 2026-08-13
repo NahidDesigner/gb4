@@ -1284,7 +1284,7 @@ main:has(#results) .rcard-amt {
 }
 
 main:has(#results) .rcard-t {
-  max-width: 23ch;
+  max-width: none;
   margin-top: auto;
   color: #fff;
   font-family: "Atlas Text", sans-serif;

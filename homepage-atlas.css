@@ -10036,7 +10036,7 @@
 
 .atlas-home #settlements.settlements-premium .ds-figure-cell__case {
   display: block;
-  max-width: 22ch;
+  max-width: none;
   margin: auto 0 0;
   color: var(--atlas-white);
   font-family: "Atlas Text", sans-serif;
