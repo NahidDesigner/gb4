@@ -25,6 +25,10 @@ class HomepageHeaderLogoCallNowTests(unittest.TestCase):
         self.assertIn("(516) 444-1000", self.header)
         self.assertIn("Call Now", self.header)
 
+    def test_header_logo_links_to_the_site_root(self):
+        self.assertIn('class="ds-site-header__mark" href="/"', self.header)
+        self.assertNotIn('class="ds-site-header__mark" href="#top"', self.header)
+
     def test_homepage_header_is_hidden_on_mobile(self):
         self.assertIn("@media (max-width: 768px)", self.refinement)
         mobile = self.refinement.split("@media (max-width: 768px)", 1)[1]
