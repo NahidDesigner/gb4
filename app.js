@@ -38,6 +38,17 @@
     lastFocus = null;
   }
 
+  // Move directly between the two overlays without unlocking the page or
+  // replacing the original trigger stored in `lastFocus`. Closing Search then
+  // returns focus to the Menu button that began the interaction.
+  function swapPanel(from, to, focusTarget) {
+    if (from === drawer) resetSub();
+    from.hidden = true;
+    to.hidden = false;
+    var target = focusTarget || to.querySelector('button, a, input');
+    if (target) target.focus();
+  }
+
   var drawer = $('#drawer');
   var search = $('#search');
 
@@ -47,6 +58,12 @@
   $$('#searchOpen, #searchOpen2').forEach(function (b) {
     b.addEventListener('click', function () { openPanel(search, $('#searchInput'), b); });
   });
+  var drawerSearch = $('#drawerSearch');
+  if (drawerSearch) {
+    drawerSearch.addEventListener('click', function () {
+      swapPanel(drawer, search, $('#searchInput'));
+    });
+  }
   var dc = $('#drawerClose');
   if (dc) dc.addEventListener('click', function () { closePanel(drawer); });
   if (drawer) {

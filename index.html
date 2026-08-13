@@ -13,7 +13,7 @@
 <!-- The settlements line is the largest text on the first screen, so this is the
      LCP face. Preloaded to keep it from swapping in late. -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/source-sans-3-latin-800-normal.woff2" crossorigin />
-<link rel="stylesheet" href="styles.css?v=mobile-header-static-3" />
+<link rel="stylesheet" href="styles.css?v=mobile-header-static-3&amp;drawer-search=1" />
 <!-- DESIGN.md v6 §2/§3 design-system layer. Homepage only; loaded after
      styles.css so the new components win where names would ever collide. -->
 <link rel="stylesheet" href="design-system.css?v=practice-five-1" />
@@ -295,6 +295,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <div class="drawer" id="drawer" hidden>
   <div class="drawer-top">
     <button type="button" class="drawer-close" id="drawerClose">Close</button>
+    <button type="button" class="drawer-search" id="drawerSearch" aria-label="Search">
+      <svg class="ic" aria-hidden="true"><use href="#i-mag"/></svg>
+    </button>
     <a class="drawer-call" href="tel:+15164441000">(516) 444-1000</a>
   </div>
   <nav class="drawer-nav" aria-label="Primary">
@@ -1556,7 +1559,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <a class="ab ab--form" href="#contact">Free Case Review</a>
 </div>
 
-<script src="app.js?v=faq-premium-1"></script>
+<script src="app.js?v=faq-premium-1&amp;drawer-search=1"></script>
 <!-- DESIGN.md §5 motion for the design-system sections. Homepage only. -->
 <script src="ds.js"></script>
 <script src="homepage-atlas.js?v=dmv-phone-settle-1"></script>
