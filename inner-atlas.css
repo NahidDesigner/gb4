@@ -676,13 +676,29 @@ main:has(#post) .sec--tight::before {
   background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.86), transparent);
 }
 
-main:has(#posts) .page-head,
-main:has(#post) .page-head {
+main:has(#posts) .page-head {
   position: relative;
   max-width: min(980px, 100%);
   padding-left: clamp(1.15rem, 2vw, 1.55rem);
   border-left: 1px solid rgba(201, 162, 39, 0.84);
   text-align: left;
+}
+
+main:has(#post) .page-head {
+  position: relative;
+  max-width: min(1080px, 100%);
+  margin-inline: auto;
+  padding: clamp(1.8rem, 3vw, 2.6rem) 0;
+  border-left: 0;
+  text-align: center;
+}
+
+main:has(#post) .page-head::before {
+  content: none;
+}
+
+main:has(#post) .page-head::after {
+  content: none;
 }
 
 main:has(#posts) .page-title,
@@ -695,6 +711,31 @@ main:has(#post) .page-title {
   text-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
 }
 
+main:has(#post) .page-title {
+  max-width: 18ch;
+  margin-inline: auto;
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+main:has(#post) .page-title::after {
+  content: "";
+  display: block;
+  width: clamp(4.5rem, 8vw, 7rem);
+  height: 2px;
+  margin: clamp(1.35rem, 2.5vw, 1.85rem) auto 0;
+  background: linear-gradient(90deg, transparent, var(--inner-gold) 20% 80%, transparent);
+}
+
+main:has(#post) .sec--tight::before {
+  content: none;
+}
+
+main:has(#post) .sec--tight::after {
+  content: none;
+}
+
 main:has(#posts) .page-sub {
   max-width: 38ch;
   margin: 1rem 0 0;
@@ -705,22 +746,25 @@ main:has(#posts) .page-sub {
 
 main:has(#post) .post-meta {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.9rem;
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.9rem;
   color: var(--inner-gold);
 }
 
 main:has(#post) .post-meta::before {
-  content: "";
-  width: 3.25rem;
-  height: 1px;
-  background: currentColor;
+  content: none;
 }
 
 main:has(#posts) #posts,
 main:has(#post) #post {
   padding-block: clamp(4.6rem, 8vw, 7.5rem);
+}
+
+main:has(#post) .sec--tight {
+  min-height: clamp(18rem, 28vw, 25rem);
+  padding-block: clamp(4.5rem, 7vw, 6rem);
+  border-bottom: 0;
 }
 
 .blog-layout {
@@ -732,85 +776,80 @@ main:has(#post) #post {
 }
 
 main:has(#posts) .blog-main {
-  position: relative;
-  padding: clamp(1.1rem, 2.2vw, 1.75rem);
-  border: 1px solid rgba(201, 162, 39, 0.34);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.16)),
-    linear-gradient(132deg, transparent 0 70%, rgba(10, 22, 40, 0.05) 70% 100%);
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
 main:has(#posts) .postlist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
   margin: 0;
   border: 0;
   box-shadow: none;
 }
 
 main:has(#posts) .post-row {
+  min-width: 0;
   border: 0;
 }
 
 main:has(#posts) .post-row > a {
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
-  min-height: clamp(18rem, 31vw, 29rem);
-  padding: clamp(2rem, 4vw, 3.4rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
+  height: 100%;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  border: 1px solid rgba(10, 22, 40, 0.18);
+  border-top: 3px solid var(--inner-gold);
   color: inherit;
-  background:
-    linear-gradient(90deg, rgba(10, 22, 40, 0.94), rgba(10, 22, 40, 0.84)),
-    var(--inner-atlantic);
-  box-shadow: 0 28px 70px rgba(10, 22, 40, 0.16);
+  background: var(--inner-page);
+  box-shadow: 0 18px 42px rgba(10, 22, 40, 0.08);
+  transition:
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-main:has(#posts) .post-row > a::before {
-  content: "";
-  position: absolute;
-  inset: clamp(1rem, 2vw, 1.35rem);
-  z-index: -1;
-  border: 1px solid rgba(201, 162, 39, 0.34);
-  pointer-events: none;
-}
-
+main:has(#posts) .post-row > a::before,
 main:has(#posts) .post-row > a::after {
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(240, 208, 120, 0.13), transparent 18rem),
-    linear-gradient(132deg, transparent 0 66%, rgba(201, 162, 39, 0.12) 66% 100%);
+  content: none;
+}
+
+main:has(#posts) .post-row > a:hover,
+main:has(#posts) .post-row > a:focus-visible {
+  border-color: rgba(201, 162, 39, 0.72);
+  box-shadow: 0 24px 52px rgba(10, 22, 40, 0.13);
+  transform: translateY(-2px);
 }
 
 main:has(#posts) .post-date {
-  align-self: start;
-  color: var(--inner-gold-light);
+  color: var(--inner-gold);
 }
 
 main:has(#posts) .post-t {
-  grid-column: 2;
-  max-width: 11ch;
-  margin: 0;
-  color: #fff;
-  font-size: clamp(3.2rem, 7vw, 6.6rem);
-  line-height: 0.86;
-  letter-spacing: -0.06em;
+  max-width: none;
+  margin: 1rem 0 0;
+  color: var(--inner-atlantic);
+  font-size: clamp(1.75rem, 2.4vw, 2.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
 main:has(#posts) .post-x {
-  grid-column: 2;
-  max-width: 42ch;
-  margin-top: clamp(1rem, 2vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.76);
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  max-width: 46ch;
+  margin-top: 1rem;
+  color: #33495a;
+  font-size: 1rem;
 }
 
 main:has(#posts) .post-go {
-  grid-column: 2;
   width: fit-content;
-  margin-top: clamp(1.2rem, 2.5vw, 1.8rem);
+  margin-top: auto;
+  padding-top: 1.5rem;
   padding-bottom: 0.4rem;
-  color: #fff;
+  color: var(--inner-atlantic);
   border-bottom: 1px solid var(--inner-gold);
 }
 
@@ -820,7 +859,7 @@ main:has(#posts) .post-go .ic {
 
 main:has(#posts) .post-row > a:hover .post-t,
 main:has(#posts) .post-row > a:focus-visible .post-t {
-  color: var(--inner-gold-light);
+  color: var(--inner-route);
 }
 
 .sidebar {
@@ -1070,23 +1109,18 @@ main:has(#post) > .sec--tight .post-meta::before {
     content: none;
   }
 
-  main:has(#posts) .post-row > a {
+  main:has(#posts) .postlist {
     grid-template-columns: 1fr;
-    align-items: start;
-    min-height: 0;
+  }
+
+  main:has(#posts) .post-row > a {
+    min-height: 18rem;
     padding: clamp(1.55rem, 8vw, 2.35rem);
   }
 
-  main:has(#posts) .post-date,
-  main:has(#posts) .post-t,
-  main:has(#posts) .post-x,
-  main:has(#posts) .post-go {
-    grid-column: 1;
-  }
-
   main:has(#posts) .post-t {
-    max-width: 10ch;
-    font-size: clamp(3rem, 18vw, 4.75rem);
+    max-width: none;
+    font-size: clamp(1.75rem, 6vw, 2.15rem);
   }
 
   main:has(#posts) .blog-main,
@@ -1111,11 +1145,17 @@ main:has(#post) > .sec--tight .post-meta::before {
     font-size: clamp(2.8rem, 17vw, 4.1rem);
   }
 
+  main:has(#post) .page-title {
+    font-size: clamp(2.25rem, 11vw, 2.7rem);
+    line-height: 1;
+  }
+
   main:has(#posts) .post-t {
-    font-size: clamp(2.55rem, 16vw, 3.75rem);
+    font-size: clamp(1.65rem, 8vw, 1.95rem);
   }
 
   main:has(#posts) .post-row > a {
+    min-height: 17rem;
     padding: 1.45rem;
   }
 

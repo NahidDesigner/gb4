@@ -204,15 +204,32 @@ PAGES = {
     desc="Notes from GB Law Firm on injury claims, deadlines and the process in "
          "New York.",
     trail=[("Home", SITE + "/"), ("Blog", None)]),
- "blog/hello-world/index.html": dict(
-    url=f"{SITE}/blog/hello-world/", type="WebPage", title="Hello World | GB Law Firm",
-    desc="The first entry on the GB Law Firm journal, and a note on what this "
-         "section will be used for.",
-    extra=lambda: [{"@type": "BlogPosting", "@id": f"{SITE}/blog/hello-world/#post",
-                    "headline": "Hello World", "datePublished": "2026-08-05",
+ "blog/what-to-do-first-48-hours-after-long-island-car-accident/index.html": dict(
+    url=f"{SITE}/blog/what-to-do-first-48-hours-after-long-island-car-accident/",
+    type="WebPage", title="First 48 Hours After a Long Island Crash | GB Law Firm",
+    desc="What to do during the first 48 hours after a Long Island car accident "
+         "to protect your health, evidence, insurance claim and legal rights.",
+    extra=lambda: [{"@type": "BlogPosting",
+                    "@id": f"{SITE}/blog/what-to-do-first-48-hours-after-long-island-car-accident/#post",
+                    "headline": "What to Do in the First 48 Hours After a Long Island Car Accident",
+                    "datePublished": "2026-08-13", "dateModified": "2026-08-13",
                     "author": {"@id": ORG}, "publisher": {"@id": ORG},
-                    "mainEntityOfPage": f"{SITE}/blog/hello-world/"}],
-    trail=[("Home", SITE + "/"), ("Blog", f"{SITE}/blog/"), ("Hello World", None)]),
+                    "mainEntityOfPage": f"{SITE}/blog/what-to-do-first-48-hours-after-long-island-car-accident/"}],
+    trail=[("Home", SITE + "/"), ("Blog", f"{SITE}/blog/"),
+           ("What to Do in the First 48 Hours After a Long Island Car Accident", None)]),
+ "blog/new-york-no-fault-serious-injury-threshold/index.html": dict(
+    url=f"{SITE}/blog/new-york-no-fault-serious-injury-threshold/",
+    type="WebPage", title="New York No-Fault and Serious Injury Threshold | GB Law Firm",
+    desc="How New York no-fault benefits, filing deadlines and the serious injury "
+         "threshold affect compensation after a car accident.",
+    extra=lambda: [{"@type": "BlogPosting",
+                    "@id": f"{SITE}/blog/new-york-no-fault-serious-injury-threshold/#post",
+                    "headline": "How New York’s No-Fault Law and Serious Injury Threshold Affect Your Case",
+                    "datePublished": "2026-08-13", "dateModified": "2026-08-13",
+                    "author": {"@id": ORG}, "publisher": {"@id": ORG},
+                    "mainEntityOfPage": f"{SITE}/blog/new-york-no-fault-serious-injury-threshold/"}],
+    trail=[("Home", SITE + "/"), ("Blog", f"{SITE}/blog/"),
+           ("How New York’s No-Fault Law and Serious Injury Threshold Affect Your Case", None)]),
  "sitemap/index.html": dict(
     url=f"{SITE}/sitemap/", type="WebPage", title="Sitemap | GB Law Firm",
     desc="Every page and homepage section on the GB Law Firm site, in one index.",

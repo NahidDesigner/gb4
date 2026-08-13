@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- The machine-readable sitemap, for crawlers. The human-readable one the
-     footer links to is /sitemap/. Both list the same URLs — 24 of them; if a
+     footer links to is /sitemap/. Both list the same URLs — 25 of them; if a
      page is added, it goes in both, and the `lastmod` below is set to the day
      the page actually changed, not to the day this file was touched.
 
@@ -13,7 +13,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gblawfirm.com/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -139,19 +139,25 @@
   </url>
   <url>
     <loc>https://gblawfirm.com/blog/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gblawfirm.com/blog/hello-world/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://gblawfirm.com/blog/what-to-do-first-48-hours-after-long-island-car-accident/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://gblawfirm.com/blog/new-york-no-fault-serious-injury-threshold/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://gblawfirm.com/sitemap/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
