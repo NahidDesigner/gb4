@@ -23,6 +23,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://gblawfirm.com"
 ORG  = f"{SITE}/#organization"
 WEB  = f"{SITE}/#website"
+SHARE_IMAGE = f"{SITE}/assets/GBlogo.png"
 
 # ---- entities shared by every page ---------------------------------------
 ORGANIZATION = {
@@ -52,8 +53,8 @@ ORGANIZATION = {
         "Premises liability", "Slip and fall claims", "Wrongful death claims",
         "Uninsured motorist claims", "Truck accident claims",
     ],
-    "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/GBlogo.png"},
-    "image": f"{SITE}/assets/og-cover.jpg",
+    "logo": {"@type": "ImageObject", "url": SHARE_IMAGE},
+    "image": SHARE_IMAGE,
     # NOT SET, deliberately: aggregateRating (reviews are Gurevich Law's,
     # HANDOFF 5.11a), openingHours / email / geo / priceRange (no verified
     # source), sameAs (footer profiles are still href="#", HANDOFF 5.4).
@@ -378,14 +379,17 @@ for rel, cfg in PAGES.items():
 <meta property="og:url" content="{cfg['url']}" />
 <meta property="og:title" content="{cfg['title']}" />
 <meta property="og:description" content="{cfg['desc']}" />
-<meta property="og:image" content="{SITE}/assets/og-cover.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="GB Law Firm — Long Island personal injury attorneys" />
-<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="{SHARE_IMAGE}" />
+<meta property="og:image:secure_url" content="{SHARE_IMAGE}" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="560" />
+<meta property="og:image:height" content="406" />
+<meta property="og:image:alt" content="GB Law Firm logo" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="{cfg['title']}" />
 <meta name="twitter:description" content="{cfg['desc']}" />
-<meta name="twitter:image" content="{SITE}/assets/og-cover.jpg" />
+<meta name="twitter:image" content="{SHARE_IMAGE}" />
+<meta name="twitter:image:alt" content="GB Law Firm logo" />
 <script type="application/ld+json">
 {ld}
 </script>

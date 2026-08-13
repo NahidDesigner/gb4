@@ -98,7 +98,7 @@ for p in sorted(ROOT.rglob("index.html")):
 
 # files the GEO layer depends on
 for f in ("robots.txt", "llms.txt", "sitemap.xml", "favicon.ico",
-          "assets/og-cover.jpg"):
+          "assets/GBlogo.png"):
     if not (ROOT / f).exists():
         fail("site", f"missing {f}")
 
