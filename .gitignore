@@ -24,3 +24,8 @@ __pycache__/
 
 # Reference material, intentionally not published
 original-untouched/
+
+# Full-site working copies. Unreferenced duplicates of the tree above — keeping
+# them tracked would double the source and make "which one is canonical" a
+# guess. Remove an entry here if one ever becomes a real deploy target.
+gb/

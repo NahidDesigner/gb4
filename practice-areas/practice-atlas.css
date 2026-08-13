@@ -5630,3 +5630,69 @@ main #protect.claim-stage .claim-cta__promise .ic {
     margin: 0;
   }
 }
+
+/* QUICK FIX 4 — Two-line mobile terms heading */
+@media (max-width: 600px) {
+  main #terms.terms-stage .index-head .h2 {
+    max-width: none;
+    font-size: clamp(2.75rem, 12.8vw, 3.25rem);
+    white-space: nowrap;
+  }
+}
+
+/* QUICK FIX 5 — One-line mobile claim heading */
+@media (max-width: 600px) {
+  main #protect.claim-stage .claim-stage__title {
+    max-width: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
+
+/* QUICK FIX 6 — One-line shared practice headings */
+main #why.dark .h2,
+main #why.dark .h2.h2--light {
+  max-width: none;
+  font-size: clamp(3.1rem, 4.8vw, 4.4rem);
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+main #related .h2 {
+  max-width: none;
+  white-space: nowrap;
+}
+
+main #related .h2 span {
+  display: inline;
+}
+
+@media (max-width: 900px) {
+  main #why.dark .h2,
+  main #why.dark .h2.h2--light {
+    font-size: clamp(2.5rem, 9.2vw, 3.45rem);
+  }
+
+  main #related .h2 {
+    font-size: clamp(1.95rem, 6.2vw, 3.15rem);
+  }
+}
+
+/* QUICK FIX 7 — Wider shared practice content */
+main #terms.terms-stage .index-head {
+  width: min(100%, 40rem);
+}
+
+main #terms.terms-stage .index-head .h2 {
+  max-width: none;
+}
+
+main #terms.terms-stage .index-head > .lede {
+  max-width: 36rem;
+}
+
+main #related .tile-t,
+main #related .tile-p {
+  width: 100%;
+  max-width: none;
+}

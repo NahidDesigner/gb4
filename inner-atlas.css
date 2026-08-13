@@ -1628,10 +1628,18 @@ main:has(#reach) .sec--tight::before {
   background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.82), transparent);
 }
 
+main:has(#reach) .sec--tight::after {
+  bottom: clamp(1.75rem, 2.6vw, 2.4rem);
+}
+
 main:has(#reach) .page-head {
   max-width: min(980px, 100%);
   padding-left: clamp(1.15rem, 2vw, 1.55rem);
   border-left: 1px solid rgba(201, 162, 39, 0.84);
+}
+
+main:has(#reach) .page-head::before {
+  left: clamp(1.15rem, 2vw, 1.55rem);
 }
 
 main:has(#reach) .page-title {
@@ -2634,7 +2642,9 @@ main:has(.team-roster) .team-hero__eyebrow::after {
 }
 
 main:has(.team-roster) .team-hero__title {
-  display: grid;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.18em;
   grid-column: 1 / -1;
   width: max-content;
   max-width: none;
@@ -2646,6 +2656,7 @@ main:has(.team-roster) .team-hero__title {
   letter-spacing: -0.025em;
   line-height: 0.88;
   text-wrap: balance;
+  white-space: nowrap;
   text-shadow: 0 16px 38px rgba(0, 0, 0, 0.25);
 }
 
@@ -2820,7 +2831,7 @@ main:has(.team-roster) .team-hero__promise-list {
 
   main:has(.team-roster) .team-hero__title {
     max-width: none;
-    font-size: clamp(3.2rem, 14vw, 3.85rem);
+    font-size: clamp(2.8rem, 13vw, 3.65rem);
     line-height: 0.9;
     letter-spacing: -0.025em;
   }

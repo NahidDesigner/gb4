@@ -6,6 +6,31 @@
   font-display: swap;
 }
 
+/* QUICK FIX 3 — Mobile footer colophon */
+@media (max-width: 760px) {
+  .atlas-home .foot-copy {
+    text-align: center;
+  }
+
+  .atlas-home .foot-copy-main,
+  .atlas-home .foot-copy-credit {
+    display: block;
+  }
+
+  .atlas-home .foot-copy-main {
+    white-space: nowrap;
+  }
+
+  .atlas-home .foot-copy-credit {
+    margin-top: 0.45rem;
+    text-align: center;
+  }
+
+  .atlas-home .foot-sep--credit {
+    display: none;
+  }
+}
+
 @font-face {
   font-family: "Atlas Display";
   src: url("assets/fonts/archivo-narrow-latin-600-normal.woff2") format("woff2");
@@ -11067,7 +11092,15 @@
    behave like desktop billboards. Keep the approved visual system, but bring the
    mobile scales back into a composed reading range. Also widen the No Fee CTA
    title so it no longer stacks into a cramped narrow column. */
+.atlas-home .mobile-heading-break {
+  display: none;
+}
+
 @media (max-width: 760px) {
+  .atlas-home .mobile-heading-break {
+    display: block;
+  }
+
   .atlas-home #casetypes.ds-caseindex .ds-caseindex__heading {
     max-width: 13.6ch;
     font-size: clamp(2.75rem, 11.4vw, 3.45rem);
@@ -11076,17 +11109,27 @@
   }
 
   .atlas-home #first48.ds-sequence-section .ds-sequence-section__heading {
-    max-width: 11.4ch;
-    font-size: clamp(2.55rem, 10.8vw, 3.25rem);
-    line-height: 0.96;
+    max-width: none;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 0.98;
     letter-spacing: -0.038em;
+    white-space: nowrap;
+  }
+
+  .atlas-home #first48.ds-sequence-section .ds-sequence-section__heading span {
+    display: inline;
   }
 
   .atlas-home #process.sec .h2 {
-    max-width: 12.2ch;
-    font-size: clamp(2.45rem, 10.2vw, 3.2rem);
-    line-height: 0.96;
+    max-width: none;
+    font-size: clamp(1.95rem, 8.7vw, 2.7rem);
+    line-height: 0.98;
     letter-spacing: -0.038em;
+    white-space: nowrap;
+  }
+
+  .atlas-home #process.sec .h2 span {
+    display: inline;
   }
 
   .atlas-home #process.sec::after {
@@ -11094,10 +11137,11 @@
   }
 
   .atlas-home .cta-wrap .cta-h {
-    max-width: min(100%, 15.5ch);
+    max-width: none;
     font-size: clamp(1.55rem, 6.6vw, 2.05rem);
     line-height: 1.08;
     letter-spacing: -0.018em;
+    white-space: nowrap;
   }
 }
 

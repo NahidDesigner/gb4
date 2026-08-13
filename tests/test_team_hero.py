@@ -136,6 +136,12 @@ class TeamHeroContractTests(unittest.TestCase):
     def test_hero_css_does_not_load_a_second_image(self):
         self.assertNotIn("url(", TEAM_CSS)
 
+    def test_team_title_stays_on_one_line_at_all_widths(self):
+        self.assertRegex(
+            TEAM_CSS,
+            r"\.team-hero__title\s*\{[^}]*display:\s*flex[^}]*flex-wrap:\s*nowrap[^}]*white-space:\s*nowrap",
+        )
+
     def test_mobile_places_content_over_the_photo(self):
         self.assertRegex(
             MOBILE_CSS,
