@@ -19,7 +19,7 @@
 
 - [ ] **Step 1: Write a source-level regression test**
 
-Create tests that require one `#dmv-report` section between `#first48` and `#premises`, the MyNYAccident.com and official DMV external links, the non-affiliation disclosure, the supplied asset path and dimensions, no live phone-screen overlay, Atlas Display/Text ownership, and a 760px responsive composition.
+Create tests that require one `#dmv-report` section between `#first48` and `#premises`, the safe MyNYAccident.com external link, absence of the removed disclosure card, the supplied asset path and dimensions, no live phone-screen overlay, Atlas Display/Text ownership, and a 760px responsive composition.
 
 - [ ] **Step 2: Run the focused test and verify RED**
 
@@ -53,7 +53,7 @@ Remove only `.ds-sequence-section__foot` from `#first48`. Insert `#dmv-report` i
 
 - [ ] **Step 2: Build the approved content hierarchy**
 
-Add the heading, introduction, four icon-led benefits, bordered MyNYAccident.com action, accurate disclosure, official DMV information link, decorative background image, and bottom closing band. Use authored inline SVG with `aria-hidden="true"`; keep content in semantic headings, paragraphs, lists, and anchors.
+Add the heading, introduction, four icon-led benefits, bordered MyNYAccident.com action, decorative background image, and bottom closing band. Use authored inline SVG with `aria-hidden="true"`; keep content in semantic headings, paragraphs, lists, and anchors.
 
 - [ ] **Step 3: Run the focused test**
 
@@ -69,7 +69,7 @@ Expected: placement and HTML assertions pass; CSS assertions still fail.
 
 - [ ] **Step 1: Add desktop composition rules**
 
-Scope all rules beneath `.atlas-home #dmv-report`. Use `Atlas Display` for headings and `Atlas Text` elsewhere; implement the navy field, gold rules, 48/52 split that clears the baked phone, four benefit columns, image treatment, bordered CTA panel, disclosure block, and bottom band.
+Scope all rules beneath `.atlas-home #dmv-report`. Use `Atlas Display` for headings and `Atlas Text` elsewhere; implement the navy field, gold rules, 48/52 split that clears the phone layer, four benefit columns, image treatment, bordered CTA panel, and bottom band.
 
 - [ ] **Step 2: Add tablet and phone rules**
 
@@ -105,7 +105,7 @@ Expected: no new unexplained high-severity findings in the changed section.
 
 - [ ] **Step 2: Run desktop and phone geometry checks**
 
-At 1440px and 375px, confirm `scrollWidth <= clientWidth`, the section and its inner grid do not clip, all four benefits are visible, the CTA and disclosure are visible, and the desktop/mobile image placement preserves the car and phone focal points.
+At 1440px and 375px, confirm `scrollWidth <= clientWidth`, the section and its inner grid do not clip, all four benefits and the CTA are visible, the disclosure card is absent, and the desktop/mobile image placement preserves the car and phone focal points.
 
 - [ ] **Step 3: Capture paired screenshots**
 
@@ -189,7 +189,7 @@ Expected: zero failures, homepage contract pass, and no whitespace errors.
 
 - [ ] **Step 2: Run paired computed-geometry checks**
 
-At desktop and 375px, confirm no horizontal overflow; the phone's rendered bounds stay inside `.dmv-report__visual`; all four benefits, CTA, disclosure, and closing band remain present; and no content overlaps the phone.
+At desktop and 375px, confirm no horizontal overflow; the phone's rendered bounds stay inside `.dmv-report__visual`; all four benefits, CTA, and closing band remain present; the removed disclosure card remains absent; and no content overlaps the phone.
 
 - [ ] **Step 3: Verify animation and fallback**
 

@@ -38,22 +38,18 @@ class HomepageDmvReportSectionTests(unittest.TestCase):
         self.assertNotIn("mynyaccident.com", first48.lower())
         self.assertNotIn("ds-sequence-section__foot", first48)
 
-    def test_section_has_safe_external_links_and_clear_disclosure(self):
+    def test_section_keeps_primary_link_and_omits_disclosure_card(self):
         report = section("dmv-report")
         self.assertRegex(
             report,
             r'<a[^>]+href="https://mynyaccident\.com/"[^>]+'
             r'target="_blank"[^>]+rel="[^"]*noopener[^"]*"',
         )
-        self.assertRegex(
-            report,
-            r'<a[^>]+href="https://dmv\.ny\.gov/records/'
-            r'file-a-motorist-crash-accident-report"[^>]+target="_blank"',
-        )
-        self.assertIn(
-            "Not affiliated with the NYS DMV or any government agency.",
-            report,
-        )
+        self.assertNotIn("dmv-report__disclosure", report)
+        self.assertNotIn("Independent website", report)
+        self.assertNotIn("Not affiliated with the NYS DMV", report)
+        self.assertNotIn("dmv.ny.gov/records/", report)
+        self.assertNotIn(".dmv-report__disclosure", CSS)
 
     def test_section_uses_separate_background_and_phone_layers(self):
         report = section("dmv-report")

@@ -27,7 +27,7 @@ Use two client-supplied decorative layers:
 - `assets/report-onlybg.webp` (`1774 × 887`) supplies the courthouse, damaged car, light, and navy copy field;
 - `assets/report-phone.webp` (`1024 × 1536`, transparent) supplies the complete phone mockup.
 
-Keep both images as separate `<img>` elements inside one decorative media wrapper. The background covers the wrapper while the phone remains an independently positioned, fully visible `object-fit: contain` layer. The section's meaningful heading, benefits, CTA, and disclosure remain semantic HTML.
+Keep both images as separate `<img>` elements inside one decorative media wrapper. The background covers the wrapper while the phone remains an independently positioned, fully visible `object-fit: contain` layer. The section's meaningful heading, benefits, and CTA remain semantic HTML.
 
 ## Perspective-settle motion
 
@@ -49,24 +49,22 @@ Use accurate interface copy:
 - introduction explaining that New York drivers may need to file after certain crashes and that MyNYAccident.com is an independent incident-intake resource;
 - benefits: `Guided Intake`, `Private Submission`, `MV-104 Guidance`, and `Available Online`, each with restrained descriptive copy;
 - action: `Start your accident intake at MyNYAccident.com`;
-- disclosure title: `Independent website`, followed by `Not affiliated with the NYS DMV or any government agency.`;
-- official-resource link: `View official NY DMV filing information`;
 - closing line: `Get organized. Document what happened. Review the filing requirements.`
 
-The main action opens `https://mynyaccident.com/` in a new tab with safe external-link attributes. The official information link opens the NY DMV filing-information page in a new tab.
+The main action opens `https://mynyaccident.com/` in a new tab with safe external-link attributes. Per the client revision, the separate disclosure card and official DMV information link are omitted.
 
 ## Responsive and accessible behavior
 
 - Desktop uses an approximately 48/52 content-to-media split. The phone sits fully inside the right field above the background, while the four benefits remain in one row.
 - Tablet keeps the split, scales the phone with `clamp()`, and allows benefits to wrap two-by-two without cropping the phone.
-- At phone width, the decorative media wrapper becomes the first item inside the section. The centered phone appears over a bounded background scene, followed by the eyebrow, heading, introduction, benefits, CTA, disclosure, and closing band.
+- At phone width, the decorative media wrapper becomes the first item inside the section. The centered phone appears over a bounded background scene, followed by the eyebrow, heading, introduction, benefits, CTA, and closing band.
 - Body text stays at least 16px, links and controls provide at least 44px touch targets, focus is visible, and no content is hidden behind the sticky call bar.
 - Both image layers are decorative; the section's meaning remains in HTML.
 
 ## Verification
 
-- Source contract covers unique section ID, placement, external links, disclosure, approved fonts, both supplied image layers, mobile media-first order, perspective-settle hook, reduced-motion behavior, and absence of a live phone-screen overlay.
+- Source contract covers unique section ID, placement, the primary external link, absence of the removed disclosure card, approved fonts, both supplied image layers, mobile media-first order, perspective-settle hook, reduced-motion behavior, and absence of a live phone-screen overlay.
 - Existing homepage contract and full unit suite remain green.
-- Desktop and 375px computed geometry confirm no page overflow, no section clipping, a fully visible phone layer, sensible content/media placement, and visible action/disclosure content.
+- Desktop and 375px computed geometry confirm no page overflow, no section clipping, a fully visible phone layer, sensible content/media placement, and a visible primary action.
 - Paired screenshots are reviewed at desktop and phone width, with at most one batched correction pass.
 - The homepage hero, footer, sticky call bar, forms, SEO/schema, analytics, and all other pages remain unchanged.

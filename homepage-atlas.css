@@ -11984,72 +11984,6 @@
   transform: translateX(0.35rem);
 }
 
-.atlas-home #dmv-report .dmv-report__disclosure {
-  position: absolute;
-  right: clamp(2rem, 7.2vw, 7.6rem);
-  bottom: clamp(2.3rem, 4.8vw, 5rem);
-  z-index: 4;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.9rem;
-  width: min(292px, 22vw);
-  padding: 1rem 1.05rem;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 14px;
-  color: var(--atlas-navy);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
-}
-
-.atlas-home #dmv-report .dmv-report__disclosure-icon {
-  display: grid;
-  place-items: center;
-  width: 2.9rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  color: var(--atlas-gold);
-  background: var(--atlas-white);
-  box-shadow: 0 7px 18px rgba(10, 22, 40, 0.14);
-}
-
-.atlas-home #dmv-report .dmv-report__disclosure-icon svg {
-  width: 1.75rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.atlas-home #dmv-report .dmv-report__disclosure strong {
-  display: block;
-  margin-bottom: 0.34rem;
-  font-family: "Atlas Display", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.atlas-home #dmv-report .dmv-report__disclosure p {
-  margin: 0;
-  color: #26384a;
-  font-size: 0.78rem;
-  line-height: 1.42;
-}
-
-.atlas-home #dmv-report .dmv-report__disclosure a {
-  display: inline-block;
-  min-height: 44px;
-  margin-top: 0.55rem;
-  padding-top: 0.35rem;
-  color: #5e4a0e;
-  font-size: 0.74rem;
-  font-weight: 800;
-  line-height: 1.25;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
 .atlas-home #dmv-report .dmv-report__close {
   position: absolute;
   right: 0;
@@ -12145,10 +12079,6 @@
     margin-top: 0.2rem;
   }
 
-  .atlas-home #dmv-report .dmv-report__disclosure {
-    right: 2rem;
-    width: min(260px, 25vw);
-  }
 }
 
 @media (max-width: 760px) {
@@ -12280,18 +12210,6 @@
 
   .atlas-home #dmv-report .dmv-report__action strong {
     font-size: clamp(1.45rem, 7.5vw, 1.85rem);
-  }
-
-  .atlas-home #dmv-report .dmv-report__disclosure {
-    position: static;
-    width: 100%;
-    margin: 1.4rem 0 0;
-    padding: 1rem;
-    border-radius: 12px;
-  }
-
-  .atlas-home #dmv-report .dmv-report__disclosure p {
-    font-size: 0.82rem;
   }
 
   .atlas-home #dmv-report .dmv-report__close {
