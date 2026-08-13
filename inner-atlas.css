@@ -4152,3 +4152,67 @@ main #faq .acc summary::before,
 :is(main:has(#counties), main:has(#towns), main:has(#overview):has(#local)) #faq .acc summary::before {
   font-family: "Atlas Display", sans-serif;
 }
+
+/* QUICK FIX 8 — Contact follow-up layout */
+main:has(#reach) #what-happens .h2 {
+  max-width: 18ch;
+  text-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  main:has(#reach) #what-happens .h2 {
+    font-size: clamp(2.35rem, 11.5vw, 3.5rem);
+  }
+}
+
+@media (max-width: 639px) {
+  main:has(#reach) #what-happens .acard {
+    padding-inline: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  main:has(#reach) #what-happens .acard:nth-child(2n + 1) {
+    padding-left: 30px;
+    border-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  main:has(#reach) #what-happens .acard:nth-child(2n + 1) {
+    padding-left: 34px;
+  }
+}
+
+@media (min-width: 1100px) {
+  main:has(#reach) #what-happens .acard:nth-child(2n + 1) {
+    padding-left: 24px;
+  }
+}
+
+/* QUICK FIX 9 — Service Areas hero padding */
+main:has(#counties) > .sec--tight .page-head::before {
+  left: clamp(1.15rem, 2vw, 1.55rem);
+}
+
+/* QUICK FIX 10 — Service Areas section fixes */
+main:has(#counties) #counties .service-counties-title-line {
+  white-space: nowrap;
+}
+
+main:has(#counties) #why.dark .h2.h2--light {
+  color: var(--inner-atlantic);
+}
+
+main:has(#counties) #why.dark .rte.rte--light p {
+  color: #243449;
+}
+
+main:has(#counties) #why.dark .rte-strong.rte-strong--light {
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--inner-atlantic);
+}
+
+main:has(#counties) #why.dark .rte-strong.rte-strong--light .tel--light {
+  color: #765b00;
+}
