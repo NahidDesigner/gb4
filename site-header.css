@@ -195,6 +195,7 @@ body > .railhead ~ main {
     min-height: 44px;
     margin-left: auto;
     padding-inline: 0.9rem;
+    background: #013162;
     font-size: 11px;
   }
 

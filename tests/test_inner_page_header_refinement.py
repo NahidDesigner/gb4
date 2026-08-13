@@ -83,6 +83,7 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
         self.assertIn("min-height: 44px", mobile)
         self.assertIn("display: inline-flex", mobile_call)
         self.assertIn("margin-left: auto", mobile_call)
+        self.assertIn("background: #013162", mobile_call)
         self.assertIn("display: none", mobile_search)
         self.assertIn("display: none", mobile_number)
         self.assertIn("display: inline", mobile_label)
@@ -126,7 +127,7 @@ class InnerPageHeaderRefinementTests(unittest.TestCase):
 
         for page in pages:
             relative_css = Path(os.path.relpath(HEADER_CSS, page.parent)).as_posix()
-            expected = f'href="{relative_css}?v=inner-header-premium-3"'
+            expected = f'href="{relative_css}?v=inner-header-premium-4"'
             with self.subTest(page=page.relative_to(ROOT)):
                 html = page.read_text(encoding="utf-8")
                 self.assertIn(expected, html)
