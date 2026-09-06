@@ -11,6 +11,12 @@ HERO_JS = (ROOT / "hero-video.js").read_text(encoding="utf-8")
 
 
 class HomepageMobileVideoHeroTests(unittest.TestCase):
+    def test_results_section_uses_recovered_heading(self):
+        self.assertIn(
+            '<h2 class="ds-settlements__heading" id="settlements-h">RECOVERED</h2>',
+            HTML,
+        )
+
     def test_mobile_vimeo_background_is_progressively_loaded(self):
         self.assertIn(
             'data-mobile-src="https://player.vimeo.com/video/1224408820?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;playsinline=1&amp;dnt=1"',
