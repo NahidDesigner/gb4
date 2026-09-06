@@ -39,6 +39,12 @@ function createHarness({ mobile = false, reduced = false } = {}) {
 const desktop = createHarness();
 assert.equal(desktop.attributes.get('src'), 'desktop-video');
 desktop.listeners['frame:load']();
+assert.equal(desktop.messages.length, 0);
+desktop.listeners.message({
+  origin: 'https://player.vimeo.com',
+  source: desktop.contentWindow,
+  data: { event: 'ready' },
+});
 assert.equal(desktop.messages.at(-1)?.message.method, 'addEventListener');
 assert.equal(desktop.messages.at(-1)?.message.value, 'timeupdate');
 desktop.listeners.message({
@@ -52,6 +58,11 @@ assert.equal(desktop.messages.at(-1)?.message.value, 0);
 const mobile = createHarness({ mobile: true });
 assert.equal(mobile.attributes.get('src'), 'mobile-video');
 mobile.listeners['frame:load']();
+mobile.listeners.message({
+  origin: 'https://player.vimeo.com',
+  source: mobile.contentWindow,
+  data: { event: 'ready' },
+});
 assert.equal(mobile.messages.length, 0);
 mobile.listeners.message({
   origin: 'https://player.vimeo.com',

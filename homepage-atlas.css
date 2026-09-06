@@ -6110,6 +6110,15 @@
 }
 
 @media (max-width: 640px) {
+  .atlas-home .hero-video {
+    inset: -3px;
+  }
+
+  .atlas-home .hero-video__frame {
+    width: calc(max(100vw, 56.25svh) + 12px);
+    height: calc(max(100svh, 177.78vw) + 12px);
+  }
+
   .atlas-home .hero-stage {
     min-height: max(100svh, 46rem);
     justify-content: flex-start;

@@ -106,6 +106,11 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         )
         self.assertRegex(block, r'\.atlas-home \.lockup-menu\s*\{[^}]*min-width:\s*64px[^}]*min-height:\s*64px')
         self.assertRegex(block, r'\.atlas-home \.lockup-search\s*\{[^}]*display:\s*none')
+        self.assertRegex(
+            block,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.hero-video\s*\{[^}]*inset:\s*-3px',
+        )
         desktop = re.search(r'@media\s*\(min-width:\s*641px\)(.*)', block, re.S)
         self.assertIsNotNone(desktop)
         desktop_video = desktop.group(1).split(
@@ -159,7 +164,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=responsive-video-hero-2',
+            'homepage-atlas.css?v=responsive-video-hero-3',
             HTML,
         )
         self.assertIn(
@@ -167,7 +172,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             HTML,
         )
         self.assertIn(
-            'hero-video.js?v=desktop-six-second-loop-1',
+            'hero-video.js?v=desktop-six-second-loop-2',
             HTML,
         )
 
