@@ -6115,8 +6115,8 @@
   }
 
   .atlas-home .hero-video__frame {
-    width: calc(max(100vw, 56.25svh) + 12px);
-    height: calc(max(100svh, 177.78vw) + 12px);
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
   }
 
   .atlas-home .hero-stage {
