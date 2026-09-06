@@ -6079,6 +6079,297 @@
   }
 }
 
+/* RESPONSIVE HERO VIDEO — client-supplied Vimeo compositions
+   The existing skyline remains directly beneath the Vimeo layer as its poster,
+   network fallback, and reduced-motion image at both responsive breakpoints. */
+.atlas-home .hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.atlas-home .hero-video__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100vw, 56.25svh);
+  height: max(100svh, 177.78vw);
+  max-width: none;
+  border: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.atlas-home .hero-proof__injured,
+.atlas-home .hero-proof__label-mobile {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .atlas-home .hero-stage {
+    min-height: max(100svh, 46rem);
+    justify-content: flex-start;
+    padding: 0 1rem 7.5rem;
+  }
+
+  .atlas-home .hero-bg {
+    top: 0;
+    height: 100%;
+    background-image: url("assets/nyc-hero-sm.jpg");
+    background-position: center;
+    filter: saturate(1.04) contrast(1.04) brightness(0.9);
+    transform: none !important;
+  }
+
+  .atlas-home .hero-scrim {
+    z-index: 1;
+    background:
+      linear-gradient(180deg,
+        rgba(4, 12, 26, 0.08) 0%,
+        rgba(4, 12, 26, 0.05) 25%,
+        rgba(4, 12, 26, 0.34) 42%,
+        rgba(4, 12, 26, 0.82) 69%,
+        rgba(4, 12, 26, 0.96) 100%),
+      linear-gradient(90deg,
+        rgba(4, 12, 26, 0.24),
+        transparent 28%,
+        transparent 72%,
+        rgba(4, 12, 26, 0.24));
+  }
+
+  .atlas-home .lockup {
+    position: absolute;
+    top: max(2rem, calc(env(safe-area-inset-top) + 1rem));
+    right: 0;
+    left: 0;
+    z-index: 3;
+    display: grid;
+    place-items: start center;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+  }
+
+  .atlas-home .lockup-mark {
+    padding: 0;
+    transform: translateY(3.5rem);
+  }
+
+  .atlas-home .lockup-mark img {
+    width: clamp(8rem, 40vw, 10.5rem);
+    height: auto;
+    max-width: none;
+    filter: drop-shadow(0 8px 18px rgba(3, 10, 22, 0.22));
+  }
+
+  .atlas-home .lockup-stack {
+    position: absolute;
+    top: 0;
+    right: max(1rem, env(safe-area-inset-right));
+    display: block;
+    width: auto;
+    border: 0;
+    pointer-events: auto;
+  }
+
+  .atlas-home .lockup-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 64px;
+    min-height: 64px;
+    padding: 0.55rem;
+    border: 1px solid var(--atlas-gold);
+    color: var(--atlas-gold-soft);
+    background: rgba(6, 19, 39, 0.96);
+    box-shadow: 0 12px 28px rgba(1, 8, 18, 0.28);
+    font-family: "Atlas Text", sans-serif;
+    font-size: 0.57rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    line-height: 1;
+  }
+
+  .atlas-home .lockup-menu:hover,
+  .atlas-home .lockup-menu:focus-visible {
+    color: #fff3b2;
+    background: #0a1628;
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  .atlas-home .lockup .ico-menu {
+    width: 28px;
+    height: 17px;
+    color: var(--atlas-gold-soft);
+  }
+
+  .atlas-home .lockup .ico-menu::before,
+  .atlas-home .lockup .ico-menu::after {
+    height: 2px;
+  }
+
+  .atlas-home .lockup .ico-menu::before {
+    top: 0;
+    box-shadow: 0 7.5px 0 currentColor;
+  }
+
+  .atlas-home .lockup .ico-menu::after {
+    top: 15px;
+  }
+
+  .atlas-home .lockup-search {
+    display: none;
+  }
+
+  .atlas-home .hero-copy {
+    position: absolute;
+    top: clamp(17.25rem, 38.5svh, 22.5rem);
+    right: 1rem;
+    left: 1rem;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .atlas-home .hero-proof {
+    gap: 0;
+    width: 100%;
+    max-width: 24rem;
+    letter-spacing: -0.025em;
+  }
+
+  .atlas-home .hero-proof__injured {
+    margin-bottom: 0.6rem;
+    color: #ffffff;
+    font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+    font-size: clamp(2.65rem, 13.4vw, 3.6rem);
+    font-weight: 600;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-shadow: 0 8px 22px rgba(0, 0, 0, 0.68);
+  }
+
+  .atlas-home .hero-proof__over {
+    gap: 0.85rem;
+    margin-bottom: 0.72rem;
+    font-size: clamp(0.66rem, 3vw, 0.78rem);
+    letter-spacing: 0.42em;
+  }
+
+  .atlas-home .hero-proof__over::before,
+  .atlas-home .hero-proof__over::after {
+    width: clamp(2.4rem, 17vw, 4.2rem);
+  }
+
+  .atlas-home .hero-proof__main {
+    font-size: clamp(2.8rem, 13vw, 3.55rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .atlas-home .hero-proof__main > span {
+    margin-top: 0.8rem;
+    font-size: clamp(0.69rem, 3.15vw, 0.82rem);
+    letter-spacing: 0.28em;
+    line-height: 1;
+  }
+
+  .atlas-home .hero-proof__label-desktop,
+  .atlas-home .hero-h1__injured {
+    display: none;
+  }
+
+  .atlas-home .hero-h1 {
+    max-width: 20rem;
+    margin-top: clamp(1.8rem, 4.6svh, 2.5rem);
+    font-size: clamp(1.42rem, 6.5vw, 1.72rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+  }
+
+  .atlas-home .hero-h1 em {
+    display: block;
+    margin-top: 0.28rem;
+  }
+
+  .atlas-home .hero-phone {
+    width: min(100%, 18rem);
+    min-height: 58px;
+    height: auto;
+    margin-top: 1.45rem;
+    padding: 0.95rem 1.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 14px;
+    background: linear-gradient(105deg, #f5bb27, #ffe887);
+    box-shadow: 0 15px 34px rgba(0, 0, 0, 0.4);
+    font-size: clamp(1.12rem, 5.2vw, 1.35rem);
+  }
+
+  .atlas-home .hero-scroll {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    gap: 0.5rem;
+    font-size: 0.58rem;
+  }
+
+  .atlas-home .hero-scroll::after {
+    height: 1.35rem;
+  }
+}
+
+@media (max-width: 640px) and (max-height: 760px) {
+  .atlas-home .hero-stage {
+    min-height: 43.5rem;
+  }
+
+  .atlas-home .hero-copy {
+    top: 14.8rem;
+  }
+
+  .atlas-home .hero-h1 {
+    margin-top: 1.35rem;
+  }
+
+  .atlas-home .hero-phone {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .atlas-home .hero-proof__injured,
+  .atlas-home .hero-proof__label-mobile {
+    display: none;
+  }
+
+  .atlas-home .hero-video__frame {
+    width: max(100vw, 177.78svh);
+    height: max(100svh, 56.25vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-home .hero-video {
+    display: none;
+  }
+}
+
 /* EDIT 19 — FAQ top-header brand field
    The FAQ heading belongs above the index, not locked into a left-side rail.
    Remove the split background and orange/rail residue so the section reads in
@@ -12243,5 +12534,235 @@
 
   .atlas-home #dmv-report .dmv-report__action-arrow {
     display: none;
+  }
+}
+
+/* DESKTOP HERO PROOF — client reference composition
+   Reuse the semantic mobile proof order at desktop size, while preserving the
+   established desktop header, skyline, scroll cue, and mobile breakpoint. */
+@media (min-width: 641px) {
+  .atlas-home .hero-copy {
+    width: min(calc(100% - 3rem), 1120px);
+    transform: translateY(clamp(-2.6rem, -2.8vw, -1.5rem));
+  }
+
+  .atlas-home .hero-proof {
+    gap: 0;
+    width: 100%;
+  }
+
+  .atlas-home .hero-proof__injured {
+    display: block;
+    margin: 0 0 clamp(0.3rem, 0.55vw, 0.55rem);
+    color: #ffffff;
+    font-family: "GB Hero Serif", "Cinzel", Georgia, serif;
+    font-size: clamp(2.65rem, 4vw, 4.2rem);
+    font-weight: 600;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-shadow:
+      0 2px 2px rgba(0, 0, 0, 0.75),
+      0 12px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .atlas-home .hero-proof__over {
+    gap: clamp(0.75rem, 1.35vw, 1.25rem);
+    margin-bottom: clamp(0.32rem, 0.55vw, 0.55rem);
+    font-size: clamp(0.72rem, 0.9vw, 0.92rem);
+    letter-spacing: 0.42em;
+  }
+
+  .atlas-home .hero-proof__over::before,
+  .atlas-home .hero-proof__over::after {
+    width: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  .atlas-home .hero-proof__main {
+    font-size: clamp(4.4rem, 7.2vw, 6rem);
+    line-height: 0.88;
+    white-space: nowrap;
+  }
+
+  .atlas-home .hero-proof__main > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.9rem, 1.5vw, 1.4rem);
+    margin-top: clamp(0.45rem, 0.7vw, 0.72rem);
+    font-size: clamp(0.72rem, 0.95vw, 0.92rem);
+    letter-spacing: 0.34em;
+    line-height: 1;
+  }
+
+  .atlas-home .hero-proof__main > span::before,
+  .atlas-home .hero-proof__main > span::after {
+    content: "";
+    flex: 0 1 clamp(3rem, 5vw, 5rem);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240, 208, 120, 0.82));
+  }
+
+  .atlas-home .hero-proof__main > span::after {
+    background: linear-gradient(90deg, rgba(240, 208, 120, 0.82), transparent);
+  }
+
+  .atlas-home .hero-h1 {
+    max-width: 36rem;
+    margin: clamp(1.3rem, 1.8vw, 1.75rem) auto 0;
+    font-size: clamp(1.25rem, 1.7vw, 1.65rem);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .atlas-home .hero-h1__injured {
+    display: none;
+  }
+
+  .atlas-home .hero-h1 em {
+    display: block;
+    margin-top: 0.18rem;
+  }
+}
+
+/* Keep the approved mobile hero authoritative over the earlier locked-hero
+   restoration blocks above. This guard is intentionally last in the cascade. */
+@media (max-width: 640px) {
+  .atlas-home .hero-stage {
+    min-height: max(100svh, 46rem);
+    justify-content: flex-start;
+    padding: 0 1rem 7.5rem;
+  }
+
+  .atlas-home .hero-bg {
+    top: 0;
+    height: 100%;
+    background-image: url("assets/nyc-hero-sm.jpg");
+    background-position: center;
+    filter: saturate(1.04) contrast(1.04) brightness(0.9);
+  }
+
+  .atlas-home .hero-scrim {
+    z-index: 1;
+    background:
+      linear-gradient(180deg,
+        rgba(4, 12, 26, 0.08) 0%,
+        rgba(4, 12, 26, 0.05) 25%,
+        rgba(4, 12, 26, 0.34) 42%,
+        rgba(4, 12, 26, 0.82) 69%,
+        rgba(4, 12, 26, 0.96) 100%),
+      linear-gradient(90deg,
+        rgba(4, 12, 26, 0.24),
+        transparent 28%,
+        transparent 72%,
+        rgba(4, 12, 26, 0.24));
+  }
+
+  .atlas-home .lockup {
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .atlas-home .hero-copy {
+    top: clamp(17.25rem, 38.5svh, 22.5rem);
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .atlas-home .hero-proof {
+    gap: 0;
+    width: 100%;
+    max-width: 24rem;
+    letter-spacing: -0.025em;
+  }
+
+  .atlas-home .hero-proof__injured {
+    margin-bottom: 0.6rem;
+    font-size: clamp(2.65rem, 13.4vw, 3.6rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+  }
+
+  .atlas-home .hero-proof__over {
+    gap: 0.85rem;
+    margin-bottom: 0.72rem;
+    font-size: clamp(0.66rem, 3vw, 0.78rem);
+    letter-spacing: 0.42em;
+  }
+
+  .atlas-home .hero-proof__over::before,
+  .atlas-home .hero-proof__over::after {
+    width: clamp(2.4rem, 17vw, 4.2rem);
+  }
+
+  .atlas-home .hero-proof__main {
+    font-size: clamp(2.8rem, 13vw, 3.55rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .atlas-home .hero-proof__main > span {
+    margin-top: 0.8rem;
+    font-size: clamp(0.69rem, 3.15vw, 0.82rem);
+    letter-spacing: 0.28em;
+    line-height: 1;
+  }
+
+  .atlas-home .hero-h1 {
+    max-width: 20rem;
+    margin-top: clamp(1.8rem, 4.6svh, 2.5rem);
+    font-size: clamp(1.42rem, 6.5vw, 1.72rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .atlas-home .hero-scroll {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    gap: 0.5rem;
+    font-size: 0.58rem;
+  }
+
+  .atlas-home .hero-scroll::after {
+    height: 1.35rem;
+  }
+}
+
+@media (max-width: 640px) and (max-height: 760px) {
+  .atlas-home .hero-stage {
+    min-height: 43.5rem;
+  }
+
+  .atlas-home .hero-copy {
+    top: 14.8rem;
+  }
+
+  .atlas-home .hero-h1 {
+    margin-top: 1.35rem;
+  }
+
+  .atlas-home .hero-phone {
+    margin-top: 1rem;
+  }
+}
+
+/* RESPONSIVE HERO POSTERS — client-supplied video fallbacks
+   These sit beneath the Vimeo layer and remain visible while each responsive
+   video loads, if it fails, and whenever reduced motion disables playback. */
+.atlas-home .hero-bg {
+  background-image: url("assets/hero-video-fallback-mobile.png");
+  background-position: center;
+  background-size: cover;
+}
+
+@media (min-width: 641px) {
+  .atlas-home .hero-bg {
+    background-image: url("assets/hero-video-fallback-desktop.png");
   }
 }

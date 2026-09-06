@@ -26,7 +26,7 @@ const actionbar = extract(
 
 assert.equal(
   sha(hero),
-  '9a82a2a655ac161cdc448da69a780550aaa81c31a1326e09fcb33f3fb7fd018c',
+  '988d06b499479b1935439de38b142bd7969147a12f7c97d6ddffbf85629a1b05',
   'locked hero markup changed',
 );
 assert.equal(
@@ -159,6 +159,7 @@ for (const forbidden of [
 
 const css = fs.readFileSync(new URL('../homepage-atlas.css', import.meta.url), 'utf8');
 const js = fs.readFileSync(new URL('../homepage-atlas.js', import.meta.url), 'utf8');
+const heroJs = fs.readFileSync(new URL('../hero-video.js', import.meta.url), 'utf8');
 for (const token of [
   '--atlas-paper: #f4f1ea',
   '--atlas-stone: #e3e6e4',
@@ -186,8 +187,47 @@ for (const approvedAtlasColor of ['#e35d2f', '#216b88', '#123d56', '#dce7e7']) {
 
 assert.match(
   css,
-  /EDIT 15 — Locked mobile hero lockup restore[\s\S]*?@media\s*\(max-width:\s*430px\)[\s\S]*?\.atlas-home \.lockup-stack\s*\{[\s\S]*?flex-direction:\s*column[\s\S]*?width:\s*88px[\s\S]*?\.atlas-home \.lockup-menu,[\s\S]*?\.atlas-home \.lockup-search\s*\{[\s\S]*?min-height:\s*0[\s\S]*?font-size:\s*9px/s,
-  'locked mobile hero lockup must keep the original vertical Menu/Search stack with visible labels and no forced 44px overflow',
+  /RESPONSIVE HERO VIDEO — client-supplied Vimeo compositions[\s\S]*?\.atlas-home \.lockup-menu\s*\{[\s\S]*?min-width:\s*64px[\s\S]*?min-height:\s*64px[\s\S]*?\.atlas-home \.lockup-search\s*\{[\s\S]*?display:\s*none/s,
+  'approved mobile hero must use the square touch-safe Menu control without the redundant Search control',
+);
+assert.match(
+  html,
+  /class="hero-video__frame"[\s\S]*?data-mobile-src="[^"]*video\/1224408820\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
+  'mobile hero must retain the approved muted inline Vimeo background',
+);
+assert.match(
+  html,
+  /data-desktop-src="[^"]*video\/1224409606\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
+  'desktop hero must retain the approved muted inline Vimeo background',
+);
+assert.match(
+  html,
+  /rel="preload" as="image" href="assets\/hero-video-fallback-mobile\.png" media="\(max-width: 640px\)"[\s\S]*?rel="preload" as="image" href="assets\/hero-video-fallback-desktop\.png" media="\(min-width: 641px\)"/,
+  'responsive hero fallbacks must be preloaded at their matching breakpoints',
+);
+assert.match(
+  css,
+  /RESPONSIVE HERO POSTERS — client-supplied video fallbacks[\s\S]*?background-image:\s*url\("assets\/hero-video-fallback-mobile\.png"\)[\s\S]*?@media\s*\(min-width:\s*641px\)[\s\S]*?background-image:\s*url\("assets\/hero-video-fallback-desktop\.png"\)/,
+  'responsive hero fallbacks must use the client-supplied mobile and desktop posters',
+);
+assert.match(
+  heroJs,
+  /\.matches\?[a-z]\.dataset\.mobileSrc:[a-z]\.dataset\.desktopSrc/,
+  'hero video must select its responsive Vimeo source',
+);
+assert.match(
+  heroJs,
+  /prefers-reduced-motion: reduce[\s\S]*?removeAttribute\("src"\)/,
+  'hero video must unload for reduced motion',
+);
+assert.match(
+  heroJs,
+  /"addEventListener","timeupdate"[\s\S]*?Number\([a-z]\.data\?\.seconds\)[\s\S]*?>=6[\s\S]*?"setCurrentTime",0/,
+  'desktop hero video must loop its first six seconds through the Vimeo player API',
+);
+assert.ok(
+  Buffer.byteLength(js) + Buffer.byteLength(heroJs) <= 8192,
+  'homepage authored motion JavaScript must stay within the 8KB budget',
 );
 
 assert.match(
