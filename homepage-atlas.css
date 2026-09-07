@@ -6130,17 +6130,13 @@
     height: 100%;
     background-image: url("assets/nyc-hero-sm.jpg");
     background-position: center;
-    filter: saturate(1.04) contrast(1.04) brightness(0.9);
+    filter: saturate(1.04) contrast(1.02) brightness(1);
     transform: none !important;
   }
 
   .atlas-home .hero-scrim {
     z-index: 1;
     background:
-      linear-gradient(180deg,
-        rgba(255, 255, 255, 0.78) 0%,
-        rgba(255, 255, 255, 0.58) 18%,
-        rgba(255, 255, 255, 0) 38%),
       linear-gradient(180deg,
         rgba(4, 12, 26, 0.08) 0%,
         rgba(4, 12, 26, 0.05) 25%,
@@ -6174,15 +6170,19 @@
   }
 
   .atlas-home .lockup-mark {
+    display: grid;
+    place-items: center;
+    width: 100%;
     padding: 0;
-    transform: translateY(3.5rem);
+    transform: translateY(1rem);
   }
 
   .atlas-home .lockup-mark img {
-    width: clamp(8rem, 40vw, 10.5rem);
+    content: url("assets/gb-logo-empire-glow.png");
+    width: min(100%, 24rem);
     height: auto;
     max-width: none;
-    filter: drop-shadow(0 8px 18px rgba(3, 10, 22, 0.22));
+    filter: none;
   }
 
   .atlas-home .lockup-stack {
@@ -12652,16 +12652,12 @@
     height: 100%;
     background-image: url("assets/nyc-hero-sm.jpg");
     background-position: center;
-    filter: saturate(1.04) contrast(1.04) brightness(0.9);
+    filter: saturate(1.04) contrast(1.02) brightness(1);
   }
 
   .atlas-home .hero-scrim {
     z-index: 1;
     background:
-      linear-gradient(180deg,
-        rgba(255, 255, 255, 0.78) 0%,
-        rgba(255, 255, 255, 0.58) 18%,
-        rgba(255, 255, 255, 0) 38%),
       linear-gradient(180deg,
         rgba(4, 12, 26, 0.08) 0%,
         rgba(4, 12, 26, 0.05) 25%,
@@ -12773,7 +12769,7 @@
    These sit beneath the Vimeo layer and remain visible while each responsive
    video loads, if it fails, and whenever reduced motion disables playback. */
 .atlas-home .hero-bg {
-  background-image: url("assets/hero-video-fallback-mobile.png");
+  background-image: url("assets/hero-mobile-empire-fallback.png");
   background-position: center;
   background-size: cover;
 }

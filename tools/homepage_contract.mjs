@@ -26,7 +26,7 @@ const actionbar = extract(
 
 assert.equal(
   sha(hero),
-  '988d06b499479b1935439de38b142bd7969147a12f7c97d6ddffbf85629a1b05',
+  '78f1ffde599851e999a960fdc22843aee40f45f6934b1d73c3f7734f6947d560',
   'locked hero markup changed',
 );
 assert.equal(
@@ -192,7 +192,7 @@ assert.match(
 );
 assert.match(
   html,
-  /class="hero-video__frame"[\s\S]*?data-mobile-src="[^"]*video\/1224408820\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
+  /class="hero-video__frame"[\s\S]*?data-mobile-src="[^"]*video\/1224734718\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
   'mobile hero must retain the approved muted inline Vimeo background',
 );
 assert.match(
@@ -202,12 +202,12 @@ assert.match(
 );
 assert.match(
   html,
-  /rel="preload" as="image" href="assets\/hero-video-fallback-mobile\.png" media="\(max-width: 640px\)"[\s\S]*?rel="preload" as="image" href="assets\/hero-video-fallback-desktop\.png" media="\(min-width: 641px\)"/,
+  /rel="preload" as="image" href="assets\/hero-mobile-empire-fallback\.png" media="\(max-width: 640px\)"[\s\S]*?rel="preload" as="image" href="assets\/gb-logo-empire-glow\.png" media="\(max-width: 640px\)"[\s\S]*?rel="preload" as="image" href="assets\/hero-video-fallback-desktop\.png" media="\(min-width: 641px\)"/,
   'responsive hero fallbacks must be preloaded at their matching breakpoints',
 );
 assert.match(
   css,
-  /RESPONSIVE HERO POSTERS — client-supplied video fallbacks[\s\S]*?background-image:\s*url\("assets\/hero-video-fallback-mobile\.png"\)[\s\S]*?@media\s*\(min-width:\s*641px\)[\s\S]*?background-image:\s*url\("assets\/hero-video-fallback-desktop\.png"\)/,
+  /RESPONSIVE HERO POSTERS — client-supplied video fallbacks[\s\S]*?background-image:\s*url\("assets\/hero-mobile-empire-fallback\.png"\)[\s\S]*?@media\s*\(min-width:\s*641px\)[\s\S]*?background-image:\s*url\("assets\/hero-video-fallback-desktop\.png"\)/,
   'responsive hero fallbacks must use the client-supplied mobile and desktop posters',
 );
 assert.match(
