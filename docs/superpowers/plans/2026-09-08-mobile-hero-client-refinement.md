@@ -27,7 +27,7 @@ Add assertions scoped after â€œThis guard is intentionally last in the cascadeâ€
     self.assertIn('background-position: center calc(50% + 1rem)', final_mobile_guard)
     self.assertIn('homepage-atlas.css?v=mobile-client-refinement-1', HTML)
 
-Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png, assert a nonzero vertical drop shadow on the image, and assert a dedicated .lockup-mark::before layer with separate gold and blue radial gradients plus a soft dark center.
+Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png. Assert that the dedicated .lockup-mark::before layer contains only a neutral navy radial vignette, contains no CSS-authored gold or blue stops, and that the image has no added filter or drop shadow.
 
 - [ ] **Step 2: Run the targeted tests and verify RED**
 
@@ -60,10 +60,7 @@ Inside the final max-width: 640px guard:
       position: relative;
       z-index: 1;
       width: min(92%, 22rem);
-      filter:
-        drop-shadow(-16px 10px 26px rgba(244, 190, 68, 0.58))
-        drop-shadow(16px 10px 28px rgba(22, 84, 148, 0.5))
-        drop-shadow(0 12px 18px rgba(4, 12, 24, 0.38));
+      filter: none;
     }
 
     .atlas-home .lockup-mark::before {
@@ -72,15 +69,12 @@ Inside the final max-width: 640px guard:
       top: 48%;
       left: 50%;
       z-index: 0;
-      width: min(100vw, 24.5rem);
-      height: 84%;
+      width: min(92vw, 22.75rem);
+      height: 72%;
       transform: translate(-50%, -50%);
-      background:
-        radial-gradient(ellipse at 36% 48%, rgba(255, 202, 64, 0.82) 0%, rgba(255, 202, 64, 0.42) 42%, transparent 72%),
-        radial-gradient(ellipse at 68% 52%, rgba(10, 76, 150, 0.72) 0%, rgba(10, 76, 150, 0.36) 44%, transparent 74%),
-        radial-gradient(ellipse at 50% 52%, rgba(4, 12, 24, 0.52) 0%, rgba(4, 12, 24, 0.22) 52%, transparent 78%);
-      filter: blur(12px);
-      opacity: 1;
+      background: radial-gradient(ellipse at 50% 52%, rgba(4, 12, 24, 0.58) 0%, rgba(4, 12, 24, 0.32) 48%, transparent 76%);
+      filter: none;
+      opacity: 0.72;
       pointer-events: none;
     }
 
@@ -92,7 +86,7 @@ Inside the final max-width: 640px guard:
       font-size: clamp(2.35rem, 11.5vw, 3.15rem);
     }
 
-In the final short-height guard, reduce the logo to min(84%, 18.5rem) while preserving its positive separation from the copy. Update the stylesheet revision in index.html to mobile-client-refinement-1.
+In the final short-height guard, reduce the logo to min(84%, 18.5rem) while preserving its positive separation from the copy. Update the stylesheet revision in index.html to mobile-client-refinement-3.
 
 - [ ] **Step 2: Run the targeted tests and verify GREEN**
 

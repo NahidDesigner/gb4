@@ -7,7 +7,7 @@ Refine the homepage hero on mobile so the client logo, “INJURED?” line, movi
 ## Approved direction
 
 - Reduce the mobile logo artwork by approximately 8–10 percent at both regular and short phone heights.
-- Preserve the supplied transparent assets/gb-logo-empire-glow.png artwork and its baked gold/blue glow. Because the baked glow loses contrast over the bright sky, place a soft mobile-only radial glow behind the artwork: gold behind the G, blue behind the B, and a restrained dark center for separation. Keep the existing offset drop shadow for edge depth.
+- Preserve the supplied transparent assets/gb-logo-empire-glow.png artwork and its baked gold/blue glow exactly. Do not recreate, amplify, or recolor that glow in CSS. Place only a tight, neutral navy vignette behind the artwork so the PNG's own halo remains visible over the moving sky; the vignette must contain no gold or blue color stops, and the image must have no added drop shadow.
 - Reduce only .hero-proof__injured; keep “Over,” “$100 Million+,” the recovery label, body statement, phone action, and scroll cue unchanged unless collision prevention requires positioning.
 - Move the mobile Vimeo frame and the matching fallback poster downward by the same optical amount so loading, reduced-motion, and playback states share one crop.
 - Move only the mobile menu stack upward. Keep its 64px touch target and focus behavior unchanged.
