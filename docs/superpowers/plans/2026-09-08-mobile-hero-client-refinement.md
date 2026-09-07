@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox syntax for tracking.
 
-**Goal:** Refine the client-approved mobile hero hierarchy by reducing the logo and “INJURED?” line, lowering the mobile video/poster crop, and lifting the menu while preserving glow, copy, desktop behavior, and accessibility.
+**Goal:** Refine the client-approved mobile hero hierarchy by reducing the logo and “INJURED?” line, using the replacement mobile video/poster without a vertical offset, and lifting the menu while preserving glow, copy, desktop behavior, and accessibility.
 
 **Architecture:** Keep the existing semantic hero intact and implement the refinement in the final authoritative mobile cascade in homepage-atlas.css. Extend the existing Python CSS contract so the four coordinated mobile changes and cache revision cannot regress.
 
@@ -23,9 +23,10 @@ Add assertions scoped after “This guard is intentionally last in the cascade�
     self.assertIn('width: min(92%, 22rem)', final_mobile_guard)
     self.assertIn('font-size: clamp(2.35rem, 11.5vw, 3.15rem)', final_mobile_guard)
     self.assertIn('top: -0.65rem', final_mobile_guard)
-    self.assertIn('translate(-50%, calc(-50% + 1rem))', final_mobile_guard)
-    self.assertIn('background-position: center calc(50% + 1rem)', final_mobile_guard)
-    self.assertIn('homepage-atlas.css?v=mobile-client-refinement-1', HTML)
+    self.assertIn('translate(-50%, -50%)', final_mobile_guard)
+    self.assertIn('background-position: center', final_mobile_guard)
+    self.assertIn('1224752755', HTML)
+    self.assertIn('homepage-atlas.css?v=mobile-client-refinement-5', HTML)
 
 Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png. Assert that the dedicated .lockup-mark::before layer contains only the sample's warm-white radial bloom with screen blending, contains no dark or split-color CSS glow, and that the image has no added filter or drop shadow.
 
@@ -35,7 +36,7 @@ Run:
 
     python3 -m unittest tests.test_homepage_mobile_video_hero tests.test_homepage_header_logo_call_now
 
-Expected: failures for the new logo size, heading size, crop offsets, menu position, shadow, and cache revision.
+Expected: failures for the replacement media, zero-offset crop, and cache revision.
 
 ### Task 2: Implement the final mobile-only cascade
 
@@ -49,11 +50,11 @@ Inside the final max-width: 640px guard:
 
     .atlas-home .hero-video__frame {
       height: calc(100% + 44px);
-      transform: translate(-50%, calc(-50% + 1rem));
+      transform: translate(-50%, -50%);
     }
 
     .atlas-home .hero-bg {
-      background-position: center calc(50% + 1rem);
+      background-position: center;
     }
 
     .atlas-home .lockup-mark img {
@@ -87,7 +88,7 @@ Inside the final max-width: 640px guard:
       font-size: clamp(2.35rem, 11.5vw, 3.15rem);
     }
 
-In the final short-height guard, reduce the logo to min(84%, 18.5rem) while preserving its positive separation from the copy. Update the stylesheet revision in index.html to mobile-client-refinement-4.
+Keep the existing short-height logo rule at min(84%, 18.5rem) while preserving its positive separation from the copy. Replace the mobile Vimeo source with 1224752755, replace assets/hero-mobile-empire-fallback.png with the supplied 720 × 1280 poster, and update the stylesheet revision in index.html to mobile-client-refinement-5.
 
 - [ ] **Step 2: Run the targeted tests and verify GREEN**
 
@@ -122,6 +123,7 @@ Expected: 0 failures, both Node contracts pass, detector returns [], and diff ch
 At 375 × 667 and 375 × 812, confirm:
 
 - logo bottom is above copy top;
+- fallback and video cover from the hero's top edge with no exposed strip;
 - menu top is above its previous 32px position while its box remains at least 64 × 64;
 - no horizontal overflow;
 - CTA and scroll cue do not collide.

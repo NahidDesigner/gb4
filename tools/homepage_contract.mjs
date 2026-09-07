@@ -26,7 +26,7 @@ const actionbar = extract(
 
 assert.equal(
   sha(hero),
-  '78f1ffde599851e999a960fdc22843aee40f45f6934b1d73c3f7734f6947d560',
+  '50ac8dde4a48a32debfef3cbc0f0e1d1bf4af71be49474412ef9fe0f6d7f63f7',
   'locked hero markup changed',
 );
 assert.equal(
@@ -192,7 +192,7 @@ assert.match(
 );
 assert.match(
   html,
-  /class="hero-video__frame"[\s\S]*?data-mobile-src="[^"]*video\/1224734718\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
+  /class="hero-video__frame"[\s\S]*?data-mobile-src="[^"]*video\/1224752755\?background=1[^"]*muted=1[^"]*controls=0[^"]*playsinline=1[^"]*"/,
   'mobile hero must retain the approved muted inline Vimeo background',
 );
 assert.match(

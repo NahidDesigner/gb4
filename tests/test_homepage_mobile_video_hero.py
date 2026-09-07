@@ -1,4 +1,5 @@
 from pathlib import Path
+import hashlib
 import re
 import unittest
 
@@ -19,7 +20,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_mobile_vimeo_background_is_progressively_loaded(self):
         self.assertIn(
-            'data-mobile-src="https://player.vimeo.com/video/1224734718?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;playsinline=1&amp;dnt=1"',
+            'data-mobile-src="https://player.vimeo.com/video/1224752755?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;playsinline=1&amp;dnt=1"',
             HTML,
         )
         self.assertIn(
@@ -155,14 +156,16 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
             r'\.atlas-home \.hero-video__frame\s*\{[^}]*'
             r'height:\s*calc\(100% \+ 44px\)[^}]*'
-            r'transform:\s*translate\(-50%,\s*calc\(-50% \+ 1rem\)\)',
+            r'transform:\s*translate\(-50%,\s*-50%\)',
         )
         self.assertRegex(
             final_mobile_guard,
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
             r'\.atlas-home \.hero-bg\s*\{[^}]*'
-            r'background-position:\s*center calc\(50% \+ 1rem\)',
+            r'background-position:\s*center',
         )
+        self.assertNotIn("calc(-50% + 1rem)", final_mobile_guard)
+        self.assertNotIn("center calc(50% + 1rem)", final_mobile_guard)
         self.assertRegex(
             final_mobile_guard,
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
@@ -250,7 +253,12 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         self.assertRegex(reduced.group(1), r'\.atlas-home \.hero-video\s*\{[^}]*display:\s*none')
 
     def test_client_fallback_posters_are_used_at_the_matching_breakpoints(self):
-        self.assertTrue((ROOT / "assets" / "hero-mobile-empire-fallback.png").is_file())
+        mobile_fallback = ROOT / "assets" / "hero-mobile-empire-fallback.png"
+        self.assertTrue(mobile_fallback.is_file())
+        self.assertEqual(
+            "f8635a2d6430e36e342e7b3ec7924882855e7e46eee2ebb203510916a3561a02",
+            hashlib.sha256(mobile_fallback.read_bytes()).hexdigest(),
+        )
         self.assertTrue((ROOT / "assets" / "hero-video-fallback-desktop.png").is_file())
         self.assertIn(
             '<link rel="preload" as="image" href="assets/hero-mobile-empire-fallback.png" media="(max-width: 640px)" />',
@@ -270,7 +278,9 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         posters = CSS.split(marker, 1)[1]
         self.assertRegex(
             posters,
-            r'\.atlas-home \.hero-bg\s*\{[^}]*background-image:\s*url\("assets/hero-mobile-empire-fallback\.png"\)',
+            r'\.atlas-home \.hero-bg\s*\{[^}]*'
+            r'background-image:\s*url\("assets/hero-mobile-empire-fallback\.png"\)[^}]*'
+            r'background-position:\s*center',
         )
         self.assertRegex(
             posters,
@@ -280,7 +290,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-refinement-4',
+            'homepage-atlas.css?v=mobile-client-refinement-5',
             HTML,
         )
         self.assertIn(

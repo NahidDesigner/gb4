@@ -9,19 +9,19 @@ Refine the homepage hero on mobile so the client logo, “INJURED?” line, movi
 - Reduce the mobile logo artwork by approximately 8–10 percent at both regular and short phone heights.
 - Preserve the supplied transparent assets/gb-logo-empire-glow.png artwork and its baked gold/blue glow exactly. Do not recreate, amplify, or recolor that glow in CSS. Match the client sample with one soft warm-white radial bloom behind the complete logo, using screen blending so it brightens the sky instead of laying a gray band over it. The image has no added drop shadow.
 - Reduce only .hero-proof__injured; keep “Over,” “$100 Million+,” the recovery label, body statement, phone action, and scroll cue unchanged unless collision prevention requires positioning.
-- Move the mobile Vimeo frame and the matching fallback poster downward by the same optical amount so loading, reduced-motion, and playback states share one crop.
+- Use the replacement mobile Vimeo video (1224752755) and the supplied 720 × 1280 fallback poster. Keep both centered with no downward offset so they cover the hero from its top edge in loading, reduced-motion, and playback states.
 - Move only the mobile menu stack upward. Keep its 64px touch target and focus behavior unchanged.
 - Apply the refinement only at max-width: 640px; desktop remains governed by the existing desktop rules.
 
 ## Responsive targets
 
-- Regular mobile (375 × 812): the logo remains dominant but clearly separated from “INJURED?”; the menu sits closer to the safe top edge; the building/sky crop reads lower.
+- Regular mobile (375 × 812): the logo remains dominant but clearly separated from “INJURED?”; the menu sits closer to the safe top edge; the replacement building/sky crop covers the hero from its top edge.
 - Short mobile (375 × 667): the reduced logo and heading preserve a positive visual gap, and the call action and scroll cue remain reachable without horizontal overflow.
 - Desktop (1440 × 900): logo, background, copy, menu/header, and spacing remain unchanged.
 
 ## Verification
 
-- Add CSS contract assertions for the smaller mobile logo, smaller mobile “INJURED?” size, downward video/poster crop, upward menu position, preserved glow artwork, and new cache revision.
+- Add contract assertions for the smaller mobile logo, smaller mobile “INJURED?” size, zero-offset video/poster coverage, exact replacement fallback, updated Vimeo source, upward menu position, preserved glow artwork, and new cache revision.
 - Prove the new assertions fail before editing production CSS, then pass after the minimal implementation.
 - Run the complete Python suite, homepage contract, hero-video runtime, CSS quality detector, and git diff check.
 - Perform computed-geometry checks and paired screenshots at 375 × 667, 375 × 812, and 1440 × 900.

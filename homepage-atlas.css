@@ -12649,14 +12649,14 @@
 
   .atlas-home .hero-video__frame {
     height: calc(100% + 44px);
-    transform: translate(-50%, calc(-50% + 1rem));
+    transform: translate(-50%, -50%);
   }
 
   .atlas-home .hero-bg {
     top: 0;
     height: 100%;
     background-image: url("assets/nyc-hero-sm.jpg");
-    background-position: center calc(50% + 1rem);
+    background-position: center;
     filter: saturate(1.04) contrast(1.02) brightness(1);
   }
 
@@ -12819,7 +12819,7 @@
    video loads, if it fails, and whenever reduced motion disables playback. */
 .atlas-home .hero-bg {
   background-image: url("assets/hero-mobile-empire-fallback.png");
-  background-position: center calc(50% + 1rem);
+  background-position: center;
   background-size: cover;
 }
 
