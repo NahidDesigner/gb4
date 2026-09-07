@@ -43,7 +43,7 @@ class HomepageHeaderLogoCallNowTests(unittest.TestCase):
     def test_desktop_logo_is_128px_and_stylesheet_cache_is_busted(self):
         self.assertIn("height: 128px", self.refinement)
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-refinement-3',
+            'homepage-atlas.css?v=mobile-client-refinement-4',
             HTML,
         )
 

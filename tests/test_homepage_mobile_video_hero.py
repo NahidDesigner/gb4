@@ -182,7 +182,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'font-size:\s*clamp\(2\.35rem,\s*11\.5vw,\s*3\.15rem\)',
         )
 
-    def test_mobile_logo_uses_only_its_baked_glow_over_a_neutral_vignette(self):
+    def test_mobile_logo_uses_its_baked_glow_over_the_sample_warm_white_bloom(self):
         final_mobile_guard = CSS.split(
             "This guard is intentionally last in the cascade.", 1
         )[1]
@@ -194,11 +194,12 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         self.assertRegex(
             final_mobile_guard,
             r'\.atlas-home \.lockup-mark::before\s*\{[^}]*content:\s*""[^}]*'
-            r'width:\s*min\(92vw,\s*22\.75rem\)[^}]*'
-            r'height:\s*72%[^}]*'
-            r'background:\s*radial-gradient\(ellipse at 50% 52%,\s*'
-            r'rgba\(4, 12, 24, 0\.58\)[^}]*'
-            r'filter:\s*none[^}]*opacity:\s*0\.72',
+            r'width:\s*min\(96vw,\s*23\.5rem\)[^}]*'
+            r'height:\s*80%[^}]*'
+            r'background:\s*radial-gradient\(ellipse at 50% 48%,\s*'
+            r'rgba\(255, 255, 255, 0\.64\)[^}]*'
+            r'rgba\(255, 247, 220, 0\.34\)[^}]*'
+            r'mix-blend-mode:\s*screen[^}]*filter:\s*none[^}]*opacity:\s*0\.78',
         )
         self.assertRegex(
             final_mobile_guard,
@@ -208,6 +209,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         )
         self.assertNotIn("rgba(255, 202, 64", final_mobile_guard)
         self.assertNotIn("rgba(10, 76, 150", final_mobile_guard)
+        self.assertNotIn("rgba(4, 12, 24", final_mobile_guard)
         self.assertNotIn("drop-shadow", final_mobile_guard)
 
     def test_narrow_mobile_metric_reserves_a_readable_side_gutter(self):
@@ -278,7 +280,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-refinement-3',
+            'homepage-atlas.css?v=mobile-client-refinement-4',
             HTML,
         )
         self.assertIn(

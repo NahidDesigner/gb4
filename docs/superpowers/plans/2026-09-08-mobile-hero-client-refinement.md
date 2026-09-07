@@ -27,7 +27,7 @@ Add assertions scoped after â€œThis guard is intentionally last in the cascadeâ€
     self.assertIn('background-position: center calc(50% + 1rem)', final_mobile_guard)
     self.assertIn('homepage-atlas.css?v=mobile-client-refinement-1', HTML)
 
-Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png. Assert that the dedicated .lockup-mark::before layer contains only a neutral navy radial vignette, contains no CSS-authored gold or blue stops, and that the image has no added filter or drop shadow.
+Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png. Assert that the dedicated .lockup-mark::before layer contains only the sample's warm-white radial bloom with screen blending, contains no dark or split-color CSS glow, and that the image has no added filter or drop shadow.
 
 - [ ] **Step 2: Run the targeted tests and verify RED**
 
@@ -69,12 +69,13 @@ Inside the final max-width: 640px guard:
       top: 48%;
       left: 50%;
       z-index: 0;
-      width: min(92vw, 22.75rem);
-      height: 72%;
+      width: min(96vw, 23.5rem);
+      height: 80%;
       transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at 50% 52%, rgba(4, 12, 24, 0.58) 0%, rgba(4, 12, 24, 0.32) 48%, transparent 76%);
+      background: radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.64) 0%, rgba(255, 247, 220, 0.34) 46%, rgba(255, 247, 220, 0.1) 66%, transparent 82%);
+      mix-blend-mode: screen;
       filter: none;
-      opacity: 0.72;
+      opacity: 0.78;
       pointer-events: none;
     }
 
@@ -86,7 +87,7 @@ Inside the final max-width: 640px guard:
       font-size: clamp(2.35rem, 11.5vw, 3.15rem);
     }
 
-In the final short-height guard, reduce the logo to min(84%, 18.5rem) while preserving its positive separation from the copy. Update the stylesheet revision in index.html to mobile-client-refinement-3.
+In the final short-height guard, reduce the logo to min(84%, 18.5rem) while preserving its positive separation from the copy. Update the stylesheet revision in index.html to mobile-client-refinement-4.
 
 - [ ] **Step 2: Run the targeted tests and verify GREEN**
 

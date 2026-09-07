@@ -12694,15 +12694,17 @@
     top: 48%;
     left: 50%;
     z-index: 0;
-    width: min(92vw, 22.75rem);
-    height: 72%;
+    width: min(96vw, 23.5rem);
+    height: 80%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse at 50% 52%,
-      rgba(4, 12, 24, 0.58) 0%,
-      rgba(4, 12, 24, 0.32) 48%,
-      transparent 76%);
+    background: radial-gradient(ellipse at 50% 48%,
+      rgba(255, 255, 255, 0.64) 0%,
+      rgba(255, 247, 220, 0.34) 46%,
+      rgba(255, 247, 220, 0.1) 66%,
+      transparent 82%);
+    mix-blend-mode: screen;
     filter: none;
-    opacity: 0.72;
+    opacity: 0.78;
     pointer-events: none;
   }
 
