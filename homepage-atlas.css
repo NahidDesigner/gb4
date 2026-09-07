@@ -12752,8 +12752,16 @@
     min-height: 43.5rem;
   }
 
+  .atlas-home .lockup-mark {
+    transform: translateY(0);
+  }
+
+  .atlas-home .lockup-mark img {
+    width: min(88%, 20rem);
+  }
+
   .atlas-home .hero-copy {
-    top: 14.8rem;
+    top: 15.75rem;
   }
 
   .atlas-home .hero-h1 {

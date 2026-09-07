@@ -154,6 +154,28 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'\.atlas-home \.hero-proof__main\s*\{[^}]*font-size:\s*clamp\(2\.8rem,\s*13vw,\s*3\.55rem\)',
         )
 
+    def test_short_mobile_viewport_separates_the_logo_from_the_copy(self):
+        final_mobile_guard = CSS.split(
+            "This guard is intentionally last in the cascade.", 1
+        )[1]
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)\s*and\s*\(max-height:\s*760px\)'
+            r'[\s\S]*?\.atlas-home \.lockup-mark\s*\{[^}]*'
+            r'transform:\s*translateY\(0\)',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)\s*and\s*\(max-height:\s*760px\)'
+            r'[\s\S]*?\.atlas-home \.lockup-mark img\s*\{[^}]*'
+            r'width:\s*min\(88%,\s*20rem\)',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)\s*and\s*\(max-height:\s*760px\)'
+            r'[\s\S]*?\.atlas-home \.hero-copy\s*\{[^}]*top:\s*15\.75rem',
+        )
+
     def test_reduced_motion_keeps_the_static_poster(self):
         reduced = re.search(
             r'@media\s*\(prefers-reduced-motion:\s*reduce\)(.*)', CSS, re.S
@@ -192,7 +214,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-hero-1',
+            'homepage-atlas.css?v=mobile-short-spacing-1',
             HTML,
         )
         self.assertIn(
