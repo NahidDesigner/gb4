@@ -124,6 +124,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'width:\s*calc\(100%\s*\+\s*12px\)[^}]*'
             r'height:\s*calc\(100%\s*\+\s*12px\)',
         )
+
         desktop = re.search(r'@media\s*\(min-width:\s*641px\)(.*)', block, re.S)
         self.assertIsNotNone(desktop)
         desktop_video = desktop.group(1).split(
@@ -134,6 +135,21 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             desktop_video,
             r'\.atlas-home \.hero-video__frame\s*\{[^}]*width:\s*max\(100vw,\s*177\.78svh\)[^}]*height:\s*max\(100svh,\s*56\.25vw\)',
         )
+
+    def test_mobile_hero_has_a_white_top_overlay_behind_the_logo(self):
+        block = CSS.split("RESPONSIVE HERO VIDEO — client-supplied Vimeo compositions", 1)[1]
+        self.assertRegex(
+            block,
+            r'\.atlas-home \.hero-scrim\s*\{[^}]*background:\s*'
+            r'linear-gradient\(180deg,\s*'
+            r'rgba\(255,\s*255,\s*255,\s*0\.78\)\s*0%,\s*'
+            r'rgba\(255,\s*255,\s*255,\s*0\.58\)\s*18%,\s*'
+            r'rgba\(255,\s*255,\s*255,\s*0\)\s*38%\)',
+        )
+        logo_rule = re.search(r'\.atlas-home \.lockup-mark\s*\{([^}]*)\}', block)
+        self.assertIsNotNone(logo_rule)
+        self.assertNotIn("background:", logo_rule.group(1))
+        self.assertNotIn("box-shadow:", logo_rule.group(1))
 
     def test_narrow_mobile_metric_reserves_a_readable_side_gutter(self):
         mobile = re.search(r'@media\s*\(max-width:\s*640px\)(.*)', CSS, re.S)
@@ -177,7 +193,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=responsive-video-hero-4',
+            'homepage-atlas.css?v=mobile-top-overlay-1',
             HTML,
         )
         self.assertIn(

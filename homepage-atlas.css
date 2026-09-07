@@ -6138,6 +6138,10 @@
     z-index: 1;
     background:
       linear-gradient(180deg,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.58) 18%,
+        rgba(255, 255, 255, 0) 38%),
+      linear-gradient(180deg,
         rgba(4, 12, 26, 0.08) 0%,
         rgba(4, 12, 26, 0.05) 25%,
         rgba(4, 12, 26, 0.34) 42%,
@@ -12654,6 +12658,10 @@
   .atlas-home .hero-scrim {
     z-index: 1;
     background:
+      linear-gradient(180deg,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.58) 18%,
+        rgba(255, 255, 255, 0) 38%),
       linear-gradient(180deg,
         rgba(4, 12, 26, 0.08) 0%,
         rgba(4, 12, 26, 0.05) 25%,
