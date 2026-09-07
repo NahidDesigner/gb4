@@ -168,7 +168,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
             r'\.atlas-home \.lockup-mark img\s*\{[^}]*'
             r'width:\s*min\(92%,\s*22rem\)[^}]*'
-            r'filter:[^}]*drop-shadow\(-16px 10px 26px',
+            r'filter:\s*none',
         )
         self.assertRegex(
             final_mobile_guard,
@@ -182,7 +182,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'font-size:\s*clamp\(2\.35rem,\s*11\.5vw,\s*3\.15rem\)',
         )
 
-    def test_mobile_logo_has_a_visible_gold_and_blue_glow_layer(self):
+    def test_mobile_logo_uses_only_its_baked_glow_over_a_neutral_vignette(self):
         final_mobile_guard = CSS.split(
             "This guard is intentionally last in the cascade.", 1
         )[1]
@@ -194,17 +194,21 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         self.assertRegex(
             final_mobile_guard,
             r'\.atlas-home \.lockup-mark::before\s*\{[^}]*content:\s*""[^}]*'
-            r'radial-gradient\(ellipse at 36% 48%,\s*rgba\(255, 202, 64, 0\.82\)[^}]*'
-            r'radial-gradient\(ellipse at 68% 52%,\s*rgba\(10, 76, 150, 0\.72\)[^}]*'
-            r'filter:\s*blur\(12px\)',
+            r'width:\s*min\(92vw,\s*22\.75rem\)[^}]*'
+            r'height:\s*72%[^}]*'
+            r'background:\s*radial-gradient\(ellipse at 50% 52%,\s*'
+            r'rgba\(4, 12, 24, 0\.58\)[^}]*'
+            r'filter:\s*none[^}]*opacity:\s*0\.72',
         )
         self.assertRegex(
             final_mobile_guard,
             r'\.atlas-home \.lockup-mark img\s*\{[^}]*'
             r'position:\s*relative[^}]*z-index:\s*1[^}]*'
-            r'drop-shadow\(-16px 10px 26px rgba\(244, 190, 68, 0\.58\)\)[^}]*'
-            r'drop-shadow\(16px 10px 28px rgba\(22, 84, 148, 0\.5\)\)',
+            r'filter:\s*none',
         )
+        self.assertNotIn("rgba(255, 202, 64", final_mobile_guard)
+        self.assertNotIn("rgba(10, 76, 150", final_mobile_guard)
+        self.assertNotIn("drop-shadow", final_mobile_guard)
 
     def test_narrow_mobile_metric_reserves_a_readable_side_gutter(self):
         mobile = re.search(r'@media\s*\(max-width:\s*640px\)(.*)', CSS, re.S)
@@ -274,7 +278,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-refinement-2',
+            'homepage-atlas.css?v=mobile-client-refinement-3',
             HTML,
         )
         self.assertIn(
