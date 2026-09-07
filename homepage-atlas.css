@@ -12647,11 +12647,16 @@
     padding: 0 1rem 7.5rem;
   }
 
+  .atlas-home .hero-video__frame {
+    height: calc(100% + 44px);
+    transform: translate(-50%, calc(-50% + 1rem));
+  }
+
   .atlas-home .hero-bg {
     top: 0;
     height: 100%;
     background-image: url("assets/nyc-hero-sm.jpg");
-    background-position: center;
+    background-position: center calc(50% + 1rem);
     filter: saturate(1.04) contrast(1.02) brightness(1);
   }
 
@@ -12678,6 +12683,17 @@
     box-shadow: none;
   }
 
+  .atlas-home .lockup-mark img {
+    width: min(92%, 22rem);
+    filter:
+      drop-shadow(0 12px 24px rgba(232, 180, 60, 0.26))
+      drop-shadow(0 8px 18px rgba(7, 48, 82, 0.24));
+  }
+
+  .atlas-home .lockup-stack {
+    top: -0.65rem;
+  }
+
   .atlas-home .hero-copy {
     top: clamp(17.25rem, 38.5svh, 22.5rem);
     right: 1rem;
@@ -12698,7 +12714,7 @@
 
   .atlas-home .hero-proof__injured {
     margin-bottom: 0.6rem;
-    font-size: clamp(2.65rem, 13.4vw, 3.6rem);
+    font-size: clamp(2.35rem, 11.5vw, 3.15rem);
     line-height: 0.94;
     letter-spacing: -0.035em;
   }
@@ -12757,7 +12773,7 @@
   }
 
   .atlas-home .lockup-mark img {
-    width: min(88%, 20rem);
+    width: min(84%, 18.5rem);
   }
 
   .atlas-home .hero-copy {
@@ -12778,12 +12794,13 @@
    video loads, if it fails, and whenever reduced motion disables playback. */
 .atlas-home .hero-bg {
   background-image: url("assets/hero-mobile-empire-fallback.png");
-  background-position: center;
+  background-position: center calc(50% + 1rem);
   background-size: cover;
 }
 
 @media (min-width: 641px) {
   .atlas-home .hero-bg {
     background-image: url("assets/hero-video-fallback-desktop.png");
+    background-position: center;
   }
 }

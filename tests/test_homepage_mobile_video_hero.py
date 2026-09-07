@@ -146,6 +146,42 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
         self.assertNotIn("background:", logo_rule.group(1))
         self.assertNotIn("box-shadow:", logo_rule.group(1))
 
+    def test_mobile_client_refinement_coordinates_logo_copy_media_and_menu(self):
+        final_mobile_guard = CSS.split(
+            "This guard is intentionally last in the cascade.", 1
+        )[1]
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.hero-video__frame\s*\{[^}]*'
+            r'height:\s*calc\(100% \+ 44px\)[^}]*'
+            r'transform:\s*translate\(-50%,\s*calc\(-50% \+ 1rem\)\)',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.hero-bg\s*\{[^}]*'
+            r'background-position:\s*center calc\(50% \+ 1rem\)',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.lockup-mark img\s*\{[^}]*'
+            r'width:\s*min\(92%,\s*22rem\)[^}]*'
+            r'filter:[^}]*drop-shadow\(0 12px 24px',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.lockup-stack\s*\{[^}]*top:\s*-0\.65rem',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
+            r'\.atlas-home \.hero-proof__injured\s*\{[^}]*'
+            r'font-size:\s*clamp\(2\.35rem,\s*11\.5vw,\s*3\.15rem\)',
+        )
+
     def test_narrow_mobile_metric_reserves_a_readable_side_gutter(self):
         mobile = re.search(r'@media\s*\(max-width:\s*640px\)(.*)', CSS, re.S)
         self.assertIsNotNone(mobile)
@@ -168,7 +204,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             final_mobile_guard,
             r'@media\s*\(max-width:\s*640px\)\s*and\s*\(max-height:\s*760px\)'
             r'[\s\S]*?\.atlas-home \.lockup-mark img\s*\{[^}]*'
-            r'width:\s*min\(88%,\s*20rem\)',
+            r'width:\s*min\(84%,\s*18\.5rem\)',
         )
         self.assertRegex(
             final_mobile_guard,
@@ -214,7 +250,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-short-spacing-1',
+            'homepage-atlas.css?v=mobile-client-refinement-1',
             HTML,
         )
         self.assertIn(
