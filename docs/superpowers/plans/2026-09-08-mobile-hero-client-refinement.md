@@ -27,7 +27,7 @@ Add assertions scoped after â€œThis guard is intentionally last in the cascadeâ€
     self.assertIn('background-position: center calc(50% + 1rem)', final_mobile_guard)
     self.assertIn('homepage-atlas.css?v=mobile-client-refinement-1', HTML)
 
-Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png and assert a nonzero vertical drop shadow on the image.
+Retain the assertion that the logo content URL is assets/gb-logo-empire-glow.png, assert a nonzero vertical drop shadow on the image, and assert a dedicated .lockup-mark::before layer with separate gold and blue radial gradients plus a soft dark center.
 
 - [ ] **Step 2: Run the targeted tests and verify RED**
 
@@ -57,10 +57,31 @@ Inside the final max-width: 640px guard:
     }
 
     .atlas-home .lockup-mark img {
+      position: relative;
+      z-index: 1;
       width: min(92%, 22rem);
       filter:
-        drop-shadow(0 12px 24px rgba(232, 180, 60, 0.26))
-        drop-shadow(0 8px 18px rgba(7, 48, 82, 0.24));
+        drop-shadow(-16px 10px 26px rgba(244, 190, 68, 0.58))
+        drop-shadow(16px 10px 28px rgba(22, 84, 148, 0.5))
+        drop-shadow(0 12px 18px rgba(4, 12, 24, 0.38));
+    }
+
+    .atlas-home .lockup-mark::before {
+      content: "";
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      z-index: 0;
+      width: min(100vw, 24.5rem);
+      height: 84%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(ellipse at 36% 48%, rgba(255, 202, 64, 0.82) 0%, rgba(255, 202, 64, 0.42) 42%, transparent 72%),
+        radial-gradient(ellipse at 68% 52%, rgba(10, 76, 150, 0.72) 0%, rgba(10, 76, 150, 0.36) 44%, transparent 74%),
+        radial-gradient(ellipse at 50% 52%, rgba(4, 12, 24, 0.52) 0%, rgba(4, 12, 24, 0.22) 52%, transparent 78%);
+      filter: blur(12px);
+      opacity: 1;
+      pointer-events: none;
     }
 
     .atlas-home .lockup-stack {

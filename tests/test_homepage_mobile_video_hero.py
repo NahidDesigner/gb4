@@ -168,7 +168,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
             r'\.atlas-home \.lockup-mark img\s*\{[^}]*'
             r'width:\s*min\(92%,\s*22rem\)[^}]*'
-            r'filter:[^}]*drop-shadow\(0 12px 24px',
+            r'filter:[^}]*drop-shadow\(-16px 10px 26px',
         )
         self.assertRegex(
             final_mobile_guard,
@@ -180,6 +180,30 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
             r'@media\s*\(max-width:\s*640px\)[\s\S]*?'
             r'\.atlas-home \.hero-proof__injured\s*\{[^}]*'
             r'font-size:\s*clamp\(2\.35rem,\s*11\.5vw,\s*3\.15rem\)',
+        )
+
+    def test_mobile_logo_has_a_visible_gold_and_blue_glow_layer(self):
+        final_mobile_guard = CSS.split(
+            "This guard is intentionally last in the cascade.", 1
+        )[1]
+        self.assertRegex(
+            final_mobile_guard,
+            r'\.atlas-home \.lockup-mark\s*\{[^}]*'
+            r'position:\s*relative[^}]*isolation:\s*isolate',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'\.atlas-home \.lockup-mark::before\s*\{[^}]*content:\s*""[^}]*'
+            r'radial-gradient\(ellipse at 36% 48%,\s*rgba\(255, 202, 64, 0\.82\)[^}]*'
+            r'radial-gradient\(ellipse at 68% 52%,\s*rgba\(10, 76, 150, 0\.72\)[^}]*'
+            r'filter:\s*blur\(12px\)',
+        )
+        self.assertRegex(
+            final_mobile_guard,
+            r'\.atlas-home \.lockup-mark img\s*\{[^}]*'
+            r'position:\s*relative[^}]*z-index:\s*1[^}]*'
+            r'drop-shadow\(-16px 10px 26px rgba\(244, 190, 68, 0\.58\)\)[^}]*'
+            r'drop-shadow\(16px 10px 28px rgba\(22, 84, 148, 0\.5\)\)',
         )
 
     def test_narrow_mobile_metric_reserves_a_readable_side_gutter(self):
@@ -250,7 +274,7 @@ class HomepageMobileVideoHeroTests(unittest.TestCase):
 
     def test_homepage_requests_the_mobile_video_hero_assets(self):
         self.assertIn(
-            'homepage-atlas.css?v=mobile-client-refinement-1',
+            'homepage-atlas.css?v=mobile-client-refinement-2',
             HTML,
         )
         self.assertIn(
